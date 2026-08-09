@@ -1,0 +1,31 @@
+# Pin versions from Month 2 onward per CLAUDE.md / brief Section 14 -- these libraries
+# change APIs often enough to break reproducibility if left unpinned. Fill in exact
+# versions with `pip freeze` once your environment is working end-to-end, don't leave
+# this file loose past Week 2.
+
+# core
+pandas
+numpy
+pyyaml
+tqdm
+
+# embeddings + retrieval
+sentence-transformers
+faiss-cpu
+
+# financial NER / sentence segmentation
+spacy
+
+# faithfulness
+ragas
+
+# generation (pick ONE provider client and remove the others once decided)
+# openai
+# anthropic
+
+# demo
+streamlit
+
+# eval / dev
+pytest
+jsonlines

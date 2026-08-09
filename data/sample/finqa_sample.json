@@ -1,0 +1,2454 @@
+[
+  {
+    "pre_text": [
+      "largest operators of open-loop and closed-loop retail electronic payments networks the largest operators of open-loop and closed-loop retail electronic payments networks are visa , mastercard , american express , discover , jcb and diners club .",
+      "with the exception of discover , which primarily operates in the united states , all of the other network operators can be considered multi- national or global providers of payments network services .",
+      "based on payments volume , total volume , number of transactions and number of cards in circulation , visa is the largest retail electronic payments network in the world .",
+      "the following chart compares our network with those of our major competitors for calendar year 2007 : company payments volume volume transactions cards ( billions ) ( billions ) ( billions ) ( millions ) visa inc. ( 1 ) .",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      ".",
+      "$ 2457 $ 3822 50.3 1592 ."
+    ],
+    "post_text": [
+      "( 1 ) visa inc .",
+      "figures as reported previously in our filings .",
+      "source : the nilson report , issue 902 ( may 2008 ) and issue 903 ( may 2008 ) .",
+      "note : visa inc .",
+      "figures exclude visa europe .",
+      "figures for competitors include their respective european operations .",
+      "visa figures include visa , visa electron , and interlink brands .",
+      "visa cards include plus proprietary cards , but proprietary plus cash volume is not included .",
+      "domestic china figures are excluded .",
+      "mastercard figures include pin-based debit card figures on mastercard cards , but not maestro or cirrus figures .",
+      "china commercial funds transfers are excluded .",
+      "american express and discover include business from third-party issuers .",
+      "jcb figures are for april 2006 through march 2007 , but cards and outlets are as of september 2007 .",
+      "jcb total transaction figures are estimates .",
+      "our primary operations we generate revenue from the transaction processing services we offer to our customers .",
+      "our customers deliver visa products and payment services to consumers and merchants based on the product platforms we define and manage .",
+      "payments network management is a core part of our operations , as it ensures that our payments system provides a safe , efficient , consistent , and interoperable service to cardholders , merchants , and financial institutions worldwide .",
+      "transaction processing services core processing services our core processing services involve the routing of payment information and related data to facilitate the authorization , clearing and settlement of transactions between visa issuers , which are the financial institutions that issue visa cards to cardholders , and acquirers , which are the financial institutions that offer visa network connectivity and payments acceptance services to merchants .",
+      "in addition , we offer a range of value-added processing services to support our customers 2019 visa programs and to promote the growth and security of the visa payments network .",
+      "authorization is the process of approving or declining a transaction before a purchase is finalized or cash is disbursed .",
+      "clearing is the process of delivering final transaction data from an acquirer to an issuer for posting to the cardholder 2019s account , the calculation of certain fees and charges that apply to the issuer and acquirer involved in the transaction , and the conversion of transaction amounts to the ."
+    ],
+    "filename": "V/2008/page_17.pdf",
+    "table_ori": [
+      [
+        "Company",
+        "Payments Volume  (billions)",
+        "Total Volume  (billions)<i></i>",
+        "Total Transactions  (billions)",
+        "<i></i> Cards  (millions)"
+      ],
+      [
+        "Visa Inc.<sup>(1)</sup>",
+        "$2,457",
+        "$3,822",
+        "50.3<i></i>",
+        "1,592"
+      ],
+      [
+        "MasterCard",
+        "1,697",
+        "2,276",
+        "27.0",
+        "916"
+      ],
+      [
+        "American Express",
+        "637",
+        "647",
+        "5.0",
+        "86"
+      ],
+      [
+        "Discover",
+        "102",
+        "119",
+        "1.6",
+        "57"
+      ],
+      [
+        "JCB",
+        "55",
+        "61",
+        "0.6",
+        "58"
+      ],
+      [
+        "Diners Club",
+        "29",
+        "30",
+        "0.2",
+        "7"
+      ]
+    ],
+    "table": [
+      [
+        "company",
+        "payments volume ( billions )",
+        "total volume ( billions )",
+        "total transactions ( billions )",
+        "cards ( millions )"
+      ],
+      [
+        "visa inc. ( 1 )",
+        "$ 2457",
+        "$ 3822",
+        "50.3",
+        "1592"
+      ],
+      [
+        "mastercard",
+        "1697",
+        "2276",
+        "27.0",
+        "916"
+      ],
+      [
+        "american express",
+        "637",
+        "647",
+        "5.0",
+        "86"
+      ],
+      [
+        "discover",
+        "102",
+        "119",
+        "1.6",
+        "57"
+      ],
+      [
+        "jcb",
+        "55",
+        "61",
+        "0.6",
+        "58"
+      ],
+      [
+        "diners club",
+        "29",
+        "30",
+        "0.2",
+        "7"
+      ]
+    ],
+    "qa": {
+      "question": "what is the average payment volume per transaction for american express?",
+      "answer": "127.40",
+      "explanation": "",
+      "ann_table_rows": [
+        3
+      ],
+      "ann_text_rows": [],
+      "steps": [
+        {
+          "op": "divide1-1",
+          "arg1": "637",
+          "arg2": "const_5",
+          "res": "127.40"
+        }
+      ],
+      "program": "divide(637, const_5)",
+      "gold_inds": {
+        "table_3": "company the american express of payments volume ( billions ) is 637 ; the american express of total volume ( billions ) is 647 ; the american express of total transactions ( billions ) is 5.0 ; the american express of cards ( millions ) is 86 ;"
+      },
+      "exe_ans": 127.4,
+      "tfidftopn": {
+        "text_55": "american express and discover include business from third-party issuers .",
+        "text_57": "jcb total transaction figures are estimates ."
+      },
+      "program_re": "divide(637, const_5)",
+      "model_input": [
+        [
+          "text_43",
+          "$ 2457 $ 3822 50.3 1592 ."
+        ],
+        [
+          "table_1",
+          "company the visa inc. ( 1 ) of payments volume ( billions ) is $ 2457 ; the visa inc. ( 1 ) of total volume ( billions ) is $ 3822 ; the visa inc. ( 1 ) of total transactions ( billions ) is 50.3 ; the visa inc. ( 1 ) of cards ( millions ) is 1592 ;"
+        ],
+        [
+          "table_3",
+          "company the american express of payments volume ( billions ) is 637 ; the american express of total volume ( billions ) is 647 ; the american express of total transactions ( billions ) is 5.0 ; the american express of cards ( millions ) is 86 ;"
+        ]
+      ]
+    },
+    "id": "V/2008/page_17.pdf-1",
+    "table_retrieved": [
+      {
+        "score": 3.2108232975006104,
+        "ind": "table_3"
+      },
+      {
+        "score": -0.7681400775909424,
+        "ind": "table_1"
+      },
+      {
+        "score": -2.073254108428955,
+        "ind": "table_5"
+      }
+    ],
+    "text_retrieved": [
+      {
+        "score": -1.715970516204834,
+        "ind": "text_43"
+      },
+      {
+        "score": -2.0985116958618164,
+        "ind": "text_3"
+      }
+    ],
+    "table_retrieved_all": [
+      {
+        "score": 3.2108232975006104,
+        "ind": "table_3"
+      },
+      {
+        "score": -0.7681400775909424,
+        "ind": "table_1"
+      },
+      {
+        "score": -2.073254108428955,
+        "ind": "table_5"
+      },
+      {
+        "score": -2.6297411918640137,
+        "ind": "table_2"
+      },
+      {
+        "score": -2.969886541366577,
+        "ind": "table_6"
+      },
+      {
+        "score": -3.037274122238159,
+        "ind": "table_4"
+      },
+      {
+        "score": -3.510836362838745,
+        "ind": "table_0"
+      }
+    ],
+    "text_retrieved_all": [
+      {
+        "score": -1.715970516204834,
+        "ind": "text_43"
+      },
+      {
+        "score": -2.0985116958618164,
+        "ind": "text_3"
+      },
+      {
+        "score": -2.7326362133026123,
+        "ind": "text_45"
+      },
+      {
+        "score": -2.986504554748535,
+        "ind": "text_56"
+      },
+      {
+        "score": -3.03603458404541,
+        "ind": "text_55"
+      },
+      {
+        "score": -3.1650302410125732,
+        "ind": "text_60"
+      },
+      {
+        "score": -3.1695451736450195,
+        "ind": "text_64"
+      },
+      {
+        "score": -3.226694107055664,
+        "ind": "text_2"
+      },
+      {
+        "score": -3.2272932529449463,
+        "ind": "text_62"
+      },
+      {
+        "score": -3.2500457763671875,
+        "ind": "text_63"
+      },
+      {
+        "score": -3.2663421630859375,
+        "ind": "text_49"
+      },
+      {
+        "score": -3.2664241790771484,
+        "ind": "text_57"
+      },
+      {
+        "score": -3.324010133743286,
+        "ind": "text_0"
+      },
+      {
+        "score": -3.344172477722168,
+        "ind": "text_1"
+      },
+      {
+        "score": -3.356581211090088,
+        "ind": "text_52"
+      },
+      {
+        "score": -3.45807147026062,
+        "ind": "text_61"
+      },
+      {
+        "score": -3.4868476390838623,
+        "ind": "text_53"
+      },
+      {
+        "score": -3.5097579956054688,
+        "ind": "text_50"
+      },
+      {
+        "score": -3.517197608947754,
+        "ind": "text_59"
+      },
+      {
+        "score": -3.533071279525757,
+        "ind": "text_46"
+      },
+      {
+        "score": -3.5416648387908936,
+        "ind": "text_51"
+      },
+      {
+        "score": -3.5937511920928955,
+        "ind": "text_54"
+      },
+      {
+        "score": -3.604983329772949,
+        "ind": "text_58"
+      },
+      {
+        "score": -3.611854076385498,
+        "ind": "text_48"
+      },
+      {
+        "score": -3.6930675506591797,
+        "ind": "text_44"
+      },
+      {
+        "score": -3.7623205184936523,
+        "ind": "text_47"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_4"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_5"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_6"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_7"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_8"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_9"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_10"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_11"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_12"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_13"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_14"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_15"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_16"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_17"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_18"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_19"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_20"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_21"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_22"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_23"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_24"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_25"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_26"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_27"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_28"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_29"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_30"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_31"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_32"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_33"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_34"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_35"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_36"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_37"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_38"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_39"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_40"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_41"
+      },
+      {
+        "score": -3.868288040161133,
+        "ind": "text_42"
+      }
+    ]
+  },
+  {
+    "pre_text": [
+      "performance graph comparison of five-year cumulative total return the following graph and table compare the cumulative total return on citi 2019s common stock , which is listed on the nyse under the ticker symbol 201cc 201d and held by 65691 common stockholders of record as of january 31 , 2018 , with the cumulative total return of the s&p 500 index and the s&p financial index over the five-year period through december 31 , 2017 .",
+      "the graph and table assume that $ 100 was invested on december 31 , 2012 in citi 2019s common stock , the s&p 500 index and the s&p financial index , and that all dividends were reinvested .",
+      "comparison of five-year cumulative total return for the years ended date citi s&p 500 financials ."
+    ],
+    "post_text": [
+      "."
+    ],
+    "filename": "C/2017/page_328.pdf",
+    "table_ori": [
+      [
+        "DATE",
+        "CITI",
+        "S&P 500",
+        "S&P FINANCIALS"
+      ],
+      [
+        "31-Dec-2012",
+        "100.0",
+        "100.0",
+        "100.0"
+      ],
+      [
+        "31-Dec-2013",
+        "131.8",
+        "132.4",
+        "135.6"
+      ],
+      [
+        "31-Dec-2014",
+        "137.0",
+        "150.5",
+        "156.2"
+      ],
+      [
+        "31-Dec-2015",
+        "131.4",
+        "152.6",
+        "153.9"
+      ],
+      [
+        "31-Dec-2016",
+        "152.3",
+        "170.8",
+        "188.9"
+      ],
+      [
+        "31-Dec-2017",
+        "193.5",
+        "208.1",
+        "230.9"
+      ]
+    ],
+    "table": [
+      [
+        "date",
+        "citi",
+        "s&p 500",
+        "s&p financials"
+      ],
+      [
+        "31-dec-2012",
+        "100.0",
+        "100.0",
+        "100.0"
+      ],
+      [
+        "31-dec-2013",
+        "131.8",
+        "132.4",
+        "135.6"
+      ],
+      [
+        "31-dec-2014",
+        "137.0",
+        "150.5",
+        "156.2"
+      ],
+      [
+        "31-dec-2015",
+        "131.4",
+        "152.6",
+        "153.9"
+      ],
+      [
+        "31-dec-2016",
+        "152.3",
+        "170.8",
+        "188.9"
+      ],
+      [
+        "31-dec-2017",
+        "193.5",
+        "208.1",
+        "230.9"
+      ]
+    ],
+    "qa": {
+      "question": "what was the percentage cumulative total return for the five year period ended 31-dec-2017 of citi common stock?",
+      "answer": "93.5%",
+      "explanation": "",
+      "ann_table_rows": [
+        1,
+        6
+      ],
+      "ann_text_rows": [],
+      "steps": [
+        {
+          "op": "minus1-1",
+          "arg1": "193.5",
+          "arg2": "const_100",
+          "res": "93.5"
+        },
+        {
+          "op": "divide1-2",
+          "arg1": "#0",
+          "arg2": "const_100",
+          "res": "93.5%"
+        }
+      ],
+      "program": "subtract(193.5, const_100), divide(#0, const_100)",
+      "gold_inds": {
+        "table_1": "date the 31-dec-2012 of citi is 100.0 ; the 31-dec-2012 of s&p 500 is 100.0 ; the 31-dec-2012 of s&p financials is 100.0 ;",
+        "table_6": "date the 31-dec-2017 of citi is 193.5 ; the 31-dec-2017 of s&p 500 is 208.1 ; the 31-dec-2017 of s&p financials is 230.9 ;"
+      },
+      "exe_ans": 0.935,
+      "tfidftopn": {
+        "text_0": "performance graph comparison of five-year cumulative total return the following graph and table compare the cumulative total return on citi 2019s common stock , which is listed on the nyse under the ticker symbol 201cc 201d and held by 65691 common stockholders of record as of january 31 , 2018 , with the cumulative total return of the s&p 500 index and the s&p financial index over the five-year period through december 31 , 2017 ."
+      },
+      "program_re": "divide(subtract(193.5, const_100), const_100)",
+      "model_input": [
+        [
+          "text_1",
+          "the graph and table assume that $ 100 was invested on december 31 , 2012 in citi 2019s common stock , the s&p 500 index and the s&p financial index , and that all dividends were reinvested ."
+        ],
+        [
+          "table_1",
+          "date the 31-dec-2012 of citi is 100.0 ; the 31-dec-2012 of s&p 500 is 100.0 ; the 31-dec-2012 of s&p financials is 100.0 ;"
+        ],
+        [
+          "table_6",
+          "date the 31-dec-2017 of citi is 193.5 ; the 31-dec-2017 of s&p 500 is 208.1 ; the 31-dec-2017 of s&p financials is 230.9 ;"
+        ]
+      ]
+    },
+    "id": "C/2017/page_328.pdf-1",
+    "table_retrieved": [
+      {
+        "score": 2.015230894088745,
+        "ind": "table_6"
+      },
+      {
+        "score": 0.8637959361076355,
+        "ind": "table_1"
+      },
+      {
+        "score": 0.31708937883377075,
+        "ind": "table_5"
+      },
+      {
+        "score": -0.011253602802753448,
+        "ind": "table_2"
+      }
+    ],
+    "text_retrieved": [
+      {
+        "score": 0.8624499440193176,
+        "ind": "text_1"
+      }
+    ],
+    "table_retrieved_all": [
+      {
+        "score": 2.015230894088745,
+        "ind": "table_6"
+      },
+      {
+        "score": 0.8637959361076355,
+        "ind": "table_1"
+      },
+      {
+        "score": 0.31708937883377075,
+        "ind": "table_5"
+      },
+      {
+        "score": -0.011253602802753448,
+        "ind": "table_2"
+      },
+      {
+        "score": -0.11166085302829742,
+        "ind": "table_4"
+      },
+      {
+        "score": -0.19997209310531616,
+        "ind": "table_3"
+      },
+      {
+        "score": -3.1276867389678955,
+        "ind": "table_0"
+      }
+    ],
+    "text_retrieved_all": [
+      {
+        "score": 0.8624499440193176,
+        "ind": "text_1"
+      },
+      {
+        "score": -1.2655386924743652,
+        "ind": "text_2"
+      },
+      {
+        "score": -1.4756453037261963,
+        "ind": "text_0"
+      },
+      {
+        "score": -3.1884005069732666,
+        "ind": "text_3"
+      }
+    ]
+  },
+  {
+    "pre_text": [
+      "the acquisition date is on or after the beginning of the first annual reporting period beginning on or after december 15 , 2008 .",
+      "we will evaluate how the new requirements of statement no .",
+      "141 ( r ) would impact any business combinations completed in 2009 or thereafter .",
+      "in december 2007 , the fasb also issued statement of financial accounting standards no .",
+      "160 , noncontrolling interests in consolidated financial statements 2014an amendment of accounting research bulletin no .",
+      "51 .",
+      "a noncontrolling interest , sometimes called a minority interest , is the portion of equity in a subsidiary not attributable , directly or indirectly , to a parent .",
+      "statement no .",
+      "160 establishes accounting and reporting standards for the noncontrolling interest in a subsidiary and for the deconsolidation of a subsidiary .",
+      "under statement no .",
+      "160 , noncontrolling interests in a subsidiary must be reported as a component of consolidated equity separate from the parent 2019s equity .",
+      "additionally , the amounts of consolidated net income attributable to both the parent and the noncontrolling interest must be reported separately on the face of the income statement .",
+      "statement no .",
+      "160 is effective for fiscal years beginning on or after december 15 , 2008 and earlier adoption is prohibited .",
+      "we do not expect the adoption of statement no .",
+      "160 to have a material impact on our financial statements and related disclosures .",
+      "2008 estimates the forward-looking statements provided in this discussion are based on our examination of historical operating trends , the information that was used to prepare the december 31 , 2007 reserve reports and other data in our possession or available from third parties .",
+      "these forward-looking statements were prepared assuming demand , curtailment , producibility and general market conditions for our oil , natural gas and ngls during 2008 will be substantially similar to those of 2007 , unless otherwise noted .",
+      "we make reference to the 201cdisclosure regarding forward-looking statements 201d at the beginning of this report .",
+      "amounts related to canadian operations have been converted to u.s .",
+      "dollars using a projected average 2008 exchange rate of $ 0.98 u.s .",
+      "dollar to $ 1.00 canadian dollar .",
+      "in january 2007 , we announced our intent to divest our west african oil and gas assets and terminate our operations in west africa , including equatorial guinea , cote d 2019ivoire , gabon and other countries in the region .",
+      "in november 2007 , we announced an agreement to sell our operations in gabon for $ 205.5 million .",
+      "we are finalizing purchase and sales agreements and obtaining the necessary partner and government approvals for the remaining properties in this divestiture package .",
+      "we are optimistic we can complete these sales during the first half of 2008 .",
+      "all west african related revenues , expenses and capital will be reported as discontinued operations in our 2008 financial statements .",
+      "accordingly , all forward-looking estimates in the following discussion exclude amounts related to our operations in west africa , unless otherwise noted .",
+      "though we have completed several major property acquisitions and dispositions in recent years , these transactions are opportunity driven .",
+      "thus , the following forward-looking estimates do not include any financial and operating effects of potential property acquisitions or divestitures that may occur during 2008 , except for west africa as previously discussed .",
+      "oil , gas and ngl production set forth below are our estimates of oil , gas and ngl production for 2008 .",
+      "we estimate that our combined 2008 oil , gas and ngl production will total approximately 240 to 247 mmboe .",
+      "of this total , approximately 92% ( 92 % ) is estimated to be produced from reserves classified as 201cproved 201d at december 31 , 2007 .",
+      "the following estimates for oil , gas and ngl production are calculated at the midpoint of the estimated range for total production .",
+      "oil gas ngls total ( mmbbls ) ( bcf ) ( mmbbls ) ( mmboe ) ."
+    ],
+    "post_text": [
+      "."
+    ],
+    "filename": "DVN/2007/page_58.pdf",
+    "table_ori": [
+      [
+        "",
+        "Oil   (MMBbls)",
+        "Gas   (Bcf)",
+        "NGLs   (MMBbls)",
+        "Total   (MMBoe)"
+      ],
+      [
+        "U.S. Onshore",
+        "12",
+        "626",
+        "23",
+        "140"
+      ],
+      [
+        "U.S. Offshore",
+        "8",
+        "68",
+        "1",
+        "20"
+      ],
+      [
+        "Canada",
+        "23",
+        "198",
+        "4",
+        "60"
+      ],
+      [
+        "International",
+        "23",
+        "2",
+        "\u2014",
+        "23"
+      ],
+      [
+        "Total",
+        "66",
+        "894",
+        "28",
+        "243"
+      ]
+    ],
+    "table": [
+      [
+        "",
+        "oil ( mmbbls )",
+        "gas ( bcf )",
+        "ngls ( mmbbls )",
+        "total ( mmboe )"
+      ],
+      [
+        "u.s . onshore",
+        "12",
+        "626",
+        "23",
+        "140"
+      ],
+      [
+        "u.s . offshore",
+        "8",
+        "68",
+        "1",
+        "20"
+      ],
+      [
+        "canada",
+        "23",
+        "198",
+        "4",
+        "60"
+      ],
+      [
+        "international",
+        "23",
+        "2",
+        "2014",
+        "23"
+      ],
+      [
+        "total",
+        "66",
+        "894",
+        "28",
+        "243"
+      ]
+    ],
+    "qa": {
+      "question": "what percentage of the total oil and gas mmboe comes from canada?",
+      "answer": "24.69%",
+      "explanation": "",
+      "ann_table_rows": [
+        3,
+        5
+      ],
+      "ann_text_rows": [
+        34
+      ],
+      "steps": [
+        {
+          "op": "divide2-1",
+          "arg1": "60",
+          "arg2": "243",
+          "res": "0.2469"
+        },
+        {
+          "op": "multiply2-2",
+          "arg1": "#0",
+          "arg2": "const_100",
+          "res": "24.69"
+        }
+      ],
+      "program": "divide(60, 243), multiply(#0, const_100)",
+      "gold_inds": {
+        "table_3": "the canada of oil ( mmbbls ) is 23 ; the canada of gas ( bcf ) is 198 ; the canada of ngls ( mmbbls ) is 4 ; the canada of total ( mmboe ) is 60 ;",
+        "table_5": "the total of oil ( mmbbls ) is 66 ; the total of gas ( bcf ) is 894 ; the total of ngls ( mmbbls ) is 28 ; the total of total ( mmboe ) is 243 ;",
+        "text_34": "oil gas ngls total ( mmbbls ) ( bcf ) ( mmbbls ) ( mmboe ) ."
+      },
+      "exe_ans": 24.69136,
+      "tfidftopn": {},
+      "program_re": "multiply(divide(60, 243), const_100)",
+      "model_input": [
+        [
+          "table_1",
+          "the u.s . onshore of oil ( mmbbls ) is 12 ; the u.s . onshore of gas ( bcf ) is 626 ; the u.s . onshore of ngls ( mmbbls ) is 23 ; the u.s . onshore of total ( mmboe ) is 140 ;"
+        ],
+        [
+          "table_3",
+          "the canada of oil ( mmbbls ) is 23 ; the canada of gas ( bcf ) is 198 ; the canada of ngls ( mmbbls ) is 4 ; the canada of total ( mmboe ) is 60 ;"
+        ],
+        [
+          "table_5",
+          "the total of oil ( mmbbls ) is 66 ; the total of gas ( bcf ) is 894 ; the total of ngls ( mmbbls ) is 28 ; the total of total ( mmboe ) is 243 ;"
+        ]
+      ]
+    },
+    "id": "DVN/2007/page_58.pdf-2",
+    "table_retrieved": [
+      {
+        "score": 2.8360869884490967,
+        "ind": "table_3"
+      },
+      {
+        "score": 2.740865707397461,
+        "ind": "table_5"
+      },
+      {
+        "score": 1.2655510902404785,
+        "ind": "table_1"
+      },
+      {
+        "score": 0.6909348964691162,
+        "ind": "table_2"
+      },
+      {
+        "score": 0.2259366512298584,
+        "ind": "table_4"
+      }
+    ],
+    "text_retrieved": [],
+    "table_retrieved_all": [
+      {
+        "score": 2.8360869884490967,
+        "ind": "table_3"
+      },
+      {
+        "score": 2.740865707397461,
+        "ind": "table_5"
+      },
+      {
+        "score": 1.2655510902404785,
+        "ind": "table_1"
+      },
+      {
+        "score": 0.6909348964691162,
+        "ind": "table_2"
+      },
+      {
+        "score": 0.2259366512298584,
+        "ind": "table_4"
+      },
+      {
+        "score": -2.654789924621582,
+        "ind": "table_0"
+      }
+    ],
+    "text_retrieved_all": [
+      {
+        "score": 0.06532516330480576,
+        "ind": "text_21"
+      },
+      {
+        "score": -0.04944728687405586,
+        "ind": "text_31"
+      },
+      {
+        "score": -0.7175338864326477,
+        "ind": "text_34"
+      },
+      {
+        "score": -0.7892158031463623,
+        "ind": "text_20"
+      },
+      {
+        "score": -0.8664367198944092,
+        "ind": "text_32"
+      },
+      {
+        "score": -1.3802828788757324,
+        "ind": "text_19"
+      },
+      {
+        "score": -1.4378379583358765,
+        "ind": "text_15"
+      },
+      {
+        "score": -2.1172070503234863,
+        "ind": "text_30"
+      },
+      {
+        "score": -2.2880709171295166,
+        "ind": "text_27"
+      },
+      {
+        "score": -2.3982417583465576,
+        "ind": "text_13"
+      },
+      {
+        "score": -2.5237011909484863,
+        "ind": "text_0"
+      },
+      {
+        "score": -2.528665781021118,
+        "ind": "text_33"
+      },
+      {
+        "score": -2.5507547855377197,
+        "ind": "text_29"
+      },
+      {
+        "score": -2.5735394954681396,
+        "ind": "text_26"
+      },
+      {
+        "score": -2.6259055137634277,
+        "ind": "text_25"
+      },
+      {
+        "score": -2.7070164680480957,
+        "ind": "text_17"
+      },
+      {
+        "score": -2.787446975708008,
+        "ind": "text_5"
+      },
+      {
+        "score": -2.897730588912964,
+        "ind": "text_16"
+      },
+      {
+        "score": -2.955934762954712,
+        "ind": "text_10"
+      },
+      {
+        "score": -2.970613479614258,
+        "ind": "text_24"
+      },
+      {
+        "score": -2.9761085510253906,
+        "ind": "text_18"
+      },
+      {
+        "score": -3.0246803760528564,
+        "ind": "text_6"
+      },
+      {
+        "score": -3.0479583740234375,
+        "ind": "text_23"
+      },
+      {
+        "score": -3.084702253341675,
+        "ind": "text_1"
+      },
+      {
+        "score": -3.1662254333496094,
+        "ind": "text_4"
+      },
+      {
+        "score": -3.167276382446289,
+        "ind": "text_28"
+      },
+      {
+        "score": -3.2025556564331055,
+        "ind": "text_14"
+      },
+      {
+        "score": -3.205981731414795,
+        "ind": "text_7"
+      },
+      {
+        "score": -3.205981731414795,
+        "ind": "text_12"
+      },
+      {
+        "score": -3.2229244709014893,
+        "ind": "text_11"
+      },
+      {
+        "score": -3.370490789413452,
+        "ind": "text_9"
+      },
+      {
+        "score": -3.387594223022461,
+        "ind": "text_22"
+      },
+      {
+        "score": -3.4414353370666504,
+        "ind": "text_2"
+      },
+      {
+        "score": -3.468928098678589,
+        "ind": "text_3"
+      },
+      {
+        "score": -3.5205233097076416,
+        "ind": "text_8"
+      },
+      {
+        "score": -3.5663630962371826,
+        "ind": "text_35"
+      }
+    ]
+  },
+  {
+    "pre_text": [
+      "entergy mississippi , inc .",
+      "management 2019s financial discussion and analysis 2010 compared to 2009 net revenue consists of operating revenues net of : 1 ) fuel , fuel-related expenses , and gas purchased for resale , 2 ) purchased power expenses , and 3 ) other regulatory charges ( credits ) .",
+      "following is an analysis of the change in net revenue comparing 2010 to 2009 .",
+      "amount ( in millions ) ."
+    ],
+    "post_text": [
+      "the volume/weather variance is primarily due to an increase of 1046 gwh , or 8% ( 8 % ) , in billed electricity usage in all sectors , primarily due to the effect of more favorable weather on the residential sector .",
+      "gross operating revenues , fuel and purchased power expenses , and other regulatory charges ( credits ) gross operating revenues increased primarily due to an increase of $ 22 million in power management rider revenue as the result of higher rates , the volume/weather variance discussed above , and an increase in grand gulf rider revenue as a result of higher rates and increased usage , offset by a decrease of $ 23.5 million in fuel cost recovery revenues due to lower fuel rates .",
+      "fuel and purchased power expenses decreased primarily due to a decrease in deferred fuel expense as a result of prior over-collections , offset by an increase in the average market price of purchased power coupled with increased net area demand .",
+      "other regulatory charges increased primarily due to increased recovery of costs associated with the power management recovery rider .",
+      "other income statement variances 2011 compared to 2010 other operation and maintenance expenses decreased primarily due to : a $ 5.4 million decrease in compensation and benefits costs primarily resulting from an increase in the accrual for incentive-based compensation in 2010 and a decrease in stock option expense ; and the sale of $ 4.9 million of surplus oil inventory .",
+      "the decrease was partially offset by an increase of $ 3.9 million in legal expenses due to the deferral in 2010 of certain litigation expenses in accordance with regulatory treatment .",
+      "taxes other than income taxes increased primarily due to an increase in ad valorem taxes due to a higher 2011 assessment as compared to 2010 , partially offset by higher capitalized property taxes as compared with prior year .",
+      "depreciation and amortization expenses increased primarily due to an increase in plant in service .",
+      "interest expense decreased primarily due to a revision caused by ferc 2019s acceptance of a change in the treatment of funds received from independent power producers for transmission interconnection projects. ."
+    ],
+    "filename": "ETR/2011/page_341.pdf",
+    "table_ori": [
+      [
+        "",
+        "Amount (In Millions)"
+      ],
+      [
+        "2009 net revenue",
+        "$536.7"
+      ],
+      [
+        "Volume/weather",
+        "18.9"
+      ],
+      [
+        "Other",
+        "(0.3)"
+      ],
+      [
+        "2010 net revenue",
+        "$555.3"
+      ]
+    ],
+    "table": [
+      [
+        "",
+        "amount ( in millions )"
+      ],
+      [
+        "2009 net revenue",
+        "$ 536.7"
+      ],
+      [
+        "volume/weather",
+        "18.9"
+      ],
+      [
+        "other",
+        "-0.3 ( 0.3 )"
+      ],
+      [
+        "2010 net revenue",
+        "$ 555.3"
+      ]
+    ],
+    "qa": {
+      "question": "in 2010 what was the net change in net revenue in millions",
+      "answer": "18.6",
+      "explanation": "",
+      "ann_table_rows": [
+        2,
+        3
+      ],
+      "ann_text_rows": [],
+      "steps": [
+        {
+          "op": "add1-1",
+          "arg1": "18.9",
+          "arg2": "0.3",
+          "res": "18.6"
+        }
+      ],
+      "program": "add(18.9, 0.3)",
+      "gold_inds": {
+        "table_2": "the volume/weather of amount ( in millions ) is 18.9 ;",
+        "table_3": "the other of amount ( in millions ) is -0.3 ( 0.3 ) ;"
+      },
+      "exe_ans": 19.2,
+      "tfidftopn": {
+        "table_4": "The 2010 net revenue of amount ( in millions ) is $ 555.3 ;"
+      },
+      "program_re": "add(18.9, 0.3)",
+      "model_input": [
+        [
+          "table_1",
+          "the 2009 net revenue of amount ( in millions ) is $ 536.7 ;"
+        ],
+        [
+          "table_3",
+          "the other of amount ( in millions ) is -0.3 ( 0.3 ) ;"
+        ],
+        [
+          "table_4",
+          "the 2010 net revenue of amount ( in millions ) is $ 555.3 ;"
+        ]
+      ]
+    },
+    "id": "ETR/2011/page_341.pdf-3",
+    "table_retrieved": [
+      {
+        "score": 2.8697516918182373,
+        "ind": "table_4"
+      },
+      {
+        "score": 2.5786333084106445,
+        "ind": "table_1"
+      },
+      {
+        "score": 0.7821870446205139,
+        "ind": "table_3"
+      },
+      {
+        "score": 0.20876401662826538,
+        "ind": "table_2"
+      }
+    ],
+    "text_retrieved": [
+      {
+        "score": 0.2836225926876068,
+        "ind": "text_3"
+      }
+    ],
+    "table_retrieved_all": [
+      {
+        "score": 2.8697516918182373,
+        "ind": "table_4"
+      },
+      {
+        "score": 2.5786333084106445,
+        "ind": "table_1"
+      },
+      {
+        "score": 0.7821870446205139,
+        "ind": "table_3"
+      },
+      {
+        "score": 0.20876401662826538,
+        "ind": "table_2"
+      },
+      {
+        "score": -2.8939130306243896,
+        "ind": "table_0"
+      }
+    ],
+    "text_retrieved_all": [
+      {
+        "score": 0.2836225926876068,
+        "ind": "text_3"
+      },
+      {
+        "score": -1.4411793947219849,
+        "ind": "text_2"
+      },
+      {
+        "score": -1.7974202632904053,
+        "ind": "text_8"
+      },
+      {
+        "score": -1.9676038026809692,
+        "ind": "text_9"
+      },
+      {
+        "score": -1.9960724115371704,
+        "ind": "text_1"
+      },
+      {
+        "score": -2.3654885292053223,
+        "ind": "text_12"
+      },
+      {
+        "score": -2.5855488777160645,
+        "ind": "text_4"
+      },
+      {
+        "score": -2.592153549194336,
+        "ind": "text_5"
+      },
+      {
+        "score": -2.8481264114379883,
+        "ind": "text_10"
+      },
+      {
+        "score": -2.9193220138549805,
+        "ind": "text_11"
+      },
+      {
+        "score": -3.0480949878692627,
+        "ind": "text_6"
+      },
+      {
+        "score": -3.1206881999969482,
+        "ind": "text_7"
+      },
+      {
+        "score": -3.3834121227264404,
+        "ind": "text_0"
+      }
+    ]
+  },
+  {
+    "pre_text": [
+      "entergy louisiana , inc .",
+      "management's financial discussion and analysis gross operating revenues , fuel and purchased power expenses , and other regulatory credits gross operating revenues increased primarily due to : 2022 an increase of $ 98.0 million in fuel cost recovery revenues due to higher fuel rates ; and 2022 an increase due to volume/weather , as discussed above .",
+      "the increase was partially offset by the following : 2022 a decrease of $ 31.9 million in the price applied to unbilled sales , as discussed above ; 2022 a decrease of $ 12.2 million in rate refund provisions , as discussed above ; and 2022 a decrease of $ 5.2 million in gross wholesale revenue due to decreased sales to affiliated systems .",
+      "fuel and purchased power expenses increased primarily due to : 2022 an increase in the recovery from customers of deferred fuel costs ; and 2022 an increase in the market price of natural gas .",
+      "other regulatory credits increased primarily due to : 2022 the deferral in 2004 of $ 14.3 million of capacity charges related to generation resource planning as allowed by the lpsc ; 2022 the amortization in 2003 of $ 11.8 million of deferred capacity charges , as discussed above ; and 2022 the deferral in 2004 of $ 11.4 million related to entergy's voluntary severance program , in accordance with a proposed stipulation with the lpsc staff .",
+      "2003 compared to 2002 net revenue , which is entergy louisiana's measure of gross margin , consists of operating revenues net of : 1 ) fuel , fuel-related , and purchased power expenses and 2 ) other regulatory charges ( credits ) .",
+      "following is an analysis of the change in net revenue comparing 2003 to 2002. ."
+    ],
+    "post_text": [
+      "the deferred fuel cost revisions variance resulted from a revised unbilled sales pricing estimate made in december 2002 and a further revision made in the first quarter of 2003 to more closely align the fuel component of that pricing with expected recoverable fuel costs .",
+      "the asset retirement obligation variance was due to the implementation of sfas 143 , \"accounting for asset retirement obligations\" adopted in january 2003 .",
+      "see \"critical accounting estimates\" for more details on sfas 143 .",
+      "the increase was offset by decommissioning expense and had no effect on net income .",
+      "the volume variance was due to a decrease in electricity usage in the service territory .",
+      "billed usage decreased 1868 gwh in the industrial sector including the loss of a large industrial customer to cogeneration. ."
+    ],
+    "filename": "ETR/2004/page_213.pdf",
+    "table_ori": [
+      [
+        "",
+        "(In Millions)"
+      ],
+      [
+        "2002 net revenue",
+        "$922.9"
+      ],
+      [
+        "Deferred fuel cost revisions",
+        "59.1"
+      ],
+      [
+        "Asset retirement obligation",
+        "8.2"
+      ],
+      [
+        "Volume",
+        "(16.2)"
+      ],
+      [
+        "Vidalia settlement",
+        "(9.2)"
+      ],
+      [
+        "Other",
+        "8.9"
+      ],
+      [
+        "2003 net revenue",
+        "$973.7"
+      ]
+    ],
+    "table": [
+      [
+        "",
+        "( in millions )"
+      ],
+      [
+        "2002 net revenue",
+        "$ 922.9"
+      ],
+      [
+        "deferred fuel cost revisions",
+        "59.1"
+      ],
+      [
+        "asset retirement obligation",
+        "8.2"
+      ],
+      [
+        "volume",
+        "-16.2 ( 16.2 )"
+      ],
+      [
+        "vidalia settlement",
+        "-9.2 ( 9.2 )"
+      ],
+      [
+        "other",
+        "8.9"
+      ],
+      [
+        "2003 net revenue",
+        "$ 973.7"
+      ]
+    ],
+    "qa": {
+      "question": "what are the deferred fuel cost revisions as a percentage of the increase in fuel cost recovery revenues?",
+      "answer": "60.3%",
+      "explanation": "",
+      "ann_table_rows": [
+        2
+      ],
+      "ann_text_rows": [
+        1,
+        6
+      ],
+      "steps": [
+        {
+          "op": "divide2-1",
+          "arg1": "59.1",
+          "arg2": "98.0",
+          "res": "60.3%"
+        }
+      ],
+      "program": "divide(59.1, 98.0)",
+      "gold_inds": {
+        "table_2": "the deferred fuel cost revisions of ( in millions ) is 59.1 ;",
+        "text_1": "management's financial discussion and analysis gross operating revenues , fuel and purchased power expenses , and other regulatory credits gross operating revenues increased primarily due to : 2022 an increase of $ 98.0 million in fuel cost recovery revenues due to higher fuel rates ; and 2022 an increase due to volume/weather , as discussed above .",
+        "text_6": "following is an analysis of the change in net revenue comparing 2003 to 2002. ."
+      },
+      "exe_ans": 0.60306,
+      "tfidftopn": {},
+      "program_re": "divide(59.1, 98.0)",
+      "model_input": [
+        [
+          "text_1",
+          "management's financial discussion and analysis gross operating revenues , fuel and purchased power expenses , and other regulatory credits gross operating revenues increased primarily due to : 2022 an increase of $ 98.0 million in fuel cost recovery revenues due to higher fuel rates ; and 2022 an increase due to volume/weather , as discussed above ."
+        ],
+        [
+          "text_6",
+          "following is an analysis of the change in net revenue comparing 2003 to 2002. ."
+        ],
+        [
+          "table_2",
+          "the deferred fuel cost revisions of ( in millions ) is 59.1 ;"
+        ]
+      ]
+    },
+    "id": "ETR/2004/page_213.pdf-2",
+    "table_retrieved": [
+      {
+        "score": 2.3188045024871826,
+        "ind": "table_2"
+      }
+    ],
+    "text_retrieved": [
+      {
+        "score": 0.6953057050704956,
+        "ind": "text_6"
+      },
+      {
+        "score": 0.3860391080379486,
+        "ind": "text_1"
+      },
+      {
+        "score": 0.1597408652305603,
+        "ind": "text_3"
+      },
+      {
+        "score": 0.06481683999300003,
+        "ind": "text_7"
+      }
+    ],
+    "table_retrieved_all": [
+      {
+        "score": 2.3188045024871826,
+        "ind": "table_2"
+      },
+      {
+        "score": -0.5642786026000977,
+        "ind": "table_7"
+      },
+      {
+        "score": -0.6967817544937134,
+        "ind": "table_1"
+      },
+      {
+        "score": -0.7026574015617371,
+        "ind": "table_4"
+      },
+      {
+        "score": -0.9944793581962585,
+        "ind": "table_6"
+      },
+      {
+        "score": -1.4955979585647583,
+        "ind": "table_5"
+      },
+      {
+        "score": -1.6178395748138428,
+        "ind": "table_3"
+      },
+      {
+        "score": -2.8998026847839355,
+        "ind": "table_0"
+      }
+    ],
+    "text_retrieved_all": [
+      {
+        "score": 0.6953057050704956,
+        "ind": "text_6"
+      },
+      {
+        "score": 0.3860391080379486,
+        "ind": "text_1"
+      },
+      {
+        "score": 0.1597408652305603,
+        "ind": "text_3"
+      },
+      {
+        "score": 0.06481683999300003,
+        "ind": "text_7"
+      },
+      {
+        "score": -0.7765203714370728,
+        "ind": "text_12"
+      },
+      {
+        "score": -0.8640279173851013,
+        "ind": "text_2"
+      },
+      {
+        "score": -0.9419658184051514,
+        "ind": "text_10"
+      },
+      {
+        "score": -0.9851570129394531,
+        "ind": "text_4"
+      },
+      {
+        "score": -1.1682785749435425,
+        "ind": "text_5"
+      },
+      {
+        "score": -1.5122833251953125,
+        "ind": "text_9"
+      },
+      {
+        "score": -1.577705979347229,
+        "ind": "text_0"
+      },
+      {
+        "score": -1.7173457145690918,
+        "ind": "text_8"
+      },
+      {
+        "score": -2.1455817222595215,
+        "ind": "text_11"
+      }
+    ]
+  },
+  {
+    "pre_text": [
+      "net revenues include $ 3.8 billion in 2017 and $ 739 million in 2016 related to the sale of rrps , mainly driven by japan .",
+      "these net revenue amounts include excise taxes billed to customers .",
+      "excluding excise taxes , net revenues for rrps were $ 3.6 billion in 2017 and $ 733 million in 2016 .",
+      "in some jurisdictions , including japan , we are not responsible for collecting excise taxes .",
+      "in 2017 , approximately $ 0.9 billion of our $ 3.6 billion in rrp net revenues , excluding excise taxes , were from iqos devices and accessories .",
+      "excise taxes on products increased by $ 1.1 billion , due to : 2022 higher excise taxes resulting from changes in retail prices and tax rates ( $ 4.6 billion ) , partially offset by 2022 favorable currency ( $ 1.9 billion ) and 2022 lower excise taxes resulting from volume/mix ( $ 1.6 billion ) .",
+      "our cost of sales ; marketing , administration and research costs ; and operating income were as follows : for the years ended december 31 , variance ."
+    ],
+    "post_text": [
+      "cost of sales increased by $ 1.0 billion , due to : 2022 higher cost of sales resulting from volume/mix ( $ 1.1 billion ) , partly offset by 2022 lower manufacturing costs ( $ 36 million ) and 2022 favorable currency ( $ 30 million ) .",
+      "marketing , administration and research costs increased by $ 320 million , due to : 2022 higher expenses ( $ 570 million , largely reflecting increased investment behind reduced-risk products , predominately in the european union and asia ) , partly offset by 2022 favorable currency ( $ 250 million ) .",
+      "operating income increased by $ 688 million , due primarily to : 2022 price increases ( $ 1.4 billion ) , partly offset by 2022 higher marketing , administration and research costs ( $ 570 million ) and 2022 unfavorable currency ( $ 157 million ) .",
+      "interest expense , net , of $ 914 million increased by $ 23 million , due primarily to unfavorably currency and higher average debt levels , partly offset by higher interest income .",
+      "our effective tax rate increased by 12.8 percentage points to 40.7% ( 40.7 % ) .",
+      "the 2017 effective tax rate was unfavorably impacted by $ 1.6 billion due to the tax cuts and jobs act .",
+      "for further details , see item 8 , note 11 .",
+      "income taxes to our consolidated financial statements .",
+      "we are continuing to evaluate the impact that the tax cuts and jobs act will have on our tax liability .",
+      "based upon our current interpretation of the tax cuts and jobs act , we estimate that our 2018 effective tax rate will be approximately 28% ( 28 % ) , subject to future regulatory developments and earnings mix by taxing jurisdiction .",
+      "we are regularly examined by tax authorities around the world , and we are currently under examination in a number of jurisdictions .",
+      "it is reasonably possible that within the next 12 months certain tax examinations will close , which could result in a change in unrecognized tax benefits along with related interest and penalties .",
+      "an estimate of any possible change cannot be made at this time .",
+      "net earnings attributable to pmi of $ 6.0 billion decreased by $ 932 million ( 13.4% ( 13.4 % ) ) .",
+      "this decrease was due primarily to a higher effective tax rate as discussed above , partly offset by higher operating income .",
+      "diluted and basic eps of $ 3.88 decreased by 13.4% ( 13.4 % ) .",
+      "excluding ."
+    ],
+    "filename": "PM/2017/page_38.pdf",
+    "table_ori": [
+      [
+        "",
+        "For the Years Ended December 31,",
+        "Variance"
+      ],
+      [
+        "(in millions)",
+        "2017",
+        "2016",
+        "$",
+        "%"
+      ],
+      [
+        "Cost of sales",
+        "$10,432",
+        "$9,391",
+        "$1,041",
+        "11.1%"
+      ],
+      [
+        "Marketing, administration and research costs",
+        "6,725",
+        "6,405",
+        "320",
+        "5.0%"
+      ],
+      [
+        "Operating income",
+        "11,503",
+        "10,815",
+        "688",
+        "6.4%"
+      ]
+    ],
+    "table": [
+      [
+        "( in millions )",
+        "for the years ended december 31 , 2017",
+        "for the years ended december 31 , 2016",
+        "for the years ended december 31 , $",
+        "% (  % )"
+      ],
+      [
+        "cost of sales",
+        "$ 10432",
+        "$ 9391",
+        "$ 1041",
+        "11.1% ( 11.1 % )"
+      ],
+      [
+        "marketing administration and research costs",
+        "6725",
+        "6405",
+        "320",
+        "5.0% ( 5.0 % )"
+      ],
+      [
+        "operating income",
+        "11503",
+        "10815",
+        "688",
+        "6.4% ( 6.4 % )"
+      ]
+    ],
+    "qa": {
+      "question": "what was the change in millions of operating income from 2016 to 2017?",
+      "answer": "688",
+      "explanation": "",
+      "ann_table_rows": [
+        3
+      ],
+      "ann_text_rows": [],
+      "steps": [
+        {
+          "op": "minus1-1",
+          "arg1": "11503",
+          "arg2": "10815",
+          "res": "688"
+        }
+      ],
+      "program": "subtract(11503, 10815)",
+      "gold_inds": {
+        "table_3": "( in millions ) the operating income of for the years ended december 31 , 2017 is 11503 ; the operating income of for the years ended december 31 , 2016 is 10815 ; the operating income of for the years ended december 31 , $ is 688 ; the operating income of % ( % ) is 6.4% ( 6.4 % ) ;"
+      },
+      "exe_ans": 688.0,
+      "tfidftopn": {
+        "text_19": "an estimate of any possible change cannot be made at this time .",
+        "text_21": "this decrease was due primarily to a higher effective tax rate as discussed above , partly offset by higher operating income ."
+      },
+      "program_re": "subtract(11503, 10815)",
+      "model_input": [
+        [
+          "table_3",
+          "( in millions ) the operating income of for the years ended december 31 , 2017 is 11503 ; the operating income of for the years ended december 31 , 2016 is 10815 ; the operating income of for the years ended december 31 , $ is 688 ; the operating income of % ( % ) is 6.4% ( 6.4 % ) ;"
+        ],
+        [
+          "text_9",
+          "operating income increased by $ 688 million , due primarily to : 2022 price increases ( $ 1.4 billion ) , partly offset by 2022 higher marketing , administration and research costs ( $ 570 million ) and 2022 unfavorable currency ( $ 157 million ) ."
+        ],
+        [
+          "text_23",
+          "excluding ."
+        ]
+      ]
+    },
+    "id": "PM/2017/page_38.pdf-1",
+    "table_retrieved": [
+      {
+        "score": 2.601294994354248,
+        "ind": "table_3"
+      }
+    ],
+    "text_retrieved": [
+      {
+        "score": -1.5442309379577637,
+        "ind": "text_23"
+      },
+      {
+        "score": -1.8899321556091309,
+        "ind": "text_9"
+      },
+      {
+        "score": -2.030512809753418,
+        "ind": "text_8"
+      },
+      {
+        "score": -2.181525707244873,
+        "ind": "text_0"
+      }
+    ],
+    "table_retrieved_all": [
+      {
+        "score": 2.601294994354248,
+        "ind": "table_3"
+      },
+      {
+        "score": -2.721437692642212,
+        "ind": "table_1"
+      },
+      {
+        "score": -2.767564535140991,
+        "ind": "table_2"
+      },
+      {
+        "score": -3.3167519569396973,
+        "ind": "table_0"
+      }
+    ],
+    "text_retrieved_all": [
+      {
+        "score": -1.5442309379577637,
+        "ind": "text_23"
+      },
+      {
+        "score": -1.8899321556091309,
+        "ind": "text_9"
+      },
+      {
+        "score": -2.030512809753418,
+        "ind": "text_8"
+      },
+      {
+        "score": -2.181525707244873,
+        "ind": "text_0"
+      },
+      {
+        "score": -2.242741584777832,
+        "ind": "text_20"
+      },
+      {
+        "score": -2.2783961296081543,
+        "ind": "text_13"
+      },
+      {
+        "score": -2.319676637649536,
+        "ind": "text_16"
+      },
+      {
+        "score": -2.3266377449035645,
+        "ind": "text_10"
+      },
+      {
+        "score": -2.3993074893951416,
+        "ind": "text_6"
+      },
+      {
+        "score": -2.44313907623291,
+        "ind": "text_19"
+      },
+      {
+        "score": -2.4776225090026855,
+        "ind": "text_18"
+      },
+      {
+        "score": -2.488659381866455,
+        "ind": "text_14"
+      },
+      {
+        "score": -2.522158145904541,
+        "ind": "text_15"
+      },
+      {
+        "score": -2.524228811264038,
+        "ind": "text_7"
+      },
+      {
+        "score": -2.557713270187378,
+        "ind": "text_2"
+      },
+      {
+        "score": -2.580341100692749,
+        "ind": "text_22"
+      },
+      {
+        "score": -2.61395263671875,
+        "ind": "text_4"
+      },
+      {
+        "score": -2.6674575805664062,
+        "ind": "text_11"
+      },
+      {
+        "score": -2.6996891498565674,
+        "ind": "text_17"
+      },
+      {
+        "score": -2.7681827545166016,
+        "ind": "text_5"
+      },
+      {
+        "score": -2.7798032760620117,
+        "ind": "text_21"
+      },
+      {
+        "score": -2.8522789478302,
+        "ind": "text_1"
+      },
+      {
+        "score": -2.87998628616333,
+        "ind": "text_3"
+      },
+      {
+        "score": -2.9782965183258057,
+        "ind": "text_12"
+      }
+    ]
+  },
+  {
+    "pre_text": [
+      "jpmorgan chase & co .",
+      "/ 2008 annual report 83 credit risk capital credit risk capital is estimated separately for the wholesale business- es ( ib , cb , tss and am ) and consumer businesses ( rfs and cs ) .",
+      "credit risk capital for the overall wholesale credit portfolio is defined in terms of unexpected credit losses , both from defaults and declines in the portfolio value due to credit deterioration , measured over a one-year period at a confidence level consistent with an 201caa 201d credit rating standard .",
+      "unexpected losses are losses in excess of those for which provisions for credit losses are maintained .",
+      "the capital methodology is based upon several principal drivers of credit risk : exposure at default ( or loan-equivalent amount ) , default likelihood , credit spreads , loss severity and portfolio correlation .",
+      "credit risk capital for the consumer portfolio is based upon product and other relevant risk segmentation .",
+      "actual segment level default and severity experience are used to estimate unexpected losses for a one-year horizon at a confidence level consistent with an 201caa 201d credit rating standard .",
+      "statistical results for certain segments or portfolios are adjusted to ensure that capital is consistent with external bench- marks , such as subordination levels on market transactions or capital held at representative monoline competitors , where appropriate .",
+      "market risk capital the firm calculates market risk capital guided by the principle that capital should reflect the risk of loss in the value of portfolios and financial instruments caused by adverse movements in market vari- ables , such as interest and foreign exchange rates , credit spreads , securities prices and commodities prices .",
+      "daily value-at-risk ( 201cvar 201d ) , biweekly stress-test results and other factors are used to determine appropriate capital levels .",
+      "the firm allocates market risk capital to each business segment according to a formula that weights that seg- ment 2019s var and stress-test exposures .",
+      "see market risk management on pages 111 2013116 of this annual report for more information about these market risk measures .",
+      "operational risk capital capital is allocated to the lines of business for operational risk using a risk-based capital allocation methodology which estimates opera- tional risk on a bottom-up basis .",
+      "the operational risk capital model is based upon actual losses and potential scenario-based stress losses , with adjustments to the capital calculation to reflect changes in the quality of the control environment or the use of risk-transfer prod- ucts .",
+      "the firm believes its model is consistent with the new basel ii framework .",
+      "private equity risk capital capital is allocated to privately and publicly held securities , third-party fund investments and commitments in the private equity portfolio to cover the potential loss associated with a decline in equity markets and related asset devaluations .",
+      "in addition to negative market fluctua- tions , potential losses in private equity investment portfolios can be magnified by liquidity risk .",
+      "the capital allocation for the private equity portfolio is based upon measurement of the loss experience suffered by the firm and other market participants over a prolonged period of adverse equity market conditions .",
+      "regulatory capital the board of governors of the federal reserve system ( the 201cfederal reserve 201d ) establishes capital requirements , including well-capitalized standards for the consolidated financial holding company .",
+      "the office of the comptroller of the currency ( 201cocc 201d ) establishes similar capital requirements and standards for the firm 2019s national banks , including jpmorgan chase bank , n.a. , and chase bank usa , n.a .",
+      "the federal reserve granted the firm , for a period of 18 months fol- lowing the bear stearns merger , relief up to a certain specified amount and subject to certain conditions from the federal reserve 2019s risk-based capital and leverage requirements with respect to bear stearns 2019 risk-weighted assets and other exposures acquired .",
+      "the amount of such relief is subject to reduction by one-sixth each quarter subsequent to the merger and expires on october 1 , 2009 .",
+      "the occ granted jpmorgan chase bank , n.a .",
+      "similar relief from its risk-based capital and leverage requirements .",
+      "jpmorgan chase maintained a well-capitalized position , based upon tier 1 and total capital ratios at december 31 , 2008 and 2007 , as indicated in the tables below .",
+      "for more information , see note 30 on pages 212 2013213 of this annual report .",
+      "risk-based capital components and assets ."
+    ],
+    "post_text": [
+      "( a ) the fasb has been deliberating certain amendments to both sfas 140 and fin 46r that may impact the accounting for transactions that involve qspes and vies .",
+      "based on the provisions of the current proposal and the firm 2019s interpretation of the propos- al , the firm estimates that the impact of consolidation could be up to $ 70 billion of credit card receivables , $ 40 billion of assets related to firm-sponsored multi-seller conduits , and $ 50 billion of other loans ( including residential mortgages ) ; the decrease in the tier 1 capital ratio could be approximately 80 basis points .",
+      "the ulti- mate impact could differ significantly due to the fasb 2019s continuing deliberations on the final requirements of the rule and market conditions. ."
+    ],
+    "filename": "JPM/2008/page_85.pdf",
+    "table_ori": [
+      [
+        "December 31, (in millions)",
+        "2008",
+        "2007"
+      ],
+      [
+        "Total Tier 1capital<sup>(a)</sup>",
+        "$136,104",
+        "$88,746"
+      ],
+      [
+        "Total Tier 2 capital",
+        "48,616",
+        "43,496"
+      ],
+      [
+        "Total capital",
+        "$184,720",
+        "$132,242"
+      ],
+      [
+        "Risk-weighted assets",
+        "$1,244,659",
+        "$1,051,879"
+      ],
+      [
+        "Total adjusted average assets",
+        "1,966,895",
+        "1,473,541"
+      ]
+    ],
+    "table": [
+      [
+        "december 31 ( in millions )",
+        "2008",
+        "2007"
+      ],
+      [
+        "total tier 1capital ( a )",
+        "$ 136104",
+        "$ 88746"
+      ],
+      [
+        "total tier 2 capital",
+        "48616",
+        "43496"
+      ],
+      [
+        "total capital",
+        "$ 184720",
+        "$ 132242"
+      ],
+      [
+        "risk-weighted assets",
+        "$ 1244659",
+        "$ 1051879"
+      ],
+      [
+        "total adjusted average assets",
+        "1966895",
+        "1473541"
+      ]
+    ],
+    "qa": {
+      "question": "what was jpmorgan chase & co's common equity tier 1 ( cet1 ) ratio in 2008?",
+      "answer": "10.94%",
+      "explanation": "",
+      "ann_table_rows": [
+        1,
+        4
+      ],
+      "ann_text_rows": [],
+      "steps": [
+        {
+          "op": "divide1-1",
+          "arg1": "136104",
+          "arg2": "1244659",
+          "res": "10.94%"
+        }
+      ],
+      "program": "divide(136104, 1244659)",
+      "gold_inds": {
+        "table_1": "december 31 ( in millions ) the total tier 1capital ( a ) of 2008 is $ 136104 ; the total tier 1capital ( a ) of 2007 is $ 88746 ;",
+        "table_4": "december 31 ( in millions ) the risk-weighted assets of 2008 is $ 1244659 ; the risk-weighted assets of 2007 is $ 1051879 ;"
+      },
+      "exe_ans": 0.10935,
+      "tfidftopn": {
+        "text_0": "jpmorgan chase & co ."
+      },
+      "program_re": "divide(136104, 1244659)",
+      "model_input": [
+        [
+          "table_1",
+          "december 31 ( in millions ) the total tier 1capital ( a ) of 2008 is $ 136104 ; the total tier 1capital ( a ) of 2007 is $ 88746 ;"
+        ],
+        [
+          "table_2",
+          "december 31 ( in millions ) the total tier 2 capital of 2008 is 48616 ; the total tier 2 capital of 2007 is 43496 ;"
+        ],
+        [
+          "table_3",
+          "december 31 ( in millions ) the total capital of 2008 is $ 184720 ; the total capital of 2007 is $ 132242 ;"
+        ]
+      ]
+    },
+    "id": "JPM/2008/page_85.pdf-3",
+    "table_retrieved": [
+      {
+        "score": 0.22904005646705627,
+        "ind": "table_1"
+      },
+      {
+        "score": -0.5684604048728943,
+        "ind": "table_2"
+      },
+      {
+        "score": -0.7353061437606812,
+        "ind": "table_3"
+      },
+      {
+        "score": -1.487816572189331,
+        "ind": "table_5"
+      }
+    ],
+    "text_retrieved": [
+      {
+        "score": -1.569069504737854,
+        "ind": "text_24"
+      }
+    ],
+    "table_retrieved_all": [
+      {
+        "score": 0.22904005646705627,
+        "ind": "table_1"
+      },
+      {
+        "score": -0.5684604048728943,
+        "ind": "table_2"
+      },
+      {
+        "score": -0.7353061437606812,
+        "ind": "table_3"
+      },
+      {
+        "score": -1.487816572189331,
+        "ind": "table_5"
+      },
+      {
+        "score": -1.7353668212890625,
+        "ind": "table_4"
+      },
+      {
+        "score": -2.40378999710083,
+        "ind": "table_0"
+      }
+    ],
+    "text_retrieved_all": [
+      {
+        "score": -1.569069504737854,
+        "ind": "text_24"
+      },
+      {
+        "score": -2.005837917327881,
+        "ind": "text_29"
+      },
+      {
+        "score": -2.1173532009124756,
+        "ind": "text_20"
+      },
+      {
+        "score": -2.149167060852051,
+        "ind": "text_23"
+      },
+      {
+        "score": -2.1588540077209473,
+        "ind": "text_21"
+      },
+      {
+        "score": -2.2970802783966064,
+        "ind": "text_1"
+      },
+      {
+        "score": -2.34041428565979,
+        "ind": "text_10"
+      },
+      {
+        "score": -2.4946765899658203,
+        "ind": "text_15"
+      },
+      {
+        "score": -2.5205512046813965,
+        "ind": "text_4"
+      },
+      {
+        "score": -2.7110068798065186,
+        "ind": "text_28"
+      },
+      {
+        "score": -2.711392641067505,
+        "ind": "text_19"
+      },
+      {
+        "score": -2.8209376335144043,
+        "ind": "text_0"
+      },
+      {
+        "score": -2.839627265930176,
+        "ind": "text_26"
+      },
+      {
+        "score": -2.842134714126587,
+        "ind": "text_6"
+      },
+      {
+        "score": -2.8497836589813232,
+        "ind": "text_27"
+      },
+      {
+        "score": -2.8879756927490234,
+        "ind": "text_2"
+      },
+      {
+        "score": -2.9121930599212646,
+        "ind": "text_22"
+      },
+      {
+        "score": -2.9517438411712646,
+        "ind": "text_14"
+      },
+      {
+        "score": -3.005131483078003,
+        "ind": "text_7"
+      },
+      {
+        "score": -3.0947823524475098,
+        "ind": "text_13"
+      },
+      {
+        "score": -3.169192314147949,
+        "ind": "text_17"
+      },
+      {
+        "score": -3.20859956741333,
+        "ind": "text_12"
+      },
+      {
+        "score": -3.2810628414154053,
+        "ind": "text_3"
+      },
+      {
+        "score": -3.3730239868164062,
+        "ind": "text_8"
+      },
+      {
+        "score": -3.3800785541534424,
+        "ind": "text_11"
+      },
+      {
+        "score": -3.3873488903045654,
+        "ind": "text_16"
+      },
+      {
+        "score": -3.4397051334381104,
+        "ind": "text_18"
+      },
+      {
+        "score": -3.5103795528411865,
+        "ind": "text_9"
+      },
+      {
+        "score": -3.564377784729004,
+        "ind": "text_5"
+      },
+      {
+        "score": -3.617929458618164,
+        "ind": "text_25"
+      }
+    ]
+  },
+  {
+    "pre_text": [
+      "note 17 financial derivatives we use derivative financial instruments ( derivatives ) primarily to help manage exposure to interest rate , market and credit risk and reduce the effects that changes in interest rates may have on net income , fair value of assets and liabilities , and cash flows .",
+      "we also enter into derivatives with customers to facilitate their risk management activities .",
+      "derivatives represent contracts between parties that usually require little or no initial net investment and result in one party delivering cash or another type of asset to the other party based on a notional amount and an underlying as specified in the contract .",
+      "derivative transactions are often measured in terms of notional amount , but this amount is generally not exchanged and it is not recorded on the balance sheet .",
+      "the notional amount is the basis to which the underlying is applied to determine required payments under the derivative contract .",
+      "the underlying is a referenced interest rate ( commonly libor ) , security price , credit spread or other index .",
+      "residential and commercial real estate loan commitments associated with loans to be sold also qualify as derivative instruments .",
+      "the following table presents the notional amounts and gross fair values of all derivative assets and liabilities held by pnc : table 127 : total gross derivatives ."
+    ],
+    "post_text": [
+      "( a ) included in other assets on our consolidated balance sheet .",
+      "( b ) included in other liabilities on our consolidated balance sheet .",
+      "all derivatives are carried on our consolidated balance sheet at fair value .",
+      "derivative balances are presented on the consolidated balance sheet on a net basis taking into consideration the effects of legally enforceable master netting agreements and any related cash collateral exchanged with counterparties .",
+      "further discussion regarding the rights of setoff associated with these legally enforceable master netting agreements is included in the offsetting , counterparty credit risk , and contingent features section below .",
+      "our exposure related to risk participations where we sold protection is discussed in the credit derivatives section below .",
+      "any nonperformance risk , including credit risk , is included in the determination of the estimated net fair value of the derivatives .",
+      "further discussion on how derivatives are accounted for is included in note 1 accounting policies .",
+      "derivatives designated as hedging instruments under gaap certain derivatives used to manage interest rate risk as part of our asset and liability risk management activities are designated as accounting hedges under gaap .",
+      "derivatives hedging the risks associated with changes in the fair value of assets or liabilities are considered fair value hedges , derivatives hedging the variability of expected future cash flows are considered cash flow hedges , and derivatives hedging a net investment in a foreign subsidiary are considered net investment hedges .",
+      "designating derivatives as accounting hedges allows for gains and losses on those derivatives , to the extent effective , to be recognized in the income statement in the same period the hedged items affect earnings .",
+      "the pnc financial services group , inc .",
+      "2013 form 10-k 189 ."
+    ],
+    "filename": "PNC/2013/page_207.pdf",
+    "table_ori": [
+      [
+        "",
+        "December 31, 2013",
+        "December 31, 2012"
+      ],
+      [
+        "In millions",
+        "Notional/ContractAmount",
+        "AssetFairValue (a)",
+        "LiabilityFairValue (b)",
+        "Notional/ContractAmount",
+        "AssetFairValue (a)",
+        "LiabilityFairValue (b)"
+      ],
+      [
+        "Derivatives designated as hedging instruments under GAAP",
+        "$36,197",
+        "$1,189",
+        "$364",
+        "$29,270",
+        "$1,872",
+        "$152"
+      ],
+      [
+        "Derivatives not designated as hedging instruments under GAAP",
+        "345,059",
+        "3,604",
+        "3,570",
+        "337,086",
+        "6,696",
+        "6,458"
+      ],
+      [
+        "Total gross derivatives",
+        "$381,256",
+        "$4,793",
+        "$3,934",
+        "$366,356",
+        "$8,568",
+        "$6,610"
+      ]
+    ],
+    "table": [
+      [
+        "in millions",
+        "december 31 2013 notional/contractamount",
+        "december 31 2013 assetfairvalue ( a )",
+        "december 31 2013 liabilityfairvalue ( b )",
+        "december 31 2013 notional/contractamount",
+        "december 31 2013 assetfairvalue ( a )",
+        "liabilityfairvalue ( b )"
+      ],
+      [
+        "derivatives designated as hedging instruments under gaap",
+        "$ 36197",
+        "$ 1189",
+        "$ 364",
+        "$ 29270",
+        "$ 1872",
+        "$ 152"
+      ],
+      [
+        "derivatives not designated as hedging instruments under gaap",
+        "345059",
+        "3604",
+        "3570",
+        "337086",
+        "6696",
+        "6458"
+      ],
+      [
+        "total gross derivatives",
+        "$ 381256",
+        "$ 4793",
+        "$ 3934",
+        "$ 366356",
+        "$ 8568",
+        "$ 6610"
+      ]
+    ],
+    "qa": {
+      "question": "at the end of 2014 , the notional value of derivatives designated as hedging instruments under gaap was what percent of the fair value?",
+      "answer": "3044%",
+      "explanation": "",
+      "ann_table_rows": [
+        1
+      ],
+      "ann_text_rows": [],
+      "steps": [
+        {
+          "op": "divide1-1",
+          "arg1": "36197",
+          "arg2": "1189",
+          "res": "3044%"
+        }
+      ],
+      "program": "divide(36197, 1189)",
+      "gold_inds": {
+        "table_1": "in millions the derivatives designated as hedging instruments under gaap of december 31 2013 notional/contractamount is $ 36197 ; the derivatives designated as hedging instruments under gaap of december 31 2013 assetfairvalue ( a ) is $ 1189 ; the derivatives designated as hedging instruments under gaap of december 31 2013 liabilityfairvalue ( b ) is $ 364 ; the derivatives designated as hedging instruments under gaap of december 31 2013 notional/contractamount is $ 29270 ; the derivatives designated as hedging instruments under gaap of december 31 2013 assetfairvalue ( a ) is $ 1872 ; the derivatives designated as hedging instruments under gaap of liabilityfairvalue ( b ) is $ 152 ;"
+      },
+      "exe_ans": 30.44323,
+      "tfidftopn": {
+        "table_2": "in millions The derivatives not designated as hedging instruments under gaap of december 31 2013 notional/contractamount is 345059 ; The derivatives not designated as hedging instruments under gaap of december 31 2013 assetfairvalue ( a ) is 3604 ; The derivatives not designated as hedging instruments under gaap of december 31 2013 liabilityfairvalue ( b ) is 3570 ; The derivatives not designated as hedging instruments under gaap of december 31 2013 notional/contractamount is 337086 ; The derivatives not designated as hedging instruments under gaap of december 31 2013 assetfairvalue ( a ) is 6696 ; The derivatives not designated as hedging instruments under gaap of liabilityfairvalue ( b ) is 6458 ;",
+        "text_16": "derivatives designated as hedging instruments under gaap certain derivatives used to manage interest rate risk as part of our asset and liability risk management activities are designated as accounting hedges under gaap ."
+      },
+      "program_re": "divide(36197, 1189)",
+      "model_input": [
+        [
+          "text_7",
+          "the following table presents the notional amounts and gross fair values of all derivative assets and liabilities held by pnc : table 127 : total gross derivatives ."
+        ],
+        [
+          "table_1",
+          "in millions the derivatives designated as hedging instruments under gaap of december 31 2013 notional/contractamount is $ 36197 ; the derivatives designated as hedging instruments under gaap of december 31 2013 assetfairvalue ( a ) is $ 1189 ; the derivatives designated as hedging instruments under gaap of december 31 2013 liabilityfairvalue ( b ) is $ 364 ; the derivatives designated as hedging instruments under gaap of december 31 2013 notional/contractamount is $ 29270 ; the derivatives designated as hedging instruments under gaap of december 31 2013 assetfairvalue ( a ) is $ 1872 ; the derivatives designated as hedging instruments under gaap of liabilityfairvalue ( b ) is $ 152 ;"
+        ],
+        [
+          "table_2",
+          "in millions the derivatives not designated as hedging instruments under gaap of december 31 2013 notional/contractamount is 345059 ; the derivatives not designated as hedging instruments under gaap of december 31 2013 assetfairvalue ( a ) is 3604 ; the derivatives not designated as hedging instruments under gaap of december 31 2013 liabilityfairvalue ( b ) is 3570 ; the derivatives not designated as hedging instruments under gaap of december 31 2013 notional/contractamount is 337086 ; the derivatives not designated as hedging instruments under gaap of december 31 2013 assetfairvalue ( a ) is 6696 ; the derivatives not designated as hedging instruments under gaap of liabilityfairvalue ( b ) is 6458 ;"
+        ]
+      ]
+    },
+    "id": "PNC/2013/page_207.pdf-1",
+    "table_retrieved": [
+      {
+        "score": 2.658848524093628,
+        "ind": "table_1"
+      },
+      {
+        "score": 2.1792209148406982,
+        "ind": "table_2"
+      },
+      {
+        "score": -0.08380914479494095,
+        "ind": "table_3"
+      }
+    ],
+    "text_retrieved": [
+      {
+        "score": 0.32222336530685425,
+        "ind": "text_7"
+      },
+      {
+        "score": -1.0368930101394653,
+        "ind": "text_4"
+      }
+    ],
+    "table_retrieved_all": [
+      {
+        "score": 2.658848524093628,
+        "ind": "table_1"
+      },
+      {
+        "score": 2.1792209148406982,
+        "ind": "table_2"
+      },
+      {
+        "score": -0.08380914479494095,
+        "ind": "table_3"
+      },
+      {
+        "score": -3.0495176315307617,
+        "ind": "table_0"
+      }
+    ],
+    "text_retrieved_all": [
+      {
+        "score": 0.32222336530685425,
+        "ind": "text_7"
+      },
+      {
+        "score": -1.0368930101394653,
+        "ind": "text_4"
+      },
+      {
+        "score": -1.1282098293304443,
+        "ind": "text_8"
+      },
+      {
+        "score": -1.1645270586013794,
+        "ind": "text_12"
+      },
+      {
+        "score": -1.1847952604293823,
+        "ind": "text_9"
+      },
+      {
+        "score": -1.2167279720306396,
+        "ind": "text_10"
+      },
+      {
+        "score": -1.3197962045669556,
+        "ind": "text_18"
+      },
+      {
+        "score": -1.57587730884552,
+        "ind": "text_11"
+      },
+      {
+        "score": -1.6319316625595093,
+        "ind": "text_17"
+      },
+      {
+        "score": -1.6555726528167725,
+        "ind": "text_16"
+      },
+      {
+        "score": -1.695514440536499,
+        "ind": "text_3"
+      },
+      {
+        "score": -1.8461483716964722,
+        "ind": "text_0"
+      },
+      {
+        "score": -1.847761869430542,
+        "ind": "text_15"
+      },
+      {
+        "score": -1.8694829940795898,
+        "ind": "text_14"
+      },
+      {
+        "score": -1.9218250513076782,
+        "ind": "text_20"
+      },
+      {
+        "score": -1.9599881172180176,
+        "ind": "text_13"
+      },
+      {
+        "score": -2.067251443862915,
+        "ind": "text_6"
+      },
+      {
+        "score": -2.125845193862915,
+        "ind": "text_1"
+      },
+      {
+        "score": -2.1357004642486572,
+        "ind": "text_5"
+      },
+      {
+        "score": -2.137646198272705,
+        "ind": "text_2"
+      },
+      {
+        "score": -2.4913697242736816,
+        "ind": "text_19"
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+# Central config -- src/ code should read paths and model names from here, not hardcode them,
+# so switching embedding models or datasets later doesn't mean hunting through every file.
+
+data:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  sample_dir: data/sample   # small checked-in fixtures for fast tests, no network needed
+
+datasets:
+  finqa:
+    train: data/raw/finqa/train.json
+    dev: data/raw/finqa/dev.json
+    test: data/raw/finqa/test.json
+  tatqa:
+    train: data/raw/tatqa/train.json
+    dev: data/raw/tatqa/dev.json   # no public test answers -- dev is the eval split
+
+embedding:
+  model: BAAI/bge-small-en-v1.5   # or sentence-transformers/all-MiniLM-L6-v2
+  # set this from the *actual* tokenizer at ingestion time, don't eyeball it in words/chars
+  max_tokens_per_chunk: 256
+
+retrieval:
+  top_k: 5
+  index_type: faiss_flat_ip   # start simple; no reranker/BM25 hybrid in v1 scope
+
+evaluation:
+  subsample_size: 250   # per dataset, per CLAUDE.md scope cap -- not the full test set
+  ragas_reruns: 3        # report mean/variance, not a single score
+  ragas_max_workers: 2   # throttle to avoid 429 rate-limit death spirals
+  ragas_timeout_s: 180

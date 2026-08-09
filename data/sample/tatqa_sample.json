@@ -1,0 +1,1469 @@
+[
+  {
+    "table": {
+      "uid": "3ffd9053-a45d-491c-957a-1b2fa0af0570",
+      "table": [
+        [
+          "",
+          "",
+          "Years Ended September 30,",
+          ""
+        ],
+        [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        [
+          "Fixed Price",
+          "$  1,452.4",
+          "$  1,146.2",
+          "$  1,036.9"
+        ],
+        [
+          "Other",
+          "44.1",
+          "56.7",
+          "70.8"
+        ],
+        [
+          "Total sales",
+          "$1,496.5",
+          "$1,202.9",
+          "$1,107.7"
+        ]
+      ]
+    },
+    "paragraphs": [
+      {
+        "uid": "f4ac7069-10a2-47e9-995c-3903293b3d47",
+        "order": 1,
+        "text": "Sales by Contract Type: Substantially all of our contracts are fixed-price type contracts. Sales included in Other contract types represent cost plus and time and material type contracts."
+      },
+      {
+        "uid": "79e37805-6558-4a8c-b033-32be6bffef48",
+        "order": 2,
+        "text": "On a fixed-price type contract, we agree to perform the contractual statement of work for a predetermined sales price. On a cost-plus type contract, we are paid our allowable incurred costs plus a profit which can be fixed or variable depending on the contract\u2019s fee arrangement up to predetermined funding levels determined by the customer. On a time-and-material type contract, we are paid on the basis of direct labor hours expended at specified fixed-price hourly rates (that include wages, overhead, allowable general and administrative expenses and profit) and materials at cost. The table below presents total net sales disaggregated by contract type (in millions):"
+      }
+    ],
+    "questions": [
+      {
+        "uid": "23801627-ff77-4597-8d24-1c99e2452082",
+        "order": 1,
+        "question": "What is the company paid on a cost-plus type contract?",
+        "answer": [
+          "our allowable incurred costs plus a profit which can be fixed or variable depending on the contract\u2019s fee arrangement up to predetermined funding levels determined by the customer"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "4960801d-277d-4f79-8eca-c4d0200fa9d6",
+        "order": 2,
+        "question": "What is the amount of total sales in 2019?",
+        "answer": [
+          "$1,496.5"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": "million"
+      },
+      {
+        "uid": "593c4388-5209-4462-8b83-b429c8612c25",
+        "order": 3,
+        "question": "What are the contract types?",
+        "answer": [
+          "fixed-price type",
+          "cost-plus type",
+          "time-and-material type"
+        ],
+        "derivation": "",
+        "answer_type": "multi-span",
+        "answer_from": "text",
+        "rel_paragraphs": [
+          "1",
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "f4142349-eb72-49eb-9a76-f3ccb1010cbc",
+        "order": 4,
+        "question": "In which year is the amount of total sales the largest?",
+        "answer": [
+          "2019"
+        ],
+        "derivation": "1,496.5>1,202.9>1,107.7",
+        "answer_type": "span",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": true,
+        "scale": ""
+      },
+      {
+        "uid": "eb787966-fa02-401f-bfaf-ccabf3828b23",
+        "order": 5,
+        "question": "What is the change in Other in 2019 from 2018?",
+        "answer": -12.6,
+        "derivation": "44.1-56.7",
+        "answer_type": "arithmetic",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": "million"
+      },
+      {
+        "uid": "05b670d3-5b19-438c-873f-9bf6de29c69e",
+        "order": 6,
+        "question": "What is the percentage change in Other in 2019 from 2018?",
+        "answer": -22.22,
+        "derivation": "(44.1-56.7)/56.7",
+        "answer_type": "arithmetic",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": "percent"
+      }
+    ]
+  },
+  {
+    "table": {
+      "uid": "53474060-2736-46cb-bd97-1eb42f0ff3c1",
+      "table": [
+        [
+          "",
+          "",
+          "Fiscal",
+          ""
+        ],
+        [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        [
+          "",
+          "",
+          "(in millions)",
+          ""
+        ],
+        [
+          "Transportation Solutions:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Automotive",
+          "$ 5,686",
+          "$ 6,092",
+          "$  5,228"
+        ],
+        [
+          "Commercial transportation",
+          "1,221",
+          "1,280",
+          "997"
+        ],
+        [
+          "Sensors",
+          "914",
+          "918",
+          "814"
+        ],
+        [
+          "Total Transportation Solutions",
+          "7,821",
+          "8,290",
+          "7,039"
+        ],
+        [
+          "Industrial Solutions:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Industrial equipment",
+          "1,949",
+          "1,987",
+          "1,747"
+        ],
+        [
+          "Aerospace, defense, oil, and gas",
+          "1,306",
+          "1,157",
+          "1,075"
+        ],
+        [
+          "Energy",
+          "699",
+          "712",
+          "685"
+        ],
+        [
+          "Total Industrial Solutions",
+          "3,954",
+          "3,856",
+          "3,507"
+        ],
+        [
+          "Communications Solutions:",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Data and devices",
+          "993",
+          "1,068",
+          "963"
+        ],
+        [
+          "Appliances",
+          "680",
+          "774",
+          "676"
+        ],
+        [
+          "Total Communications Solutions",
+          "1,673",
+          "1,842",
+          "1,639"
+        ],
+        [
+          "Total",
+          "$ 13,448",
+          "$ 13,988",
+          "$ 12,185"
+        ]
+      ]
+    },
+    "paragraphs": [
+      {
+        "uid": "f235886a-f95b-4194-939e-87ecdb5899b8",
+        "order": 1,
+        "text": "Net sales by segment and industry end market(1) were as follows:"
+      },
+      {
+        "uid": "5710b1c7-1e62-4f62-9a1b-b24e696fbc2f",
+        "order": 2,
+        "text": "(1) Industry end market information is presented consistently with our internal management reporting and may be revised periodically as management deems necessary."
+      }
+    ],
+    "questions": [
+      {
+        "uid": "86ae8d77-4dcd-4f82-baac-61c6a2551760",
+        "order": 1,
+        "question": "How is industry end market information presented?",
+        "answer": [
+          "consistently with our internal management reporting and may be revised periodically as management deems necessary."
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "text",
+        "rel_paragraphs": [
+          "1",
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "b1018041-1c58-47f2-94db-fa8df0a631cb",
+        "order": 2,
+        "question": "In which years was for the net sales by segment and industry end market calculated?",
+        "answer": [
+          "2019",
+          "2018",
+          "2017"
+        ],
+        "derivation": "",
+        "answer_type": "multi-span",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "1"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "d841005e-c88b-4071-aa53-16bd8a892656",
+        "order": 3,
+        "question": "What are the types of Solutions segments in the table?",
+        "answer": [
+          "Transportation Solutions",
+          "Industrial Solutions",
+          "Communications Solutions"
+        ],
+        "derivation": "",
+        "answer_type": "multi-span",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "1"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "870c1bda-0cd7-4bd0-bba6-8deb178e24ce",
+        "order": 4,
+        "question": "In which year was the amount for Sensors the largest?",
+        "answer": [
+          "2018"
+        ],
+        "derivation": "918>914>814",
+        "answer_type": "span",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": true,
+        "scale": ""
+      },
+      {
+        "uid": "b2786c1a-37de-4120-b03c-32bf5c81f157",
+        "order": 5,
+        "question": "What was the change in the amount for Appliances in 2019 from 2018?",
+        "answer": -94,
+        "derivation": "680-774",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "million"
+      },
+      {
+        "uid": "fe11f001-3bfe-4089-8108-412676f0a780",
+        "order": 6,
+        "question": "What was the percentage change in the amount for Appliances in 2019 from 2018?",
+        "answer": -12.14,
+        "derivation": "(680-774)/774",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "percent"
+      }
+    ]
+  },
+  {
+    "table": {
+      "uid": "52164b70-6973-4844-af6a-76e8f1298d64",
+      "table": [
+        [
+          "",
+          "Domestic",
+          "",
+          "International",
+          ""
+        ],
+        [
+          "",
+          "September 30,",
+          "",
+          "September 30,",
+          ""
+        ],
+        [
+          "",
+          "2019",
+          "2018",
+          "2019",
+          "2018"
+        ],
+        [
+          "Discount rate",
+          "4.00%",
+          "3.75%",
+          "1.90%",
+          "2.80%"
+        ],
+        [
+          "Expected return on plan assets",
+          "",
+          "",
+          "3.40%",
+          "3.70%"
+        ],
+        [
+          "Rate of compensation increase",
+          "",
+          "",
+          "- - %",
+          "- - %"
+        ]
+      ]
+    },
+    "paragraphs": [
+      {
+        "uid": "4036d8ae-f142-4f91-b94e-8741203de130",
+        "order": 1,
+        "text": "The following table provides the weighted average actuarial assumptions used to determine net periodic benefit costfor years ended:"
+      },
+      {
+        "uid": "baae8fd1-0a35-4421-9e49-4938b9eb84ee",
+        "order": 2,
+        "text": "For domestic plans, the discount rate was determined by comparison against the FTSE pension liability index for AA rated corporate instruments. The Company monitors other indices to assure that the pension obligations are fairly reported on a consistent basis. The international discount rates were determined by comparison against country specific AA corporate indices, adjusted for duration of the obligation."
+      },
+      {
+        "uid": "657ff6a5-188c-4569-88be-685875879c9f",
+        "order": 3,
+        "text": "The periodic benefit cost and the actuarial present value of projected benefit obligations are based on actuarial assumptions that are reviewed on an annual basis. The Company revises these assumptions based on an annual evaluation of longterm trends, as well as market conditions that may have an impact on the cost of providing retirement benefits."
+      }
+    ],
+    "questions": [
+      {
+        "uid": "682e2b7e-2b40-4849-8671-2b85dd3c7f10",
+        "order": 1,
+        "question": "How is the discount rate for domestic plans determined?",
+        "answer": [
+          "By comparison against the FTSE pension liability index for AA rated corporate instruments"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "de34ea96-2a39-4cd5-b4a3-62b0f730103a",
+        "order": 2,
+        "question": "How is the discount rate for international plans determined?",
+        "answer": [
+          "By comparison against country specific AA corporate indices, adjusted for duration of the obligation."
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "0f032004-ec01-40a0-831b-aac3f7e1b5c7",
+        "order": 3,
+        "question": "How often does the company review the actuarial assumptions which the periodic benefit cost and the actuarial present value of projected benefit obligations are based on?",
+        "answer": [
+          "Annual basis"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "text",
+        "rel_paragraphs": [
+          "3"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "5103aed0-b4e8-4fae-bf78-e2c9f4ba84cf",
+        "order": 4,
+        "question": "What is the difference between the domestic and international discount rates as at September 30, 2019?",
+        "answer": 2.1,
+        "derivation": "4.00 - 1.90 ",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "percent"
+      },
+      {
+        "uid": "4dc8be43-d8d9-4b08-9ffd-9c19012361ce",
+        "order": 5,
+        "question": "What is the year on year percentage change in domestic discount rate between 2018 and 2019?",
+        "answer": 6.67,
+        "derivation": "(4.00 - 3.75)/3.75 ",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "percent"
+      },
+      {
+        "uid": "6c44a1a8-0785-43a0-90ab-7e21df2c57d9",
+        "order": 6,
+        "question": "What is the year on year percentage change in international expected return on plan assets between 2018 and 2019?",
+        "answer": -8.11,
+        "derivation": "(3.40 - 3.70)/3.70 ",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "percent"
+      }
+    ]
+  },
+  {
+    "table": {
+      "uid": "6bf238a5-0a3e-492d-91f8-7f62d3b37fba",
+      "table": [
+        [
+          "Income statement expense",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "2019 \u20acm",
+          "2018 \u20acm",
+          "2017 \u20acm"
+        ],
+        [
+          "Defined contribution schemes",
+          "166",
+          "178",
+          "192"
+        ],
+        [
+          "Defined benefit schemes",
+          "57",
+          "44",
+          "20"
+        ],
+        [
+          "Total amount charged to income statement (note 23)",
+          "223",
+          "222",
+          "212"
+        ]
+      ]
+    },
+    "paragraphs": [
+      {
+        "uid": "d50c8d94-7fc7-4a4e-a2d1-3e8939d150c2",
+        "order": 1,
+        "text": "24. Post employment benefits"
+      },
+      {
+        "uid": "08ef7bae-835f-46cd-b6e0-0a67c97609bd",
+        "order": 2,
+        "text": "The Group operates a number of defined benefit and defined contribution pension plans for our employees. The Group\u2019s largest defined benefit scheme is in the UK. For further details see \u201cCritical accounting judgements and key sources of estimation uncertainty\u201d in note 1 to the consolidated financial statements."
+      },
+      {
+        "uid": "9a1fe22d-488a-4bca-8bf7-a696fdf0e81d",
+        "order": 3,
+        "text": "Accounting policies"
+      },
+      {
+        "uid": "c08dbb7f-e5d2-4bb3-83d7-f9a7fcc43dff",
+        "order": 4,
+        "text": "For defined benefit retirement plans, the difference between the fair value of the plan assets and the present value of the plan liabilities is recognised as an asset or liability on the statement of financial position. Scheme liabilities are assessed using the projected unit funding method and applying the principal actuarial assumptions at the reporting period date. Assets are valued at market value."
+      },
+      {
+        "uid": "dbdc5d93-3cd6-4655-af67-521ae35ecfe5",
+        "order": 5,
+        "text": "Actuarial gains and losses are taken to the statement of comprehensive income as incurred. For this purpose, actuarial gains and losses comprise both the effects of changes in actuarial assumptions and experience adjustments arising from differences between the previous actuarial assumptions and what has actually occurred. The return on plan assets, in excess of interest income, and costs incurred for the management of plan assets are also taken to other comprehensive income."
+      },
+      {
+        "uid": "8a3dc5f0-d5b6-4c66-864b-7a36467e6e1e",
+        "order": 6,
+        "text": "Other movements in the net surplus or deficit are recognised in the income statement, including the current service cost, any past service cost and the effect of any settlements. The interest cost less the expected interest income on assets is also charged to the income statement. The amount charged to the income statement in respect of these plans is included within operating costs or in the Group\u2019s share of the results of equity accounted operations, as appropriate"
+      },
+      {
+        "uid": "dd2e1ed4-0d5e-498e-92fa-5bc1ddbde870",
+        "order": 7,
+        "text": "The Group\u2019s contributions to defined contribution pension plans are charged to the income statement as they fall due."
+      },
+      {
+        "uid": "bc70d31b-9e87-4a4f-aebf-0b291f820b2b",
+        "order": 8,
+        "text": "Background"
+      },
+      {
+        "uid": "71e12b2f-667e-46a7-b1ed-febef16d712d",
+        "order": 9,
+        "text": "At 31 March 2019 the Group operated a number of pension plans for the benefit of its employees throughout the world, with varying rights and obligations depending on the conditions and practices in the countries concerned. The Group\u2019s pension plans are provided through both defined benefit and defined contribution arrangements. Defined benefit schemes provide benefits based on the employees\u2019 length of pensionable service and their final pensionable salary or other criteria. Defined contribution schemes offer employees individual funds that are converted into benefits at the time of retirement"
+      },
+      {
+        "uid": "f29913b5-4c58-4c6c-bc56-f32743aa3eab",
+        "order": 10,
+        "text": "The Group operates defined benefit schemes in Germany, Ghana, India, Ireland, Italy, the UK, the United States and the Group operates defined benefit indemnity plans in Greece and Turkey. Defined contribution pension schemes are currently provided in Egypt, Germany, Greece, Hungary, India, Ireland, Italy, New Zealand, Portugal, South\u00a0Africa, Spain and the UK."
+      },
+      {
+        "uid": "9d3154cc-fbf8-4313-ba28-2ba9caa53a90",
+        "order": 11,
+        "text": "Defined benefit schemes"
+      },
+      {
+        "uid": "3d7674ab-bea4-462a-81b9-2c69fcd78596",
+        "order": 12,
+        "text": "The Group\u2019s retirement policy is to provide competitive pension provision, in each operating country, in line with the market median for that location. The Group\u2019s preferred retirement provision is focused on Defined Contribution (\u2018DC\u2019) arrangements and/or State provision for future service."
+      },
+      {
+        "uid": "197ee8ac-5d5a-48a2-b984-d4747b561bf6",
+        "order": 13,
+        "text": "The Group\u2019s main defined benefit funding liability is the Vodafone UK Group Pension Scheme (\u2018Vodafone UK plan\u2019). Since June 2014 the plan has consisted of two segregated sections: the Vodafone Section and the Cable & Wireless Section (\u2018CWW Section\u2019). Both sections are closed to new entrants and to future accrual. The Group also operates smaller funded and unfunded plans in the UK, funded and unfunded plans in Germany and funded plans in Ireland. Defined benefit pension provision exposes the Group to actuarial risks such as longer than expected longevity of participants, lower than expected return on investments and higher than expected inflation, which may increase the liabilities or reduce the value of assets of the schemes."
+      },
+      {
+        "uid": "2df1e9d6-a3c6-42b3-aac5-5a9039f5d51e",
+        "order": 14,
+        "text": "The main defined benefit schemes are administered by trustee boards which are legally separate from the Group and consist of representatives who are employees, former employees or are independent from the Company. The boards of the pension schemes are required by legislation to act in the best interest of the participants, set the investment strategy and contribution rates and are subject to statutory funding objectives."
+      },
+      {
+        "uid": "54275457-16d6-4d1d-a9a2-3f1e009fa6df",
+        "order": 15,
+        "text": "The Vodafone UK plan is registered as an occupational pension plan with HM Revenue and Customs (\u2018HMRC\u2019) and is subject to UK legislation and operates within the framework outlined by the Pensions Regulator. UK legislation requires that pension schemes are funded prudently and that valuations are undertaken at least every three years. Separate valuations are required for the Vodafone Section and CWW Section."
+      },
+      {
+        "uid": "804a272e-df78-4cec-8dd2-4c0b4f8eab48",
+        "order": 16,
+        "text": "The trustees obtain regular actuarial valuations to check whether the statutory funding objective is met and whether a recovery plan is required to restore funding to the level of the agreed technical provisions. On 19 October 2017, the 31 March 2016 triennial actuarial valuation for the Vodafone Section and CWW Section of the Vodafone UK plan, which is used to judge the funding the Group needs to put into the scheme, was concluded."
+      }
+    ],
+    "questions": [
+      {
+        "uid": "d47306cf-e276-4836-a827-ebebdc47e078",
+        "order": 1,
+        "question": "What financial items are listed in the table?",
+        "answer": [
+          "Defined contribution schemes",
+          "Defined benefit schemes",
+          ""
+        ],
+        "derivation": "",
+        "answer_type": "multi-span",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "bde0702e-2847-485b-be4a-fb037790bd59",
+        "order": 2,
+        "question": "Which countries does the group operate defined benefit schemes in?",
+        "answer": [
+          "Germany, Ghana, India, Ireland, Italy, the UK, the United States"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "text",
+        "rel_paragraphs": [
+          "10"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "617cd0f0-5fac-4c34-b9b6-425a0d353491",
+        "order": 3,
+        "question": "Which countries does the group operate defined benefit indemnity plans in?",
+        "answer": [
+          "Greece and Turkey"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "text",
+        "rel_paragraphs": [
+          "10"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "a0414f81-8dc2-44b2-a441-2c9d9c805c4d",
+        "order": 4,
+        "question": "What is the 2019 average defined contribution schemes?",
+        "answer": 172,
+        "derivation": "(166+178)/2",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "million"
+      },
+      {
+        "uid": "bf7abd62-d9cd-48d2-8826-1457684019a3",
+        "order": 5,
+        "question": "What is the 2019 average defined benefit schemes?",
+        "answer": 50.5,
+        "derivation": "(57+44)/2",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "million"
+      },
+      {
+        "uid": "4d259081-6da6-44bd-8830-e4de0031744c",
+        "order": 6,
+        "question": "What is the difference between 2019 average defined contribution schemes and 2019 average defined benefit schemes?",
+        "answer": 121.5,
+        "derivation": "[(166+178)/2] - [(57+44)/2]",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "million"
+      }
+    ]
+  },
+  {
+    "table": {
+      "uid": "f8ac9ddd-9872-4681-902d-a0ee7c0ee83a",
+      "table": [
+        [
+          "",
+          "December 31",
+          ""
+        ],
+        [
+          "",
+          "2019",
+          "2 0 1 8"
+        ],
+        [
+          "",
+          "U.S. $ in thousands",
+          ""
+        ],
+        [
+          "Operating loss carryforward",
+          "73,260",
+          "57,768"
+        ],
+        [
+          "Net deferred tax asset before valuation allowance",
+          "19,911",
+          "15,916"
+        ],
+        [
+          "Valuation allowance",
+          "(19,911)",
+          "(15,916)"
+        ],
+        [
+          "Net deferred tax asset",
+          "795",
+          "772"
+        ]
+      ]
+    },
+    "paragraphs": [
+      {
+        "uid": "55cd7a56-3ca9-4cee-9ab8-95e9273f9344",
+        "order": 1,
+        "text": "NOTE 13 - TAXES ON INCOME"
+      },
+      {
+        "uid": "bf925226-c078-48c6-b550-0e60b03ab2b7",
+        "order": 2,
+        "text": "B. Deferred income taxes:"
+      },
+      {
+        "uid": "45c2e15c-f858-42c6-a978-fbf23b831de2",
+        "order": 3,
+        "text": "Deferred income taxes reflect the net tax effects of temporary differences between the carrying amounts of assets and liabilities for financial reporting purposes and the amounts used for income tax purposes. Significant components of the Company's deferred tax assets are as follows:"
+      },
+      {
+        "uid": "571cf3e5-7ff8-4494-97d5-8e6bb6ebb571",
+        "order": 4,
+        "text": "As of December 31, 2019, the Company has provided a full valuation allowances of $19,911 in respect of deferred tax assets resulting from tax loss carryforward and other temporary differences. Management currently believes that because the Company has a history of losses, it is more likely than not that the deferred tax regarding the loss carryforward and other temporary differences will not be realized in the foreseeable future."
+      }
+    ],
+    "questions": [
+      {
+        "uid": "c3993366-da98-42f2-a5b2-3de28c4d0e10",
+        "order": 1,
+        "question": "What was the operating loss carryforward amount in 2019 and 2018 respectively?",
+        "answer": [
+          "73,260",
+          "57,768"
+        ],
+        "derivation": "",
+        "answer_type": "multi-span",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "thousand"
+      },
+      {
+        "uid": "5c7d8918-6083-4ac1-a0eb-137a114a7cd7",
+        "order": 2,
+        "question": "What was the net deferred tax asset before valuation allowance amount in 2019 and 2018 respectively?",
+        "answer": [
+          "19,911",
+          "15,916"
+        ],
+        "derivation": "",
+        "answer_type": "multi-span",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "4"
+        ],
+        "req_comparison": false,
+        "scale": "thousand"
+      },
+      {
+        "uid": "55cba0fe-5e0a-45b5-af6b-97a6e77f81e2",
+        "order": 3,
+        "question": "What was the net deferred tax asset amount in 2019 and 2018 respectively?",
+        "answer": [
+          "795",
+          "772"
+        ],
+        "derivation": "",
+        "answer_type": "multi-span",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "thousand"
+      },
+      {
+        "uid": "bed1fce2-69cb-4d1e-a34a-01950a1770bd",
+        "order": 4,
+        "question": "What is the percentage change in the operating loss carryforward from 2018 to 2019?",
+        "answer": 26.82,
+        "derivation": "(73,260-57,768)/57,768",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "percent"
+      },
+      {
+        "uid": "348d031d-73ab-4b35-af46-998cfef25775",
+        "order": 5,
+        "question": "What is the percentage change in the valuation allowance from 2018 to 2019?",
+        "answer": 25.1,
+        "derivation": "(19,911-15,916)/15,916",
+        "answer_type": "arithmetic",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "4"
+        ],
+        "req_comparison": false,
+        "scale": "percent"
+      },
+      {
+        "uid": "aea850af-68cb-4cc1-80b2-c9c2860b273e",
+        "order": 6,
+        "question": "What is the percentage change in the net deferred tax asset from 2018 to 2019?",
+        "answer": 2.98,
+        "derivation": "(795-772)/772",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "percent"
+      }
+    ]
+  },
+  {
+    "table": {
+      "uid": "e9a946ce-72a9-4b42-86d6-4d91fceb14db",
+      "table": [
+        [
+          "As of",
+          "2019",
+          "2018"
+        ],
+        [
+          "Assets",
+          "",
+          ""
+        ],
+        [
+          "Cash and equivalents",
+          "$130",
+          "$91"
+        ],
+        [
+          "Receivables",
+          "128",
+          "126"
+        ],
+        [
+          "Inventories",
+          "124",
+          "114"
+        ],
+        [
+          "Other current assets",
+          "9",
+          "8"
+        ],
+        [
+          "Total current assets",
+          "391",
+          "339"
+        ],
+        [
+          "Property, plant, and equipment",
+          "2,235",
+          "2,641"
+        ],
+        [
+          "Other noncurrent assets",
+          "38",
+          "45"
+        ],
+        [
+          "Total assets",
+          "$2,664",
+          "$3,025"
+        ],
+        [
+          "Liabilities",
+          "",
+          ""
+        ],
+        [
+          "Accounts payable and accrued expenses",
+          "$118",
+          "$138"
+        ],
+        [
+          "Current debt",
+          "696",
+          "20"
+        ],
+        [
+          "Other current liabilities",
+          "37",
+          "9"
+        ],
+        [
+          "Total current liabilities",
+          "851",
+          "167"
+        ],
+        [
+          "Long-term debt",
+          "53",
+          "1,064"
+        ],
+        [
+          "Other noncurrent liabilities",
+          "5",
+          "74"
+        ],
+        [
+          "Total liabilities",
+          "$909",
+          "$1,305"
+        ]
+      ]
+    },
+    "paragraphs": [
+      {
+        "uid": "3f260429-7f87-4a5c-bfb3-e77e9ac03fdf",
+        "order": 1,
+        "text": "IMFT: Since 2006, we have owned 51% of IMFT, a joint venture between us and Intel. IMFT is governed by a Board of Managers, for which the number of managers appointed by each member varies based on the members' respective ownership interests. IMFT manufactures semiconductor products exclusively for its members under a long-term supply agreement at prices approximating cost. In 2018, IMFT discontinued production of NAND and subsequent to that time manufactured 3D XPoint memory. In 2018, we announced that we and Intel will no longer jointly develop 3D XPoint technology beyond the second generation and we substantially completed this cost-sharing arrangement in the first quarter of 2020. IMFT sales to Intel were $731 million, $507 million, and $493 million for 2019, 2018, and 2017, respectively."
+      },
+      {
+        "uid": "b65a221b-ae31-4b5b-8438-1df8cb4d8791",
+        "order": 2,
+        "text": "IMFT's capital requirements are generally determined based on an annual plan approved by the members, and capital contributions to IMFT are requested as needed. Capital requests are made to the members in proportion to their then-current ownership interest. Members may elect to not contribute their proportional share, and in such event, the contributing member may elect to contribute any amount of the capital request, either in the form of an equity contribution or member debt financing. Under the supply agreement, the members have rights and obligations to the capacity of IMFT in proportion to their investment, including member debt financing. Any capital contribution or member debt financing results in a proportionate adjustment to the sharing of output on an eight-month lag. Pursuant to the terms of the IMFT joint venture agreement, Intel provided debt financing of $1.01 billion to IMFT in 2018 and IMFT repaid $316 million to Intel in 2019. As of August 29, 2019, current debt included $693 million of IMFT Member Debt. Members pay their proportionate share of fixed costs associated with IMFT's capacity.\u00a0 IMFT's capital requirements are generally determined based on an annual plan approved by the members, and capital contributions to IMFT are requested as needed. Capital requests are made to the members in proportion to their then-current ownership interest. Members may elect to not contribute their proportional share, and in such event, the contributing member may elect to contribute any amount of the capital request, either in the form of an equity contribution or member debt financing. Under the supply agreement, the members have rights and obligations to the capacity of IMFT in proportion to their investment, including member debt financing. Any capital contribution or member debt financing results in a proportionate adjustment to the sharing of output on an eight-month lag. Pursuant to the terms of the IMFT joint venture agreement, Intel provided debt financing of $1.01 billion to IMFT in 2018 and IMFT repaid $316 million to Intel in 2019. As of August 29, 2019, current debt included $693 million of IMFT Member Debt. Members pay their proportionate share of fixed costs associated with IMFT's capacity."
+      },
+      {
+        "uid": "0ec6fe78-c850-4697-a86f-5b1434978143",
+        "order": 3,
+        "text": "In January 2019, we exercised our option to acquire Intel's interest in IMFT. Subsequently, Intel set the closing date to occur on October 31, 2019, at which time IMFT will become a wholly-owned subsidiary. In the first quarter of 2020, we expect to pay Intel approximately $1.4 billion in cash for Intel's noncontrolling interest in IMFT and IMFT member debt. Pursuant to the terms of the IMFT wafer supply agreement, Intel notified us of its election to receive supply from IMFT from the closing date through April 2020 at a volume equal to approximately 50% of their volume from IMFT in the six-month period prior to closing."
+      },
+      {
+        "uid": "4fd0f6f1-51c5-47e2-a7a3-2d307611916f",
+        "order": 4,
+        "text": "Creditors of IMFT have recourse only to IMFT's assets and do not have recourse to any other of our assets. The following table presents the assets and liabilities of IMFT included in our consolidated balance sheets:"
+      },
+      {
+        "uid": "d33347f4-85bd-4a15-8ba6-171268833c55",
+        "order": 5,
+        "text": "Amounts exclude intercompany balances that were eliminated in our consolidated balance sheets."
+      }
+    ],
+    "questions": [
+      {
+        "uid": "81816121-8ac7-4548-bee0-4732f2b594b5",
+        "order": 1,
+        "question": "When has IMFT discontinued the production of NAND?",
+        "answer": [
+          "2018"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "text",
+        "rel_paragraphs": [
+          "1"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "0fe2da7e-22b8-40b2-9536-d006969da29b",
+        "order": 2,
+        "question": "How IMFT\u2019s capital requirements were generally determined?",
+        "answer": [
+          "an annual plan approved by the members, and capital contributions to IMFT are requested as needed"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "0300bc97-6834-4b2a-ab73-ff7dcb4ab6a6",
+        "order": 3,
+        "question": "What were the total liabilities of IMFT in 2018?",
+        "answer": [
+          "$1,305"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "ba6783f3-8207-419a-b407-3f688682caef",
+        "order": 4,
+        "question": "What is the ratio of IMFT\u2019s total assets to total liabilities in 2019?",
+        "answer": 2.93,
+        "derivation": "2,664/909 ",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "263d03ec-83d2-48df-8376-1a72167798f7",
+        "order": 5,
+        "question": "What is the proportion of IMFT\u2019s property, plant, and equipment over total assets in 2018?",
+        "answer": 0.87,
+        "derivation": "2,641/3,025 ",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "78fc6d55-c20c-4f71-99fe-bc40a16e61d0",
+        "order": 6,
+        "question": "What is the change of IMFT\u2019s total assets from 2018 to 2019?",
+        "answer": -361,
+        "derivation": "2,664 - 3,025 ",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": ""
+      }
+    ]
+  },
+  {
+    "table": {
+      "uid": "789efd09-04a2-45c7-84e5-47d3543695d1",
+      "table": [
+        [
+          "",
+          "December 31,",
+          ""
+        ],
+        [
+          "",
+          "2019",
+          "2018"
+        ],
+        [
+          "Trade accounts receivable, net, noncurrent (Note 2)",
+          "$26,496",
+          "$15,948"
+        ],
+        [
+          "Equity method investments (Note 1)",
+          "9,254",
+          "9,702"
+        ],
+        [
+          "Net deferred tax assets, noncurrent (Note 20)",
+          "6,774",
+          "5,797"
+        ],
+        [
+          "Rent and other deposits",
+          "6,106",
+          "5,687"
+        ],
+        [
+          "Value added tax receivables, net, noncurrent",
+          "592",
+          "519"
+        ],
+        [
+          "Other",
+          "6,723",
+          "5,711"
+        ],
+        [
+          "",
+          "$55,945",
+          "$43,364"
+        ]
+      ]
+    },
+    "paragraphs": [
+      {
+        "uid": "17fb5186-7d20-46f3-a0d7-73878390b35a",
+        "order": 1,
+        "text": "Note 15. Deferred Charges and Other Assets"
+      },
+      {
+        "uid": "db1f6774-728c-4f0f-8551-c5b54bca6b15",
+        "order": 2,
+        "text": "Deferred charges and other assets consisted of the following (in thousands):"
+      }
+    ],
+    "questions": [
+      {
+        "uid": "2a73bcb6-7e52-4498-8b58-3e95f0be08c8",
+        "order": 1,
+        "question": "What was the amount of Value added tax receivables, net, noncurrent in 2019?",
+        "answer": [
+          "592"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": "thousand"
+      },
+      {
+        "uid": "d2c13ab2-4201-4b36-b1a5-833c24bf2777",
+        "order": 2,
+        "question": "What was the amount of  Rent and other deposits  in 2018?",
+        "answer": [
+          "5,687"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": "thousand"
+      },
+      {
+        "uid": "3007a32b-3699-4740-8412-586462354361",
+        "order": 3,
+        "question": "In which years were Deferred charges and other assets calculated?",
+        "answer": [
+          "2019",
+          "2018"
+        ],
+        "derivation": "",
+        "answer_type": "multi-span",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "f4ef6a32-0753-4ef5-afac-e921c35ed0cc",
+        "order": 4,
+        "question": "In which year was Value added tax receivables, net, noncurrent larger?",
+        "answer": [
+          "2019"
+        ],
+        "derivation": "592>519",
+        "answer_type": "span",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": true,
+        "scale": ""
+      },
+      {
+        "uid": "35d602ae-9131-4291-a30c-49a40f32bbe4",
+        "order": 5,
+        "question": "What was the change in Value added tax receivables, net, noncurrent in 2019 from 2018?",
+        "answer": 73,
+        "derivation": "592-519",
+        "answer_type": "arithmetic",
+        "answer_from": "table-text",
+        "rel_paragraphs": [
+          "2"
+        ],
+        "req_comparison": false,
+        "scale": "thousand"
+      },
+      {
+        "uid": "a4f782f1-de3b-47a3-87af-1cb33c112b39",
+        "order": 6,
+        "question": "What was the percentage change in Value added tax receivables, net, noncurrent in 2019 from 2018?",
+        "answer": 14.07,
+        "derivation": "(592-519)/519",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "percent"
+      }
+    ]
+  },
+  {
+    "table": {
+      "uid": "403df8e0-6045-4dba-90b3-5c9d8ca55bfb",
+      "table": [
+        [
+          "",
+          "2019",
+          "2018",
+          "2017"
+        ],
+        [
+          "",
+          "\u20acm",
+          "\u20acm",
+          "\u20acm"
+        ],
+        [
+          "Cash generated by operations (refer to note 18)",
+          "14,182",
+          "13,860",
+          "13,781"
+        ],
+        [
+          "Capital additions",
+          "(7,227)",
+          "(7,321)",
+          "(7,675)"
+        ],
+        [
+          "Working capital movement in respect of capital additions",
+          "(89)",
+          "171",
+          "(822)"
+        ],
+        [
+          "Disposal of property, plant and equipment",
+          "45",
+          "41",
+          "43"
+        ],
+        [
+          "Restructuring payments",
+          "195",
+          "250",
+          "266"
+        ],
+        [
+          "Other",
+          "(35)",
+          "\u2013",
+          "34"
+        ],
+        [
+          "Operating free cash flow",
+          "7,071",
+          "7,001",
+          "5,627"
+        ],
+        [
+          "Taxation",
+          "(1,040)",
+          "(1,010)",
+          "(761)"
+        ],
+        [
+          "Dividends received from associates and investments",
+          "498",
+          "489",
+          "433"
+        ],
+        [
+          "Dividends paid to non-controlling shareholders in subsidiaries",
+          "(584)",
+          "(310)",
+          "(413)"
+        ],
+        [
+          "Interest received and paid",
+          "(502)",
+          "(753)",
+          "(830)"
+        ],
+        [
+          "Free cash flow (pre-spectrum)",
+          "5,443",
+          "5,417",
+          "4,056"
+        ],
+        [
+          "Licence and spectrum payments",
+          "(837)",
+          "(1,123)",
+          "(474)"
+        ],
+        [
+          "Restructuring payments",
+          "(195)",
+          "(250)",
+          "(266)"
+        ],
+        [
+          "Free cash flow",
+          "4,411",
+          "4,044",
+          "3,316"
+        ]
+      ]
+    },
+    "paragraphs": [
+      {
+        "uid": "727fdafe-97ee-44d7-ad2d-27deb85b95a9",
+        "order": 1,
+        "text": "Cash flow measures and capital additions"
+      },
+      {
+        "uid": "2d9bcdf4-5c5d-4be4-a6f0-620d03e7a7a2",
+        "order": 2,
+        "text": "In presenting and discussing our reported results, free cash flow (pre-spectrum), free cash flow, capital additions and operating free cash flow are calculated and presented even though these measures are not recognised within IFRS. We believe that it is both useful and necessary to communicate free cash flow to investors and other interested parties, for the following reasons:"
+      },
+      {
+        "uid": "d4e82a6d-4ae8-4cc9-b4fa-27458b922653",
+        "order": 3,
+        "text": "Free cash flow (pre-spectrum) and free cash flow allows us and external parties to evaluate our liquidity and the cash generated by our operations. Free cash flow (pre-spectrum) and capital additions do not include payments for licences and spectrum included within intangible assets, items determined independently of the ongoing business, such as the level of dividends, and items which are deemed discretionary, such as cash flows relating to acquisitions and disposals or financing activities. In addition, it does not necessarily reflect the amounts which we have an obligation to incur. However, it does reflect the cash available for such discretionary activities, to strengthen the consolidated statement of financial position or to provide returns to shareholders in the form of dividends or share purchases;"
+      },
+      {
+        "uid": "5ae10a4b-c7cb-4154-ba4c-ca8a451c0c49",
+        "order": 4,
+        "text": "\u2013 Free cash flow facilitates comparability of results with other companies, although our measure of free cash flow may not be directly comparable to similarly titled measures used by other companies;"
+      },
+      {
+        "uid": "aa5b2ea3-80d0-4762-be5c-32d18c268694",
+        "order": 5,
+        "text": "\u2013 These measures are used by management for planning, reporting and incentive purposes; and"
+      },
+      {
+        "uid": "a3a2edc7-f32b-4de2-a332-5f43c47f56ab",
+        "order": 6,
+        "text": "These measures are useful in connection with discussion with the investment analyst community and debt rating agencies."
+      },
+      {
+        "uid": "55e37bb8-bbc7-4922-9aba-2b958afc4537",
+        "order": 7,
+        "text": "A reconciliation of cash generated by operations, the closest equivalent GAAP measure, to operating free cash flow and free cash flow, is provided below."
+      }
+    ],
+    "questions": [
+      {
+        "uid": "5c2817e5-db8b-484f-befc-d636b789ba67",
+        "order": 1,
+        "question": "What financial items does operating free cash flow consist of?",
+        "answer": [
+          "Taxation",
+          "Dividends received from associates and investments",
+          "Dividends paid to non-controlling shareholders in subsidiaries",
+          "Interest received and paid"
+        ],
+        "derivation": "",
+        "answer_type": "multi-span",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "a28c22c5-bf00-4a08-a868-4c7a4b1149f0",
+        "order": 2,
+        "question": "What financial items does free cash flow (pre-spectrum) consist of?",
+        "answer": [
+          "Licence and spectrum payments",
+          "Restructuring payments"
+        ],
+        "derivation": "",
+        "answer_type": "multi-span",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": ""
+      },
+      {
+        "uid": "ef36e101-a8ac-4967-9321-c0811841c701",
+        "order": 3,
+        "question": "How much is the 2019 free cash flow ?",
+        "answer": [
+          "4,411"
+        ],
+        "derivation": "",
+        "answer_type": "span",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "million"
+      },
+      {
+        "uid": "dc5e217a-a7b3-4fc9-ac0f-13d328f26b20",
+        "order": 4,
+        "question": "What is the 2019 average free cash flow?",
+        "answer": 4227.5,
+        "derivation": "(4,411+4,044)/2",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "million"
+      },
+      {
+        "uid": "7cd3aedf-1291-4fea-bc9d-a25c65727b7b",
+        "order": 5,
+        "question": "What is the 2018 average free cash flow?",
+        "answer": 3680,
+        "derivation": "(4,044+3,316)/2",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "million"
+      },
+      {
+        "uid": "22e20f25-669a-46b9-8779-2768ba391955",
+        "order": 6,
+        "question": "What is the change between 2018 and 2019 average free cash flow?",
+        "answer": 547.5,
+        "derivation": "[(4,411+4,044)/2] -[(4,044+3,316)/2]",
+        "answer_type": "arithmetic",
+        "answer_from": "table",
+        "rel_paragraphs": [],
+        "req_comparison": false,
+        "scale": "million"
+      }
+    ]
+  }
+]

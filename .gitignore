@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# raw + processed data are large / regeneratable -- don't commit them
+data/raw/
+data/processed/
+!data/sample/
+
+# eval outputs
+eval/results/*
+!eval/results/.gitkeep
+
+.pytest_cache/
+.DS_Store
+*.faiss
+*.index
