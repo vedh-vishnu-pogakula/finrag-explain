@@ -8,9 +8,9 @@ It exists so you don't have to re-explain the project each time you open a new t
 **Title:** Explainable Financial RAG — Retrieval Attribution & Faithfulness-Verified Explanations
 for Financial Question Answering
 **Type:** B.E. CS/AI-ML final-year major project, CBIT Hyderabad, 8-month timeline
-**Status:** Month 1 (literature review) complete. Month 2 (data pipeline) in progress —
-FinQA loader is done and tested (`src/ingestion/finqa_loader.py`); TAT-QA loader is
-scaffolded but not implemented (`src/ingestion/tatqa_loader.py` — read its docstring first).
+**Status:** Month 1 (literature review) complete. Month 2 (data pipeline) complete — both
+FinQA (`src/ingestion/finqa_loader.py`) and TAT-QA (`src/ingestion/tatqa_loader.py`) loaders
+are done and tested (12/12 tests passing). Next up: Month 3, `src/retrieval/` (baseline B1).
 
 ## The two contributions (do not scope-creep beyond these)
 
@@ -43,9 +43,11 @@ contributions but is not itself a novelty claim.
 - **FinQA** (Chen et al., 2021) — numerical reasoning over S&P 500 earnings reports; has gold
   supporting-fact indices (`gold_inds`) — use these directly for Precision@k/Recall@k, don't
   invent a new labeling scheme. Loader done: `src/ingestion/finqa_loader.py`.
-- **TAT-QA** (Zhu et al., 2021) — hybrid tabular/textual financial QA. Loader TODO:
-  `src/ingestion/tatqa_loader.py` — schema and step-by-step plan are already written into its
-  docstring (verified against the real dev set), follow it rather than re-deriving from scratch.
+- **TAT-QA** (Zhu et al., 2021) — hybrid tabular/textual financial QA. Loader done:
+  `src/ingestion/tatqa_loader.py`, tested against the real dev set. Table-evidence
+  `gold_chunk_ids` are a documented best-effort heuristic (no gold row index exists in the
+  source data) — don't treat them as ground truth in eval code without re-reading
+  `_table_gold_ids`'s docstring.
 
 ## Baselines
 

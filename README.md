@@ -9,12 +9,13 @@ Claude Code reads it automatically at the start of every session in this repo.
 ## Status
 
 - [x] Month 1 — Literature review, scope locked
-- [ ] Month 2 — Data pipeline (**in progress**)
+- [x] Month 2 — Data pipeline
   - [x] FinQA loader (`src/ingestion/finqa_loader.py`) — tested, produces `chunks.jsonl` +
         `questions.jsonl` with gold evidence IDs matched to FinQA's own `gold_inds`
-  - [ ] TAT-QA loader (`src/ingestion/tatqa_loader.py`) — scaffolded, schema documented, not
-        yet implemented — see its docstring for the exact plan
-- [ ] Month 3 — Baseline RAG end-to-end (B1)
+  - [x] TAT-QA loader (`src/ingestion/tatqa_loader.py`) — tested against the real dev set;
+        handles multi-row headers and section-label rows (see module docstring for the
+        header/data-row split heuristic and its known limitations)
+- [ ] Month 3 — Baseline RAG end-to-end (B1) (**next**)
 - [ ] Month 4 — Retrieval attribution (Contribution 1)
 - [ ] Month 5 — Evidence grounding + RAGAS integration (B2)
 - [ ] Month 6 — Faithfulness perturbation testing (Contribution 2)
@@ -39,17 +40,22 @@ bash scripts/download_data.sh      # downloads FinQA + TAT-QA into data/raw/ (gi
 Small 8-example fixtures for fast, offline testing already live in `data/sample/` (checked
 into git) — you don't need the full download to run the tests below.
 
-## Run the FinQA loader
+## Run the loaders
 
 ```bash
 cd src/ingestion
 python finqa_loader.py --input ../../data/raw/finqa/dev.json --split dev --out-dir ../../data/processed
+python tatqa_loader.py --input ../../data/raw/tatqa/dev.json --split dev --out-dir ../../data/processed
 ```
 
-Writes `data/processed/finqa_dev_chunks.jsonl` and `finqa_dev_questions.jsonl`. Each question's
-`gold_chunk_ids` line up directly with `chunk_id`s from the same `doc_id` — verified against
-FinQA's real dev set: chunk text for `table_3` in doc `V/2008/page_17.pdf-1` matches FinQA's own
-`gold_inds` string exactly.
+Writes `data/processed/{finqa,tatqa}_dev_chunks.jsonl` and `_questions.jsonl`. Each question's
+`gold_chunk_ids` line up with `chunk_id`s from the same `doc_id`:
+- FinQA: verified exactly against the dataset's own `gold_inds` (chunk text for `table_3` in doc
+  `V/2008/page_17.pdf-1` matches FinQA's gold string word-for-word).
+- TAT-QA: paragraph evidence (`para_N`) comes directly from `rel_paragraphs`; table evidence has
+  no gold row index in the source data, so `gold_chunk_ids` for table-sourced answers is a
+  best-effort heuristic (row's linearized text contains the answer string verbatim) — see
+  `_table_gold_ids` in `tatqa_loader.py`, and don't mistake it for a ground-truth label later.
 
 ## Tests
 
@@ -57,14 +63,20 @@ FinQA's real dev set: chunk text for `table_3` in doc `V/2008/page_17.pdf-1` mat
 pytest tests/ -v
 ```
 
-6 tests currently, covering the FinQA loader against the checked-in sample fixture (no network
-needed): question/chunk counts, gold IDs resolving to real chunks, table rows staying
-header-mapped (not flattened into one string), and chunk deduping.
+12 tests, covering both loaders against checked-in sample fixtures (no network needed):
+question/chunk counts, gold IDs resolving to real chunks, table rows staying header-mapped (not
+flattened into one string), a regression test for a header-merge bug found during Session 1
+(year-label rows were briefly misclassified as data rows), and chunk deduping.
 
 ## Next session
 
-1. Implement `src/ingestion/tatqa_loader.py` — the docstring has the verified schema and a
-   step-by-step TODO list. Write `tests/test_tatqa_loader.py` mirroring
-   `tests/test_finqa_loader.py` against `data/sample/tatqa_sample.json`.
-2. Once both loaders produce `chunks.jsonl`, that's the Month 2 milestone (brief Section 9) —
-   move on to `src/retrieval/` (embed chunks, build a FAISS index) for the Month 3 baseline (B1).
+Both loaders now produce `chunks.jsonl` — that's the Month 2 milestone (brief Section 9) met.
+Move on to `src/retrieval/`: embed chunks with the model in `configs/config.yaml`, build a FAISS
+index, and get a plain top-k retriever working — that's the Month 3 baseline (B1).
+
+Known rough edge worth revisiting before trusting TAT-QA numbers in eval: the header-merge
+heuristic in `tatqa_loader.py::_merge_header_cells` can drop a wide title that spans multiple
+year columns (e.g. "Years Ended September 30," sometimes only attaches to one of the three year
+columns it should cover) — doesn't affect correctness of the values themselves, just how much
+header context survives into the linearized text. Fine for v1; flag if attribution/retrieval
+quality on TAT-QA looks off later and this is worth a second pass.
