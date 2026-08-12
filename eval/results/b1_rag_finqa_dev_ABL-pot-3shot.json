@@ -1,0 +1,131 @@
+{
+  "overall": {
+    "precision@1": 0.64,
+    "recall@1": 0.4633,
+    "hit@1": 0.64,
+    "full_recall@1": 0.32,
+    "precision@3": 0.3733,
+    "recall@3": 0.72,
+    "hit@3": 0.88,
+    "full_recall@3": 0.56,
+    "precision@5": 0.272,
+    "recall@5": 0.8283,
+    "hit@5": 0.92,
+    "full_recall@5": 0.72,
+    "mrr": 0.759,
+    "n_questions": 50,
+    "mean_n_gold": 1.8
+  },
+  "n_questions_total": 50,
+  "n_questions_scored": 50,
+  "n_questions_skipped_no_gold": 0,
+  "ks": [
+    1,
+    3,
+    5
+  ],
+  "by_dataset": {
+    "finqa": {
+      "precision@1": 0.64,
+      "recall@1": 0.4633,
+      "hit@1": 0.64,
+      "full_recall@1": 0.32,
+      "precision@3": 0.3733,
+      "recall@3": 0.72,
+      "hit@3": 0.88,
+      "full_recall@3": 0.56,
+      "precision@5": 0.272,
+      "recall@5": 0.8283,
+      "hit@5": 0.92,
+      "full_recall@5": 0.72,
+      "mrr": 0.759,
+      "n_questions": 50,
+      "mean_n_gold": 1.8
+    }
+  },
+  "by_gold_type": {
+    "mixed": {
+      "precision@1": 0.6667,
+      "recall@1": 0.2222,
+      "hit@1": 0.6667,
+      "full_recall@1": 0.0,
+      "precision@3": 0.5,
+      "recall@3": 0.5,
+      "hit@3": 1.0,
+      "full_recall@3": 0.0,
+      "precision@5": 0.4,
+      "recall@5": 0.6528,
+      "hit@5": 1.0,
+      "full_recall@5": 0.1667,
+      "mrr": 0.8333,
+      "n_questions": 6,
+      "mean_n_gold": 3.0
+    },
+    "table": {
+      "precision@1": 0.5333,
+      "recall@1": 0.3611,
+      "hit@1": 0.5333,
+      "full_recall@1": 0.2,
+      "precision@3": 0.3667,
+      "recall@3": 0.7,
+      "hit@3": 0.8333,
+      "full_recall@3": 0.5667,
+      "precision@5": 0.2667,
+      "recall@5": 0.8,
+      "hit@5": 0.8667,
+      "full_recall@5": 0.7333,
+      "mrr": 0.6806,
+      "n_questions": 30,
+      "mean_n_gold": 1.8333
+    },
+    "text": {
+      "precision@1": 0.8571,
+      "recall@1": 0.7857,
+      "hit@1": 0.8571,
+      "full_recall@1": 0.7143,
+      "precision@3": 0.3333,
+      "recall@3": 0.8571,
+      "hit@3": 0.9286,
+      "full_recall@3": 0.7857,
+      "precision@5": 0.2286,
+      "recall@5": 0.9643,
+      "hit@5": 1.0,
+      "full_recall@5": 0.9286,
+      "mrr": 0.8952,
+      "n_questions": 14,
+      "mean_n_gold": 1.2143
+    }
+  },
+  "answers": {
+    "n_questions": 50,
+    "n_numeric": 49,
+    "n_textual": 1,
+    "numeric_accuracy": 0.102,
+    "span_exact_match": 0.0,
+    "span_token_f1": 0.0,
+    "overall_exact_match": 0.02
+  },
+  "failure_modes": {
+    "generation": 41,
+    "None": 5,
+    "retrieval": 4
+  },
+  "declined_rate": 0.0,
+  "citation_precision": 0.5,
+  "program_rate": 0.82,
+  "unparseable_json_rate": 0.0,
+  "config": {
+    "dataset": "finqa",
+    "split": "dev",
+    "baseline": "B1_plain_rag",
+    "scope": "document",
+    "top_k": 5,
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "generation_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "quantization": "fp16",
+    "prompt_version": "b1-pot-3shot-v2",
+    "subsample_size": 50,
+    "seed": 13,
+    "n_api_errors": 0
+  }
+}

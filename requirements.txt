@@ -1,31 +1,46 @@
-# Pin versions from Month 2 onward per CLAUDE.md / brief Section 14 -- these libraries
-# change APIs often enough to break reproducibility if left unpinned. Fill in exact
-# versions with `pip freeze` once your environment is working end-to-end, don't leave
-# this file loose past Week 2.
+# Pinned 2026-08-11, from the environment that produced the Month 3 + Month 4 results in
+# README.md. Per the CLAUDE.md guardrail: these libraries change APIs often enough to break
+# reproducibility by Month 7 if left loose, and the numbers in the README are only meaningful
+# against the versions that produced them.
+#
+# Reproduce the environment:
+#   python3 -m venv .venv && source .venv/bin/activate
+#   pip install -r requirements.txt
+#   python -m spacy download en_core_web_sm     # NER for attribution unit grouping
+#
+# ZERO-BUDGET PROJECT: nothing here is a paid service. Models are downloaded once from the
+# HuggingFace Hub and run locally.
 
 # core
-pandas
-numpy
-pyyaml
-tqdm
+numpy==2.5.2
+pandas==3.0.5
+PyYAML==6.0.3
+tqdm==4.70.0
 
-# embeddings + retrieval
-sentence-transformers
-faiss-cpu
+# embeddings + retrieval (Month 3)
+sentence-transformers==5.7.0
+faiss-cpu==1.15.0
 
-# financial NER / sentence segmentation
-spacy
+# generation -- a local open-weights model, no paid API in the default path.
+# transformers and torch are pulled in by sentence-transformers, but src/generation/ imports
+# them directly, so they are pinned here explicitly rather than inherited.
+transformers==5.15.0
+torch==2.13.0
 
-# faithfulness
-ragas
+# sentence segmentation + financial NER
+spacy==3.8.15
 
-# generation (pick ONE provider client and remove the others once decided)
-# openai
-# anthropic
+# faithfulness (Month 6). NOTE: RAGAS defaults to an OpenAI judge LLM and will bill on first
+# call -- it must be constructed with an explicit local/free judge. See CLAUDE.md.
+ragas==0.4.3
 
-# demo
-streamlit
+# demo (Month 7)
+streamlit==1.61.1
 
 # eval / dev
-pytest
-jsonlines
+pytest==9.1.1
+jsonlines==4.0.0
+
+# Optional, opt-in only: the hosted-API generator (configs/config.yaml generation.provider=api).
+# Costs money -- leave commented unless you have deliberately decided to spend it.
+# anthropic

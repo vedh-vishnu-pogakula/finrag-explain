@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -m pytest tests/ -q)",
+      "Bash(python3 eval/baselines/run_b1_retrieval.py --dataset finqa --split dev)",
+      "Bash(grep -v \"it/s\\\\]$\")",
+      "Bash(python3 eval/baselines/run_b1_retrieval.py --dataset tatqa --split dev)",
+      "Bash(python3 -)",
+      "Bash(python3 eval/baselines/run_b1_retrieval.py --dataset tatqa --split dev --fresh)",
+      "Bash(python3 -m pytest tests/test_tatqa_loader.py::test_derivation_operands_reads_the_cells_the_annotator_used -q)",
+      "Bash(env)"
+    ]
+  }
+}

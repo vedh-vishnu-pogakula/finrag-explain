@@ -1,0 +1,131 @@
+{
+  "n_questions": 100,
+  "by_method": {
+    "occlusion": {
+      "n": 100,
+      "comprehensiveness@0.2": 0.1719,
+      "comprehensiveness@0.5": 0.2768,
+      "lift_over_random@0.2": 0.4745,
+      "lift_over_random@0.5": 0.5321,
+      "norm_comprehensiveness@0.2": 0.5926,
+      "norm_comprehensiveness@0.5": 0.9235,
+      "norm_random_comprehensiveness@0.2": 0.1181,
+      "norm_random_comprehensiveness@0.5": 0.3914,
+      "norm_sufficiency@0.2": 0.1024,
+      "norm_sufficiency@0.5": -0.0752,
+      "random_comprehensiveness@0.2": 0.0377,
+      "random_comprehensiveness@0.5": 0.1131,
+      "random_sufficiency@0.2": 0.2476,
+      "random_sufficiency@0.5": 0.124,
+      "sufficiency@0.2": 0.0388,
+      "sufficiency@0.5": -0.0186,
+      "mean_mass_by_kind": {
+        "entity": 0.0755,
+        "number": 0.071,
+        "stopword": 0.1119,
+        "term": 0.7417
+      },
+      "kind_presence_rate": {
+        "entity": 0.26,
+        "number": 0.73,
+        "stopword": 1.0,
+        "term": 1.0
+      },
+      "mean_units_per_query": 11.78
+    },
+    "shapley": {
+      "n": 100,
+      "comprehensiveness@0.2": 0.1721,
+      "comprehensiveness@0.5": 0.3331,
+      "lift_over_random@0.2": 0.4734,
+      "lift_over_random@0.5": 0.7183,
+      "norm_comprehensiveness@0.2": 0.5915,
+      "norm_comprehensiveness@0.5": 1.1097,
+      "norm_random_comprehensiveness@0.2": 0.1181,
+      "norm_random_comprehensiveness@0.5": 0.3914,
+      "norm_sufficiency@0.2": 0.065,
+      "norm_sufficiency@0.5": -0.0708,
+      "random_comprehensiveness@0.2": 0.0377,
+      "random_comprehensiveness@0.5": 0.1131,
+      "random_sufficiency@0.2": 0.2476,
+      "random_sufficiency@0.5": 0.124,
+      "sufficiency@0.2": 0.0275,
+      "sufficiency@0.5": -0.0173,
+      "mean_mass_by_kind": {
+        "entity": 0.0761,
+        "number": 0.1251,
+        "stopword": 0.0226,
+        "term": 0.7762
+      },
+      "kind_presence_rate": {
+        "entity": 0.26,
+        "number": 0.73,
+        "stopword": 1.0,
+        "term": 1.0
+      },
+      "mean_units_per_query": 11.78
+    },
+    "surrogate": {
+      "n": 100,
+      "comprehensiveness@0.2": 0.174,
+      "comprehensiveness@0.5": 0.3096,
+      "lift_over_random@0.2": 0.4834,
+      "lift_over_random@0.5": 0.6334,
+      "norm_comprehensiveness@0.2": 0.6015,
+      "norm_comprehensiveness@0.5": 1.0248,
+      "norm_random_comprehensiveness@0.2": 0.1181,
+      "norm_random_comprehensiveness@0.5": 0.3914,
+      "norm_sufficiency@0.2": 0.0722,
+      "norm_sufficiency@0.5": -0.0886,
+      "random_comprehensiveness@0.2": 0.0377,
+      "random_comprehensiveness@0.5": 0.1131,
+      "random_sufficiency@0.2": 0.2476,
+      "random_sufficiency@0.5": 0.124,
+      "sufficiency@0.2": 0.0293,
+      "sufficiency@0.5": -0.0223,
+      "mean_mass_by_kind": {
+        "entity": 0.0737,
+        "number": 0.0991,
+        "stopword": 0.0884,
+        "term": 0.7387
+      },
+      "kind_presence_rate": {
+        "entity": 0.26,
+        "number": 0.73,
+        "stopword": 1.0,
+        "term": 1.0
+      },
+      "mean_units_per_query": 11.78
+    }
+  },
+  "method_agreement_spearman": {
+    "occlusion~shapley": 0.743,
+    "occlusion~surrogate": 0.8888,
+    "shapley~surrogate": 0.8542
+  },
+  "config": {
+    "dataset": "tatqa",
+    "split": "dev",
+    "mode": "score",
+    "explain_target": "top",
+    "methods": [
+      "occlusion",
+      "shapley",
+      "surrogate"
+    ],
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "top_k": 5,
+    "scope": "document",
+    "subsample_size": 100,
+    "seed": 13,
+    "n_permutations": 64,
+    "n_samples": 256,
+    "eval_fractions": [
+      0.2,
+      0.5
+    ],
+    "ner_entity_grouping": true,
+    "n_skipped": 0,
+    "contribution": "C1_retrieval_attribution"
+  }
+}

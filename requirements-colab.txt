@@ -1,0 +1,23 @@
+# Extra packages needed only to run the heavy generation passes on Colab's free T4.
+# Install AFTER requirements.txt:  pip install -r requirements-colab.txt
+#
+# Why this file exists separately, rather than being folded into requirements.txt:
+#
+# 1. `bitsandbytes` is CUDA-only. It does not install on Apple Silicon, so putting it in the
+#    main file would break `pip install -r requirements.txt` on the development machine.
+# 2. Colab ships its own CUDA build of torch. requirements.txt pins torch==2.13.0 for the
+#    local environment that produced the Month 3/4 results; forcing that exact wheel on Colab
+#    downloads ~2.5GB and risks breaking the preinstalled CUDA stack. The notebook therefore
+#    keeps Colab's torch and *records the resolved version* into
+#    eval/results/colab_env.json, so a number produced on Colab can always be traced to the
+#    environment that produced it. A recorded version is reproducible; a silently different
+#    one is not.
+#
+# ZERO-BUDGET PROJECT: Colab's free tier only. Nothing here requires Colab Pro.
+
+# 4-bit NF4 quantization -- this is what makes Qwen2.5-7B-Instruct fit in a T4's 15GB.
+# Deliberately unpinned: the working version moves with the CUDA/torch build Colab ships,
+# and a stale pin here fails to install rather than degrading gracefully. The notebook
+# records what actually resolved.
+bitsandbytes
+accelerate

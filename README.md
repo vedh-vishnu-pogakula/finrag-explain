@@ -15,8 +15,23 @@ Claude Code reads it automatically at the start of every session in this repo.
   - [x] TAT-QA loader (`src/ingestion/tatqa_loader.py`) — tested against the real dev set;
         handles multi-row headers and section-label rows (see module docstring for the
         header/data-row split heuristic and its known limitations)
-- [ ] Month 3 — Baseline RAG end-to-end (B1) (**next**)
-- [ ] Month 4 — Retrieval attribution (Contribution 1)
+- [x] Month 3 — Baseline RAG end-to-end (B1)
+  - [x] Retrieval (`src/retrieval/`) — bge-small embeddings with tokenizer-enforced chunk
+        limits, cached chunk-embedding matrix, exact per-document search plus FAISS flat-IP
+        corpus search
+  - [x] Generation (`src/generation/`) — evidence-bound prompt, structured answer + citations,
+        program-of-thought with a sandboxed arithmetic executor (`calculator.py`)
+  - [x] Generation-configuration ablation (`eval/baselines/run_prompt_ablation.py`) — four
+        separable arms; FinQA numeric accuracy 0.041 → 0.102
+  - [x] Metrics (`eval/metrics/`) — Precision/Recall/hit/MRR@k; numeric-normalized answer
+        scoring that respects TAT-QA's `scale`
+  - [x] Baseline runners (`eval/baselines/`) — checkpointed, resumable, fixed subsample
+- [x] Month 4 — Retrieval attribution (Contribution 1)
+  - [x] Query segmentation into attributable units (numbers / entities / terms / stopwords)
+  - [x] Batched, cached perturbation engine — one embedding pass per distinct coalition
+  - [x] Three estimators: occlusion, RankingSHAP-anchored Shapley, Rank-LIME-anchored surrogate
+  - [x] Two value functions: per-chunk score, and rank-biased-overlap over the whole ordering
+  - [x] Faithfulness evaluation (comprehensiveness / sufficiency vs a random baseline)
 - [ ] Month 5 — Evidence grounding + RAGAS integration (B2)
 - [ ] Month 6 — Faithfulness perturbation testing (Contribution 2)
 - [ ] Month 7 — Full evaluation (B1/B2/B3) + Streamlit demo + human study
@@ -28,8 +43,12 @@ Claude Code reads it automatically at the start of every session in this repo.
 python3 -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m spacy download en_core_web_sm
+python -m spacy download en_core_web_sm    # NER for attribution unit grouping
 ```
+
+`requirements.txt` is pinned to the exact versions that produced the results below. The spaCy
+model is optional — attribution falls back to a capitalization heuristic without it — but the
+reported entity numbers assume it is installed.
 
 ## Get the data
 
@@ -57,26 +76,254 @@ Writes `data/processed/{finqa,tatqa}_dev_chunks.jsonl` and `_questions.jsonl`. E
   best-effort heuristic (row's linearized text contains the answer string verbatim) — see
   `_table_gold_ids` in `tatqa_loader.py`, and don't mistake it for a ground-truth label later.
 
+## Run the B1 baseline
+
+Retrieval only — ~40s per dataset including the first embedding pass:
+
+```bash
+python eval/baselines/run_b1_retrieval.py --dataset finqa --split dev
+python eval/baselines/run_b1_retrieval.py --dataset tatqa --split dev
+```
+
+End to end (retrieval → generation → scoring). **This costs nothing** — generation runs on a
+local open-weights model (see below). It checkpoints every 10 questions, so an interrupted run
+resumes rather than restarting:
+
+```bash
+python eval/baselines/run_b1_rag.py --dataset finqa --split dev --dry-run          # prompt only
+python eval/baselines/run_b1_rag.py --dataset finqa --split dev --generator stub   # instant, offline
+```
+
+`configs/config.yaml` holds the **frozen** generation configuration — `Qwen2.5-7B-Instruct`
+in 4-bit — because that is what the reported numbers come from. `bitsandbytes` is CUDA-only,
+so a laptop spot check overrides both explicitly rather than editing the frozen config:
+
+```bash
+python eval/baselines/run_b1_rag.py --dataset finqa --split dev --limit 25 \
+    --no-4bit --model Qwen/Qwen2.5-1.5B-Instruct
+```
+
+The full 250-question passes belong on Colab's free T4, not on a laptop — see *Heavy runs*
+below. A `--limit 25` spot check is the intended laptop workflow.
+
+## Cost: this project runs on ₹0
+
+No paid API sits anywhere in the default path, at any month:
+
+| Component | What it uses | Cost |
+|---|---|---|
+| Embeddings | `bge-small-en-v1.5`, downloaded once, runs locally | free |
+| Vector search | FAISS (CPU) | free |
+| Generation | `Qwen2.5-7B-Instruct` (4-bit) via `transformers`, on Colab's free T4 | free |
+| Arithmetic | executed in Python by `src/generation/calculator.py`, not by an LLM | free |
+| Datasets | FinQA + TAT-QA from GitHub | free |
+| Compute | Colab's free tier for generation; your laptop for everything else | free |
+
+The first run downloads model weights (~5 GB, one time). `generation.provider: api` exists in
+[configs/config.yaml](configs/config.yaml) as an opt-in path and prints a cost warning, but
+nothing in the default configuration can reach it.
+
+**Watch out in Month 6:** RAGAS defaults to an OpenAI judge model and will bill silently. It
+must be constructed with an explicit local/free judge before its first call.
+
+Results land in `eval/results/` (gitignored), per-question records in
+`eval/results/checkpoints/`.
+
+### B1 retrieval results (dev, 250-question fixed subsample, bge-small-en-v1.5, top-k=5)
+
+| Dataset | Recall@5 | Full-recall@5 | Hit@5 | MRR | Scored |
+|---------|---------:|--------------:|------:|----:|-------:|
+| FinQA   | 0.850    | 0.728         | 0.956 | 0.783 | 250/250 |
+| TAT-QA  | 0.843    | 0.741         | 0.942 | 0.851 | 243/250 |
+
+Recall — not Precision — is the headline: questions have 1–4 gold facts out of 30–60 chunks, so
+P@5 is capped around 0.4 even for a perfect retriever. Read the TAT-QA row with the
+`_table_gold_ids` heuristic caveat in mind, and note the ~0.5% of FinQA questions whose gold
+evidence is the table header row (see `finqa_loader.py`'s docstring) and is unreachable by
+construction.
+
+### B1 generation ablation — why the prompt looks the way it does
+
+The first version of B1 asked the model to read a table, choose the right figures, do the
+arithmetic mentally, and report a bare number. It scored **0.046** on FinQA. The per-question
+records said why: 24% of answers were a number copied out of the evidence with no arithmetic
+attempted, and another 19% were *unparseable* because the model had written out its working —
+
+```
+"$135.02 - $148.92 = -$13.90"      # the correct computation, discarded by the metric
+```
+
+Two changes follow from that, and the ablation separates them. **Program-of-thought**: the
+model returns the calculation in `answer_expression` and
+[`src/generation/calculator.py`](src/generation/calculator.py) executes it exactly, so the one
+thing a small model is reliably bad at is no longer its job. This is FinQA's own formulation —
+the dataset ships a gold `program` field — not a workaround. **Few-shot exemplars**: three
+hand-written examples, fixed across datasets and models.
+
+FinQA dev, 50 questions, identical retriever and question set across arms:
+
+| Arm | Numeric acc. | Program rate | Unparseable | Citation prec. |
+|---|---:|---:|---:|---:|
+| `direct-0shot` <sub>(the original v1 prompt)</sub> | 0.041 | 0.00 | 0.00 | 0.510 |
+| `direct-3shot` <sub>(exemplars only)</sub> | 0.061 | 0.00 | 0.02 | 0.480 |
+| `pot-0shot` <sub>(program-of-thought only)</sub> | 0.061 | 0.78 | 0.00 | 0.520 |
+| **`pot-3shot`** <sub>(both)</sub> | **0.102** | 0.82 | 0.00 | 0.500 |
+
+**The interaction is the result.** Neither change alone gets past 0.061; together they reach
+0.102, 2.5× the baseline. Few-shot teaches the output format that the program channel needs,
+and the program channel is what converts a correct-but-unparseable answer into a scored one.
+Reporting only the combined number would leave a reviewer unable to tell which half did the
+work — hence four arms rather than a before/after pair.
+
+Reproduce with `python eval/baselines/run_prompt_ablation.py --dataset finqa --limit 50`.
+
+Two implementation notes that cost real debugging time and are worth not rediscovering:
+
+- Exemplars live in the **system prompt**, not in user/assistant chat turns. As chat turns they
+  are structurally identical to the real question, and the 1.5B model answered a live question
+  with `-30584 / 8920 * 100` — where `8920` appears nowhere except inside an exemplar. Exactly
+  one message may carry evidence.
+- `answer_expression` is only executed when it actually *computes* something. It is often just
+  the answer restated, and executing `"4.35%"` would rewrite a correct answer as `0.0435`.
+
+### What still fails, on `pot-3shot`
+
+| Bucket | Share |
+|---|---:|
+| Right operands present, **combined wrongly** | 64% |
+| No expression emitted (answered by reading) | 14% |
+| Correct | 10% |
+| Retrieval miss | 8% |
+| Operand not in the evidence (hallucinated) | 4% |
+
+The arithmetic problem is solved — only 4% of answers now invent a number. What remains is
+**column selection**: the model writes `(22 - 19) / 22` when the question named 2007 and 2009,
+because one linearized table row carries every year (`...of 2009 is 19 ; ...of 2008 is 22 ;
+...of 2007 is 33`). That is a model-capacity limit rather than a prompting one, which is why
+the frozen configuration moves to a larger model rather than to more prompt engineering.
+
+### B1 end-to-end results
+
+Retrieval numbers are settled and reproduce the retrieval-only run exactly:
+
+| Dataset | Recall@5 | Citation prec. | Structured output parsed |
+|---|---:|---:|---:|
+| FinQA | 0.850 | 0.530 | 250/250 |
+| TAT-QA | 0.843 | 0.574 | 250/250 |
+
+**Retrieval is not the bottleneck.** It finds the gold evidence for ~85% of questions and only
+~4% of failures are retrieval failures — the evidence-finding half of the system works, which
+is what matters for the two contributions, since both are measured on explanation quality
+rather than on answer accuracy.
+
+Answer accuracy under the frozen configuration (`Qwen2.5-7B-Instruct`, 4-bit, `pot-3shot`) is
+produced on Colab's free T4 via [notebooks/run_b1_colab.ipynb](notebooks/run_b1_colab.ipynb) —
+see *Heavy runs* below. The superseded 1.5B numbers (FinQA 0.046, TAT-QA 0.204 numeric / 0.521
+span F1) are kept in `eval/results/` as the ablation's `direct-0shot` reference point.
+
+### Heavy runs go to Colab's free T4
+
+Generation is the only part of this project that needs a real GPU, and a laptop running an
+hour of sustained inference gets hot enough to throttle. [
+`notebooks/run_b1_colab.ipynb`](notebooks/run_b1_colab.ipynb) runs the ablation and both
+250-question passes on Colab's free tier at ₹0:
+
+- the notebook clones from GitHub into Google Drive and pulls on every later run, so the Colab
+  copy always matches the laptop and checkpoints survive the disconnects free Colab is prone to
+- every run resumes from its last checkpoint — reconnect, re-run all cells, nothing recomputed
+- `requirements-colab.txt` adds only `bitsandbytes` + `accelerate` (CUDA-only, which is why
+  they are not in the pinned local `requirements.txt`), and the resolved versions are written
+  to `eval/results/colab_env.json` so a Colab number is always traceable to its environment
+
+## Run attribution (Contribution 1)
+
+Free, and never touches the generator — it only re-scores query variants against chunk
+embeddings computed once at index build time.
+
+```bash
+python eval/baselines/run_attribution.py --dataset finqa --split dev --limit 100
+python eval/baselines/run_attribution.py --dataset finqa --split dev --mode ranking
+python eval/baselines/run_attribution.py --dataset finqa --split dev --embedder hash  # instant
+```
+
+Re-running without `--fresh` reloads the checkpoint and re-aggregates the report without
+recomputing anything.
+
+### Attribution results (dev, `bge-small-en-v1.5`, top-20% of units removed/kept)
+
+Comprehensiveness ↑ (removing the top-weighted units should collapse the score), sufficiency ↓
+(those units alone should recover it), both normalized by the query's full attributable range.
+**Lift** is comprehensiveness minus the same measurement with randomly chosen units — the
+number that actually shows the explanation is doing work.
+
+| Run | Method | Comp ↑ | Random | Lift ↑ | Suff ↓ |
+|---|---|---:|---:|---:|---:|
+| FinQA, score | occlusion | 0.566 | 0.074 | 0.492 | 0.023 |
+| FinQA, score | shapley | 0.578 | 0.074 | 0.504 | −0.018 |
+| FinQA, score | surrogate | 0.580 | 0.074 | 0.506 | −0.012 |
+| TAT-QA, score | occlusion | 0.593 | 0.118 | 0.474 | 0.102 |
+| TAT-QA, score | shapley | 0.592 | 0.118 | 0.473 | 0.065 |
+| TAT-QA, score | surrogate | 0.602 | 0.118 | 0.483 | 0.072 |
+| FinQA, **ranking** | occlusion | 0.493 | 0.179 | 0.314 | 0.423 |
+| FinQA, **ranking** | shapley | 0.630 | 0.179 | **0.451** | 0.314 |
+| FinQA, **ranking** | surrogate | 0.567 | 0.179 | 0.387 | 0.333 |
+
+Two findings worth writing up:
+
+1. **Explaining the ranking is where the method choice matters.** On per-chunk scores all
+   three methods are within 0.015 of each other. On the ranking-level value function, Shapley's
+   lift is 44% higher than occlusion's (0.451 vs 0.314) — occlusion measures each unit only in
+   the presence of all the others, so it misses the interactions that determine an ordering.
+   This is the empirical case for the RankingSHAP anchoring rather than a leave-one-out
+   shortcut.
+2. **Shapley is much better at ignoring function words.** Share of attribution mass landing on
+   stopwords: 3.0% (Shapley) vs 11.3% (occlusion) on FinQA, 2.3% vs 11.2% on TAT-QA. Content
+   terms take 72–78%, numeric values 14–16%, named entities 3–8%.
+
+A negative sufficiency is real, not a bug: keeping only the top-weighted units sometimes scores
+*higher* than the full query, because the discarded words were diluting the embedding.
+
 ## Tests
 
 ```bash
-pytest tests/ -v
+pytest tests/ -v          # 111 tests, offline, ~18s
+pytest tests/ -m "not slow"   # skips the one test that loads the real embedding model
 ```
 
-12 tests, covering both loaders against checked-in sample fixtures (no network needed):
-question/chunk counts, gold IDs resolving to real chunks, table rows staying header-mapped (not
-flattened into one string), a regression test for a header-merge bug found during Session 1
-(year-label rows were briefly misclassified as data rows), and chunk deduping.
+Covers both loaders against checked-in fixtures, the retrieval layer (chunk-ID collision
+isolation across documents, search matching the score matrix exactly, index round-trip, the
+embedding-model mismatch guard), numeric answer normalization, and the generator's failure
+paths (refusal, truncated JSON, out-of-range citations, API exceptions) via a fake client — no
+network, no API key.
+
+The calculator is tested as untrusted-input handling, not just as arithmetic: `evaluate()` is
+asserted to reject `__import__`, attribute access, comprehensions, names, division by zero and
+`9**9**9`. It walks an AST with an operator whitelist, so there is no `eval()` for model output
+to reach. Two regression tests pin the bugs that cost the most to find — exemplar figures
+leaking into real answers, and a percent literal being mistaken for a calculation.
 
 ## Next session
 
-Both loaders now produce `chunks.jsonl` — that's the Month 2 milestone (brief Section 9) met.
-Move on to `src/retrieval/`: embed chunks with the model in `configs/config.yaml`, build a FAISS
-index, and get a plain top-k retriever working — that's the Month 3 baseline (B1).
+Months 3–4 are done and B1's generation configuration is now frozen: `Qwen2.5-7B-Instruct` in
+4-bit, program-of-thought, three exemplars. **That configuration is an experimental constant** —
+B2 and B3 must be produced under exactly the same one, or the three baselines cannot be
+compared.
 
-Known rough edge worth revisiting before trusting TAT-QA numbers in eval: the header-merge
-heuristic in `tatqa_loader.py::_merge_header_cells` can drop a wide title that spans multiple
-year columns (e.g. "Years Ended September 30," sometimes only attaches to one of the three year
-columns it should cover) — doesn't affect correctness of the values themselves, just how much
-header context survives into the linearized text. Fine for v1; flag if attribution/retrieval
-quality on TAT-QA looks off later and this is worth a second pass.
+Month 5 is the evidence-grounding layer plus RAGAS integration (B2), in `src/grounding/`.
+
+Before writing B2 code, read the zero-cost note above: **RAGAS defaults to an OpenAI judge
+model** and must be constructed with an explicit local/free judge before its first call. Note
+also that judge *quality*, not just judge cost, is a live risk for Contribution 2 — a
+faithfulness metric evaluated by a weak judge cannot support a claim about when that metric
+fails. Decide the judge before writing B2, not after seeing the scores.
+
+Known rough edges, in the order they'd matter:
+
+- `tatqa_loader.py::_merge_header_cells` can drop a wide title spanning multiple year columns
+  ("Years Ended September 30," sometimes attaches to only one of three year columns). Values
+  are still correct; only header context is thinned. Revisit if TAT-QA attribution looks off.
+- TAT-QA table-evidence gold IDs remain a documented heuristic (now derivation-operand based,
+  96.9% coverage of dev). Fine for retrieval eval; do not treat as ground truth for
+  attribution correctness.
+- `requirements.txt` is still unpinned. The environment is now confirmed working end to end,
+  so pinning it with `pip freeze` is overdue per the Month 2 guardrail.

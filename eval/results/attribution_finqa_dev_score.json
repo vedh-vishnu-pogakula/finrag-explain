@@ -1,0 +1,131 @@
+{
+  "n_questions": 100,
+  "by_method": {
+    "occlusion": {
+      "n": 100,
+      "comprehensiveness@0.2": 0.1645,
+      "comprehensiveness@0.5": 0.2666,
+      "lift_over_random@0.2": 0.4921,
+      "lift_over_random@0.5": 0.6221,
+      "norm_comprehensiveness@0.2": 0.5664,
+      "norm_comprehensiveness@0.5": 0.8825,
+      "norm_random_comprehensiveness@0.2": 0.0743,
+      "norm_random_comprehensiveness@0.5": 0.2604,
+      "norm_sufficiency@0.2": 0.0234,
+      "norm_sufficiency@0.5": -0.1289,
+      "random_comprehensiveness@0.2": 0.0243,
+      "random_comprehensiveness@0.5": 0.0712,
+      "random_sufficiency@0.2": 0.2316,
+      "random_sufficiency@0.5": 0.1316,
+      "sufficiency@0.2": 0.019,
+      "sufficiency@0.5": -0.0344,
+      "mean_mass_by_kind": {
+        "entity": 0.0269,
+        "number": 0.1431,
+        "stopword": 0.113,
+        "term": 0.717
+      },
+      "kind_presence_rate": {
+        "entity": 0.34,
+        "number": 0.85,
+        "stopword": 1.0,
+        "term": 1.0
+      },
+      "mean_units_per_query": 15.37
+    },
+    "shapley": {
+      "n": 100,
+      "comprehensiveness@0.2": 0.1676,
+      "comprehensiveness@0.5": 0.3242,
+      "lift_over_random@0.2": 0.5038,
+      "lift_over_random@0.5": 0.8112,
+      "norm_comprehensiveness@0.2": 0.578,
+      "norm_comprehensiveness@0.5": 1.0716,
+      "norm_random_comprehensiveness@0.2": 0.0743,
+      "norm_random_comprehensiveness@0.5": 0.2604,
+      "norm_sufficiency@0.2": -0.0184,
+      "norm_sufficiency@0.5": -0.1165,
+      "random_comprehensiveness@0.2": 0.0243,
+      "random_comprehensiveness@0.5": 0.0712,
+      "random_sufficiency@0.2": 0.2316,
+      "random_sufficiency@0.5": 0.1316,
+      "sufficiency@0.2": 0.0059,
+      "sufficiency@0.5": -0.0301,
+      "mean_mass_by_kind": {
+        "entity": 0.0335,
+        "number": 0.1622,
+        "stopword": 0.0297,
+        "term": 0.7745
+      },
+      "kind_presence_rate": {
+        "entity": 0.34,
+        "number": 0.85,
+        "stopword": 1.0,
+        "term": 1.0
+      },
+      "mean_units_per_query": 15.37
+    },
+    "surrogate": {
+      "n": 100,
+      "comprehensiveness@0.2": 0.1688,
+      "comprehensiveness@0.5": 0.2924,
+      "lift_over_random@0.2": 0.5057,
+      "lift_over_random@0.5": 0.7044,
+      "norm_comprehensiveness@0.2": 0.58,
+      "norm_comprehensiveness@0.5": 0.9648,
+      "norm_random_comprehensiveness@0.2": 0.0743,
+      "norm_random_comprehensiveness@0.5": 0.2604,
+      "norm_sufficiency@0.2": -0.0117,
+      "norm_sufficiency@0.5": -0.1408,
+      "random_comprehensiveness@0.2": 0.0243,
+      "random_comprehensiveness@0.5": 0.0712,
+      "random_sufficiency@0.2": 0.2316,
+      "random_sufficiency@0.5": 0.1316,
+      "sufficiency@0.2": 0.0091,
+      "sufficiency@0.5": -0.0363,
+      "mean_mass_by_kind": {
+        "entity": 0.0283,
+        "number": 0.1512,
+        "stopword": 0.0902,
+        "term": 0.7303
+      },
+      "kind_presence_rate": {
+        "entity": 0.34,
+        "number": 0.85,
+        "stopword": 1.0,
+        "term": 1.0
+      },
+      "mean_units_per_query": 15.37
+    }
+  },
+  "method_agreement_spearman": {
+    "occlusion~shapley": 0.7269,
+    "occlusion~surrogate": 0.8867,
+    "shapley~surrogate": 0.8312
+  },
+  "config": {
+    "dataset": "finqa",
+    "split": "dev",
+    "mode": "score",
+    "explain_target": "top",
+    "methods": [
+      "occlusion",
+      "shapley",
+      "surrogate"
+    ],
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "top_k": 5,
+    "scope": "document",
+    "subsample_size": 100,
+    "seed": 13,
+    "n_permutations": 64,
+    "n_samples": 256,
+    "eval_fractions": [
+      0.2,
+      0.5
+    ],
+    "ner_entity_grouping": true,
+    "n_skipped": 0,
+    "contribution": "C1_retrieval_attribution"
+  }
+}

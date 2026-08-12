@@ -7,7 +7,9 @@ Contribution 1/2 code stay dataset-agnostic even though the raw formats are quit
 Per CLAUDE.md: don't force one shared *parser* onto both datasets -- but they DO share this
 one output schema. Two loaders, one contract.
 """
+import json
 from dataclasses import dataclass, field, asdict
+from pathlib import Path
 from typing import Optional
 
 
@@ -41,6 +43,34 @@ class Question:
     gold_chunk_ids: list = field(default_factory=list)
     program: Optional[str] = None     # FinQA-style reasoning program, if present
     answer_type: Optional[str] = None  # TAT-QA: span | arithmetic | ... (None for FinQA)
+    # TAT-QA: thousand | million | billion | percent | "" -- changes what a bare number means
+    # ("-94" with scale "million" is -94,000,000). Carried through to answer scoring; dropping
+    # it silently makes correct numeric answers look wrong.
+    scale: Optional[str] = None
 
     def to_json(self) -> dict:
         return asdict(self)
+
+
+# ---- jsonl round-tripping -------------------------------------------------------------
+# The loaders write these files; retrieval/attribution/grounding read them back. Keeping both
+# halves here is what lets downstream code import only schema.py and stay dataset-agnostic --
+# it never needs to know whether a chunk came out of finqa_loader or tatqa_loader.
+
+def write_jsonl(items, path) -> Path:
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w") as f:
+        for item in items:
+            f.write(json.dumps(item.to_json()) + "\n")
+    return path
+
+
+def read_chunks(path) -> list:
+    with open(path) as f:
+        return [Chunk(**json.loads(line)) for line in f if line.strip()]
+
+
+def read_questions(path) -> list:
+    with open(path) as f:
+        return [Question(**json.loads(line)) for line in f if line.strip()]

@@ -27,6 +27,7 @@ unreadable.
 """
 import json
 import argparse
+import re
 from pathlib import Path
 
 from schema import Chunk, Question
@@ -86,14 +87,17 @@ def _linearize_table_row(col_headers, row, section_label, row_label_col=0):
 
 
 def _table_chunks(table_obj, doc_id):
+    """Returns (chunks, row_cells) where row_cells maps chunk_id -> the row's normalized cell
+    values. Gold-evidence matching needs cell-level values, not the linearized string: a
+    substring test on the linearized text matches "680" inside "6,801"."""
     table = table_obj.get("table", [])
     if not table:
-        return []
+        return [], {}
     n_cols = max(len(r) for r in table)
     header_rows, data_rows = _split_header_and_data_rows(table)
     col_headers = _merge_header_cells(header_rows, n_cols) if header_rows else [""] * n_cols
 
-    chunks = []
+    chunks, row_cells = [], {}
     section_label = None
     for i, row in enumerate(data_rows):
         rest = row[1:]
@@ -103,15 +107,17 @@ def _table_chunks(table_obj, doc_id):
             continue  # not independently retrievable -- it qualifies the rows beneath it
         if not any(c.strip() for c in row):
             continue
+        chunk_id = f"table_row_{i}"
         chunks.append(Chunk(
-            chunk_id=f"table_row_{i}",
+            chunk_id=chunk_id,
             doc_id=doc_id,
             dataset="tatqa",
             chunk_type="table_row",
             text=_linearize_table_row(col_headers, row, section_label),
             table_row_index=i,
         ))
-    return chunks
+        row_cells[chunk_id] = [v for v in (_normalize_cell(c) for c in row) if v is not None]
+    return chunks, row_cells
 
 
 def _text_chunks(paragraphs, doc_id):
@@ -130,16 +136,95 @@ def _text_chunks(paragraphs, doc_id):
     return chunks
 
 
-def _table_gold_ids(table_chunks, answers):
-    """No direct gold row index exists for table evidence in TAT-QA (per CLAUDE.md: no ground
-    truth for 'correct attribution' either -- this project treats that as expected, not a gap
-    to silently paper over). Best-effort v1: a table-row chunk counts as gold evidence if its
-    linearized text contains one of the answer strings verbatim. This is a heuristic, not a
-    ground-truth label -- documented here so it isn't mistaken for one downstream."""
+# Unsigned on purpose: in a derivation the '-' in "680-774" is the subtraction operator, not
+# the sign of the operand. Signs are handled by comparing magnitudes in _table_gold_ids.
+_NUM_RE = re.compile(r"\d[\d,]*\.?\d*")
+
+
+def _normalize_cell(value):
+    """Table cells and answer strings into one comparable space: floats where the text is a
+    number (so "$1,496.5", "1496.50" and "(1,496.5)" -> 1496.5 / -1496.5), lowercase strings
+    otherwise. Returns None for blanks. Mirrors the numeric-normalization guardrail in
+    CLAUDE.md -- currency symbols, thousands separators and percent signs must not make two
+    identical values look different."""
+    s = str(value).strip()
+    if not s:
+        return None
+    negative = s.startswith("(") and s.endswith(")")
+    stripped = s.strip("()").replace("$", "").replace(",", "").replace("%", "").strip()
+    try:
+        f = float(stripped)
+        return -f if negative else f
+    except ValueError:
+        return s.lower()
+
+
+def _derivation_operands(derivation):
+    """Values cited in a question's `derivation` -- the cells the annotator actually read out
+    of the table, which is what makes them usable as evidence pointers when the answer itself
+    appears in no row. Two shapes occur:
+
+      arithmetic: "680-774" -> [680.0, 774.0];  "(5,686-6,092)/6,092" -> [5686.0, 6092.0]
+      count:      "Customer relationships## Underlying rights" -> those two row labels
+                  (the answer is "2", which is nowhere in the table)
+    """
+    if not derivation:
+        return []
+    text = str(derivation)
+    values = []
+    if "##" in text:
+        values += [p.strip().lower() for p in text.split("##") if p.strip()]
+    for token in _NUM_RE.findall(text):
+        v = _normalize_cell(token)
+        if isinstance(v, float):
+            values.append(v)
+    # "* 100" / "/ 100" in a percentage derivation is a unit conversion, not a cell that was
+    # read out of the table -- keeping it would mark any row containing 100 as gold evidence.
+    # Cost: a genuine 100-valued operand in a percentage derivation is dropped too (rare).
+    if re.search(r"[*/]\s*100(?!\d)", text):
+        values = [v for v in values if v != 100.0]
+    return list(dict.fromkeys(values))  # dedupe, keep order ("(a-b)/b" cites b twice)
+
+
+def _table_gold_ids(row_cells, answers, derivation=None):
+    """Best-effort table-evidence pointers. TAT-QA has no gold row index (per CLAUDE.md: no
+    ground truth for 'correct attribution' either -- treated as expected, not papered over),
+    so a row counts as evidence when one of its *cells* matches either
+
+      - an answer value (span / multi-span / count answers are lifted from cells), or
+      - a numeric operand of the question's `derivation` (arithmetic answers are *computed*,
+        so the answer itself appears in no row -- the operands do).
+
+    Matching is cell-level, not substring-over-the-linearized-row: "680" must not match the
+    cell "6,801". Non-numeric answers do allow substring containment, since a span answer can
+    be part of a longer row label ("Appliances" in "Appliances, net"). Numbers match on
+    magnitude, because the two sides use different sign conventions for the same figure: a
+    table shows a negative as "(774)" while the derivation that consumed it writes "774".
+
+    Still a heuristic and still not a ground-truth label -- a value appearing in several rows
+    marks all of them. Don't feed these to eval code without re-reading this docstring.
+    """
+    targets = set()
+    for a in answers:
+        v = _normalize_cell(a)
+        if v is not None and v != "":
+            targets.add(v)
+    targets.update(_derivation_operands(derivation))
+    if not targets:
+        return []
+
+    numeric = {abs(t) for t in targets if isinstance(t, float)}
+    textual = {t for t in targets if isinstance(t, str)}
+
     ids = []
-    for chunk in table_chunks:
-        if any(str(a).strip() and str(a).strip() in chunk.text for a in answers):
-            ids.append(chunk.chunk_id)
+    for chunk_id, cells in row_cells.items():
+        cell_nums = {abs(c) for c in cells if isinstance(c, float)}
+        cell_strs = [c for c in cells if isinstance(c, str)]
+        hit = bool(cell_nums & numeric) or any(
+            t == c or (len(t) > 2 and t in c) for t in textual for c in cell_strs
+        )
+        if hit:
+            ids.append(chunk_id)
     return ids
 
 
@@ -151,9 +236,10 @@ def load_tatqa(path: str):
 
     for doc in raw:
         doc_id = doc["table"]["uid"]
-        chunks = _text_chunks(doc.get("paragraphs", []), doc_id) + _table_chunks(doc["table"], doc_id)
-        table_chunks = [c for c in chunks if c.chunk_type == "table_row"]
-        para_chunk_ids = {c.chunk_id for c in chunks if c.chunk_type == "text"}
+        table_chunks, row_cells = _table_chunks(doc["table"], doc_id)
+        text_chunks = _text_chunks(doc.get("paragraphs", []), doc_id)
+        chunks = text_chunks + table_chunks
+        para_chunk_ids = {c.chunk_id for c in text_chunks}
 
         for q in doc.get("questions", []):
             answers = q.get("answer", [])
@@ -166,7 +252,7 @@ def load_tatqa(path: str):
                 if cid in para_chunk_ids:
                     gold_ids.append(cid)
             if q.get("answer_from") in ("table", "table-text"):
-                gold_ids += _table_gold_ids(table_chunks, answers)
+                gold_ids += _table_gold_ids(row_cells, answers, q.get("derivation"))
 
             question = Question(
                 qa_id=q["uid"],
@@ -176,6 +262,7 @@ def load_tatqa(path: str):
                 answer=" | ".join(str(a) for a in answers),
                 gold_chunk_ids=gold_ids,
                 answer_type=q.get("answer_type"),
+                scale=q.get("scale") or None,
             )
             yield chunks, question
 

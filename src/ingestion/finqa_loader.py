@@ -21,6 +21,14 @@ for free, with zero re-mapping):
   - "text_N"  -> the N-th sentence in (pre_text + post_text), 0-indexed, continuous across the two.
   - "table_N" -> row N of `table` (row 0 is the header row itself; data rows start at 1).
 
+Known gap, measured on the real dev set: 4 of 883 questions (0.45%) list "table_0" -- the bare
+header row -- among their gold_inds. We don't emit the header row as a retrievable chunk (a
+row of column labels with no values can't support a numeric answer, and its linearization is
+degenerate), so those questions have no reachable gold evidence and score 0 recall no matter
+how good the retriever is. That's a known ~0.5% floor on FinQA recall, not a bug to chase;
+eval buckets them under gold_type "unknown" so they stay visible instead of quietly dragging
+the headline number down.
+
 We linearize each table row as "<row_label> the <row_label> of <col_header> is <value> ; ..."
 which is exactly the format FinQA's own gold_inds already use -- so our chunks are directly
 diffable against gold evidence, and we are not "flattening the whole table into one string"

@@ -9,9 +9,17 @@ data/raw/
 data/processed/
 !data/sample/
 
-# eval outputs
-eval/results/*
-!eval/results/.gitkeep
+# eval outputs. The summary reports ARE results -- the ablation table and the B1 numbers are
+# cited in README.md and will be cited in the paper, so they are versioned (~100KB total).
+# The per-question checkpoints are ~5MB, regenerable, and change on every partial run, so
+# they stay out; copy them out of Drive by hand when a failure analysis needs them.
+eval/results/checkpoints/
+eval/results/*_SMOKE*
+eval/results/*_VERIFY*
+# StubGenerator / HashEmbedder runs exist to prove the plumbing offline; their scores are
+# meaningless by construction, so they must never sit next to real results in the repo.
+eval/results/*_STUBGEN*
+eval/results/*_HASHEMB*
 
 .pytest_cache/
 .DS_Store

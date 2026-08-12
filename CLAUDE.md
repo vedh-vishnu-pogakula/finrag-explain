@@ -8,9 +8,44 @@ It exists so you don't have to re-explain the project each time you open a new t
 **Title:** Explainable Financial RAG — Retrieval Attribution & Faithfulness-Verified Explanations
 for Financial Question Answering
 **Type:** B.E. CS/AI-ML final-year major project, CBIT Hyderabad, 8-month timeline
-**Status:** Month 1 (literature review) complete. Month 2 (data pipeline) complete — both
-FinQA (`src/ingestion/finqa_loader.py`) and TAT-QA (`src/ingestion/tatqa_loader.py`) loaders
-are done and tested (12/12 tests passing). Next up: Month 3, `src/retrieval/` (baseline B1).
+**Status:** Months 1–4 complete (111/111 tests passing; `requirements.txt` pinned; spaCy
+`en_core_web_sm` installed).
+Month 2: both loaders done and tested.
+Month 3: baseline B1 end to end — `src/retrieval/`, `src/generation/`, `eval/metrics/`,
+`eval/baselines/`. B1 on the 250-question dev subsample — retrieval: FinQA Recall@5 0.850 /
+MRR 0.783, TAT-QA Recall@5 0.843 / MRR 0.851. **Retrieval is not the bottleneck** — only ~4%
+of failures are retrieval failures. Structured output parsed on 250/250 questions.
+Generation was rebuilt after the first pass scored 0.046 on FinQA: program-of-thought
+(`src/generation/calculator.py` executes the model's arithmetic) plus three fixed exemplars
+took FinQA 0.041 → 0.102 at 1.5B, with a four-arm ablation showing the two changes only work
+together (`eval/results/ablation_finqa_dev.md`). Remaining failures are 64% wrong-column
+selection, 4% hallucinated operands — a capacity limit, so the frozen config moves to
+`Qwen2.5-7B-Instruct` 4-bit on Colab's free T4 (`notebooks/run_b1_colab.ipynb`).
+**Pending:** the 7B ablation + both 250-question passes have not been run yet; the numbers in
+README.md under the frozen config are still to be filled in.
+Month 4: Contribution 1 built — `src/attribution/` (segmentation, cached perturbation engine,
+occlusion / Shapley / surrogate estimators, per-chunk and ranking value functions) plus
+faithfulness evaluation. All methods beat a random-unit baseline by ~0.48–0.50 normalized
+comprehensiveness; on the ranking value function Shapley's lift (0.454) is 41% above
+occlusion's (0.321), and Shapley puts only 2–3% of mass on stopwords vs occlusion's 11%.
+Next up: Month 5, `src/grounding/` + RAGAS (B2).
+
+## Hard constraint: zero budget
+
+**This project must cost ₹0.** No paid APIs, no metered tokens, no billing account — anywhere,
+at any month. It's an unfunded college project, so "it only costs a few dollars" is blocked,
+not a tradeoff.
+
+- Generation runs on a **local open-weights model** (`configs/config.yaml:
+  generation.provider: local`, Qwen2.5-1.5B-Instruct) via `transformers`, on Apple MPS or
+  Colab's free T4. `provider: api` exists but is opt-in, prints a cost warning, and is
+  unreachable from the default config.
+- **The real trap is Month 6:** RAGAS defaults to an OpenAI judge LLM and will bill silently
+  the first time it's called. It must be constructed with an explicit local/free judge.
+- Everything else is already free and local: bge-small embeddings, FAISS, spaCy, both datasets.
+- Free-tier hosted APIs (Gemini/Groq/OpenRouter) are an acceptable fallback only if local
+  inference proves too slow — but open weights are the stronger reproducibility claim in a
+  viva, so prefer local.
 
 ## The two contributions (do not scope-creep beyond these)
 
@@ -60,7 +95,8 @@ contributions but is not itself a novelty claim.
 - Python 3.10+, pandas/NumPy, spaCy (sentence segmentation, financial NER)
 - Embeddings: sentence-transformers (BAAI/bge-small-en-v1.5 or all-MiniLM-L6-v2)
 - Retrieval: FAISS, single retriever only in v1 (no reranker, no BM25 hybrid — stretch goal only)
-- Generation: one fixed instruction-tuned LLM via API, evidence-bound prompt
+- Generation: one fixed instruction-tuned open-weights LLM run locally (Qwen2.5-1.5B-Instruct
+  via `transformers`), evidence-bound prompt — see the zero-budget constraint above
 - Faithfulness: RAGAS (`ragas` package) + custom perturbation harness
 - Demo: Streamlit (shell exists at `demo/streamlit_app.py`, cached resource loading already
   wired, not yet connected to a real pipeline); experiment tracking: MLflow or structured CSV/JSON
@@ -94,10 +130,74 @@ finrag-explain/
 - **Attribution (Month 4):** never re-run the full RAG pipeline per perturbation. Pre-compute
   chunk embeddings once, batch-embed query perturbations, score via a single matrix multiply
   against cached embeddings. If you catch yourself calling the generator LLM inside a
-  perturbation loop — stop, that's the compute-exhausting anti-pattern.
-- **RAGAS (Month 6):** throttle concurrency (`RunConfig(max_workers=2, timeout=180,
-  max_retries=5)`) to avoid 429 rate-limit death spirals. Run each perturbed case 3x, report
-  mean/variance, not a single score — treat high variance as a finding, not noise.
+  perturbation loop — stop, that's the compute-exhausting anti-pattern. **The hook for this
+  already exists:** `Retriever.score_query_variants(variants, doc_id)` in
+  `src/retrieval/retriever.py` does exactly one embedding pass and one matmul, returning an
+  (n_variants × n_candidate_chunks) score matrix plus the candidate chunks in column order.
+  Attribution code should call that, never `Retriever.retrieve` in a loop. **Now built on:**
+  `src/attribution/perturbation.py::PerturbationScorer` adds mask-level caching, and every
+  estimator collects all the coalitions it needs *before* scoring any of them — so a Shapley
+  run is one batch, not one per permutation (60–75% cache hit rate in practice). Explaining k
+  chunks costs the same as explaining one: coalitions depend only on the query, and one matmul
+  scores every chunk.
+- **Attribution evaluation:** there is no gold explanation to score against, so never claim
+  "correct attribution". Faithfulness only — comprehensiveness and sufficiency — and **always
+  against a random-unit baseline**, because removing any 20% of a query lowers the score
+  somewhat and a bare comprehensiveness number proves nothing. Report the lift over random.
+  Negative sufficiency is a real property of dense retrieval (dropping the rest of the query
+  can score higher than the full query), not a bug to fix.
+- **Retrieval scope:** per-document is the default and is what the gold labels were written
+  for — FinQA `gold_inds` and TAT-QA `rel_paragraphs` index into one filing, and chunk_ids are
+  only unique within a doc_id (every FinQA doc has a `text_3`). Anything keyed on chunk_id
+  alone, without doc_id, is a bug. `retrieval.scope: corpus` exists for a harder, more
+  deployment-like setting but the labels don't match it.
+- **Generation:** the frozen configuration is `local_model` + `use_program` + `n_shot` +
+  `load_in_4bit` **together** (`configs/config.yaml`), across all baselines — changing any one
+  invalidates B1/B2/B3 comparability, so they are experimental constants, not knobs. Decoding
+  is greedy (`do_sample=False`): a baseline that answers differently on every run can't be
+  compared, and sampling noise would be indistinguishable from the Month 6 perturbation
+  effects. A small local model can't be schema-constrained the way a hosted API can, so
+  `_extract_json` digs the JSON out of prose/code-fenced output and records
+  `unparseable_json` when there isn't any — that rate is a finding to report, not an error to
+  suppress.
+- **Program-of-thought is not optional, and not a trick.** The model returns the arithmetic in
+  `answer_expression`; `src/generation/calculator.py` executes it. Asking a small model to do
+  financial arithmetic mentally scored 0.046 on FinQA — 24% of answers copied a number with no
+  arithmetic attempted, 19% were unparseable because the model wrote out correct working like
+  `"$135.02 - $148.92 = -$13.90"`. FinQA ships a gold `program` field precisely because its
+  authors expected systems to emit programs. **Never** replace the executor with "just ask the
+  model to compute it", and never let `evaluate()` become an `eval()` — it walks an AST with an
+  operator whitelist because the expression is untrusted model output.
+- **Few-shot exemplars go in the system prompt, never as chat turns.** As user/assistant turns
+  they are structurally identical to the real question, and the model answered a live question
+  with `-30584 / 8920 * 100` where `8920` existed only inside an exemplar. Exactly one message
+  may carry evidence. If you add an exemplar, re-check this.
+- **Only execute `answer_expression` when it computes something** (`is_program`). It is often
+  just the answer restated, and executing `"4.35%"` rewrites a correct answer as `0.0435`.
+- **Prompt/model changes require the ablation, not a before/after pair.**
+  `eval/baselines/run_prompt_ablation.py` runs four separable arms (direct/pot × 0/3-shot).
+  Program-of-thought alone and few-shot alone each reach 0.061 on FinQA; together they reach
+  0.102. A single improved number can't distinguish which change did the work, and a reviewer
+  will ask. Re-run the ablation at the frozen model size so the finding is about the prompt.
+- **Heavy generation runs go to Colab's free T4** (`notebooks/run_b1_colab.ipynb`), not the
+  laptop — an hour of sustained local inference overheats an M3 and the machine throttles.
+  The repo lives in Drive so checkpoints survive Colab disconnects. `bitsandbytes`/`accelerate`
+  are CUDA-only and live in `requirements-colab.txt`, deliberately outside the pinned local
+  `requirements.txt`; the notebook records resolved versions to `eval/results/colab_env.json`,
+  because a number from an unrecorded environment isn't reproducible.
+- **RAGAS (Month 6):** **it defaults to an OpenAI judge LLM and will bill silently** — under
+  the zero-budget constraint it must be constructed with an explicit local/free judge model
+  before the first call, not after seeing a charge. **Judge *quality* is a second, separate
+  risk, and it threatens Contribution 2 directly:** the claim is "we detect when RAGAS's
+  faithfulness score fails to move as it should", which is unsupportable if the judge itself
+  is too weak to score faithfulness — the failures then belong to the judge, not to the
+  metric. A 1.5B judge is not adequate. Decide this before writing B2 code; the ₹0 options are
+  a free-tier hosted judge, a 7B judge on Colab, or an NLI entailment model (e.g. DeBERTa-MNLI)
+  which is local, free, fast and purpose-built for the entailment step. Then throttle
+  concurrency
+  (`RunConfig(max_workers=2, timeout=180, max_retries=5)`) to avoid 429 death spirals. Run
+  each perturbed case 3x, report mean/variance, not a single score — treat high variance as a
+  finding, not noise.
 - **FinQA table linearization:** map header→value explicitly per row (don't flatten tables into
   one string — this silently kills numeric retrieval accuracy). Already implemented this way in
   `finqa_loader.py::_linearize_table_row` — follow the same pattern for TAT-QA, adjusted for its
@@ -111,10 +211,11 @@ finrag-explain/
 - **Checkpoint everything.** Free-tier Colab/session disconnects mid-run are expected for the
   Month 6 evaluation loop — write results to disk after every N questions, resume from last
   checkpoint, never re-run a full loop from scratch after an interruption.
-- **Pin dependency versions** in `requirements.txt` from Month 2 onward (ragas, transformers,
-  faiss-cpu/gpu, embedding model version) — these libraries change APIs often enough to break
-  reproducibility by Month 7 if left unpinned. `requirements.txt` currently has unpinned names
-  as placeholders — pin them once the environment is confirmed working end-to-end.
+- **Dependency versions are pinned** in `requirements.txt` (done 2026-08-11, from the
+  environment that produced the Month 3/4 results). Keep them pinned — these libraries change
+  APIs often enough to break reproducibility by Month 7. If you bump one, re-run the affected
+  eval and update the numbers in README.md in the same change; a pinned file plus stale
+  numbers is worse than neither.
 
 ## Working conventions
 

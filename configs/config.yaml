@@ -19,10 +19,64 @@ embedding:
   model: BAAI/bge-small-en-v1.5   # or sentence-transformers/all-MiniLM-L6-v2
   # set this from the *actual* tokenizer at ingestion time, don't eyeball it in words/chars
   max_tokens_per_chunk: 256
+  batch_size: 64
+  # device: cpu | cuda | mps   # leave unset to let sentence-transformers pick
+  # query_prefix: unset -> src/retrieval/embedder.py picks the right one for the model above
+  # (BGE needs its "Represent this sentence..." instruction prefix; MiniLM wants none).
 
 retrieval:
   top_k: 5
   index_type: faiss_flat_ip   # start simple; no reranker/BM25 hybrid in v1 scope
+  # document = candidates are only the question's own doc's chunks. This is the setting
+  # FinQA gold_inds / TAT-QA rel_paragraphs were labelled for, so it's what eval reports.
+  # corpus = search every chunk in the index (harder, more deployment-like) -- available,
+  # but gold labels weren't written for it. See src/retrieval/chunk_index.py docstring.
+  scope: document
+  index_dir: data/processed/index
+
+attribution:
+  # Contribution 1. All perturbation-based and training-free -- nothing here is ever fitted on
+  # data; the "surrogate" method fits a local linear model per query, which is a fresh fit each
+  # time and is discarded, not a trained model.
+  n_permutations: 64     # Shapley Monte Carlo samples. Raise for tighter estimates; cost is
+                         # linear in this and the estimate is unbiased at any value.
+  n_samples: 256         # coalitions drawn for the Rank-LIME surrogate fit
+  rbo_depth: 10          # ranking-mode: how deep the rank-biased overlap looks
+  eval_fractions: [0.2, 0.5]   # top-x% of units removed/kept for comprehensiveness/sufficiency
+  # Queries with this many units or fewer get *exact* Shapley (2^n coalitions) instead of
+  # sampling. 10 -> at most 1024 coalitions, still a single batch.
+  exact_max_units: 10
+
+generation:
+  # ZERO-BUDGET PROJECT. 'local' runs an open-weights model on your own machine (Apple MPS) or
+  # Colab's free T4 -- no API key, no metered tokens, nothing to bill. Do not change this to
+  # 'api' without deciding to spend money; 'stub' is the offline echo used by tests.
+  provider: local            # local | api | stub
+
+  # One fixed model for every baseline. Treat it as an experimental constant, not a knob:
+  # B1/B2/B3 numbers from different generation models aren't comparable, so changing it means
+  # re-running every baseline, not just the one you're working on.
+  local_model: Qwen/Qwen2.5-7B-Instruct
+  # 4-bit NF4 is what fits 7B into a free Colab T4's 15GB. CUDA-only: bitsandbytes has no
+  # Apple-Silicon build, so a laptop spot check must pass --no-4bit --model <smaller model>.
+  # If the T4 OOMs even at 4-bit, drop to Qwen/Qwen2.5-3B-Instruct here (and re-run B1).
+  load_in_4bit: true
+  max_new_tokens: 256
+  # device: cuda | mps | cpu   # unset = auto-detect (cuda -> mps -> cpu)
+
+  # Program-of-thought. The model returns the arithmetic in `answer_expression` and
+  # src/generation/calculator.py executes it exactly, instead of the model doing financial
+  # arithmetic mentally and reporting a number. This is the single largest factor in B1's
+  # answer accuracy -- see eval/results/ablation_finqa_dev.md for the arm-by-arm evidence.
+  # Both of these are experimental constants like local_model: changing either one means
+  # re-running B1, B2 and B3, not just the baseline you happen to be working on.
+  use_program: true
+  n_shot: 3                  # hand-written exemplars in src/generation/prompts.py
+
+  # --- paid path, opt-in only; nothing in the default config reaches these ---
+  api_model: claude-opus-5
+  max_tokens: 8000
+  refusal_fallback: true
 
 evaluation:
   subsample_size: 250   # per dataset, per CLAUDE.md scope cap -- not the full test set
