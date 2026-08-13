@@ -24,7 +24,9 @@ for _p in (ROOT / "src", ROOT / "src" / "ingestion", ROOT / "src" / "retrieval",
 from answer_metrics import (  # noqa: E402
     aggregate_answers,
     exact_match,
+    execution_match,
     normalize_number,
+    normalize_text,
     numeric_match,
     score_answer,
     token_f1,
@@ -92,6 +94,56 @@ def test_scale_field_is_not_dropped():
     assert numeric_match("-94", "-94", scale="million")
     assert numeric_match("-94000000", "-94", scale="million")
     assert not numeric_match("94", "-94", scale="million"), "a sign error is a real error"
+
+
+def test_execution_accuracy_is_finqas_official_metric():
+    """FinQA's display string is rounded for presentation while `exe_ans` carries the executed
+    value. Scoring against the display string marks a model wrong for being *more* accurate
+    than the annotation: -6.8528 fails a 1% tolerance against "-7%"."""
+    assert execution_match("-6.8528", "-0.06853", is_percent=True)
+    assert execution_match("10.745", "0.10745", is_percent=True)
+    assert execution_match("127.4", "127.4")
+    assert execution_match("yes", "yes")          # boolean gold compares as text
+    assert not execution_match("1.6", "yes")
+    assert not execution_match("5", None)
+
+
+def test_percent_relation_is_gated_not_universal():
+    """FinQA stores percentages as fractions and the prompt asks for percent form, so a factor
+    of 100 is a unit convention -- but only on percentage questions. Accepting it everywhere
+    would score an answer that is wrong by 100x as correct."""
+    assert execution_match("5.2", "0.052", is_percent=True)
+    assert not execution_match("5.2", "0.052", is_percent=False)
+
+
+def test_score_answer_prefers_the_executed_gold_and_keeps_both_verdicts():
+    """The two verdicts must stay separately visible: changing which one is headline is a
+    change of definition, and it has to remain auditable rather than silent."""
+    scores = score_answer("-6.8528", "-7%", exe_answer="-0.06853", answer_is_percent=True)
+    assert scores["numeric_match"] == 1.0      # correct under execution accuracy
+    assert scores["display_match"] == 0.0      # would have been wrong against the display string
+    assert scores["execution_match"] == 1.0
+    assert scores["is_numeric"] == 1.0
+
+
+def test_empty_display_gold_is_still_scoreable_via_exe_ans():
+    """12 of FinQA's 883 dev questions ship `answer` present-but-empty. Those were scored
+    against "" -- unscoreable, and silently counted as span questions, which is what dragged
+    FinQA's span F1 to 0.04 on a dataset that is essentially all numeric."""
+    scores = score_answer("22.742", "", exe_answer="0.22742", answer_is_percent=True)
+    assert scores["is_numeric"] == 1.0
+    assert scores["numeric_match"] == 1.0
+
+
+def test_normalize_text_drops_sentence_punctuation_but_keeps_it_inside_numbers():
+    """A gold span lifted from a document ends in a full stop and the prediction does not.
+    Keeping '.' everywhere cost an exact match and a token of F1 on word-for-word correct
+    answers; stripping it everywhere would break decimals."""
+    assert normalize_text("lower level of R&D grants.") == normalize_text("lower level of R&D grants")
+    assert exact_match("the total number of days", "the total number of days.")
+    assert normalize_text("1.5") == "1.5"          # decimal survives
+    assert normalize_text("4.35%") == "4.35%"      # percent survives
+    assert normalize_text("173.") == "173"         # trailing stop on a number is dropped
 
 
 def test_text_metrics():

@@ -47,6 +47,19 @@ class Question:
     # ("-94" with scale "million" is -94,000,000). Carried through to answer scoring; dropping
     # it silently makes correct numeric answers look wrong.
     scale: Optional[str] = None
+    # FinQA ships two gold answers and they are not interchangeable. `answer` is the
+    # human-readable display string, rounded for presentation ("-7%", "11%"); `exe_answer` is
+    # the executed value of the gold program (-0.06853, 0.10745). FinQA's own evaluation is
+    # *execution accuracy* against the latter, and scoring against the former silently marks
+    # exact answers wrong -- a model that computes -6.8528 fails a 1% tolerance against "-7%".
+    # Stored as a string so the jsonl round-trip stays lossless and boolean answers ("yes")
+    # survive; the metrics parse it. None for TAT-QA, which has no equivalent field.
+    exe_answer: Optional[str] = None
+    # True when the gold answer is a percentage. FinQA stores those as fractions while the
+    # prompt asks the model for percent form (42.4, not 0.424), so scoring has to know that
+    # a factor of 100 between prediction and gold is a unit convention rather than an error.
+    # Applying that relation unconditionally would mark genuinely wrong answers correct.
+    answer_is_percent: bool = False
 
     def to_json(self) -> dict:
         return asdict(self)

@@ -1,0 +1,67 @@
+{
+  "dataset": "finqa",
+  "split": "dev",
+  "limit": 50,
+  "rows": [
+    {
+      "arm": "direct-0shot",
+      "model": "Qwen2.5-7B-Instruct",
+      "prompt": "b1-evidence-bound-v1",
+      "numeric_accuracy": 0.34,
+      "span_f1": null,
+      "overall_em": 0.18,
+      "program_rate": 0.0,
+      "unparseable": 0.0,
+      "declined": 0.06,
+      "citation_precision": 0.6939,
+      "n_generation_failures": 26,
+      "n_retrieval_failures": 4,
+      "runtime_s": 0.1
+    },
+    {
+      "arm": "direct-3shot",
+      "model": "Qwen2.5-7B-Instruct",
+      "prompt": "b1-direct-3shot-v2",
+      "numeric_accuracy": 0.36,
+      "span_f1": null,
+      "overall_em": 0.2,
+      "program_rate": 0.0,
+      "unparseable": 0.0,
+      "declined": 0.04,
+      "citation_precision": 0.67,
+      "n_generation_failures": 26,
+      "n_retrieval_failures": 4,
+      "runtime_s": 0.1
+    },
+    {
+      "arm": "pot-0shot",
+      "model": "Qwen2.5-7B-Instruct",
+      "prompt": "b1-pot-0shot-v2",
+      "numeric_accuracy": 0.48,
+      "span_f1": null,
+      "overall_em": 0.08,
+      "program_rate": 0.86,
+      "unparseable": 0.0,
+      "declined": 0.06,
+      "citation_precision": 0.76,
+      "n_generation_failures": 20,
+      "n_retrieval_failures": 4,
+      "runtime_s": 0.1
+    },
+    {
+      "arm": "pot-3shot",
+      "model": "Qwen2.5-7B-Instruct",
+      "prompt": "b1-pot-3shot-v2",
+      "numeric_accuracy": 0.5,
+      "span_f1": null,
+      "overall_em": 0.1,
+      "program_rate": 0.78,
+      "unparseable": 0.0,
+      "declined": 0.08,
+      "citation_precision": 0.74,
+      "n_generation_failures": 20,
+      "n_retrieval_failures": 4,
+      "runtime_s": 0.1
+    }
+  ]
+}

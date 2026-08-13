@@ -42,6 +42,26 @@ from pathlib import Path
 from schema import Chunk, Question
 
 
+def _is_percent_answer(display: str, program) -> bool:
+    """Is this question's gold answer a percentage?
+
+    FinQA stores percentages as fractions in `exe_ans` (0.10745) while writing them as
+    percentages in the display string ("11%"). The generation prompt asks the model for
+    percent form, so scoring must treat a factor of 100 as a unit convention here -- and
+    must NOT treat it that way anywhere else, or a genuinely wrong answer off by 100x
+    scores as correct.
+
+    Two signals, in order of reliability: an explicit "%" in the display string, and -- for
+    the 1.4% of questions whose display string is empty -- a `divide` in the gold program,
+    which is what produces a ratio in the first place.
+    """
+    if "%" in (display or ""):
+        return True
+    if (display or "").strip():
+        return False
+    return "divide" in str(program or "")
+
+
 def _linearize_table_row(header_row, row, row_label_col=0):
     """Turn one data row into 'the <row_label> of <col> is <val> ; ...', matching FinQA's
     own gold_inds phrasing so retrieval chunks are directly comparable to gold evidence."""
@@ -99,14 +119,21 @@ def load_finqa(path: str, dataset_split: str = "train"):
                 ))
 
         qa = ex.get("qa", {})
+        exe_ans = qa.get("exe_ans")
+        # `.get("answer", fallback)` only fires when the key is absent, and FinQA ships the
+        # key present-but-empty on 12 of 883 dev questions (1.4%). Those were scored against
+        # "" -- unscoreable, and silently bucketed as span questions. Test the value, not the key.
+        display = str(qa.get("answer") or "").strip()
         question = Question(
             qa_id=f"{doc_id}::q0",
             doc_id=doc_id,
             dataset="finqa",
             question=qa.get("question", ""),
-            answer=str(qa.get("answer", qa.get("exe_ans", ""))),
+            answer=display or ("" if exe_ans is None else str(exe_ans)),
             gold_chunk_ids=list(qa.get("gold_inds", {}).keys()),
             program=qa.get("program"),
+            exe_answer=None if exe_ans is None else str(exe_ans),
+            answer_is_percent=_is_percent_answer(display, qa.get("program")),
         )
 
         yield chunks, question

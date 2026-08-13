@@ -1,0 +1,15 @@
+{
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+  "python": "3.12.13",
+  "gpu": "Tesla T4",
+  "packages": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.15.0",
+    "bitsandbytes": "0.50.0",
+    "accelerate": "1.14.0",
+    "sentence-transformers": "5.7.0",
+    "faiss-cpu": "1.15.0",
+    "spacy": "3.8.15",
+    "numpy": "2.5.2"
+  }
+}

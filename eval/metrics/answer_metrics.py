@@ -105,10 +105,28 @@ def numeric_match(pred, gold, scale: str | None = None, rel_tol: float = 0.01) -
 
 def normalize_text(text) -> str:
     """Lowercase, drop punctuation and articles, collapse whitespace -- the standard SQuAD-style
-    normalization, which is what TAT-QA span answers are graded against."""
+    normalization, which is what TAT-QA span answers are graded against.
+
+    The subtlety is that '.', '%' and '-' cannot simply be stripped: they carry meaning inside
+    a number ("1.5", "4.35%", "-94"). But keeping them everywhere is worse, because a gold
+    answer lifted from a document ends in a full stop and the prediction does not:
+
+        gold  "lower level of R&D grants."   ->  [..., "grants."]
+        pred  "lower level of R&D grants"    ->  [..., "grants"]
+
+    which costs an exact match and a token of F1 on an answer that is word-for-word correct.
+    So punctuation is stripped from the edges of *non-numeric* tokens only, and a trailing
+    '.' is stripped from numeric ones ("173." -> "173", while "1.5" and "4.35%" survive).
+    """
     s = str(text or "").lower()
     s = re.sub(r"[^\w\s.%-]", " ", s)
-    tokens = [t for t in s.split() if t not in _ARTICLES]
+    tokens = []
+    for token in s.split():
+        if token in _ARTICLES:
+            continue
+        token = token.rstrip(".") if re.search(r"\d", token) else token.strip(".%-")
+        if token:
+            tokens.append(token)
     return " ".join(tokens)
 
 
@@ -132,18 +150,62 @@ def token_f1(pred, gold) -> float:
     return 2 * precision * recall / (precision + recall)
 
 
-def score_answer(pred, gold, answer_type: str | None = None, scale: str | None = None) -> dict:
+def execution_match(pred, exe_answer, is_percent: bool = False, rel_tol: float = 0.01) -> bool:
+    """FinQA's official metric: does the prediction equal the *executed* gold value.
+
+    `exe_answer` is the result of running FinQA's gold program, so it carries full precision
+    where the display string is rounded for presentation. Scoring against the display string
+    marks a model wrong for being more accurate than the annotation -- a computed -6.8528
+    fails a 1% tolerance against "-7%" -- which is why this exists as a separate relation.
+
+    Percent handling is gated on `is_percent` rather than applied to every comparison.
+    FinQA stores percentages as fractions and the prompt asks for percent form, so a factor
+    of 100 is a unit convention *for those questions only*; accepting it everywhere would
+    mark an answer that is wrong by 100x as correct.
+    """
+    if exe_answer is None:
+        return False
+    gold = normalize_number(exe_answer)
+    if gold is None:                       # boolean gold ("yes"/"no") -- compare as text
+        return exact_match(pred, exe_answer)
+    p = normalize_number(pred)
+    if p is None:
+        return False
+    if _close(p, gold, rel_tol):
+        return True
+    if not is_percent:
+        return False
+    # prediction in percent form against a fractional gold, or the reverse
+    return _close(p, gold * 100, rel_tol) or (abs(p) <= 1 and _close(p * 100, gold, rel_tol))
+
+
+def score_answer(pred, gold, answer_type: str | None = None, scale: str | None = None,
+                 exe_answer=None, answer_is_percent: bool = False) -> dict:
     """Per-question answer scores. `is_numeric` records which metric is the meaningful one for
     this question, so the aggregate can report numeric accuracy over numeric questions rather
-    than diluting it with span questions that were never going to parse as floats."""
-    gold_is_numeric = normalize_number(gold) is not None
-    return {
+    than diluting it with span questions that were never going to parse as floats.
+
+    When `exe_answer` is present (FinQA), it is authoritative for the numeric verdict and the
+    display string is kept only for the text metrics. Both verdicts are recorded so the
+    difference between them stays auditable rather than being a silent change of definition.
+    """
+    has_exe = exe_answer is not None and str(exe_answer).strip() != ""
+    display_numeric = normalize_number(gold) is not None
+    gold_is_numeric = display_numeric or (has_exe and normalize_number(exe_answer) is not None)
+
+    display_match = numeric_match(pred, gold, scale=scale)
+    exe_ok = execution_match(pred, exe_answer, answer_is_percent) if has_exe else None
+    scores = {
         "is_numeric": 1.0 if gold_is_numeric else 0.0,
-        "numeric_match": 1.0 if numeric_match(pred, gold, scale=scale) else 0.0,
+        "numeric_match": 1.0 if (exe_ok if exe_ok is not None else display_match) else 0.0,
+        "display_match": 1.0 if display_match else 0.0,
         "exact_match": 1.0 if exact_match(pred, gold) else 0.0,
         "token_f1": round(token_f1(pred, gold), 4),
         "answer_type": answer_type,
     }
+    if exe_ok is not None:
+        scores["execution_match"] = 1.0 if exe_ok else 0.0
+    return scores
 
 
 def aggregate_answers(scores: list[dict]) -> dict:

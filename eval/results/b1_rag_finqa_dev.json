@@ -1,9 +1,9 @@
 {
   "overall": {
-    "precision@1": 0.66,
-    "recall@1": 0.4967,
-    "hit@1": 0.66,
-    "full_recall@1": 0.364,
+    "precision@1": 0.652,
+    "recall@1": 0.4913,
+    "hit@1": 0.652,
+    "full_recall@1": 0.36,
     "precision@3": 0.3707,
     "recall@3": 0.7361,
     "hit@3": 0.888,
@@ -12,7 +12,7 @@
     "recall@5": 0.85,
     "hit@5": 0.956,
     "full_recall@5": 0.728,
-    "mrr": 0.7787,
+    "mrr": 0.7747,
     "n_questions": 250,
     "mean_n_gold": 1.732
   },
@@ -26,10 +26,10 @@
   ],
   "by_dataset": {
     "finqa": {
-      "precision@1": 0.66,
-      "recall@1": 0.4967,
-      "hit@1": 0.66,
-      "full_recall@1": 0.364,
+      "precision@1": 0.652,
+      "recall@1": 0.4913,
+      "hit@1": 0.652,
+      "full_recall@1": 0.36,
       "precision@3": 0.3707,
       "recall@3": 0.7361,
       "hit@3": 0.888,
@@ -38,7 +38,7 @@
       "recall@5": 0.85,
       "hit@5": 0.956,
       "full_recall@5": 0.728,
-      "mrr": 0.7787,
+      "mrr": 0.7747,
       "n_questions": 250,
       "mean_n_gold": 1.732
     }
@@ -79,10 +79,10 @@
       "mean_n_gold": 1.5833
     },
     "text": {
-      "precision@1": 0.7931,
-      "recall@1": 0.6839,
-      "hit@1": 0.7931,
-      "full_recall@1": 0.5862,
+      "precision@1": 0.7586,
+      "recall@1": 0.6609,
+      "hit@1": 0.7586,
+      "full_recall@1": 0.569,
       "precision@3": 0.3448,
       "recall@3": 0.8448,
       "hit@3": 0.9138,
@@ -91,7 +91,7 @@
       "recall@5": 0.908,
       "hit@5": 0.9655,
       "full_recall@5": 0.8448,
-      "mrr": 0.8589,
+      "mrr": 0.8417,
       "n_questions": 58,
       "mean_n_gold": 1.3103
     },
@@ -115,20 +115,23 @@
   },
   "answers": {
     "n_questions": 250,
-    "n_numeric": 242,
-    "n_textual": 8,
-    "numeric_accuracy": 0.0455,
-    "span_exact_match": 0.125,
-    "span_token_f1": 0.125,
-    "overall_exact_match": 0.036
+    "n_numeric": 249,
+    "n_textual": 1,
+    "numeric_accuracy": 0.4498,
+    "span_exact_match": 0.0,
+    "span_token_f1": 0.0,
+    "overall_exact_match": 0.116
   },
   "failure_modes": {
-    "generation": 227,
-    "None": 12,
-    "retrieval": 11
+    "generation": 117,
+    "None": 113,
+    "retrieval": 10,
+    "declined": 10
   },
-  "declined_rate": 0.0,
-  "citation_precision": 0.5302,
+  "declined_rate": 0.06,
+  "citation_precision": 0.7873,
+  "program_rate": 0.8,
+  "unparseable_json_rate": 0.0,
   "config": {
     "dataset": "finqa",
     "split": "dev",
@@ -136,8 +139,9 @@
     "scope": "document",
     "top_k": 5,
     "embedding_model": "BAAI/bge-small-en-v1.5",
-    "generation_model": "Qwen/Qwen2.5-1.5B-Instruct",
-    "prompt_version": "b1-evidence-bound-v1",
+    "generation_model": "Qwen/Qwen2.5-7B-Instruct",
+    "quantization": "nf4-4bit",
+    "prompt_version": "b1-pot-3shot-v2",
     "subsample_size": 250,
     "seed": 13,
     "n_api_errors": 0

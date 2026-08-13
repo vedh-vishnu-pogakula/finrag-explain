@@ -170,18 +170,21 @@
     "n_questions": 250,
     "n_numeric": 157,
     "n_textual": 93,
-    "numeric_accuracy": 0.2038,
-    "span_exact_match": 0.1828,
-    "span_token_f1": 0.5211,
-    "overall_exact_match": 0.164
+    "numeric_accuracy": 0.5414,
+    "span_exact_match": 0.3656,
+    "span_token_f1": 0.7452,
+    "overall_exact_match": 0.4
   },
   "failure_modes": {
-    "generation": 188,
-    "None": 51,
-    "retrieval": 11
+    "None": 119,
+    "generation": 96,
+    "declined": 26,
+    "retrieval": 9
   },
-  "declined_rate": 0.0,
-  "citation_precision": 0.5744,
+  "declined_rate": 0.112,
+  "citation_precision": 0.768,
+  "program_rate": 0.32,
+  "unparseable_json_rate": 0.0,
   "config": {
     "dataset": "tatqa",
     "split": "dev",
@@ -189,8 +192,9 @@
     "scope": "document",
     "top_k": 5,
     "embedding_model": "BAAI/bge-small-en-v1.5",
-    "generation_model": "Qwen/Qwen2.5-1.5B-Instruct",
-    "prompt_version": "b1-evidence-bound-v1",
+    "generation_model": "Qwen/Qwen2.5-7B-Instruct",
+    "quantization": "nf4-4bit",
+    "prompt_version": "b1-pot-3shot-v2",
     "subsample_size": 250,
     "seed": 13,
     "n_api_errors": 0

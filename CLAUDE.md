@@ -8,21 +8,24 @@ It exists so you don't have to re-explain the project each time you open a new t
 **Title:** Explainable Financial RAG — Retrieval Attribution & Faithfulness-Verified Explanations
 for Financial Question Answering
 **Type:** B.E. CS/AI-ML final-year major project, CBIT Hyderabad, 8-month timeline
-**Status:** Months 1–4 complete (111/111 tests passing; `requirements.txt` pinned; spaCy
+**Status:** Months 1–4 complete (116/116 tests passing; `requirements.txt` pinned; spaCy
 `en_core_web_sm` installed).
 Month 2: both loaders done and tested.
 Month 3: baseline B1 end to end — `src/retrieval/`, `src/generation/`, `eval/metrics/`,
-`eval/baselines/`. B1 on the 250-question dev subsample — retrieval: FinQA Recall@5 0.850 /
-MRR 0.783, TAT-QA Recall@5 0.843 / MRR 0.851. **Retrieval is not the bottleneck** — only ~4%
-of failures are retrieval failures. Structured output parsed on 250/250 questions.
-Generation was rebuilt after the first pass scored 0.046 on FinQA: program-of-thought
-(`src/generation/calculator.py` executes the model's arithmetic) plus three fixed exemplars
-took FinQA 0.041 → 0.102 at 1.5B, with a four-arm ablation showing the two changes only work
-together (`eval/results/ablation_finqa_dev.md`). Remaining failures are 64% wrong-column
-selection, 4% hallucinated operands — a capacity limit, so the frozen config moves to
-`Qwen2.5-7B-Instruct` 4-bit on Colab's free T4 (`notebooks/run_b1_colab.ipynb`).
-**Pending:** the 7B ablation + both 250-question passes have not been run yet; the numbers in
-README.md under the frozen config are still to be filled in.
+`eval/baselines/`. Retrieval: FinQA Recall@5 0.850 / MRR 0.783, TAT-QA Recall@5 0.843 /
+MRR 0.851. **Retrieval is not the bottleneck** — 4–5% of failures are retrieval failures.
+**Frozen generation config: `Qwen2.5-7B-Instruct` 4-bit, program-of-thought, 3 exemplars**,
+run on Colab's free T4 (`notebooks/run_b1_colab.ipynb`). B1 on the 250-question subsample —
+FinQA execution accuracy **0.450**, TAT-QA numeric **0.541** / span F1 **0.745**; citation
+precision **0.787 / 0.768**; structured output parsed 250/250. Against the original B1
+(1.5B, direct prompt, display-string scoring) that is FinQA 0.04 → 0.45.
+Three things got it there, and all three are separable in
+`eval/results/ablation_finqa_dev{,_7b}.md`: program-of-thought (the dominant term, +0.14 at
+7B), three fixed exemplars (+0.02), and switching FinQA scoring to its official execution
+accuracy against `exe_ans` (+0.026). Remaining failures: FinQA 30% wrong-column selection,
+7% hallucinated operands; TAT-QA 23% "read a value instead of computing", 10% declined
+despite having the evidence.
+Month 4: attribution — see the results section below.
 Month 4: Contribution 1 built — `src/attribution/` (segmentation, cached perturbation engine,
 occlusion / Shapley / surrogate estimators, per-chunk and ranking value functions) plus
 faithfulness evaluation. All methods beat a random-unit baseline by ~0.48–0.50 normalized
@@ -162,7 +165,7 @@ finrag-explain/
   suppress.
 - **Program-of-thought is not optional, and not a trick.** The model returns the arithmetic in
   `answer_expression`; `src/generation/calculator.py` executes it. Asking a small model to do
-  financial arithmetic mentally scored 0.046 on FinQA — 24% of answers copied a number with no
+  financial arithmetic mentally scored 0.04 on FinQA — 24% of answers copied a number with no
   arithmetic attempted, 19% were unparseable because the model wrote out correct working like
   `"$135.02 - $148.92 = -$13.90"`. FinQA ships a gold `program` field precisely because its
   authors expected systems to emit programs. **Never** replace the executor with "just ask the
@@ -175,10 +178,12 @@ finrag-explain/
 - **Only execute `answer_expression` when it computes something** (`is_program`). It is often
   just the answer restated, and executing `"4.35%"` rewrites a correct answer as `0.0435`.
 - **Prompt/model changes require the ablation, not a before/after pair.**
-  `eval/baselines/run_prompt_ablation.py` runs four separable arms (direct/pot × 0/3-shot).
-  Program-of-thought alone and few-shot alone each reach 0.061 on FinQA; together they reach
-  0.102. A single improved number can't distinguish which change did the work, and a reviewer
-  will ask. Re-run the ablation at the frozen model size so the finding is about the prompt.
+  `eval/baselines/run_prompt_ablation.py` runs four separable arms (direct/pot × 0/3-shot),
+  and it has been run at **two** model sizes on purpose: an effect measured only at 1.5B is a
+  claim about 1.5B. FinQA execution accuracy 0.04/0.06/0.08/0.12 at 1.5B and
+  0.34/0.36/0.48/0.50 at 7B — same ordering, program-of-thought dominant at both. A single
+  improved number can't distinguish which change did the work, and a reviewer will ask.
+  Re-run the grid at the frozen model size whenever the prompt changes.
 - **Heavy generation runs go to Colab's free T4** (`notebooks/run_b1_colab.ipynb`), not the
   laptop — an hour of sustained local inference overheats an M3 and the machine throttles.
   The repo lives in Drive so checkpoints survive Colab disconnects. `bitsandbytes`/`accelerate`
@@ -208,6 +213,19 @@ finrag-explain/
 - **Numeric answer scoring:** normalize numeric strings (strip %, commas, currency; fix precision)
   before exact-match scoring — "5.2%" vs "5.2" vs "0.052" are the same answer. TAT-QA also has a
   `scale` field (thousand/million/percent) that changes what a bare number means — don't drop it.
+- **FinQA is scored on `exe_ans`, not `answer`.** `answer` is a rounded display string;
+  `exe_ans` is the executed gold program and is what FinQA's official execution-accuracy
+  metric uses. Scoring against the display string marks a model wrong for being *more* precise
+  than the annotation (computed -6.8528 fails a 1% tolerance against "-7%") and cost 0.026 on
+  FinQA. Two traps that came with it: `answer` is present-but-empty on 12/883 dev questions so
+  `.get("answer", fallback)` does **not** fire (test the value, not the key); and the ×100
+  percent relation must be gated on `Question.answer_is_percent`, never applied universally,
+  or an answer wrong by 100× scores correct.
+- **A metric change must never require re-running a model.** Generation is the expensive half
+  and its outputs are checkpointed, so `run_b1_rag.py --rescore` recomputes verdicts from
+  saved predictions — no GPU, no cost. Use it after touching anything in `eval/metrics/`, and
+  re-score *every* affected results file (both datasets and all ablation arms) so no table is
+  left mixing two scoring definitions.
 - **Checkpoint everything.** Free-tier Colab/session disconnects mid-run are expected for the
   Month 6 evaluation loop — write results to disk after every N questions, resume from last
   checkpoint, never re-run a full loop from scratch after an interruption.

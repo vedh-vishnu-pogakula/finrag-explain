@@ -96,6 +96,10 @@ def main():
                     help="print the first prompt and exit without calling the API")
     ap.add_argument("--rebuild", action="store_true")
     ap.add_argument("--fresh", action="store_true", help="ignore any existing checkpoint")
+    ap.add_argument("--rescore", action="store_true",
+                    help="recompute answer scores and failure modes for an existing "
+                         "checkpoint and rewrite the report. No generation, no GPU, no cost -- "
+                         "use after changing a metric.")
     ap.add_argument("--checkpoint-every", type=int, default=10)
     ap.add_argument("--out-dir", default=str(ROOT / "eval" / "results"))
     args = ap.parse_args()
@@ -161,7 +165,23 @@ def main():
     if done:
         print(f"[b1-rag] resuming: {len(done)} questions already done in {ckpt_path.name}")
 
-    if provider == "local":
+    model_name = getattr(generator, "model", "?")
+    if args.rescore:
+        if not records:
+            sys.exit(f"[b1-rag] --rescore needs an existing checkpoint; {ckpt_path} is empty")
+        moved = rescore(records, questions)
+        # The report must describe the run that produced the predictions, not the flags this
+        # invocation happened to be called with -- otherwise a re-score silently relabels
+        # whose numbers these are.
+        first = records[0]["generated"]
+        model_name = first.get("model", model_name)
+        version = first.get("prompt_version", version)
+        ckpt_path.write_text("".join(json.dumps(r) + "\n" for r in records))
+        print(f"[b1-rag] re-scored {len(records)} records from {model_name} "
+              f"({version}); {moved} correctness verdicts changed")
+        todo = []
+
+    if todo and provider == "local":
         print(f"[b1-rag] {len(todo)} questions through local model {generator.model} "
               f"(free). First run downloads the weights once. Ctrl-C is safe -- progress "
               f"checkpoints every {args.checkpoint_every} questions.")
@@ -192,21 +212,13 @@ def main():
                 types = {cid: chunk_types.get((q.doc_id, cid)) for cid in q.gold_chunk_ids}
                 retrieval_metrics = evaluate_one(retrieved_ids, q.gold_chunk_ids, ks)
                 answer_scores = score_answer(
-                    generated.answer, q.answer, answer_type=q.answer_type, scale=q.scale
+                    generated.answer, q.answer, answer_type=q.answer_type, scale=q.scale,
+                    exe_answer=q.exe_answer, answer_is_percent=q.answer_is_percent,
                 )
                 # The failure taxonomy, decided at write time rather than reconstructed later.
                 gold_retrieved = bool(set(q.gold_chunk_ids) & set(retrieved_ids))
-                correct = bool(answer_scores["numeric_match"] or answer_scores["exact_match"])
-                if correct:
-                    failure = None
-                elif q.gold_chunk_ids and not gold_retrieved:
-                    failure = "retrieval"
-                elif generated.insufficient_evidence:
-                    failure = "declined"
-                elif generated.error:
-                    failure = "api_error"
-                else:
-                    failure = "generation"
+                failure = _failure_mode(answer_scores, q.gold_chunk_ids, gold_retrieved,
+                                        generated.insufficient_evidence, generated.error)
 
                 record = {
                     "qa_id": q.qa_id,
@@ -254,7 +266,7 @@ def main():
         "scope": scope,
         "top_k": k,
         "embedding_model": embedder.model_name,
-        "generation_model": getattr(generator, "model", "?"),
+        "generation_model": model_name,
         "quantization": "nf4-4bit" if getattr(generator, "load_in_4bit", False) else "fp16",
         "prompt_version": version,
         "subsample_size": limit,
@@ -286,6 +298,53 @@ def main():
           f"unparseable_json={report['unparseable_json_rate']}  prompt={version}")
     print(f"\n[b1-rag] wrote {out_path}")
     print(f"[b1-rag] per-question records: {ckpt_path}")
+
+
+def _failure_mode(answer_scores, gold_chunk_ids, gold_retrieved, declined, error):
+    """One place that decides why a question failed, so the live loop and `--rescore` can
+    never drift apart. Ordering matters: a missing gold chunk explains the failure even if
+    the model also declined, and CLAUDE.md asks retrieval and generation failures to stay
+    separated rather than being collapsed into one bucket."""
+    if answer_scores["numeric_match"] or answer_scores["exact_match"]:
+        return None
+    if gold_chunk_ids and not gold_retrieved:
+        return "retrieval"
+    if declined:
+        return "declined"
+    if error:
+        return "api_error"
+    return "generation"
+
+
+def rescore(records, questions) -> int:
+    """Recompute answer scores and failure modes for already-generated records, in place.
+
+    Generation is the expensive half and its outputs are already on disk, so a change to a
+    *metric* must never require re-running a model. This is what makes correcting an
+    evaluation bug free: the predictions are fixed, only the verdict on them changes.
+
+    Returns the number of records whose correctness verdict actually moved, which is the
+    number worth reporting when a metric changes.
+    """
+    by_id = {q.qa_id: q for q in questions}
+    changed = 0
+    for record in records:
+        q = by_id.get(record["qa_id"])
+        if q is None:
+            continue
+        before = bool(record["answer_scores"]["numeric_match"]
+                      or record["answer_scores"]["exact_match"])
+        scores = score_answer(
+            record["generated"]["answer"], q.answer, answer_type=q.answer_type, scale=q.scale,
+            exe_answer=q.exe_answer, answer_is_percent=q.answer_is_percent,
+        )
+        record["answer_scores"] = scores
+        record["failure_mode"] = _failure_mode(
+            scores, q.gold_chunk_ids, record["gold_retrieved"],
+            record["generated"].get("insufficient_evidence"), record["generated"].get("error"),
+        )
+        changed += bool(scores["numeric_match"] or scores["exact_match"]) != before
+    return changed
 
 
 def _count(records, key) -> dict:

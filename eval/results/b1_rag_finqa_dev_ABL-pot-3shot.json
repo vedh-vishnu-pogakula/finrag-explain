@@ -98,16 +98,16 @@
   },
   "answers": {
     "n_questions": 50,
-    "n_numeric": 49,
-    "n_textual": 1,
-    "numeric_accuracy": 0.102,
-    "span_exact_match": 0.0,
-    "span_token_f1": 0.0,
+    "n_numeric": 50,
+    "n_textual": 0,
+    "numeric_accuracy": 0.12,
+    "span_exact_match": null,
+    "span_token_f1": null,
     "overall_exact_match": 0.02
   },
   "failure_modes": {
-    "generation": 41,
-    "None": 5,
+    "generation": 40,
+    "None": 6,
     "retrieval": 4
   },
   "declined_rate": 0.0,

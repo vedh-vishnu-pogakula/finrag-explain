@@ -22,9 +22,9 @@ Claude Code reads it automatically at the start of every session in this repo.
   - [x] Generation (`src/generation/`) — evidence-bound prompt, structured answer + citations,
         program-of-thought with a sandboxed arithmetic executor (`calculator.py`)
   - [x] Generation-configuration ablation (`eval/baselines/run_prompt_ablation.py`) — four
-        separable arms; FinQA numeric accuracy 0.041 → 0.102
-  - [x] Metrics (`eval/metrics/`) — Precision/Recall/hit/MRR@k; numeric-normalized answer
-        scoring that respects TAT-QA's `scale`
+        separable arms, replicated at two model sizes; FinQA 0.34 → 0.50 at 7B
+  - [x] Metrics (`eval/metrics/`) — Precision/Recall/hit/MRR@k; FinQA execution accuracy
+        against `exe_ans`, and numeric normalization that respects TAT-QA's `scale`
   - [x] Baseline runners (`eval/baselines/`) — checkpointed, resumable, fixed subsample
 - [x] Month 4 — Retrieval attribution (Contribution 1)
   - [x] Query segmentation into attributable units (numbers / entities / terms / stopwords)
@@ -126,8 +126,9 @@ nothing in the default configuration can reach it.
 **Watch out in Month 6:** RAGAS defaults to an OpenAI judge model and will bill silently. It
 must be constructed with an explicit local/free judge before its first call.
 
-Results land in `eval/results/` (gitignored), per-question records in
-`eval/results/checkpoints/`.
+Summary reports land in `eval/results/` and **are versioned** — they are cited here and in the
+paper. The bulky per-question records in `eval/results/checkpoints/` are gitignored; copy them
+out of Drive when a failure analysis needs them.
 
 ### B1 retrieval results (dev, 250-question fixed subsample, bge-small-en-v1.5, top-k=5)
 
@@ -145,7 +146,7 @@ construction.
 ### B1 generation ablation — why the prompt looks the way it does
 
 The first version of B1 asked the model to read a table, choose the right figures, do the
-arithmetic mentally, and report a bare number. It scored **0.046** on FinQA. The per-question
+arithmetic mentally, and report a bare number. It scored **0.04** on FinQA. The per-question
 records said why: 24% of answers were a number copied out of the evidence with no arithmetic
 attempted, and another 19% were *unparseable* because the model had written out its working —
 
@@ -160,22 +161,30 @@ thing a small model is reliably bad at is no longer its job. This is FinQA's own
 the dataset ships a gold `program` field — not a workaround. **Few-shot exemplars**: three
 hand-written examples, fixed across datasets and models.
 
-FinQA dev, 50 questions, identical retriever and question set across arms:
+FinQA dev, 50 questions, execution accuracy. Identical retriever and question set across
+arms; the grid was run twice, at two model sizes, so the finding is about the prompt rather
+than about one model:
 
-| Arm | Numeric acc. | Program rate | Unparseable | Citation prec. |
-|---|---:|---:|---:|---:|
-| `direct-0shot` <sub>(the original v1 prompt)</sub> | 0.041 | 0.00 | 0.00 | 0.510 |
-| `direct-3shot` <sub>(exemplars only)</sub> | 0.061 | 0.00 | 0.02 | 0.480 |
-| `pot-0shot` <sub>(program-of-thought only)</sub> | 0.061 | 0.78 | 0.00 | 0.520 |
-| **`pot-3shot`** <sub>(both)</sub> | **0.102** | 0.82 | 0.00 | 0.500 |
+| Arm | 1.5B | 7B |
+|---|---:|---:|
+| `direct-0shot` <sub>(the original v1 prompt)</sub> | 0.04 | 0.34 |
+| `direct-3shot` <sub>(exemplars only)</sub> | 0.06 | 0.36 |
+| `pot-0shot` <sub>(program-of-thought only)</sub> | 0.08 | 0.48 |
+| **`pot-3shot`** <sub>(both)</sub> | **0.12** | **0.50** |
 
-**The interaction is the result.** Neither change alone gets past 0.061; together they reach
-0.102, 2.5× the baseline. Few-shot teaches the output format that the program channel needs,
-and the program channel is what converts a correct-but-unparseable answer into a scored one.
-Reporting only the combined number would leave a reviewer unable to tell which half did the
-work — hence four arms rather than a before/after pair.
+**The ordering replicates at both scales, and program-of-thought is the dominant term.** At
+7B it is worth +0.14 on its own against few-shot's +0.02; at 1.5B the two are closer (+0.04
+and +0.02) and combine super-additively (+0.08 against a +0.06 sum), because at that size the
+model needs the exemplars before it can use the program channel at all. Reporting only the
+combined number would leave a reviewer unable to tell which half did the work — hence four
+arms at two scales rather than a before/after pair.
 
-Reproduce with `python eval/baselines/run_prompt_ablation.py --dataset finqa --limit 50`.
+Reproduce with:
+
+```bash
+python eval/baselines/run_prompt_ablation.py --dataset finqa --limit 50 \
+    --model Qwen/Qwen2.5-7B-Instruct --load-in-4bit --tag-prefix 7b
+```
 
 Two implementation notes that cost real debugging time and are worth not rediscovering:
 
@@ -186,40 +195,79 @@ Two implementation notes that cost real debugging time and are worth not redisco
 - `answer_expression` is only executed when it actually *computes* something. It is often just
   the answer restated, and executing `"4.35%"` would rewrite a correct answer as `0.0435`.
 
-### What still fails, on `pot-3shot`
+### Scoring: FinQA execution accuracy, not the display string
 
-| Bucket | Share |
-|---|---:|
-| Right operands present, **combined wrongly** | 64% |
-| No expression emitted (answered by reading) | 14% |
-| Correct | 10% |
-| Retrieval miss | 8% |
-| Operand not in the evidence (hallucinated) | 4% |
+FinQA ships two gold answers and they are not interchangeable. `answer` is a display string,
+rounded for presentation; `exe_ans` is the executed value of the gold program. **FinQA's own
+metric is execution accuracy against `exe_ans`**, and scoring against the display string marks
+a model wrong for being more precise than the annotation:
 
-The arithmetic problem is solved — only 4% of answers now invent a number. What remains is
-**column selection**: the model writes `(22 - 19) / 22` when the question named 2007 and 2009,
-because one linearized table row carries every year (`...of 2009 is 19 ; ...of 2008 is 22 ;
-...of 2007 is 33`). That is a model-capacity limit rather than a prompting one, which is why
-the frozen configuration moves to a larger model rather than to more prompt engineering.
+```
+pred = -6.8528    answer = "-7%"    exe_ans = -0.06853     ← scored wrong against "-7%"
+pred = 10.745     answer = "11%"    exe_ans =  0.10745     ← scored wrong against "11%"
+```
+
+A 1% relative tolerance cannot absorb `6.36` against `6`. Switching to execution accuracy is
+worth **+0.026** on FinQA and, more importantly, makes these numbers comparable to published
+FinQA results. Two supporting fixes came with it:
+
+- `answer` is present-but-empty on 12 of 883 dev questions (1.4%), and `.get("answer", fallback)`
+  only fires on an *absent* key — so those were scored against `""`, unscoreable, and silently
+  bucketed as span questions. That is what dragged FinQA's span F1 to 0.04 on a dataset that
+  is essentially all numeric.
+- FinQA stores percentages as fractions while the prompt asks for percent form, so a factor of
+  100 is a unit convention. It is applied **only** to questions whose gold is a percentage
+  (`%` in the display string, or a `divide` in the gold program when the string is empty).
+  Applying it everywhere would score an answer wrong by 100× as correct.
+
+Changing a metric must never require re-running a model, so `run_b1_rag.py --rescore`
+recomputes verdicts from saved predictions — no GPU, no cost.
 
 ### B1 end-to-end results
 
-Retrieval numbers are settled and reproduce the retrieval-only run exactly:
+`Qwen2.5-7B-Instruct` 4-bit, `pot-3shot`, 250 questions per dataset, Colab free T4:
 
-| Dataset | Recall@5 | Citation prec. | Structured output parsed |
-|---|---:|---:|---:|
-| FinQA | 0.850 | 0.530 | 250/250 |
-| TAT-QA | 0.843 | 0.574 | 250/250 |
+| Dataset | Answer accuracy | Span EM | Span F1 | Recall@5 | Citation prec. | Parsed |
+|---|---:|---:|---:|---:|---:|---:|
+| FinQA <sub>(execution accuracy)</sub> | **0.450** | — | — | 0.850 | 0.787 | 250/250 |
+| TAT-QA <sub>(numeric)</sub> | **0.541** | 0.366 | 0.745 | 0.843 | 0.768 | 250/250 |
 
-**Retrieval is not the bottleneck.** It finds the gold evidence for ~85% of questions and only
-~4% of failures are retrieval failures — the evidence-finding half of the system works, which
-is what matters for the two contributions, since both are measured on explanation quality
-rather than on answer accuracy.
+Against the original B1 (`Qwen2.5-1.5B-Instruct`, direct prompt, display-string scoring):
+FinQA **0.04 → 0.45**, TAT-QA numeric **0.204 → 0.541**, TAT-QA span F1 **0.521 → 0.745**.
 
-Answer accuracy under the frozen configuration (`Qwen2.5-7B-Instruct`, 4-bit, `pot-3shot`) is
-produced on Colab's free T4 via [notebooks/run_b1_colab.ipynb](notebooks/run_b1_colab.ipynb) —
-see *Heavy runs* below. The superseded 1.5B numbers (FinQA 0.046, TAT-QA 0.204 numeric / 0.521
-span F1) are kept in `eval/results/` as the ablation's `direct-0shot` reference point.
+For context, the FinQA paper reports general-crowd humans at 50.7% and their trained
+FinQANet (RoBERTa-large) at 61.2% — both working from gold evidence. This system reads through
+a retriever whose recall@5 is 0.85, so its ceiling is ~0.85 and it captures roughly half of
+what is reachable.
+
+**Citation precision is the number that matters most to this project**, and it moved 0.530 →
+0.787. Both contributions rest on the model's evidence citations meaning something; near 0.53
+they were close to noise, at 0.79 the Month 5 grounding layer has real signal to work with.
+
+**Retrieval is not the bottleneck** — 4–5% of failures are retrieval failures. The
+evidence-finding half works, which is what the two contributions depend on.
+
+### What still fails
+
+| Bucket | FinQA | TAT-QA |
+|---|---:|---:|
+| Correct | 45.2% | 47.6% |
+| Right operands present, **combined wrongly** | 30.0% | 12.4% |
+| **No expression emitted** (read a value instead of computing) | 10.0% | 22.8% |
+| Declined despite having the evidence | 4.0% | 10.4% |
+| Operand not in the evidence (hallucinated) | 6.8% | 1.6% |
+| Retrieval miss | 4.0% | 5.2% |
+
+**The arithmetic problem is solved.** Hallucinated operands are 7% on FinQA and 2% on TAT-QA,
+and structured output parsed on 250/250. What remains on FinQA is *column selection* — the
+model writes `(22 - 19) / 22` when the question named 2007 and 2009, because one linearized
+table row carries every year (`...of 2009 is 19 ; ...of 2008 is 22 ; ...of 2007 is 33`).
+
+**Abstention is new and worth reporting.** The 1.5B model declined on 0 questions; the 7B model
+declines on 4% (FinQA) and 10.4% (TAT-QA), and on TAT-QA 27 of its 28 declines are on questions
+whose gold evidence *was* retrieved. For financial QA, preferring "insufficient evidence" to a
+fabricated figure is the right failure mode — but a 10% decline rate on answerable questions is
+also the largest single pool of recoverable answers left in B1.
 
 ### Heavy runs go to Colab's free T4
 
@@ -286,7 +334,7 @@ A negative sufficiency is real, not a bug: keeping only the top-weighted units s
 ## Tests
 
 ```bash
-pytest tests/ -v          # 111 tests, offline, ~18s
+pytest tests/ -v          # 116 tests, offline, ~16s
 pytest tests/ -m "not slow"   # skips the one test that loads the real embedding model
 ```
 

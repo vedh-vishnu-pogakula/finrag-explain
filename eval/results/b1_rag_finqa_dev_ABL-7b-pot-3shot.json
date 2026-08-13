@@ -1,9 +1,9 @@
 {
   "overall": {
-    "precision@1": 0.64,
-    "recall@1": 0.4633,
-    "hit@1": 0.64,
-    "full_recall@1": 0.32,
+    "precision@1": 0.62,
+    "recall@1": 0.4433,
+    "hit@1": 0.62,
+    "full_recall@1": 0.3,
     "precision@3": 0.3733,
     "recall@3": 0.72,
     "hit@3": 0.88,
@@ -12,7 +12,7 @@
     "recall@5": 0.8283,
     "hit@5": 0.92,
     "full_recall@5": 0.72,
-    "mrr": 0.759,
+    "mrr": 0.749,
     "n_questions": 50,
     "mean_n_gold": 1.8
   },
@@ -26,10 +26,10 @@
   ],
   "by_dataset": {
     "finqa": {
-      "precision@1": 0.64,
-      "recall@1": 0.4633,
-      "hit@1": 0.64,
-      "full_recall@1": 0.32,
+      "precision@1": 0.62,
+      "recall@1": 0.4433,
+      "hit@1": 0.62,
+      "full_recall@1": 0.3,
       "precision@3": 0.3733,
       "recall@3": 0.72,
       "hit@3": 0.88,
@@ -38,7 +38,7 @@
       "recall@5": 0.8283,
       "hit@5": 0.92,
       "full_recall@5": 0.72,
-      "mrr": 0.759,
+      "mrr": 0.749,
       "n_questions": 50,
       "mean_n_gold": 1.8
     }
@@ -79,10 +79,10 @@
       "mean_n_gold": 1.8333
     },
     "text": {
-      "precision@1": 0.8571,
-      "recall@1": 0.7857,
-      "hit@1": 0.8571,
-      "full_recall@1": 0.7143,
+      "precision@1": 0.7857,
+      "recall@1": 0.7143,
+      "hit@1": 0.7857,
+      "full_recall@1": 0.6429,
       "precision@3": 0.3333,
       "recall@3": 0.8571,
       "hit@3": 0.9286,
@@ -91,7 +91,7 @@
       "recall@5": 0.9643,
       "hit@5": 1.0,
       "full_recall@5": 0.9286,
-      "mrr": 0.8952,
+      "mrr": 0.8595,
       "n_questions": 14,
       "mean_n_gold": 1.2143
     }
@@ -100,18 +100,19 @@
     "n_questions": 50,
     "n_numeric": 50,
     "n_textual": 0,
-    "numeric_accuracy": 0.08,
+    "numeric_accuracy": 0.5,
     "span_exact_match": null,
     "span_token_f1": null,
-    "overall_exact_match": 0.0
+    "overall_exact_match": 0.1
   },
   "failure_modes": {
-    "generation": 42,
+    "None": 25,
+    "generation": 20,
     "retrieval": 4,
-    "None": 4
+    "declined": 1
   },
-  "declined_rate": 0.0,
-  "citation_precision": 0.52,
+  "declined_rate": 0.08,
+  "citation_precision": 0.74,
   "program_rate": 0.78,
   "unparseable_json_rate": 0.0,
   "config": {
@@ -121,9 +122,9 @@
     "scope": "document",
     "top_k": 5,
     "embedding_model": "BAAI/bge-small-en-v1.5",
-    "generation_model": "Qwen/Qwen2.5-1.5B-Instruct",
-    "quantization": "fp16",
-    "prompt_version": "b1-pot-0shot-v2",
+    "generation_model": "Qwen/Qwen2.5-7B-Instruct",
+    "quantization": "nf4-4bit",
+    "prompt_version": "b1-pot-3shot-v2",
     "subsample_size": 50,
     "seed": 13,
     "n_api_errors": 0
