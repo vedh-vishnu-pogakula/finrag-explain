@@ -30,9 +30,17 @@ torch==2.13.0
 # sentence segmentation + financial NER
 spacy==3.8.15
 
-# faithfulness (Month 6). NOTE: RAGAS defaults to an OpenAI judge LLM and will bill on first
-# call -- it must be constructed with an explicit local/free judge. See CLAUDE.md.
+# faithfulness (Months 5-6). NOTE: RAGAS defaults to an OpenAI judge LLM and will bill on
+# first call -- it must be constructed with an explicit local/free judge. See CLAUDE.md and
+# src/faithfulness/ragas_local.py.
 ragas==0.4.3
+# ragas 0.4.3 imports `langchain_community.chat_models.vertexai` at module scope but declares
+# `langchain-community` with NO upper bound, so a fresh install resolves to 0.4.x -- where
+# that module has been removed -- and `import ragas` fails outright. 0.3.31 is the newest
+# release that still ships it. Pin it explicitly; without this line the Month 5/6 code cannot
+# even be imported. (langchain-community is now officially sunset upstream, so this pin is
+# also what stops the stack drifting again before the project ends.)
+langchain-community==0.3.31
 
 # demo (Month 7)
 streamlit==1.61.1

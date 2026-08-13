@@ -14,12 +14,17 @@ data/processed/
 # The per-question checkpoints are ~5MB, regenerable, and change on every partial run, so
 # they stay out; copy them out of Drive by hand when a failure analysis needs them.
 eval/results/checkpoints/
-eval/results/*_SMOKE*
-eval/results/*_VERIFY*
-# StubGenerator / HashEmbedder runs exist to prove the plumbing offline; their scores are
-# meaningless by construction, so they must never sit next to real results in the repo.
-eval/results/*_STUBGEN*
-eval/results/*_HASHEMB*
+# Match both separators: tags are passed on the command line and have arrived as both
+# `_SMOKE` and `_COLAB-SMOKE`. A single-separator pattern silently let the second through.
+eval/results/*SMOKE*
+eval/results/*VERIFY*
+eval/results/*SPOT*
+# Offline stand-ins (StubGenerator, HashEmbedder, StubEntailmentScorer) exist to prove the
+# plumbing without a model. Their scores are meaningless by construction, so they must never
+# sit next to real results in the repo.
+eval/results/*STUBGEN*
+eval/results/*HASHEMB*
+eval/results/*STUBNLI*
 
 .pytest_cache/
 .DS_Store

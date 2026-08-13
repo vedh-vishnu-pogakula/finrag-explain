@@ -78,6 +78,43 @@ generation:
   max_tokens: 8000
   refusal_fallback: true
 
+# Month 5: sentence-level answer <-> evidence matching. A supporting layer for both
+# contributions, not a novelty claim in itself.
+grounding:
+  backend: nli               # nli | stub  ('stub' is offline, lexical, for tests only)
+  # DELIBERATELY a different checkpoint from faithfulness.verifier_model. Contribution 2
+  # perturbs the evidence THIS layer says matters and checks whether RAGAS's score reacts; if
+  # both sides ran the same model that experiment would be testing a model against itself.
+  nli_model: MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli
+  batch_size: 32
+  max_length: 512
+  # 0.5 is the natural decision boundary of a 3-way softmax, NOT a value fitted to the eval
+  # set -- a tuned threshold would make the reported grounding rate a property of the tuning.
+  support_threshold: 0.5
+  contradiction_threshold: 0.5
+  # device: cuda | mps | cpu   # unset = auto-detect
+
+# Month 5/6: RAGAS. READ src/faithfulness/ragas_local.py BEFORE CHANGING ANY OF THIS.
+# RAGAS's own factory is llm_factory(model, provider="openai") -- the billed provider is the
+# default in code, and evaluate() without an explicit llm= constructs it and charges on the
+# first call. Nothing in this project may reach that path.
+faithfulness:
+  # Verification runs on a local NLI model rather than the judge LLM, so the generator never
+  # grades its own answers -- and so Month 6's perturbation loop costs no LLM calls.
+  # Vectara HHEM (RAGAS's own choice) ships custom remote code that is incompatible with
+  # transformers 5.x -- see the note in src/faithfulness/staged.py. Stage 2 runs this NLI
+  # cross-encoder instead. It MUST differ from grounding.nli_model, or Contribution 2 tests
+  # one model against itself.
+  verifier_model: cross-encoder/nli-deberta-v3-base
+  verify_threshold: 0.5
+  batch_size: 16
+  judge_max_new_tokens: 1024   # statement decomposition emits a JSON list; 256 truncates it
+  # RAGAS defaults to 16 workers, tuned for a hosted API. Against one local GPU that is 16
+  # requests queueing on the same device and a timeout cascade (CLAUDE.md guardrail).
+  max_workers: 2
+  timeout: 180
+  max_retries: 5
+
 evaluation:
   subsample_size: 250   # per dataset, per CLAUDE.md scope cap -- not the full test set
   ragas_reruns: 3        # report mean/variance, not a single score

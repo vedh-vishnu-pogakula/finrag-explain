@@ -1,0 +1,79 @@
+{
+  "overall": {
+    "n": 250,
+    "groundedness": 0.7568,
+    "supported_rate": 0.7453,
+    "contradicted_rate": 0.088,
+    "mean_claims": 1.812,
+    "mean_evidence_sentences": 9.968,
+    "numeric_claim_share": 0.9294,
+    "grounded_vs_gold": 0.5605,
+    "grounded_vs_cited": 0.6626,
+    "cited_vs_gold": 0.6876,
+    "grounded_hits_gold": 0.688
+  },
+  "by_failure_mode": {
+    "generation": {
+      "n": 117,
+      "groundedness": 0.7464,
+      "supported_rate": 0.7301,
+      "contradicted_rate": 0.1368,
+      "mean_claims": 1.8974,
+      "mean_evidence_sentences": 9.8547,
+      "numeric_claim_share": 0.8874,
+      "grounded_vs_gold": 0.4369,
+      "grounded_vs_cited": 0.6197,
+      "cited_vs_gold": 0.6477,
+      "grounded_hits_gold": 0.6239
+    },
+    "None": {
+      "n": 113,
+      "groundedness": 0.8823,
+      "supported_rate": 0.8754,
+      "contradicted_rate": 0.0354,
+      "mean_claims": 1.9823,
+      "mean_evidence_sentences": 10.7345,
+      "numeric_claim_share": 0.9777,
+      "grounded_vs_gold": 0.7876,
+      "grounded_vs_cited": 0.8038,
+      "cited_vs_gold": 0.826,
+      "grounded_hits_gold": 0.8761
+    },
+    "retrieval": {
+      "n": 10,
+      "groundedness": 0.2175,
+      "supported_rate": 0.2,
+      "contradicted_rate": 0.2,
+      "mean_claims": 0.7,
+      "mean_evidence_sentences": 6.9,
+      "numeric_claim_share": 0.7143,
+      "grounded_vs_gold": 0.0,
+      "grounded_vs_cited": 0.1111,
+      "cited_vs_gold": 0.0,
+      "grounded_hits_gold": 0.0
+    },
+    "declined": {
+      "n": 10,
+      "groundedness": 0.0,
+      "supported_rate": 0.0,
+      "contradicted_rate": 0.0,
+      "mean_claims": 0.0,
+      "mean_evidence_sentences": 5.7,
+      "numeric_claim_share": 0.0,
+      "grounded_vs_gold": 0.0,
+      "grounded_vs_cited": 0.0,
+      "cited_vs_gold": 0.2783,
+      "grounded_hits_gold": 0.0
+    }
+  },
+  "config": {
+    "dataset": "finqa",
+    "split": "dev",
+    "backend": "nli",
+    "scorer": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+    "n_records": 250,
+    "seconds": 13.8,
+    "support_threshold": 0.5,
+    "source_records": "eval/results/checkpoints/b1_rag_finqa_dev.jsonl"
+  }
+}

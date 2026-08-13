@@ -1,0 +1,79 @@
+{
+  "overall": {
+    "n": 250,
+    "groundedness": 0.6636,
+    "supported_rate": 0.686,
+    "contradicted_rate": 0.18,
+    "mean_claims": 1.308,
+    "mean_evidence_sentences": 11.676,
+    "numeric_claim_share": 0.5352,
+    "grounded_vs_gold": 0.4986,
+    "grounded_vs_cited": 0.5957,
+    "cited_vs_gold": 0.6249,
+    "grounded_hits_gold": 0.58
+  },
+  "by_failure_mode": {
+    "None": {
+      "n": 119,
+      "groundedness": 0.791,
+      "supported_rate": 0.8361,
+      "contradicted_rate": 0.1261,
+      "mean_claims": 1.4622,
+      "mean_evidence_sentences": 11.8824,
+      "numeric_claim_share": 0.5747,
+      "grounded_vs_gold": 0.6407,
+      "grounded_vs_cited": 0.7675,
+      "cited_vs_gold": 0.6896,
+      "grounded_hits_gold": 0.7815
+    },
+    "generation": {
+      "n": 96,
+      "groundedness": 0.6677,
+      "supported_rate": 0.6771,
+      "contradicted_rate": 0.2292,
+      "mean_claims": 1.3958,
+      "mean_evidence_sentences": 12.125,
+      "numeric_claim_share": 0.5224,
+      "grounded_vs_gold": 0.4966,
+      "grounded_vs_cited": 0.5434,
+      "cited_vs_gold": 0.6423,
+      "grounded_hits_gold": 0.5312
+    },
+    "declined": {
+      "n": 26,
+      "groundedness": 0.1383,
+      "supported_rate": 0.1154,
+      "contradicted_rate": 0.1923,
+      "mean_claims": 0.3462,
+      "mean_evidence_sentences": 7.5385,
+      "numeric_claim_share": 0.0,
+      "grounded_vs_gold": 0.0385,
+      "grounded_vs_cited": 0.06,
+      "cited_vs_gold": 0.4808,
+      "grounded_hits_gold": 0.0385
+    },
+    "retrieval": {
+      "n": 9,
+      "groundedness": 0.4535,
+      "supported_rate": 0.4444,
+      "contradicted_rate": 0.3333,
+      "mean_claims": 1.1111,
+      "mean_evidence_sentences": 16.1111,
+      "numeric_claim_share": 0.5,
+      "grounded_vs_gold": 0.0,
+      "grounded_vs_cited": 0.3704,
+      "cited_vs_gold": 0.0,
+      "grounded_hits_gold": 0.0
+    }
+  },
+  "config": {
+    "dataset": "tatqa",
+    "split": "dev",
+    "backend": "nli",
+    "scorer": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+    "n_records": 250,
+    "seconds": 38.1,
+    "support_threshold": 0.5,
+    "source_records": "eval/results/checkpoints/b1_rag_tatqa_dev.jsonl"
+  }
+}

@@ -350,6 +350,21 @@ class LocalGenerator:
             stop_reason="stop",
         )
 
+    def complete(self, prompt: str, max_new_tokens: int | None = None) -> str:
+        """Raw text completion, no B1 answer schema attached.
+
+        Month 5 needs this: RAGAS's faithfulness metric decomposes an answer into statements
+        with its own prompts, and it needs a plain text-in/text-out model rather than the
+        evidence-bound JSON path `generate()` provides. Routing it through the same loaded
+        model is what keeps the judge free -- a second model would double the download and
+        the VRAM for no benefit.
+        """
+        previous, self.max_new_tokens = self.max_new_tokens, max_new_tokens or self.max_new_tokens
+        try:
+            return self._run([{"role": "user", "content": prompt}])
+        finally:
+            self.max_new_tokens = previous
+
     def _run(self, messages: list[dict]) -> str:
         import torch
 

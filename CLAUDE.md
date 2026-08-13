@@ -26,6 +26,11 @@ accuracy against `exe_ans` (+0.026). Remaining failures: FinQA 30% wrong-column 
 7% hallucinated operands; TAT-QA 23% "read a value instead of computing", 10% declined
 despite having the evidence.
 Month 4: attribution — see the results section below.
+Month 5 (in progress): `src/grounding/` (sentence/table-row segmentation, local DeBERTa-MNLI
+entailment, operand-provenance grounding for numeric answers) and `src/faithfulness/`
+(`ragas_local.py` — local judge plus a tested guard against RAGAS's OpenAI default;
+`staged.py` — decomposition cached, verification repeatable). 147 tests, all offline.
+Still to build: `run_grounding.py`, `run_b2.py`, and the Month 5 results.
 Month 4: Contribution 1 built — `src/attribution/` (segmentation, cached perturbation engine,
 occlusion / Shapley / surrogate estimators, per-chunk and ranking value functions) plus
 faithfulness evaluation. All methods beat a random-unit baseline by ~0.48–0.50 normalized
@@ -226,6 +231,35 @@ finrag-explain/
   saved predictions — no GPU, no cost. Use it after touching anything in `eval/metrics/`, and
   re-score *every* affected results file (both datasets and all ablation arms) so no table is
   left mixing two scoring definitions.
+- **RAGAS does not install correctly on its own.** `ragas==0.4.3` imports
+  `langchain_community.chat_models.vertexai` at module scope but declares
+  `langchain-community` with no upper bound, so a fresh resolve picks 0.4.x — where that
+  module is gone — and `import ragas` fails outright. `requirements.txt` therefore pins
+  `langchain-community==0.3.31`, the newest release that still ships it. Don't remove that
+  pin; langchain-community is sunset upstream, so nothing will fix it for us.
+- **Faithfulness is two stages with different inputs, and that is what makes Month 6
+  affordable.** `decompose` reads only (question, answer) → statements, via the judge LLM;
+  `verify` reads (statements, context) → score, via local HHEM. Contribution 2 perturbs the
+  *context*, so decomposition is invariant across every perturbation of a question.
+  `src/faithfulness/staged.py` computes it once, caches it to disk, and re-runs only the local
+  verifier. Calling `ragas.evaluate()` inside the perturbation loop instead would be thousands
+  of LLM calls recomputing a result that cannot change — the same anti-pattern the attribution
+  guardrail forbids. Cache entries store the answer they came from; `cache_is_stale()` catches
+  the silent-corruption case where B1 is re-run and answers change.
+- **Three model families, kept deliberately separate.** Generator = Qwen2.5-7B; grounding NLI =
+  DeBERTa-MNLI; RAGAS verification = Vectara HHEM. The generator must not grade its own
+  answers, and grounding must not share a model with RAGAS — Contribution 2 perturbs the
+  evidence *grounding* says matters and checks whether *RAGAS* reacts, which is circular if
+  both run the same weights. Only statement decomposition sits on the generator's model,
+  because it makes no correctness judgement.
+- **Numeric answers are grounded on their operands, not their value.** Measured, not assumed:
+  NLI scores ~0.09 entailment on a correct FinQA answer, because "the rental of 2009 is 19"
+  does not entail "the change was -42.4" — that step is arithmetic, which no NLI model
+  performs. Program-of-thought already names the figures consumed, so grounding checks their
+  provenance in the evidence (deterministic, no model, and it yields the exact
+  `(chunk_id, sentence_index)` Month 6 needs to perturb). NLI is kept for genuine text spans,
+  which is what TAT-QA's 93 span questions need. Don't "fix" the low NLI numbers by lowering
+  the threshold — that would be tuning the instrument to hide that it is the wrong one.
 - **Checkpoint everything.** Free-tier Colab/session disconnects mid-run are expected for the
   Month 6 evaluation loop — write results to disk after every N questions, resume from last
   checkpoint, never re-run a full loop from scratch after an interruption.

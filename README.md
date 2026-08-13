@@ -32,7 +32,13 @@ Claude Code reads it automatically at the start of every session in this repo.
   - [x] Three estimators: occlusion, RankingSHAP-anchored Shapley, Rank-LIME-anchored surrogate
   - [x] Two value functions: per-chunk score, and rank-biased-overlap over the whole ordering
   - [x] Faithfulness evaluation (comprehensiveness / sufficiency vs a random baseline)
-- [ ] Month 5 — Evidence grounding + RAGAS integration (B2)
+- [~] Month 5 — Evidence grounding + RAGAS integration (B2)
+  - [x] Grounding (`src/grounding/`) — sentence/table-row segmentation, local DeBERTa-MNLI
+        entailment, operand-provenance grounding for numeric answers
+  - [x] RAGAS wired to a local judge (`src/faithfulness/ragas_local.py`) with a tested guard
+        against its OpenAI default; two-stage caching (`staged.py`) so Month 6 perturbations
+        cost no LLM calls
+  - [ ] B2 runner + B2 numbers
 - [ ] Month 6 — Faithfulness perturbation testing (Contribution 2)
 - [ ] Month 7 — Full evaluation (B1/B2/B3) + Streamlit demo + human study
 - [ ] Month 8 — Paper write-up, workshop submission
@@ -283,6 +289,66 @@ hour of sustained inference gets hot enough to throttle. [
   they are not in the pinned local `requirements.txt`), and the resolved versions are written
   to `eval/results/colab_env.json` so a Colab number is always traceable to its environment
 
+## Run evidence grounding (Month 5)
+
+Sentence-level answer↔evidence matching. **Runs on a laptop in seconds and costs nothing** —
+generation is already checkpointed, so grounding is a post-process over the saved B1 records,
+exactly like `--rescore`:
+
+```bash
+python eval/baselines/run_grounding.py --dataset finqa --split dev
+python eval/baselines/run_grounding.py --dataset tatqa --split dev --backend stub  # offline
+```
+
+FinQA: 250 questions in **15.7s**. TAT-QA: **35.5s**. No GPU.
+
+### Numeric answers are grounded on operands, not on the final value
+
+This is the design decision worth defending, and it was forced by measurement rather than
+chosen. Running NLI entailment on the answer *value* scores ~0.09 even when the evidence is
+exactly right, because `the contingent rental of 2009 is 19` genuinely does not entail
+`the change was -42.4` — getting between them is arithmetic, which no NLI model performs.
+Reporting those as ungrounded would measure the instrument, not the system.
+
+Program-of-thought already names the figures the answer consumed, so each operand becomes a
+claim verified by **provenance**: is this number in the retrieved evidence, and in which
+sentence. Deterministic, needs no model, and it yields the exact `(chunk_id, sentence_index)`
+that Month 6 perturbs. NLI is kept for genuine text spans, where entailment *is* the right
+instrument — which is what TAT-QA's 93 span questions need.
+
+### Grounding results (250 questions per dataset, DeBERTa-MNLI + operand provenance)
+
+| Dataset | Groundedness | Supported | Contradicted | Grounds to gold | Numeric claims |
+|---|---:|---:|---:|---:|---:|
+| FinQA | 0.757 | 0.745 | 0.088 | 68.8% | 93% |
+| TAT-QA | 0.664 | 0.686 | 0.180 | 58.0% | 54% |
+
+**The split by failure mode is the result**, because it separates the two things CLAUDE.md
+asks to keep apart:
+
+| | FinQA supported / grounds-to-gold | TAT-QA supported / grounds-to-gold |
+|---|---:|---:|
+| Answer correct | 0.875 / **0.876** | 0.836 / **0.781** |
+| Generation failure | 0.730 / **0.624** | 0.677 / **0.531** |
+| Retrieval failure | 0.200 / 0.000 | 0.444 / 0.000 |
+| Declined | 0.000 / 0.000 | 0.115 / 0.038 |
+
+Read the middle row. **Wrong answers still ground to the correct evidence 62% (FinQA) and 53%
+(TAT-QA) of the time** — the system found and used the right facts and then did the arithmetic
+wrong. That is a fundamentally different failure from not finding the evidence at all, which
+the bottom row shows scoring 0.000 as it should. A single accuracy number cannot distinguish
+those two; this table can.
+
+Grounding also disagrees with the model's own citations (`grounded~cited` 0.663 / 0.596): a
+model can cite `[1]` while its answer is actually supported only by `[3]`. That gap is a
+finding to report in B3, not an error to reconcile.
+
+**Contradiction counts only for claims that found no support.** Retrieved evidence holds many
+facts, and an NLI model reads `revenue 2018 was 440.7` as contradicting a claim about 2019 —
+so a raw maximum across sentences fires on ordinary multi-year tables. It reported 44% of
+TAT-QA answers as contradicted, which said nothing about faithfulness; gated properly it is
+0.180, and it means what the name says.
+
 ## Run attribution (Contribution 1)
 
 Free, and never touches the generator — it only re-scores query variants against chunk
@@ -334,7 +400,7 @@ A negative sufficiency is real, not a bug: keeping only the top-weighted units s
 ## Tests
 
 ```bash
-pytest tests/ -v          # 116 tests, offline, ~16s
+pytest tests/ -v          # 148 tests, offline, ~16s
 pytest tests/ -m "not slow"   # skips the one test that loads the real embedding model
 ```
 
@@ -357,13 +423,25 @@ Months 3–4 are done and B1's generation configuration is now frozen: `Qwen2.5-
 B2 and B3 must be produced under exactly the same one, or the three baselines cannot be
 compared.
 
-Month 5 is the evidence-grounding layer plus RAGAS integration (B2), in `src/grounding/`.
+Month 5's grounding half is done and reported above. What remains is the B2 runner and its
+numbers, and two things about it are already settled:
 
-Before writing B2 code, read the zero-cost note above: **RAGAS defaults to an OpenAI judge
-model** and must be constructed with an explicit local/free judge before its first call. Note
-also that judge *quality*, not just judge cost, is a live risk for Contribution 2 — a
-faithfulness metric evaluated by a weak judge cannot support a claim about when that metric
-fails. Decide the judge before writing B2, not after seeing the scores.
+**The judge.** RAGAS's own factory signature is `llm_factory(model, provider="openai")` — the
+billed provider is the default *in code*, and `evaluate()` without an explicit `llm=`
+constructs it and charges on the first call. `src/faithfulness/ragas_local.py` supplies a
+local judge and three tested guards. Judge *quality* is the separate risk: a faithfulness
+metric scored by a weak judge cannot support a claim about when that metric fails, so
+verification runs on Vectara HHEM — an independent NLI model — while only the mechanical
+statement-decomposition step sits on the local LLM. Three model families stay separate on
+purpose: generator (Qwen), grounding (DeBERTa-MNLI), RAGAS verification (HHEM). Grounding
+must not share weights with RAGAS, or Contribution 2 would be testing a model against itself.
+
+**The compute.** Faithfulness decomposes `(question, answer)` with the LLM and verifies
+`(statements, context)` with HHEM. Contribution 2 perturbs the *context*, so decomposition is
+invariant across perturbations — `src/faithfulness/staged.py` computes it once, caches it, and
+re-runs only the local verifier. That is the difference between ~4,500 LLM calls (about a day
+of free-tier GPU) and 500 one-time calls with a perturbation loop that costs nothing. Same
+guardrail as attribution: never re-run the invariant half inside a perturbation loop.
 
 Known rough edges, in the order they'd matter:
 
