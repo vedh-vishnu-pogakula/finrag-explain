@@ -235,6 +235,38 @@ class StagedFaithfulness:
         return FaithfulnessScore(score=supported / len(verdicts), verdicts=verdicts,
                                  n_statements=len(statements))
 
+    def verify_with_llm(self, statements: list, contexts: list) -> FaithfulnessScore:
+        """RAGAS's *unmodified* verifier: the judge LLM decides each statement.
+
+        This is the reference the NLI verifier is checked against, and it exists because
+        substituting a verifier is a deviation that has to be defended rather than asserted.
+        RAGAS's own `Faithfulness` prompts the LLM with (context, statements) and reads back a
+        0/1 verdict plus a reason; that path is used verbatim here.
+
+        Not used for reported B2 numbers. It costs one LLM call per question *per context*,
+        which is exactly the property that makes it unusable inside Month 6's perturbation
+        loop -- and exactly why the NLI verifier exists. It is affordable on a subset, which
+        is all a cross-check needs.
+        """
+        statements = [s for s in statements if str(s).strip()]
+        if not statements:
+            return FaithfulnessScore(score=float("nan"), verdicts=[], n_statements=0)
+
+        import asyncio
+
+        row = {"retrieved_contexts": [str(c) for c in contexts]}
+        with no_paid_providers():
+            output = asyncio.run(self.metric._create_verdicts(row, statements, None))
+
+        verdicts = [{"statement": a.statement, "supported": bool(a.verdict),
+                     "reason": getattr(a, "reason", None)}
+                    for a in output.statements]
+        if not verdicts:
+            return FaithfulnessScore(score=float("nan"), verdicts=[], n_statements=0)
+        supported = sum(v["supported"] for v in verdicts)
+        return FaithfulnessScore(score=supported / len(verdicts), verdicts=verdicts,
+                                 n_statements=len(verdicts))
+
 
 # -- statement cache ------------------------------------------------------------------------
 

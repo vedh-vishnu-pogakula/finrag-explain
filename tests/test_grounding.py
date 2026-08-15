@@ -330,6 +330,88 @@ def test_a_metric_needing_no_llm_is_allowed_through():
     verify_metrics_are_local([_NoLLMMetric()])      # must not raise
 
 
+# ---- verifier cross-check statistics -------------------------------------------------------
+# B2 substitutes an NLI verifier for RAGAS's HHEM (which is incompatible with transformers
+# 5.x). That deviation has to be defended with evidence, and these are the statistics that
+# carry the argument -- so they get tested rather than trusted.
+
+def _crosscheck():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "crosscheck", ROOT / "eval" / "baselines" / "run_verifier_crosscheck.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _row(qa_id, nli_score, llm_score, nli_verdicts, llm_verdicts):
+    return {"qa_id": qa_id, "n_statements": len(nli_verdicts),
+            "nli_score": nli_score, "llm_score": llm_score,
+            "nli_verdicts": nli_verdicts, "llm_verdicts": llm_verdicts}
+
+
+def test_verdicts_are_aligned_by_statement_text_not_position():
+    """RAGAS echoes each statement back and occasionally reorders or drops one. Zipping by
+    position would compare unrelated pairs and manufacture disagreement out of nothing."""
+    cc = _crosscheck()
+    rows = [_row("a", 0.5, 0.5,
+                 [{"statement": "alpha", "supported": True},
+                  {"statement": "beta", "supported": False}],
+                 [{"statement": "beta", "supported": False},
+                  {"statement": "alpha", "supported": True}])]
+    assert cc._summarize(rows)["agreement"]["verdict_agreement"] == 1.0
+
+
+def test_a_statement_the_llm_dropped_is_skipped_not_counted_as_disagreement():
+    cc = _crosscheck()
+    rows = [_row("a", 1.0, 1.0,
+                 [{"statement": "kept", "supported": True},
+                  {"statement": "dropped", "supported": True}],
+                 [{"statement": "kept", "supported": True}])]
+    agreement = cc._summarize(rows)["agreement"]
+    assert agreement["n_statements"] == 1
+    assert agreement["verdict_agreement"] == 1.0
+
+
+def test_kappa_is_undefined_rather_than_perfect_when_there_is_no_variance():
+    """Raw agreement flatters any pair on skewed data: if every statement is supported, two
+    verifiers that always say 'supported' agree 100% of the time and have learned nothing.
+    Chance agreement is 1.0 there, so kappa is undefined -- reporting 1.0 would be a lie."""
+    cc = _crosscheck()
+    rows = [_row("a", 1.0, 1.0,
+                 [{"statement": "s", "supported": True}],
+                 [{"statement": "s", "supported": True}])]
+    agreement = cc._summarize(rows)["agreement"]
+    assert agreement["verdict_agreement"] == 1.0
+    assert agreement["cohens_kappa"] is None
+
+
+def test_correlation_is_undefined_rather_than_zero_when_a_side_is_constant():
+    """Happens whenever every question scores 1.0. Reporting 0.0 would read as 'the verifiers
+    disagree' when in fact there is nothing to correlate."""
+    cc = _crosscheck()
+    assert cc._pearson([1.0, 1.0, 1.0], [1.0, 0.5, 0.0]) is None
+    assert cc._pearson([1.0, 0.5, 0.0], [1.0, 0.5, 0.0]) == 1.0
+
+
+def test_disagreements_are_recorded_with_the_llms_reason():
+    """A number cannot be argued with; a disagreed-upon statement plus the judge's reason can."""
+    cc = _crosscheck()
+    rows = [_row("a", 1.0, 0.0,
+                 [{"statement": "s", "supported": True, "entailment": 0.91}],
+                 [{"statement": "s", "supported": False, "reason": "context lacks the figure"}])]
+    report = cc._summarize(rows)
+    assert report["agreement"]["nli_only_supported"] == 1
+    assert report["disagreements"][0]["reason"] == "context lacks the figure"
+    assert report["disagreements"][0]["entailment"] == 0.91
+
+
+def test_ranks_average_over_ties():
+    cc = _crosscheck()
+    assert cc._rank([1.0, 1.0, 0.0]) == [2.5, 2.5, 1.0]
+
+
 # ---- staged faithfulness (the Contribution 2 engine) ---------------------------------------
 
 class _FakeVerifier:
