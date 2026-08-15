@@ -1,0 +1,1498 @@
+{
+  "agreement": {
+    "pearson": 0.3822,
+    "spearman": 0.3892,
+    "mean_abs_diff": 0.435,
+    "mean_nli": 0.365,
+    "mean_llm": 0.8,
+    "n_statements": 77,
+    "verdict_agreement": 0.4935,
+    "cohens_kappa": 0.1572,
+    "nli_only_supported": 0,
+    "llm_only_supported": 39
+  },
+  "disagreements": [
+    {
+      "qa_id": "3815da05-2eae-4248-b313-82dab2c3c6df",
+      "statement": "The interest expense in 2018 was -2085.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0002,
+      "reason": "The context provides the interest expense for 2018 as $(2,085), which is equivalent to -2085. The statement can be directly inferred from the context."
+    },
+    {
+      "qa_id": "15db33e7-74eb-483c-93cb-7cbfe45874c4",
+      "statement": "The stock-based compensation expense related to the RSUs recognised by the company for the years ended December 31, 2019 was $0.3 million.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.4338,
+      "reason": "The context explicitly states that the company recognized $0.3 million of stock-based compensation expense related to the RSUs for the year ended December 31, 2019."
+    },
+    {
+      "qa_id": "15db33e7-74eb-483c-93cb-7cbfe45874c4",
+      "statement": "The stock-based compensation expense related to the RSUs recognised by the company for the years ended December 31, 2018 was $0.9 million.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0333,
+      "reason": "The context explicitly states that the company recognized $0.9 million of stock-based compensation expense related to the RSUs for the year ended December 31, 2018."
+    },
+    {
+      "qa_id": "c75a8554-b769-4784-98c4-9ee6285f06da",
+      "statement": "The deferred income tax assets from depreciation in 2018 were 173.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.008,
+      "reason": "The context provides the value for the deferred income tax assets from depreciation as 173 for March 31, which can be interpreted as the year 2018 based on the pattern of the data provided."
+    },
+    {
+      "qa_id": "c75a8554-b769-4784-98c4-9ee6285f06da",
+      "statement": "The deferred income tax assets from depreciation in 2019 were 227.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0042,
+      "reason": "The context provides the value for the deferred income tax assets from depreciation as 227 for March 31, which can be interpreted as the year 2019 based on the pattern of the data provided."
+    },
+    {
+      "qa_id": "47f52ad9-f9fd-4cab-9237-7746eec99d58",
+      "statement": "Debtors were \u00a3415.9m in 2019 and \u00a3440.7m in 2018.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0389,
+      "reason": "The context provides the correct values for debtors in both years, with 2019 being \u00a3415.9m and 2018 being \u00a3440.7m."
+    },
+    {
+      "qa_id": "47f52ad9-f9fd-4cab-9237-7746eec99d58",
+      "statement": "Net current assets were \u00a34.5m in 2019 and \u00a3152.5m in 2018.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0108,
+      "reason": "The context provides the correct values for net current assets in both years, with 2019 being \u00a34.5m and 2018 being \u00a3152.5m."
+    },
+    {
+      "qa_id": "47f52ad9-f9fd-4cab-9237-7746eec99d58",
+      "statement": "Creditors amounts falling due within one year were (\u00a3411.4)m in 2019 and (\u00a3288.4)m in 2018.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.054,
+      "reason": "The context provides the correct values for creditors amounts falling due within one year in both years, with 2019 being (\u00a3411.4)m and 2018 being (\u00a3288.4)m."
+    },
+    {
+      "qa_id": "b11567d3-d651-40d8-9b9e-bc71eb37d7f9",
+      "statement": "The percentage change in Transportation equipment in 2019 from 2018 was -3.6164.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0205,
+      "reason": "The context provides the values for Transportation equipment in 2019 and 2018, which are 613 and 636 respectively. The calculation for the percentage change would be (613-636)/636 * 100 = -3.6164%. This value matches the statement provided."
+    },
+    {
+      "qa_id": "a28c22c5-bf00-4a08-a868-4c7a4b1149f0",
+      "statement": "Free cash flow (pre-spectrum) and capital additions do not include payments for licences and spectrum included within intangible assets.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0112,
+      "reason": "The context explicitly states that Free cash flow (pre-spectrum) and capital additions do not include payments for licences and spectrum included within intangible assets."
+    },
+    {
+      "qa_id": "a28c22c5-bf00-4a08-a868-4c7a4b1149f0",
+      "statement": "Free cash flow (pre-spectrum) and capital additions do not include items determined independently of the ongoing business such as the level of dividends.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.017,
+      "reason": "The context mentions that Free cash flow (pre-spectrum) and capital additions do not include items determined independently of the ongoing business, such as the level of dividends."
+    },
+    {
+      "qa_id": "a28c22c5-bf00-4a08-a868-4c7a4b1149f0",
+      "statement": "Free cash flow (pre-spectrum) and capital additions do not include items which are deemed discretionary such as cash flows relating to acquisitions and disposals.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0489,
+      "reason": "The context explicitly states that Free cash flow (pre-spectrum) and capital additions do not include items which are deemed discretionary, such as cash flows relating to acquisitions and disposals."
+    },
+    {
+      "qa_id": "a28c22c5-bf00-4a08-a868-4c7a4b1149f0",
+      "statement": "Free cash flow (pre-spectrum) and capital additions do not include items which are deemed discretionary such as cash flows relating to financing activities.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0372,
+      "reason": "The context explicitly states that Free cash flow (pre-spectrum) and capital additions do not include items which are deemed discretionary, such as cash flows relating to financing activities."
+    },
+    {
+      "qa_id": "a87da1d1-ab9f-492d-b206-a1a84899a4c7",
+      "statement": "The federal tax credit carryforward in 2019 was $41.8 million.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0005,
+      "reason": "The context clearly states that 'At December 31, 2019, the Company had federal, state and foreign tax credit carryforwards of approximately $41.8 million, $86.3 million and $5.7 million, respectively.' This matches the statement exactly."
+    },
+    {
+      "qa_id": "a87da1d1-ab9f-492d-b206-a1a84899a4c7",
+      "statement": "The state tax credit carryforward in 2019 was $86.3 million.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0005,
+      "reason": "The context clearly states that 'At December 31, 2019, the Company had federal, state and foreign tax credit carryforwards of approximately $41.8 million, $86.3 million and $5.7 million, respectively.' This matches the statement exactly."
+    },
+    {
+      "qa_id": "a87da1d1-ab9f-492d-b206-a1a84899a4c7",
+      "statement": "The foreign tax credit carryforward in 2019 was $5.7 million.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0006,
+      "reason": "The context clearly states that 'At December 31, 2019, the Company had federal, state and foreign tax credit carryforwards of approximately $41.8 million, $86.3 million and $5.7 million, respectively.' This matches the statement exactly."
+    },
+    {
+      "qa_id": "94916f79-4b6d-487f-8fa2-39f81a085760",
+      "statement": "The percentage change in Capital redemption reserve in 2019 from 2018 was 40.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0005,
+      "reason": "The context provides the values for the Capital redemption reserve in 2019 (\u00a3m) as 0.7 and in 2018 (\u00a3m) as 0.5. The percentage change calculation would be ((0.7 - 0.5) / 0.5) * 100 = 40%. This value matches the statement exactly."
+    },
+    {
+      "qa_id": "81fc6048-7510-4c55-aa3c-4c9f1f5b8bcb",
+      "statement": "The change in the servicing fee between 2018 and 2019 was 1580.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.1086,
+      "reason": "The context provides the servicing fees for 2019, 2018, and 2017. The change in servicing fees from 2018 to 2019 is calculated as 3,901 - 2,321 = 1,580, which matches the statement."
+    },
+    {
+      "qa_id": "bbf04869-c442-4909-a65d-c7bc89b6e726",
+      "statement": "The percentage increase in Swiss income from 2017 to 2018 is 10.1465.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0034,
+      "reason": "The context provides the Swiss income for 2017 ($161,544), 2018 ($177,935), and 2019 ($212,986). The calculation for the percentage increase from 2017 to 2018 is ((177935 - 161544) / 161544) * 100 = 10.1465%. This value matches the statement exactly."
+    },
+    {
+      "qa_id": "9dcfc5c6-082a-495c-91b1-561d4262bc34",
+      "statement": "0.9 million of accrued expenses associated with the Horizon Clinicals and Series2000 Revenue Cycle businesses were on the consolidated balance sheets as of December 31, 2018.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0011,
+      "reason": "The context directly mentions that there was $0.9 million of accrued expenses associated with the Horizon Clinicals and Series2000 Revenue Cycle businesses on the consolidated balance sheets as of December 31, 2018."
+    },
+    {
+      "qa_id": "c43ec3a9-13bf-436c-90da-f0d4939aab58",
+      "statement": "The FRC\u2019s Revised Ethical Standard will be used from 15 March 2020.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0004,
+      "reason": "The context clearly states 'The FRC\u2019s Revised Ethical Standard will become effective for the Group from 15 March 2020.'"
+    },
+    {
+      "qa_id": "ceb35697-abdc-4acf-a54f-5b6716749d2b",
+      "statement": "The percentage change in Free Cash Flow from 2018 to 2019 is -6.7542.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0001,
+      "reason": "The context provides the Free Cash Flow values for 2019 ($497 million), 2018 ($533 million), and 2017 ($308 million). The calculation for the percentage change from 2018 to 2019 would be ((497 - 533) / 533) * 100 = -6.7542%. This value can be directly inferred from the provided data."
+    },
+    {
+      "qa_id": "5ba983d9-006e-473e-956f-5344532881ae",
+      "statement": "Maintenance was less than 15,000 thousands in 2018.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.4139,
+      "reason": "The context provides the Cost of revenue for maintenance in 2018 as 14,783 thousand, which is less than 15,000 thousand."
+    },
+    {
+      "qa_id": "78d30d08-bc16-44b3-8f19-e7ba5e2bf68f",
+      "statement": "The federal alternative minimum tax credit carryforwards were $0.3 million.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0008,
+      "reason": "The context explicitly mentions that the Company has $0.3 million of federal alternative minimum tax credit carryforwards that will be refundable in future years."
+    },
+    {
+      "qa_id": "e44b3ca5-1c32-44c9-9155-61465b79e908",
+      "statement": "The income tax expense in 2019 was 23.0.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.002,
+      "reason": "The context provides the income tax expense for fiscal 2019 as 23.0, which matches the statement."
+    }
+  ],
+  "per_question": [
+    {
+      "qa_id": "d7ce6b7c-c539-4c63-a2c1-5b8ed24b345b",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "Vessel Calendar Days refers to the total number of days the vessels were in our fleet.",
+          "supported": true,
+          "entailment": 0.9893
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "Vessel Calendar Days refers to the total number of days the vessels were in our fleet.",
+          "supported": true,
+          "reason": "The context explicitly defines Vessel Calendar Days as the total number of days the vessels were in the company's fleet."
+        }
+      ]
+    },
+    {
+      "qa_id": "3815da05-2eae-4248-b313-82dab2c3c6df",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The interest expense in 2018 was -2085.",
+          "supported": false,
+          "entailment": 0.0002
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The interest expense in 2018 was -2085.",
+          "supported": true,
+          "reason": "The context provides the interest expense for 2018 as $(2,085), which is equivalent to -2085. The statement can be directly inferred from the context."
+        }
+      ]
+    },
+    {
+      "qa_id": "75623d36-47ae-4801-9727-ee17b04cd8e5",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The lower level of R&D grants led to a decrease in other income, net of expenses in 2018.",
+          "supported": true,
+          "entailment": 0.9852
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The lower level of R&D grants led to a decrease in other income, net of expenses in 2018.",
+          "supported": true,
+          "reason": "The context indicates that other income, net of expenses, decreased from $55 million in 2017 to $53 million in 2018, and it specifically mentions that this decrease was 'mainly due to lower level of R&D grants'."
+        }
+      ]
+    },
+    {
+      "qa_id": "15db33e7-74eb-483c-93cb-7cbfe45874c4",
+      "n_statements": 2,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The stock-based compensation expense related to the RSUs recognised by the company for the years ended December 31, 2019 was $0.3 million.",
+          "supported": false,
+          "entailment": 0.4338
+        },
+        {
+          "statement": "The stock-based compensation expense related to the RSUs recognised by the company for the years ended December 31, 2018 was $0.9 million.",
+          "supported": false,
+          "entailment": 0.0333
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The stock-based compensation expense related to the RSUs recognised by the company for the years ended December 31, 2019 was $0.3 million.",
+          "supported": true,
+          "reason": "The context explicitly states that the company recognized $0.3 million of stock-based compensation expense related to the RSUs for the year ended December 31, 2019."
+        },
+        {
+          "statement": "The stock-based compensation expense related to the RSUs recognised by the company for the years ended December 31, 2018 was $0.9 million.",
+          "supported": true,
+          "reason": "The context explicitly states that the company recognized $0.9 million of stock-based compensation expense related to the RSUs for the year ended December 31, 2018."
+        }
+      ]
+    },
+    {
+      "qa_id": "abda534c-fde6-4155-b854-3070ca1975b5",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The operating income (GAAP) in 2018 was 112,852.",
+          "supported": true,
+          "entailment": 0.9698
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The operating income (GAAP) in 2018 was 112,852.",
+          "supported": true,
+          "reason": "The context explicitly states that the Operating income (GAAP) of Fiscal Years Ended March 31, 2018 is $112,852, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "16d16da8-ea51-4166-9df1-e3ae38ee9389",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The gains on the sale of company-operated restaurants in 2019 were $1,366.",
+          "supported": true,
+          "entailment": 0.9834
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The gains on the sale of company-operated restaurants in 2019 were $1,366.",
+          "supported": true,
+          "reason": "The context explicitly mentions 'Gains on the sale of company-operated restaurants of 2019 is $1,366', which directly supports the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "bbcbc3a8-ebe2-4f89-84e6-6f07e3c82e3c",
+      "n_statements": 2,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The company's prepaid expenses in 2018 were 151.",
+          "supported": true,
+          "entailment": 0.997
+        },
+        {
+          "statement": "The company's prepaid expenses in 2019 were 164.",
+          "supported": true,
+          "entailment": 0.9984
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The company's prepaid expenses in 2018 were 151.",
+          "supported": true,
+          "reason": "The context clearly states that the Prepaid expenses of December 31, 2018 is 151."
+        },
+        {
+          "statement": "The company's prepaid expenses in 2019 were 164.",
+          "supported": true,
+          "reason": "The context clearly states that the Prepaid expenses of December 31, 2019 is 164."
+        }
+      ]
+    },
+    {
+      "qa_id": "e636ec91-f544-4bed-981c-3196a1e6b8a2",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The table shows various deferred tax liabilities and assets as of December 31, 2019 and 2018.",
+          "supported": true,
+          "entailment": 0.9935
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The table shows various deferred tax liabilities and assets as of December 31, 2019 and 2018.",
+          "supported": true,
+          "reason": "The context provides data for Deferred tax liabilities and assets for both December 31, 2019 and 2018, indicating that the table indeed shows these figures for the two years."
+        }
+      ]
+    },
+    {
+      "qa_id": "2b77bd1e-17ee-4f74-9fb7-7cc4ad5142dd",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage change in Other for deferred tax assets is 4.34.",
+          "supported": false,
+          "entailment": 0.1202
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage change in Other for deferred tax assets is 4.34.",
+          "supported": false,
+          "reason": "The context provides the values for 'Deferred tax assets \u2014 Other' for two consecutive years, but does not provide enough information to calculate the percentage change. The calculation would require additional steps not provided in the context."
+        }
+      ]
+    },
+    {
+      "qa_id": "c75a8554-b769-4784-98c4-9ee6285f06da",
+      "n_statements": 2,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The deferred income tax assets from depreciation in 2018 were 173.",
+          "supported": false,
+          "entailment": 0.008
+        },
+        {
+          "statement": "The deferred income tax assets from depreciation in 2019 were 227.",
+          "supported": false,
+          "entailment": 0.0042
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The deferred income tax assets from depreciation in 2018 were 173.",
+          "supported": true,
+          "reason": "The context provides the value for the deferred income tax assets from depreciation as 173 for March 31, which can be interpreted as the year 2018 based on the pattern of the data provided."
+        },
+        {
+          "statement": "The deferred income tax assets from depreciation in 2019 were 227.",
+          "supported": true,
+          "reason": "The context provides the value for the deferred income tax assets from depreciation as 227 for March 31, which can be interpreted as the year 2019 based on the pattern of the data provided."
+        }
+      ]
+    },
+    {
+      "qa_id": "47f52ad9-f9fd-4cab-9237-7746eec99d58",
+      "n_statements": 4,
+      "nli_score": 0.25,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "Debtors were \u00a3415.9m in 2019 and \u00a3440.7m in 2018.",
+          "supported": false,
+          "entailment": 0.0389
+        },
+        {
+          "statement": "Net current assets were \u00a34.5m in 2019 and \u00a3152.5m in 2018.",
+          "supported": false,
+          "entailment": 0.0108
+        },
+        {
+          "statement": "Net assets were \u00a31,220.5m in 2019 and \u00a31,365.4m in 2018.",
+          "supported": true,
+          "entailment": 0.9495
+        },
+        {
+          "statement": "Creditors amounts falling due within one year were (\u00a3411.4)m in 2019 and (\u00a3288.4)m in 2018.",
+          "supported": false,
+          "entailment": 0.054
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "Debtors were \u00a3415.9m in 2019 and \u00a3440.7m in 2018.",
+          "supported": true,
+          "reason": "The context provides the correct values for debtors in both years, with 2019 being \u00a3415.9m and 2018 being \u00a3440.7m."
+        },
+        {
+          "statement": "Net current assets were \u00a34.5m in 2019 and \u00a3152.5m in 2018.",
+          "supported": true,
+          "reason": "The context provides the correct values for net current assets in both years, with 2019 being \u00a34.5m and 2018 being \u00a3152.5m."
+        },
+        {
+          "statement": "Net assets were \u00a31,220.5m in 2019 and \u00a31,365.4m in 2018.",
+          "supported": true,
+          "reason": "The context provides the correct values for net assets in both years, with 2019 being \u00a31,220.5m and 2018 being \u00a31,365.4m."
+        },
+        {
+          "statement": "Creditors amounts falling due within one year were (\u00a3411.4)m in 2019 and (\u00a3288.4)m in 2018.",
+          "supported": true,
+          "reason": "The context provides the correct values for creditors amounts falling due within one year in both years, with 2019 being (\u00a3411.4)m and 2018 being (\u00a3288.4)m."
+        }
+      ]
+    },
+    {
+      "qa_id": "542e287e-0671-4eed-a367-98add13b8448",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "All highly liquid investments purchased with an original maturity of three months or less are considered to be cash equivalents.",
+          "supported": true,
+          "entailment": 0.995
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "All highly liquid investments purchased with an original maturity of three months or less are considered to be cash equivalents.",
+          "supported": true,
+          "reason": "The context explicitly states that 'The Company considers all highly liquid investments purchased with an original maturity of three months or less to be cash equivalents.'"
+        }
+      ]
+    },
+    {
+      "qa_id": "3d8a0eb1-e9be-49e7-855c-cce8b1f2ee03",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The increase/(decrease) in revenue from 2018 to 2019 is 4 percent.",
+          "supported": false,
+          "entailment": 0.001
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The increase/(decrease) in revenue from 2018 to 2019 is 4 percent.",
+          "supported": false,
+          "reason": "The context states that the revenue decreased year-over-year by 4%, which directly contradicts the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "b11567d3-d651-40d8-9b9e-bc71eb37d7f9",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage change in Transportation equipment in 2019 from 2018 was -3.6164.",
+          "supported": false,
+          "entailment": 0.0205
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage change in Transportation equipment in 2019 from 2018 was -3.6164.",
+          "supported": true,
+          "reason": "The context provides the values for Transportation equipment in 2019 and 2018, which are 613 and 636 respectively. The calculation for the percentage change would be (613-636)/636 * 100 = -3.6164%. This value matches the statement provided."
+        }
+      ]
+    },
+    {
+      "qa_id": "a28c22c5-bf00-4a08-a868-4c7a4b1149f0",
+      "n_statements": 4,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "Free cash flow (pre-spectrum) and capital additions do not include payments for licences and spectrum included within intangible assets.",
+          "supported": false,
+          "entailment": 0.0112
+        },
+        {
+          "statement": "Free cash flow (pre-spectrum) and capital additions do not include items determined independently of the ongoing business such as the level of dividends.",
+          "supported": false,
+          "entailment": 0.017
+        },
+        {
+          "statement": "Free cash flow (pre-spectrum) and capital additions do not include items which are deemed discretionary such as cash flows relating to acquisitions and disposals.",
+          "supported": false,
+          "entailment": 0.0489
+        },
+        {
+          "statement": "Free cash flow (pre-spectrum) and capital additions do not include items which are deemed discretionary such as cash flows relating to financing activities.",
+          "supported": false,
+          "entailment": 0.0372
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "Free cash flow (pre-spectrum) and capital additions do not include payments for licences and spectrum included within intangible assets.",
+          "supported": true,
+          "reason": "The context explicitly states that Free cash flow (pre-spectrum) and capital additions do not include payments for licences and spectrum included within intangible assets."
+        },
+        {
+          "statement": "Free cash flow (pre-spectrum) and capital additions do not include items determined independently of the ongoing business such as the level of dividends.",
+          "supported": true,
+          "reason": "The context mentions that Free cash flow (pre-spectrum) and capital additions do not include items determined independently of the ongoing business, such as the level of dividends."
+        },
+        {
+          "statement": "Free cash flow (pre-spectrum) and capital additions do not include items which are deemed discretionary such as cash flows relating to acquisitions and disposals.",
+          "supported": true,
+          "reason": "The context explicitly states that Free cash flow (pre-spectrum) and capital additions do not include items which are deemed discretionary, such as cash flows relating to acquisitions and disposals."
+        },
+        {
+          "statement": "Free cash flow (pre-spectrum) and capital additions do not include items which are deemed discretionary such as cash flows relating to financing activities.",
+          "supported": true,
+          "reason": "The context explicitly states that Free cash flow (pre-spectrum) and capital additions do not include items which are deemed discretionary, such as cash flows relating to financing activities."
+        }
+      ]
+    },
+    {
+      "qa_id": "cf9ea7bd-d26e-4ba9-a2a9-b1e1c73ec11c",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The derivative liabilities were 120.5 as at December 31, 2018.",
+          "supported": true,
+          "entailment": 0.9896
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The derivative liabilities were 120.5 as at December 31, 2018.",
+          "supported": true,
+          "reason": "The context clearly states that the Derivative liabilities of December31, 2018 is 120.5, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "a87da1d1-ab9f-492d-b206-a1a84899a4c7",
+      "n_statements": 3,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The federal tax credit carryforward in 2019 was $41.8 million.",
+          "supported": false,
+          "entailment": 0.0005
+        },
+        {
+          "statement": "The state tax credit carryforward in 2019 was $86.3 million.",
+          "supported": false,
+          "entailment": 0.0005
+        },
+        {
+          "statement": "The foreign tax credit carryforward in 2019 was $5.7 million.",
+          "supported": false,
+          "entailment": 0.0006
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The federal tax credit carryforward in 2019 was $41.8 million.",
+          "supported": true,
+          "reason": "The context clearly states that 'At December 31, 2019, the Company had federal, state and foreign tax credit carryforwards of approximately $41.8 million, $86.3 million and $5.7 million, respectively.' This matches the statement exactly."
+        },
+        {
+          "statement": "The state tax credit carryforward in 2019 was $86.3 million.",
+          "supported": true,
+          "reason": "The context clearly states that 'At December 31, 2019, the Company had federal, state and foreign tax credit carryforwards of approximately $41.8 million, $86.3 million and $5.7 million, respectively.' This matches the statement exactly."
+        },
+        {
+          "statement": "The foreign tax credit carryforward in 2019 was $5.7 million.",
+          "supported": true,
+          "reason": "The context clearly states that 'At December 31, 2019, the Company had federal, state and foreign tax credit carryforwards of approximately $41.8 million, $86.3 million and $5.7 million, respectively.' This matches the statement exactly."
+        }
+      ]
+    },
+    {
+      "qa_id": "4ce49426-cfc3-45bc-90d0-629877881b82",
+      "n_statements": 3,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The valuation allowance increased by $14 million in fiscal 2019.",
+          "supported": true,
+          "entailment": 0.9981
+        },
+        {
+          "statement": "The increase is mainly attributable to corresponding changes in deferred tax assets.",
+          "supported": true,
+          "entailment": 0.9954
+        },
+        {
+          "statement": "The changes in deferred tax assets include primarily foreign tax credit carryforwards and certain state tax credit carryforwards.",
+          "supported": true,
+          "entailment": 0.9092
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The valuation allowance increased by $14 million in fiscal 2019.",
+          "supported": true,
+          "reason": "The context directly states that the valuation allowance increased by $14 million in fiscal 2019."
+        },
+        {
+          "statement": "The increase is mainly attributable to corresponding changes in deferred tax assets.",
+          "supported": true,
+          "reason": "The context mentions that the increase in the valuation allowance is mainly attributable to corresponding changes in deferred tax assets."
+        },
+        {
+          "statement": "The changes in deferred tax assets include primarily foreign tax credit carryforwards and certain state tax credit carryforwards.",
+          "supported": true,
+          "reason": "The context specifies that the changes in deferred tax assets are primarily related to foreign tax credit carryforwards and certain state tax credit carryforwards."
+        }
+      ]
+    },
+    {
+      "qa_id": "adf3bdc1-f364-4bfd-ad79-7a0fa7b39a78",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The change in product revenue between 2018 and 2019 was 2296.",
+          "supported": true,
+          "entailment": 0.8314
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The change in product revenue between 2018 and 2019 was 2296.",
+          "supported": true,
+          "reason": "The context provides the revenue for the product in 2019 ($39,005) and 2018 ($36,709). The difference between these two values is indeed $2,296, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "94916f79-4b6d-487f-8fa2-39f81a085760",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage change in Capital redemption reserve in 2019 from 2018 was 40.",
+          "supported": false,
+          "entailment": 0.0005
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage change in Capital redemption reserve in 2019 from 2018 was 40.",
+          "supported": true,
+          "reason": "The context provides the values for the Capital redemption reserve in 2019 (\u00a3m) as 0.7 and in 2018 (\u00a3m) as 0.5. The percentage change calculation would be ((0.7 - 0.5) / 0.5) * 100 = 40%. This value matches the statement exactly."
+        }
+      ]
+    },
+    {
+      "qa_id": "033b1629-01f9-444b-961e-7ef875a8a915",
+      "n_statements": 2,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "In-game net revenues include the net amount of revenue recognized for downloadable content during the period.",
+          "supported": true,
+          "entailment": 0.9825
+        },
+        {
+          "statement": "In-game net revenues include the net amount of revenue recognized for microtransactions during the period.",
+          "supported": true,
+          "entailment": 0.9604
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "In-game net revenues include the net amount of revenue recognized for downloadable content during the period.",
+          "supported": true,
+          "reason": "The context clearly states that in-game net revenues 'primarily includes the net amount of revenue recognized for downloadable content and microtransactions during the period'. This supports the statement."
+        },
+        {
+          "statement": "In-game net revenues include the net amount of revenue recognized for microtransactions during the period.",
+          "supported": true,
+          "reason": "The context also clearly states that in-game net revenues 'primarily includes the net amount of revenue recognized for downloadable content and microtransactions during the period'. This supports the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "05c03d2a-7d92-4973-8771-7d0c6547464a",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage increase in modules sales from 2018 to 2019 was 60.6367.",
+          "supported": false,
+          "entailment": 0.0013
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage increase in modules sales from 2018 to 2019 was 60.6367.",
+          "supported": false,
+          "reason": "The context provides the net sales figures for the modules segment for the years ended 2019, 2018, and 2017, which are $502,001, $806,398, and $958,115 respectively. The percentage change from 2018 to 2019 is calculated as ((958,115 - 806,398) / 806,398) * 100 = 18.85%, not 60.6367%."
+        }
+      ]
+    },
+    {
+      "qa_id": "806247ca-aa73-4484-b2e6-d7221a64610f",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The current trade receivables in 2019 is 3,770.",
+          "supported": true,
+          "entailment": 0.9961
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The current trade receivables in 2019 is 3,770.",
+          "supported": true,
+          "reason": "The context explicitly states 'the Current \u2014 Trade receivables of 2019 $'000 is 3,770', which directly matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "33f8d9ee-8162-44ea-befd-007a9ddb2ea0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The company's income before income tax expense in 2019 was 88,848.",
+          "supported": true,
+          "entailment": 0.9966
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The company's income before income tax expense in 2019 was 88,848.",
+          "supported": true,
+          "reason": "The context clearly states that the income before income tax expense of $88,848 corresponds to the year ended December 31, 2019."
+        }
+      ]
+    },
+    {
+      "qa_id": "163f08ab-cfae-426a-9c03-4f84feba3bb6",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The average Net cash used in financing activities between fiscal years 2017-2019 was -142.3333.",
+          "supported": false,
+          "entailment": 0.0109
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The average Net cash used in financing activities between fiscal years 2017-2019 was -142.3333.",
+          "supported": false,
+          "reason": "The context provides the Net cash used in financing activities for the years 2017, 2018, and 2019. Calculating the average: (-707 + -429 + -709) / 3 = -572 / 3 = -190.6667. The statement suggests an average of -142.3333, which does not match the calculated value."
+        }
+      ]
+    },
+    {
+      "qa_id": "81fc6048-7510-4c55-aa3c-4c9f1f5b8bcb",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The change in the servicing fee between 2018 and 2019 was 1580.",
+          "supported": false,
+          "entailment": 0.1086
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The change in the servicing fee between 2018 and 2019 was 1580.",
+          "supported": true,
+          "reason": "The context provides the servicing fees for 2019, 2018, and 2017. The change in servicing fees from 2018 to 2019 is calculated as 3,901 - 2,321 = 1,580, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "78d004fb-a7b1-4ad5-8870-a7e0462e999e",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage increase in Retained earnings after adoption of new standard is 177.7328.",
+          "supported": false,
+          "entailment": 0.0025
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage increase in Retained earnings after adoption of new standard is 177.7328.",
+          "supported": false,
+          "reason": "The context does not provide any information about the Retained earnings before and after the adoption of the new standard, making it impossible to calculate the percentage increase."
+        }
+      ]
+    },
+    {
+      "qa_id": "bbf04869-c442-4909-a65d-c7bc89b6e726",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage increase in Swiss income from 2017 to 2018 is 10.1465.",
+          "supported": false,
+          "entailment": 0.0034
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage increase in Swiss income from 2017 to 2018 is 10.1465.",
+          "supported": true,
+          "reason": "The context provides the Swiss income for 2017 ($161,544), 2018 ($177,935), and 2019 ($212,986). The calculation for the percentage increase from 2017 to 2018 is ((177935 - 161544) / 161544) * 100 = 10.1465%. This value matches the statement exactly."
+        }
+      ]
+    },
+    {
+      "qa_id": "9dcfc5c6-082a-495c-91b1-561d4262bc34",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "0.9 million of accrued expenses associated with the Horizon Clinicals and Series2000 Revenue Cycle businesses were on the consolidated balance sheets as of December 31, 2018.",
+          "supported": false,
+          "entailment": 0.0011
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "0.9 million of accrued expenses associated with the Horizon Clinicals and Series2000 Revenue Cycle businesses were on the consolidated balance sheets as of December 31, 2018.",
+          "supported": true,
+          "reason": "The context directly mentions that there was $0.9 million of accrued expenses associated with the Horizon Clinicals and Series2000 Revenue Cycle businesses on the consolidated balance sheets as of December 31, 2018."
+        }
+      ]
+    },
+    {
+      "qa_id": "c43ec3a9-13bf-436c-90da-f0d4939aab58",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The FRC\u2019s Revised Ethical Standard will be used from 15 March 2020.",
+          "supported": false,
+          "entailment": 0.0004
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The FRC\u2019s Revised Ethical Standard will be used from 15 March 2020.",
+          "supported": true,
+          "reason": "The context clearly states 'The FRC\u2019s Revised Ethical Standard will become effective for the Group from 15 March 2020.'"
+        }
+      ]
+    },
+    {
+      "qa_id": "6f65d33d-c721-45f9-9519-9ea4f5d7e740",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage change in Net cash used in investing activities between 2018 and 2019 is -568.1309%",
+          "supported": false,
+          "entailment": 0.0009
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage change in Net cash used in investing activities between 2018 and 2019 is -568.1309%",
+          "supported": false,
+          "reason": "The context provides the Net cash used in investing activities for 2019 and 2018, but does not provide enough information to calculate the exact percentage change. The calculation would require additional steps not directly supported by the given data."
+        }
+      ]
+    },
+    {
+      "qa_id": "2996d8a9-8fdc-46f7-9a6b-443663c6f03c",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The average duration of the accounts receivables is 25 days.",
+          "supported": true,
+          "entailment": 0.9883
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The average duration of the accounts receivables is 25 days.",
+          "supported": true,
+          "reason": "The context provides the average duration of accounts receivable as approximately 25 days."
+        }
+      ]
+    },
+    {
+      "qa_id": "cad9978d-eabb-461c-8ab8-a46a7819a5b1",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The gross profit in 2018 was 365,607.",
+          "supported": true,
+          "entailment": 0.976
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The gross profit in 2018 was 365,607.",
+          "supported": true,
+          "reason": "The context provides the gross profit for the year ended December 31, 2018, which is exactly 365,607."
+        }
+      ]
+    },
+    {
+      "qa_id": "bc198f92-852a-4b9a-a26c-c607a76475f0",
+      "n_statements": 3,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The table provides information for the year 2019.",
+          "supported": true,
+          "entailment": 0.9946
+        },
+        {
+          "statement": "The table provides information for the year 2018.",
+          "supported": true,
+          "entailment": 0.9924
+        },
+        {
+          "statement": "The table provides information for the year 2017.",
+          "supported": true,
+          "entailment": 0.9559
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The table provides information for the year 2019.",
+          "supported": true,
+          "reason": "The context mentions the 'Weighted-average common shares outstanding: \u2014 Diluted of 2019' and 'Weighted-average common shares outstanding: \u2014 Basic of 2019', indicating that the table includes data for the year 2019."
+        },
+        {
+          "statement": "The table provides information for the year 2018.",
+          "supported": true,
+          "reason": "The context also mentions the 'Weighted-average common shares outstanding: \u2014 Diluted of Fiscal Years Ended March 31, 2018' and 'Weighted-average common shares outstanding: \u2014 Basic of Fiscal Years Ended March 31, 2018', indicating that the table includes data for the year 2018."
+        },
+        {
+          "statement": "The table provides information for the year 2017.",
+          "supported": true,
+          "reason": "The context further mentions the 'Weighted-average common shares outstanding: \u2014 Diluted of Fiscal Years Ended March 31, 2017' and 'Weighted-average common shares outstanding: \u2014 Basic of Fiscal Years Ended March 31, 2017', indicating that the table includes data for the year 2017."
+        }
+      ]
+    },
+    {
+      "qa_id": "49dbbc90-5307-49ae-b802-e87d19214c40",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The change in total sales from fiscal 2018 to 2019 is 20.242.",
+          "supported": false,
+          "entailment": 0.0512
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The change in total sales from fiscal 2018 to 2019 is 20.242.",
+          "supported": false,
+          "reason": "The context provides the overall net sales for fiscal 2019 ($9.54 billion) and fiscal 2018, but does not provide the exact figure for fiscal 2018. The percentage increase is given as 20%, but the absolute change in sales is not directly calculable without the fiscal 2018 sales figure."
+        }
+      ]
+    },
+    {
+      "qa_id": "ceb35697-abdc-4acf-a54f-5b6716749d2b",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage change in Free Cash Flow from 2018 to 2019 is -6.7542.",
+          "supported": false,
+          "entailment": 0.0001
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage change in Free Cash Flow from 2018 to 2019 is -6.7542.",
+          "supported": true,
+          "reason": "The context provides the Free Cash Flow values for 2019 ($497 million), 2018 ($533 million), and 2017 ($308 million). The calculation for the percentage change from 2018 to 2019 would be ((497 - 533) / 533) * 100 = -6.7542%. This value can be directly inferred from the provided data."
+        }
+      ]
+    },
+    {
+      "qa_id": "5ba983d9-006e-473e-956f-5344532881ae",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "Maintenance was less than 15,000 thousands in 2018.",
+          "supported": false,
+          "entailment": 0.4139
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "Maintenance was less than 15,000 thousands in 2018.",
+          "supported": true,
+          "reason": "The context provides the Cost of revenue for maintenance in 2018 as 14,783 thousand, which is less than 15,000 thousand."
+        }
+      ]
+    },
+    {
+      "qa_id": "78d30d08-bc16-44b3-8f19-e7ba5e2bf68f",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The federal alternative minimum tax credit carryforwards were $0.3 million.",
+          "supported": false,
+          "entailment": 0.0008
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The federal alternative minimum tax credit carryforwards were $0.3 million.",
+          "supported": true,
+          "reason": "The context explicitly mentions that the Company has $0.3 million of federal alternative minimum tax credit carryforwards that will be refundable in future years."
+        }
+      ]
+    },
+    {
+      "qa_id": "e44b3ca5-1c32-44c9-9155-61465b79e908",
+      "n_statements": 3,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The income tax expense in 2019 was 23.0.",
+          "supported": false,
+          "entailment": 0.002
+        },
+        {
+          "statement": "The income tax expense in 2018 was 26.3.",
+          "supported": false,
+          "entailment": 0.0011
+        },
+        {
+          "statement": "The income tax expense in 2017 was 19.8.",
+          "supported": false,
+          "entailment": 0.002
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The income tax expense in 2019 was 23.0.",
+          "supported": true,
+          "reason": "The context provides the income tax expense for fiscal 2019 as 23.0, which matches the statement."
+        },
+        {
+          "statement": "The income tax expense in 2018 was 26.3.",
+          "supported": true,
+          "reason": "The context provides the income tax expense for fiscal 2018 as 26.3, which matches the statement."
+        },
+        {
+          "statement": "The income tax expense in 2017 was 19.8.",
+          "supported": true,
+          "reason": "The context provides the income tax expense for fiscal 2017 as 19.8, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "14381fab-36ac-482b-9f77-2c78f3f34ffb",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The change in Additions in 2019 from 2018 was 0.7.",
+          "supported": false,
+          "entailment": 0.007
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The change in Additions in 2019 from 2018 was 0.7.",
+          "supported": true,
+          "reason": "The context provides the values for the Additions in 2019 (\u00a3m) as 3.1 and in 2018 (\u00a3m) as 2.4. The difference between these two values is 3.1 - 2.4 = 0.7, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "99fd8872-7580-4480-887d-6c19ccbdf19d",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "USD is the least expensive currency.",
+          "supported": false,
+          "entailment": 0.0002
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "USD is the least expensive currency.",
+          "supported": false,
+          "reason": "The context discusses the volatility and average exchange rates of USD-INR and other emerging market currencies but does not provide any comparison to determine which currency is the least expensive. Therefore, it cannot be inferred that USD is the least expensive currency."
+        }
+      ]
+    },
+    {
+      "qa_id": "95497d9b-23d7-4c89-832c-bcf408981985",
+      "n_statements": 2,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The GHG emissions summary shows gross emissions including location-based scope 2 emissions.",
+          "supported": false,
+          "entailment": 0.0
+        },
+        {
+          "statement": "The GHG emissions summary also includes net emissions accounting for market-based scope 2 reporting for the certified green electricity tariff.",
+          "supported": false,
+          "entailment": 0.0009
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The GHG emissions summary shows gross emissions including location-based scope 2 emissions.",
+          "supported": true,
+          "reason": "The context mentions 'Emissions are summarised below, all reported as CO2 equivalent (\u2018CO2e\u2019) \u2014 Green tariff The GHG emissions summary below shows our gross emissions including location-based scope 2 emissions', which directly supports this statement."
+        },
+        {
+          "statement": "The GHG emissions summary also includes net emissions accounting for market-based scope 2 reporting for the certified green electricity tariff.",
+          "supported": true,
+          "reason": "The context specifically mentions 'Emissions are summarised below, all reported as CO2 equivalent (\u2018CO2e\u2019) \u2014 Emissions from: [details including net emissions accounting for market-based scope 2 reporting for our certified green electricity tariff]', which directly supports this statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "bf2746d1-d2d9-45ea-9a0c-a492bc7efa96",
+      "n_statements": 4,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "Operating revenue is a component of Reported Results (including discontinued operations).",
+          "supported": true,
+          "entailment": 0.991
+        },
+        {
+          "statement": "Gross profit is a component of Reported Results (including discontinued operations).",
+          "supported": true,
+          "entailment": 0.993
+        },
+        {
+          "statement": "EBITDA is a component of Reported Results (including discontinued operations).",
+          "supported": true,
+          "entailment": 0.9597
+        },
+        {
+          "statement": "NPAT is a component of Reported Results (including discontinued operations).",
+          "supported": true,
+          "entailment": 0.9832
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "Operating revenue is a component of Reported Results (including discontinued operations).",
+          "supported": true,
+          "reason": "The context provides specific details about the operating revenue for both 2019 and 2018, indicating it is indeed a component of the Reported Results (including discontinued operations)."
+        },
+        {
+          "statement": "Gross profit is a component of Reported Results (including discontinued operations).",
+          "supported": true,
+          "reason": "The context provides specific details about the gross profit for both 2019 and 2018, indicating it is indeed a component of the Reported Results (including discontinued operations)."
+        },
+        {
+          "statement": "EBITDA is a component of Reported Results (including discontinued operations).",
+          "supported": true,
+          "reason": "The context provides specific details about the EBITDA for both 2019 and 2018, indicating it is indeed a component of the Reported Results (including discontinued operations)."
+        },
+        {
+          "statement": "NPAT is a component of Reported Results (including discontinued operations).",
+          "supported": true,
+          "reason": "The context provides specific details about the NPAT for both 2019 and 2018, indicating it is indeed a component of the Reported Results (including discontinued operations)."
+        }
+      ]
+    },
+    {
+      "qa_id": "785de52d-7246-4ebc-acfc-eb56aabbf0d6",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The defined benefit plan is closed to new members.",
+          "supported": false,
+          "entailment": 0.0003
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The defined benefit plan is closed to new members.",
+          "supported": true,
+          "reason": "The context explicitly states 'The defined benefit plan is closed to new members.'"
+        }
+      ]
+    },
+    {
+      "qa_id": "3b95b56f-3bf1-441f-ae58-a4f34d632d30",
+      "n_statements": 2,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "Expected term exceeded 0.5 years in 2016.",
+          "supported": false,
+          "entailment": 0.0017
+        },
+        {
+          "statement": "Expected term exceeded 0.5 years in 2017.",
+          "supported": false,
+          "entailment": 0.0024
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "Expected term exceeded 0.5 years in 2016.",
+          "supported": true,
+          "reason": "The context provides the expected term for 'For the Year Ended' as 0.8 years and 0.9 years, both of which exceed 0.5 years. However, the exact year is not specified, so we can infer that these terms apply to two consecutive years, one of which is likely 2016."
+        },
+        {
+          "statement": "Expected term exceeded 0.5 years in 2017.",
+          "supported": true,
+          "reason": "The context provides the expected term for 'For the Year Ended' as 0.8 years and 0.9 years, both of which exceed 0.5 years. Given the context, it is reasonable to infer that one of these years is 2017, though the exact year is not specified."
+        }
+      ]
+    },
+    {
+      "qa_id": "58060f0e-fb29-4aaf-b4c7-7e43d16e009d",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The average Employee separation expenses for the year ended December 31, 2019 to 2018 is 1622.",
+          "supported": false,
+          "entailment": 0.0351
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The average Employee separation expenses for the year ended December 31, 2019 to 2018 is 1622.",
+          "supported": false,
+          "reason": "The context provides the Employee separation expenses for 2019 ($1,150), 2018 ($2,094), and 2017 ($8,353). The average of these values is calculated as (1150 + 2094 + 8353) / 3 = 3088.33 / 3 = 1029.44, which does not match the stated value of 1622."
+        }
+      ]
+    },
+    {
+      "qa_id": "259e18e8-4738-4f4d-b625-e352ca78a136",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The recorded investment decreased by 64 units from 2018 to 2019.",
+          "supported": false,
+          "entailment": 0.0082
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The recorded investment decreased by 64 units from 2018 to 2019.",
+          "supported": false,
+          "reason": "The context does not provide any information about the recorded investment levels for 2018 and 2019, nor does it mention a decrease in recorded investment by a specific amount."
+        }
+      ]
+    },
+    {
+      "qa_id": "69d47933-e853-40e9-a9cb-8af38f182b1d",
+      "n_statements": 5,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "Revenue increased significantly compared to the previous year.",
+          "supported": false,
+          "entailment": 0.0028
+        },
+        {
+          "statement": "There was substantial growth in the offshore and service businesses.",
+          "supported": false,
+          "entailment": 0.0088
+        },
+        {
+          "statement": "There was clear growth in the onshore business.",
+          "supported": false,
+          "entailment": 0.0991
+        },
+        {
+          "statement": "Revenue rose substantially in Europe, C. I. S., Africa, and the Middle East.",
+          "supported": false,
+          "entailment": 0.002
+        },
+        {
+          "statement": "Revenue declined clearly in the other two reporting regions.",
+          "supported": false,
+          "entailment": 0.001
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "Revenue increased significantly compared to the previous year.",
+          "supported": true,
+          "reason": "The context mentions 'Revenue was up significantly year-over-year' and 'the Revenue of Fiscal year is 12 %', indicating a significant increase in revenue compared to the previous year."
+        },
+        {
+          "statement": "There was substantial growth in the offshore and service businesses.",
+          "supported": true,
+          "reason": "The context specifically mentions 'substantial growth in the offshore and service businesses'."
+        },
+        {
+          "statement": "There was clear growth in the onshore business.",
+          "supported": true,
+          "reason": "The context states 'clear growth in the onshore business'."
+        },
+        {
+          "statement": "Revenue rose substantially in Europe, C. I. S., Africa, and the Middle East.",
+          "supported": true,
+          "reason": "The context indicates 'revenue rose substantially in Europe, C. I. S., Africa, Middle East'."
+        },
+        {
+          "statement": "Revenue declined clearly in the other two reporting regions.",
+          "supported": true,
+          "reason": "The context mentions 'it declined clearly in the other two reporting regions'."
+        }
+      ]
+    },
+    {
+      "qa_id": "a3547d53-fd40-4aa1-a8c8-bda48f0520a9",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The amount of Cash-settled awards in 2019 was 255.",
+          "supported": false,
+          "entailment": 0.0001
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The amount of Cash-settled awards in 2019 was 255.",
+          "supported": true,
+          "reason": "The context explicitly states 'the Cash-settled awards of 2019 is 255', which directly matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "78523190-61da-490f-b019-b065c317bfd3",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "An increase in funds employed was driven by refurbishments and acquisitions of hotels.",
+          "supported": true,
+          "entailment": 0.9896
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "An increase in funds employed was driven by refurbishments and acquisitions of hotels.",
+          "supported": true,
+          "reason": "The context mentions that 'EBIT of $261 million decreased by 0.5% on a normalised basis reflecting a weaker first half trading performance. Normalised EBIT in the second half increased by 1.3%' and 'Normalised ROFE decreased by 38 bps due to an increase in funds employed driven by refurbishments and acquisitions of hotels.' This directly supports the statement."
+        }
+      ]
+    }
+  ],
+  "config": {
+    "dataset": "tatqa",
+    "split": "dev",
+    "nli_verifier": "cross-encoder/nli-deberta-v3-base",
+    "verify_threshold": 0.5,
+    "llm_verifier": "local:Qwen/Qwen2.5-7B-Instruct",
+    "n_compared": 50,
+    "n_errors": 0,
+    "seconds": 661.4
+  }
+}

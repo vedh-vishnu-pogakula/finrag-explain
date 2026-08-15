@@ -46,6 +46,7 @@ for _p in (ROOT / "src", ROOT / "src" / "faithfulness", ROOT / "src" / "generati
 
 from config_utils import get as cfg_get, load_config  # noqa: E402
 from staged import (  # noqa: E402
+    FaithfulnessScore,
     StagedFaithfulness,
     append_statements,
     cache_is_stale,
@@ -64,7 +65,24 @@ def main():
     ap.add_argument("--model", default=None, help="judge model (ablation / spot checks only)")
     ap.add_argument("--no-4bit", action="store_true",
                     help="bitsandbytes is CUDA-only; use this for a laptop spot check")
-    ap.add_argument("--tag", default="", help="suffix for output files")
+    ap.add_argument("--tag", default="",
+                    help="suffix for BOTH the statement cache and the outputs (isolates a "
+                         "whole run, e.g. a spot check with a different judge)")
+    ap.add_argument("--out-tag", default="",
+                    help="suffix for the outputs only, reusing the shared statement cache. "
+                         "This is what the verifier robustness sweep needs: same statements, "
+                         "different verifier, separate result files.")
+    ap.add_argument("--verifier", choices=["nli", "llm"], default="nli",
+                    help="which stage-2 verifier. 'nli' is local, free and repeatable -- the "
+                         "one Month 6's perturbation loop uses. 'llm' is RAGAS's UNMODIFIED "
+                         "verifier: one judge call per question, so it needs a GPU and is "
+                         "checkpointed. Run it once over the full set to establish what the "
+                         "default metric reports; it cannot be used inside a perturbation "
+                         "sweep, which is the whole reason the NLI path exists.")
+    ap.add_argument("--verifier-model", default=None,
+                    help="override faithfulness.verifier_model. Used for the robustness "
+                         "check: if several independent NLI checkpoints behave the same way, "
+                         "the finding is about the class of verifier, not about one pick.")
     ap.add_argument("--checkpoint-every", type=int, default=10)
     ap.add_argument("--fresh", action="store_true", help="ignore the statement cache")
     ap.add_argument("--out-dir", default=str(ROOT / "eval" / "results"))
@@ -146,18 +164,55 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
         sys.exit(f"[b2] no statements at {cache_path}. Run --phase decompose first "
                  "(that half needs the judge model; this half does not).")
 
-    scorer = StagedFaithfulness.from_config(cfg, llm=None)
+    overrides = {"verifier_model": args.verifier_model} if args.verifier_model else {}
+    judge = None
+    if args.verifier == "llm":
+        from generator import build_generator
+        from ragas_local import LocalRagasLLM
+
+        quantize = False if args.no_4bit else None
+        judge = LocalRagasLLM(build_generator(cfg, provider="local", model=args.model,
+                                              load_in_4bit=quantize))
+    scorer = StagedFaithfulness.from_config(cfg, llm=judge, **overrides)
     print(f"[b2] verifying {len(records)} answers against their contexts "
           f"(local NLI verifier, no LLM, no cost)")
 
+    # The LLM verifier costs one judge call per question, so it is checkpointed and
+    # resumable exactly like decomposition. The NLI verifier is fast enough that caching it
+    # would only add a way for a stale file to be reused.
+    resume_path = (out_dir / "checkpoints"
+                   / f"b2verdicts_{args.dataset}_{args.split}{args.tag}{args.out_tag}.jsonl")
+    done = {}
+    if args.verifier == "llm" and resume_path.exists():
+        for line in open(resume_path):
+            if not line.strip():
+                continue
+            d = json.loads(line)
+            done[d["qa_id"]] = FaithfulnessScore(
+                score=float("nan") if d["faithfulness"] is None else d["faithfulness"],
+                verdicts=d.get("verdicts", []), n_statements=d.get("n_statements", 0))
+        print(f"[b2] resuming: {len(done)} questions already verified")
+
+    resume_file = open(resume_path, "a") if args.verifier == "llm" else None
     t0, rows, missing = time.time(), [], 0
-    for record in records:
+    for index, record in enumerate(records, start=1):
         entry = cache.get(record["qa_id"])
         if entry is None or cache_is_stale(entry, record["generated"]["answer"]):
             missing += 1
             continue
         contexts = [hit["text"] for hit in record["retrieved"]]
-        score = scorer.verify(entry.statements, contexts)
+        if record["qa_id"] in done:
+            score = done[record["qa_id"]]
+        else:
+            score = (scorer.verify_with_llm(entry.statements, contexts)
+                     if args.verifier == "llm" else
+                     scorer.verify(entry.statements, contexts))
+        if resume_file is not None and record["qa_id"] not in done:
+            resume_file.write(json.dumps(
+                {"qa_id": record["qa_id"], **score.to_json()}) + "\n")
+            resume_file.flush()
+            if index % 10 == 0:
+                print(f"[b2] {index}/{len(records)} ({time.time() - t0:.0f}s)")
         rows.append({
             "qa_id": record["qa_id"],
             "failure_mode": record.get("failure_mode"),
@@ -167,6 +222,8 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
             "faithfulness": None if score.score != score.score else round(score.score, 4),
             "verdicts": score.verdicts,
         })
+    if resume_file is not None:
+        resume_file.close()
     elapsed = time.time() - t0
     if missing:
         print(f"[b2] {missing} records had no usable cached statements (run --phase decompose)")
@@ -174,7 +231,7 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
     report = _summarize(rows)
     report["config"] = {
         "dataset": args.dataset, "split": args.split, "baseline": "B2_rag_plus_ragas",
-        "metric": "ragas faithfulness (FaithfulnesswithHHEM)",
+        "metric": f"ragas faithfulness, {args.verifier} verifier",
         "verifier": scorer.verifier_model,
         "verify_threshold": scorer.verify_threshold,
         "judge": _judge_name(cache),
@@ -183,9 +240,10 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
         "statement_cache": str(cache_path.relative_to(ROOT)),
     }
 
-    out_path = out_dir / f"b2_{args.dataset}_{args.split}{args.tag}.json"
+    out_path = out_dir / f"b2_{args.dataset}_{args.split}{args.tag}{args.out_tag}.json"
     out_path.write_text(json.dumps(report, indent=2))
-    detail = out_dir / "checkpoints" / f"b2_{args.dataset}_{args.split}{args.tag}.jsonl"
+    detail = (out_dir / "checkpoints"
+              / f"b2_{args.dataset}_{args.split}{args.tag}{args.out_tag}.jsonl")
     detail.write_text("".join(json.dumps(r) + "\n" for r in rows))
 
     o = report["overall"]

@@ -1,0 +1,1212 @@
+{
+  "agreement": {
+    "pearson": -0.1478,
+    "spearman": -0.1478,
+    "mean_abs_diff": 0.46,
+    "mean_nli": 0.2,
+    "mean_llm": 0.34,
+    "n_statements": 49,
+    "verdict_agreement": 0.5306,
+    "cohens_kappa": -0.1465,
+    "nli_only_supported": 8,
+    "llm_only_supported": 15
+  },
+  "disagreements": [
+    {
+      "qa_id": "CB/2010/page_88.pdf-1::q0",
+      "statement": "The net favorable prior period development changed by 47.8261 percent from 2010 to 2008.",
+      "nli": true,
+      "llm": false,
+      "entailment": 0.9482,
+      "reason": "The context provides the net favorable prior period development for 2010 ($503 million), 2009 ($576 million), and 2008 ($814 million). The calculation for the change from 2010 to 2008 would be ((814 - 503) / 814) * 100 = 38.11%, not 47.8261 percent."
+    },
+    {
+      "qa_id": "FBHS/2017/page_23.pdf-1::q0",
+      "statement": "The amount net sales applicable to international market in 2017 was 1373.658 million.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0009,
+      "reason": "The context provides that approximately 26% of 2017 net sales were to international markets. Given the total net sales for 2017 were $5283.3 million, the calculation would be 26% of $5283.3 million, which equals $1373.658 million. This can be directly inferred from the provided information."
+    },
+    {
+      "qa_id": "AMT/2005/page_54.pdf-1::q0",
+      "statement": "The portion of the adjusted consolidated cash flow for the twelve months ended December 31, 2005, related to non-tower cash flow is -5.7508.",
+      "nli": true,
+      "llm": false,
+      "entailment": 0.9046,
+      "reason": "The context provides the adjusted consolidated cash flow for the twelve months ended December 31, 2005, which is $531,822, and the non-tower cash flow, which is $139,590. However, there is no information provided to calculate a specific portion of the adjusted consolidated cash flow related to non-tower cash flow as a percentage or fraction. The statement does not directly follow from the given context."
+    },
+    {
+      "qa_id": "UNP/2011/page_76.pdf-3::q0",
+      "statement": "11.9794 percent of total accounts payable and other current liabilities was accrued casualty costs at december 31, 2010.",
+      "nli": true,
+      "llm": false,
+      "entailment": 0.8183,
+      "reason": "The context provides the total accounts payable and other current liabilities for December 31, 2010 ($2713) and the accrued casualty costs for the same date ($325). However, it does not provide enough information to calculate the percentage of total accounts payable and other current liabilities that were accrued casualty costs. The calculation would be (325 / 2713) * 100 = approximately 11.97%, but the exact percentage provided in the statement is not directly supported by the given data."
+    },
+    {
+      "qa_id": "INTC/2013/page_33.pdf-1::q0",
+      "statement": "The net revenues changed by 1.201 percent.",
+      "nli": true,
+      "llm": false,
+      "entailment": 0.9764,
+      "reason": "The context provides the net revenue changes for different periods, but does not provide a direct calculation or mention of a 1.201 percent change. The closest change mentioned is $351 from September 28, 2013 to December 28, 2013, which represents a change of approximately 2.6% ($351 / $13483 * 100)."
+    },
+    {
+      "qa_id": "UPS/2006/page_32.pdf-3::q0",
+      "statement": "The performance difference of the class b common stock of United Parcel Service, Inc. and the S&P 500 index for the five years ended 12/31/2006 is 13.9.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0313,
+      "reason": "The context provides the end-of-year values for both the S&P 500 index and UPS Class B common stock on December 31, 2006. The S&P 500 index value is $135.02, while the UPS Class B common stock value is $148.92. The difference between these two values is $148.92 - $135.02 = $13.90, which matches the statement."
+    },
+    {
+      "qa_id": "SLB/2012/page_44.pdf-2::q0",
+      "statement": "The average price per share increased by 25.853 from 2010 to 2011.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0021,
+      "reason": "The average price per share in 2010 was $64.48 and in 2011 it was $81.15. The increase from 2010 to 2011 is calculated as ($81.15 - $64.48) / $64.48 = 0.25853 or 25.853%. This matches the statement exactly."
+    },
+    {
+      "qa_id": "IP/2005/page_19.pdf-2::q0",
+      "statement": "The change in industry segment operating profits between 2003 and 2004 was 306.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.1123,
+      "reason": "The context provides the industry segment operating profits for 2003 ($1734 million) and 2004 ($2040 million). The difference between these two values is $2040 - $1734 = $306 million, which matches the statement."
+    },
+    {
+      "qa_id": "MRO/2004/page_36.pdf-1::q0",
+      "statement": "The change in SSA 2019s revenues from the sale of non-petroleum merchandise in 2004 compared with 2003 was 0.1 billion.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0004,
+      "reason": "The context provides the revenue figures for 2004 ($2.3 billion) and 2003 ($2.2 billion). The difference between these two values is $0.1 billion, which matches the statement."
+    },
+    {
+      "qa_id": "APD/2016/page_96.pdf-2::q0",
+      "statement": "The short-term debt as a percent of total debt in the year 2016 is 15.0324.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.4022,
+      "reason": "The context provides the total debt for 2016 ($6225.2) and the short-term borrowings for 2016 ($935.8). The calculation for the percentage of short-term debt to total debt would be (935.8 / 6225.2) * 100 = 15.0324%. This value matches the statement exactly."
+    },
+    {
+      "qa_id": "AES/2016/page_185.pdf-3::q0",
+      "statement": "The maximum premium on the dp&l preferred stock as of december 31, 2015, was 103.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.2265,
+      "reason": "The context states that the per-share redemption prices for dp&l's preferred stock were between $101 and $103 per share, plus cumulative preferred dividends. This indicates the maximum premium is $103 over par value (which is typically $100), aligning with the statement."
+    },
+    {
+      "qa_id": "CME/2017/page_97.pdf-3::q0",
+      "statement": "8 directors can be elected by the class b-1 and class b-2 shareholders.",
+      "nli": true,
+      "llm": false,
+      "entailment": 0.732,
+      "reason": "The context specifies that class B-1 shareholders elect 3 directors and class B-2 shareholders elect 2 directors, making a total of 5 directors elected by these classes. There is no mention of any additional directors being elected by these classes alone."
+    },
+    {
+      "qa_id": "LKQ/2018/page_83.pdf-3::q0",
+      "statement": "49.5238 percent of the total self-insurance reserves was classified as current in 2018.",
+      "nli": true,
+      "llm": false,
+      "entailment": 0.9764,
+      "reason": "The context only provides the total self-insurance reserves for 2018 and 2017, and does not provide any information about the percentage of these reserves that were classified as current. The specific percentage (49.5238%) is not supported by the given context."
+    },
+    {
+      "qa_id": "AMAT/2014/page_35.pdf-1::q0",
+      "statement": "21.3333 percent of warehouse locations are in North America.",
+      "nli": true,
+      "llm": false,
+      "entailment": 0.9954,
+      "reason": "The context provides the number of warehouse locations in North America (16), but does not provide the total number of warehouse locations. Without the total number, we cannot calculate the percentage of warehouse locations in North America."
+    },
+    {
+      "qa_id": "JKHY/2014/page_30.pdf-1::q0",
+      "statement": "The cumulative total return on the S&P 500 for the five-year period was 136.98.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.3005,
+      "reason": "The context provides the S&P 500 values for each year from 2009 to 2014. The cumulative total return is calculated as the final value (236.98) minus the initial value (100.00), which equals 136.98. This matches the statement exactly."
+    },
+    {
+      "qa_id": "AON/2009/page_46.pdf-2::q0",
+      "statement": "The lowest segment operating income is 846.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0249,
+      "reason": "The context provides the segment operating income for 2009, 2008, and 2007, which are 900, 846, and 954 respectively. The lowest value among these is 846, which corresponds to the year 2008."
+    },
+    {
+      "qa_id": "FBHS/2017/page_43.pdf-1::q0",
+      "statement": "The percentage growth in the defined benefit plan income from 2016 to 2017 was 44.8276 percent.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0034,
+      "reason": "The context provides the defined benefit plan income for both 2016 and 2017, which are 2.9 and 4.2 respectively. The calculation for the percentage growth is ((4.2 - 2.9) / 2.9) * 100 = 44.8276 percent. This matches the statement exactly."
+    },
+    {
+      "qa_id": "L/2015/page_59.pdf-1::q0",
+      "statement": "The return on investment of an investment in Loews common stock from 2010 to 2011 was -2.63 percent.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0008,
+      "reason": "The return on investment can be calculated as (value in 2011 - value in 2010) / value in 2010 * 100 = (97.37 - 100.0) / 100.0 * 100 = -2.63%. This matches the statement exactly."
+    },
+    {
+      "qa_id": "AAPL/2005/page_83.pdf-2::q0",
+      "statement": "The lowest amount of research and development credit net in the three year period was -7 million.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0605,
+      "reason": "The context shows that the research and development credit net for 2005 is -26 million, for 2004 is -5 million, and for 2003 is -7 million. The lowest value among these is -7 million."
+    },
+    {
+      "qa_id": "LMT/2010/page_42.pdf-4::q0",
+      "statement": "The percentage change in capital expenditures for property, plant and equipment from 2008 to 2009 was -7.9914%",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.2417,
+      "reason": "The context provides the capital expenditures for 2008 ($926 million), 2009 ($852 million), and 2010 ($820 million). The calculation for the percentage change from 2008 to 2009 would be ((852 - 926) / 926) * 100 = -7.9914%. This value matches the statement exactly."
+    },
+    {
+      "qa_id": "ETR/2013/page_118.pdf-2::q0",
+      "statement": "The amount of long-term debt due in the next 36 months for Entergy Corporation as of December 31, 2013, is 1324616 million.",
+      "nli": true,
+      "llm": false,
+      "entailment": 0.9921,
+      "reason": "The context only provides the amount of long-term debt for 2018, which is $1,324,616 thousand. It does not provide information about the long-term debt due in the next 36 months specifically for 2013."
+    },
+    {
+      "qa_id": "NKE/2016/page_37.pdf-1::q0",
+      "statement": "As of May 31, 2016, 83.6364 percent of cash and cash equivalents was held in foreign subsidiaries.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0061,
+      "reason": "The context states that out of $5.5 billion, $4.6 billion was held by foreign subsidiaries. The calculation for the percentage is ($4.6 / $5.5) * 100 = 83.6364%. This matches the statement exactly."
+    },
+    {
+      "qa_id": "CB/2010/page_200.pdf-3::q0",
+      "statement": "The average potential anti-dilutive share conversions from 2008 to 2010 were 708716.6667.",
+      "nli": false,
+      "llm": true,
+      "entailment": 0.0008,
+      "reason": "The context provides the exact numbers for the potential anti-dilutive share conversions for each year: 256868 shares in 2010, 1230881 shares in 2009, and 638401 shares in 2008. The average can be calculated as (256868 + 1230881 + 638401) / 3 = 708716.6667, which matches the statement."
+    }
+  ],
+  "per_question": [
+    {
+      "qa_id": "MRO/2009/page_139.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "Contingent rental liability decreased by 14 units from 2007 to 2009.",
+          "supported": false,
+          "entailment": 0.004
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "Contingent rental liability decreased by 14 units from 2007 to 2009.",
+          "supported": false,
+          "reason": "The context provides the contingent rental figures for 2007, 2008, and 2009, but does not specify whether these figures represent liabilities or any other type of rental. The context also does not provide a unit of measurement for the contingent rental, making it impossible to determine if 'units' refers to dollars or another measure. Furthermore, the context shows an increase from 2007 to 2009, not a decrease."
+        }
+      ]
+    },
+    {
+      "qa_id": "CB/2010/page_88.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The net favorable prior period development changed by 47.8261 percent from 2010 to 2008.",
+          "supported": true,
+          "entailment": 0.9482
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The net favorable prior period development changed by 47.8261 percent from 2010 to 2008.",
+          "supported": false,
+          "reason": "The context provides the net favorable prior period development for 2010 ($503 million), 2009 ($576 million), and 2008 ($814 million). The calculation for the change from 2010 to 2008 would be ((814 - 503) / 814) * 100 = 38.11%, not 47.8261 percent."
+        }
+      ]
+    },
+    {
+      "qa_id": "FBHS/2017/page_23.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The amount net sales applicable to international market in 2017 was 1373.658 million.",
+          "supported": false,
+          "entailment": 0.0009
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The amount net sales applicable to international market in 2017 was 1373.658 million.",
+          "supported": true,
+          "reason": "The context provides that approximately 26% of 2017 net sales were to international markets. Given the total net sales for 2017 were $5283.3 million, the calculation would be 26% of $5283.3 million, which equals $1373.658 million. This can be directly inferred from the provided information."
+        }
+      ]
+    },
+    {
+      "qa_id": "AMT/2005/page_54.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The portion of the adjusted consolidated cash flow for the twelve months ended December 31, 2005, related to non-tower cash flow is -5.7508.",
+          "supported": true,
+          "entailment": 0.9046
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The portion of the adjusted consolidated cash flow for the twelve months ended December 31, 2005, related to non-tower cash flow is -5.7508.",
+          "supported": false,
+          "reason": "The context provides the adjusted consolidated cash flow for the twelve months ended December 31, 2005, which is $531,822, and the non-tower cash flow, which is $139,590. However, there is no information provided to calculate a specific portion of the adjusted consolidated cash flow related to non-tower cash flow as a percentage or fraction. The statement does not directly follow from the given context."
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2013/page_54.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percent of the total freight revenues from agriculture was 16.66%",
+          "supported": false,
+          "entailment": 0.0052
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percent of the total freight revenues from agriculture was 16.66%",
+          "supported": false,
+          "reason": "The context does not provide the total freight revenues for comparison to calculate the percentage of revenues from agriculture. The context only lists the agricultural revenues for 2013, 2012, and 2011 without mentioning the total freight revenues for those years."
+        }
+      ]
+    },
+    {
+      "qa_id": "MAS/2018/page_60.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The revised purchase price of Kichler dedicates 139.1304 to goodwill.",
+          "supported": false,
+          "entailment": 0.0002
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The revised purchase price of Kichler dedicates 139.1304 to goodwill.",
+          "supported": false,
+          "reason": "The context provides the goodwill figures for both initial and revised values, but does not provide the total purchase price or the specific allocation of 139.1304 to goodwill. The context only indicates that the goodwill of revised is 64, and the goodwill of initial is 46, without giving the total purchase price or the exact allocation to goodwill."
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2018/page_31.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The 2019 pre-tax pension and postretirement expense will be 28.125 percent higher than that of 2018.",
+          "supported": false,
+          "entailment": 0.0013
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The 2019 pre-tax pension and postretirement expense will be 28.125 percent higher than that of 2018.",
+          "supported": false,
+          "reason": "The context only provides the absolute values for 2018 and 2019 expenses, without specifying the percentage change. The calculation to determine the percentage increase would require additional steps not provided in the context."
+        }
+      ]
+    },
+    {
+      "qa_id": "MAS/2018/page_35.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The difference in operating profit margins as adjusted between 2016 and 2017 was -60.",
+          "supported": false,
+          "entailment": 0.0008
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The difference in operating profit margins as adjusted between 2016 and 2017 was -60.",
+          "supported": false,
+          "reason": "The context provides the operating profit margins as adjusted for 2016 (15.1%) and 2017 (15.7%). The difference between these two years is 15.7% - 15.1% = 0.6%, not -60."
+        }
+      ]
+    },
+    {
+      "qa_id": "BLL/2007/page_35.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The total amount of cash outflow used for shares repurchased during November 2007 is 58864176.24 million.",
+          "supported": false,
+          "entailment": 0.0482
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The total amount of cash outflow used for shares repurchased during November 2007 is 58864176.24 million.",
+          "supported": false,
+          "reason": "The context provides the total number of shares purchased and the average price paid per share for the period from November 26 to December 31, 2007, but it does not provide any information about the total cash outflow or the total amount in millions. The calculation of the total cash outflow would require multiplying the total number of shares purchased by the average price paid per share, which is not provided in the context."
+        }
+      ]
+    },
+    {
+      "qa_id": "APTV/2014/page_49.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The lowest return for the first month of the investment is $100.98.",
+          "supported": false,
+          "entailment": 0.0047
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The lowest return for the first month of the investment is $100.98.",
+          "supported": false,
+          "reason": "The context shows that for Delphi Automotive PLC, the value on December 31, 2011, is $100.98, which is the first month after the initial investment on November 17, 2011. This value is higher than the initial investment of $100.00, indicating an increase rather than a decrease."
+        }
+      ]
+    },
+    {
+      "qa_id": "JPM/2018/page_110.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The ratio of htm investment securities (period-end) in 2017 compared to investment securities portfolio (period 2013 end) was 0.1925.",
+          "supported": false,
+          "entailment": 0.0372
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The ratio of htm investment securities (period-end) in 2017 compared to investment securities portfolio (period 2013 end) was 0.1925.",
+          "supported": false,
+          "reason": "The context provides the values for htm investment securities (period-end) in 2017 ($47,733 million) and investment securities portfolio (period 2013 end) in 2017 ($260,115 million). The ratio calculated is 47733 / 260115 = 0.1834, which does not match the stated ratio of 0.1925."
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2013/page_54.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "10.0416 percent of total freight revenues was automotive in 2013.",
+          "supported": false,
+          "entailment": 0.3732
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "10.0416 percent of total freight revenues was automotive in 2013.",
+          "supported": false,
+          "reason": "The context does not provide the total freight revenues for 2013 or the specific percentage of revenues from the automotive group. The context only lists the total freight revenues and the revenues from the automotive group for three years, but it does not give enough information to calculate the percentage for 2013."
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2011/page_76.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "11.9794 percent of total accounts payable and other current liabilities was accrued casualty costs at december 31, 2010.",
+          "supported": true,
+          "entailment": 0.8183
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "11.9794 percent of total accounts payable and other current liabilities was accrued casualty costs at december 31, 2010.",
+          "supported": false,
+          "reason": "The context provides the total accounts payable and other current liabilities for December 31, 2010 ($2713) and the accrued casualty costs for the same date ($325). However, it does not provide enough information to calculate the percentage of total accounts payable and other current liabilities that were accrued casualty costs. The calculation would be (325 / 2713) * 100 = approximately 11.97%, but the exact percentage provided in the statement is not directly supported by the given data."
+        }
+      ]
+    },
+    {
+      "qa_id": "INTC/2013/page_33.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The net revenues changed by 1.201 percent.",
+          "supported": true,
+          "entailment": 0.9764
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The net revenues changed by 1.201 percent.",
+          "supported": false,
+          "reason": "The context provides the net revenue changes for different periods, but does not provide a direct calculation or mention of a 1.201 percent change. The closest change mentioned is $351 from September 28, 2013 to December 28, 2013, which represents a change of approximately 2.6% ($351 / $13483 * 100)."
+        }
+      ]
+    },
+    {
+      "qa_id": "ALLE/2016/page_43.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The lowest return for the investment in the year 2015 was 91.16.",
+          "supported": false,
+          "entailment": 0.1756
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The lowest return for the investment in the year 2015 was 91.16.",
+          "supported": false,
+          "reason": "The context provides the returns for Allegion plc for each year, and the lowest return for 2015 is 91.16, not the lowest overall."
+        }
+      ]
+    },
+    {
+      "qa_id": "PNC/2009/page_41.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage gain recognized on the commercial mortgages held for sale in 2009 was -25.0535.",
+          "supported": false,
+          "entailment": 0.0024
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage gain recognized on the commercial mortgages held for sale in 2009 was -25.0535.",
+          "supported": false,
+          "reason": "The context does not provide specific details about the gains or losses on commercial mortgages held for sale in 2009, nor does it give the necessary financial figures to calculate such a percentage. The context only mentions net gains and losses on the valuation and sale of commercial mortgage loans, but not the exact amounts or the percentage change from one year to another."
+        }
+      ]
+    },
+    {
+      "qa_id": "APD/2014/page_39.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The operating margin for 2014 was 0.1958.",
+          "supported": false,
+          "entailment": 0.0025
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The operating margin for 2014 was 0.1958.",
+          "supported": false,
+          "reason": "The context provides the operating income for 2014 but does not provide any information about the revenue or cost of goods sold (COGS) necessary to calculate the operating margin. The operating margin is calculated as operating income divided by revenue or COGS, and without this information, the statement cannot be directly inferred from the given context."
+        }
+      ]
+    },
+    {
+      "qa_id": "UPS/2006/page_32.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The performance difference of the class b common stock of United Parcel Service, Inc. and the S&P 500 index for the five years ended 12/31/2006 is 13.9.",
+          "supported": false,
+          "entailment": 0.0313
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The performance difference of the class b common stock of United Parcel Service, Inc. and the S&P 500 index for the five years ended 12/31/2006 is 13.9.",
+          "supported": true,
+          "reason": "The context provides the end-of-year values for both the S&P 500 index and UPS Class B common stock on December 31, 2006. The S&P 500 index value is $135.02, while the UPS Class B common stock value is $148.92. The difference between these two values is $148.92 - $135.02 = $13.90, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "ANSS/2013/page_55.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "47.3166 percent of total contractual obligations comes from global headquarters operating leases.",
+          "supported": false,
+          "entailment": 0.0049
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "47.3166 percent of total contractual obligations comes from global headquarters operating leases.",
+          "supported": false,
+          "reason": "The context provides the total contractual obligations and the breakdown of payments due by period for both global headquarters operating leases and other operating leases. However, it does not provide the exact percentage contribution of the global headquarters operating leases to the total contractual obligations. To calculate this percentage, we would need to know the total amount of the global headquarters operating leases, which is not provided in the context."
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2015/page_85.pdf-4::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The change in millions of trade receivables sold from 2014 to 2015 was -768.",
+          "supported": false,
+          "entailment": 0.0777
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The change in millions of trade receivables sold from 2014 to 2015 was -768.",
+          "supported": false,
+          "reason": "The context provides the values for trade receivables sold as of December 31, 2015 ($888 million), 2014 ($120 million), and 2013 ($146 million). The change from 2014 to 2015 is calculated as $888 million - $120 million = $768 million, not -768 million."
+        }
+      ]
+    },
+    {
+      "qa_id": "SLB/2012/page_44.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The average price per share increased by 25.853 from 2010 to 2011.",
+          "supported": false,
+          "entailment": 0.0021
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The average price per share increased by 25.853 from 2010 to 2011.",
+          "supported": true,
+          "reason": "The average price per share in 2010 was $64.48 and in 2011 it was $81.15. The increase from 2010 to 2011 is calculated as ($81.15 - $64.48) / $64.48 = 0.25853 or 25.853%. This matches the statement exactly."
+        }
+      ]
+    },
+    {
+      "qa_id": "SLB/2012/page_44.pdf-4::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The growth rate of the cash flows from operations from 2011 to 2012 was 12.2951 percent.",
+          "supported": false,
+          "entailment": 0.0039
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The growth rate of the cash flows from operations from 2011 to 2012 was 12.2951 percent.",
+          "supported": false,
+          "reason": "The context provides the cash flow figures for 2011 ($6.1 billion) and 2012 ($6.8 billion). The growth rate calculation would be ((6.8 - 6.1) / 6.1) * 100 = 11.48%, not 12.2951 percent."
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2014/page_35.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The cost per car for the buyout of locomotives in 2012 was 454545.4545.",
+          "supported": false,
+          "entailment": 0.0029
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The cost per car for the buyout of locomotives in 2012 was 454545.4545.",
+          "supported": false,
+          "reason": "The context only provides the total amount ($75 million) for the buyout of 165 locomotives in 2012, without specifying the cost per locomotive. Therefore, the exact cost per locomotive cannot be directly inferred from the given information."
+        }
+      ]
+    },
+    {
+      "qa_id": "HII/2017/page_47.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The return on total assets during 2013 was 4.2165.",
+          "supported": false,
+          "entailment": 0.0539
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The return on total assets during 2013 was 4.2165.",
+          "supported": false,
+          "reason": "The context provides the total assets for 2013 ($6,190) and the net earnings (loss) for 2013 ($261), but does not provide any information to calculate the return on total assets. The return on total assets is calculated as net income divided by total assets, and the given number (4.2165) is not derived from the provided data."
+        }
+      ]
+    },
+    {
+      "qa_id": "HII/2017/page_47.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The return on total assets during 2014 was 5.4175.",
+          "supported": false,
+          "entailment": 0.1255
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The return on total assets during 2014 was 5.4175.",
+          "supported": false,
+          "reason": "The context provides the total assets and net earnings for each year, but does not provide any information to calculate the return on total assets. The return on total assets is calculated as net earnings divided by total assets, and there is no data provided to make this calculation for 2014."
+        }
+      ]
+    },
+    {
+      "qa_id": "IP/2005/page_19.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The change in industry segment operating profits between 2003 and 2004 was 306.",
+          "supported": false,
+          "entailment": 0.1123
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The change in industry segment operating profits between 2003 and 2004 was 306.",
+          "supported": true,
+          "reason": "The context provides the industry segment operating profits for 2003 ($1734 million) and 2004 ($2040 million). The difference between these two values is $2040 - $1734 = $306 million, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "DVN/2014/page_85.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "In 2014, 80 percent of the total amortization amount was from intangibles.",
+          "supported": false,
+          "entailment": 0.0001
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "In 2014, 80 percent of the total amortization amount was from intangibles.",
+          "supported": false,
+          "reason": "The context only provides the amortization expense for intangibles for the year ended December 31, 2014, which is approximately $36 million. There is no information provided about the total amortization amount for 2014 or the percentage of the total amount attributed to intangibles. Therefore, it cannot be directly inferred that 80 percent of the total amortization amount was from intangibles."
+        }
+      ]
+    },
+    {
+      "qa_id": "MRO/2004/page_36.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The change in SSA 2019s revenues from the sale of non-petroleum merchandise in 2004 compared with 2003 was 0.1 billion.",
+          "supported": false,
+          "entailment": 0.0004
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The change in SSA 2019s revenues from the sale of non-petroleum merchandise in 2004 compared with 2003 was 0.1 billion.",
+          "supported": true,
+          "reason": "The context provides the revenue figures for 2004 ($2.3 billion) and 2003 ($2.2 billion). The difference between these two values is $0.1 billion, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "APD/2016/page_96.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The short-term debt as a percent of total debt in the year 2016 is 15.0324.",
+          "supported": false,
+          "entailment": 0.4022
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The short-term debt as a percent of total debt in the year 2016 is 15.0324.",
+          "supported": true,
+          "reason": "The context provides the total debt for 2016 ($6225.2) and the short-term borrowings for 2016 ($935.8). The calculation for the percentage of short-term debt to total debt would be (935.8 / 6225.2) * 100 = 15.0324%. This value matches the statement exactly."
+        }
+      ]
+    },
+    {
+      "qa_id": "AES/2016/page_185.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The maximum premium on the dp&l preferred stock as of december 31, 2015, was 103.",
+          "supported": false,
+          "entailment": 0.2265
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The maximum premium on the dp&l preferred stock as of december 31, 2015, was 103.",
+          "supported": true,
+          "reason": "The context states that the per-share redemption prices for dp&l's preferred stock were between $101 and $103 per share, plus cumulative preferred dividends. This indicates the maximum premium is $103 over par value (which is typically $100), aligning with the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "PNC/2013/page_62.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "In 2013, the change in total residential mortgages was 864 million.",
+          "supported": false,
+          "entailment": 0.0042
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "In 2013, the change in total residential mortgages was 864 million.",
+          "supported": false,
+          "reason": "The context provides the total residential mortgages for December 31, 2013 ($1,356 million) and December 31, 2012 ($2,220 million). The change in total residential mortgages from 2012 to 2013 is calculated as 1356 - 2220 = -864 million, indicating a decrease rather than an increase."
+        }
+      ]
+    },
+    {
+      "qa_id": "CME/2017/page_97.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "8 directors can be elected by the class b-1 and class b-2 shareholders.",
+          "supported": true,
+          "entailment": 0.732
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "8 directors can be elected by the class b-1 and class b-2 shareholders.",
+          "supported": false,
+          "reason": "The context specifies that class B-1 shareholders elect 3 directors and class B-2 shareholders elect 2 directors, making a total of 5 directors elected by these classes. There is no mention of any additional directors being elected by these classes alone."
+        }
+      ]
+    },
+    {
+      "qa_id": "LKQ/2018/page_83.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "49.5238 percent of the total self-insurance reserves was classified as current in 2018.",
+          "supported": true,
+          "entailment": 0.9764
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "49.5238 percent of the total self-insurance reserves was classified as current in 2018.",
+          "supported": false,
+          "reason": "The context only provides the total self-insurance reserves for 2018 and 2017, and does not provide any information about the percentage of these reserves that were classified as current. The specific percentage (49.5238%) is not supported by the given context."
+        }
+      ]
+    },
+    {
+      "qa_id": "AMAT/2014/page_35.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "21.3333 percent of warehouse locations are in North America.",
+          "supported": true,
+          "entailment": 0.9954
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "21.3333 percent of warehouse locations are in North America.",
+          "supported": false,
+          "reason": "The context provides the number of warehouse locations in North America (16), but does not provide the total number of warehouse locations. Without the total number, we cannot calculate the percentage of warehouse locations in North America."
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2017/page_99.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The growth rate of the net earnings attributable to pmi is -13.3774.",
+          "supported": false,
+          "entailment": 0.0018
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The growth rate of the net earnings attributable to pmi is -13.3774.",
+          "supported": false,
+          "reason": "The context provides the net earnings for the years 2017, 2016, and 2015, but does not provide enough information to calculate the exact growth rate. The provided growth rate is not directly inferable from the given data."
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2014/page_25.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage change in fuel surcharge program freight revenue from 2012 to 2013 was 5.0696 percent.",
+          "supported": false,
+          "entailment": 0.0126
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage change in fuel surcharge program freight revenue from 2012 to 2013 was 5.0696 percent.",
+          "supported": false,
+          "reason": "The context provides the percentage change in freight revenues from 2012 to 2013 as 5%, not 5.0696%. The context does not provide the exact formula for calculating the percentage change, so we can only infer the percentage change as stated."
+        }
+      ]
+    },
+    {
+      "qa_id": "JKHY/2014/page_30.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The cumulative total return on the S&P 500 for the five-year period was 136.98.",
+          "supported": false,
+          "entailment": 0.3005
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The cumulative total return on the S&P 500 for the five-year period was 136.98.",
+          "supported": true,
+          "reason": "The context provides the S&P 500 values for each year from 2009 to 2014. The cumulative total return is calculated as the final value (236.98) minus the initial value (100.00), which equals 136.98. This matches the statement exactly."
+        }
+      ]
+    },
+    {
+      "qa_id": "AON/2009/page_46.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The lowest segment operating income is 846.",
+          "supported": false,
+          "entailment": 0.0249
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The lowest segment operating income is 846.",
+          "supported": true,
+          "reason": "The context provides the segment operating income for 2009, 2008, and 2007, which are 900, 846, and 954 respectively. The lowest value among these is 846, which corresponds to the year 2008."
+        }
+      ]
+    },
+    {
+      "qa_id": "HIG/2008/page_318.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The weight of the property&casualty operations is 43.5652 percent relative to the total statutory capital.",
+          "supported": false,
+          "entailment": 0.0059
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The weight of the property&casuality operations is 43.5652 percent relative to the total statutory capital.",
+          "supported": false,
+          "reason": "The context provides specific figures for the property & casualty operations for 2008 and 2007, but does not provide any information about the total statutory capital or how the property & casualty operations relate to it. Therefore, we cannot infer the percentage of the property & casualty operations relative to the total statutory capital from the given context."
+        }
+      ]
+    },
+    {
+      "qa_id": "FBHS/2017/page_43.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage growth in the defined benefit plan income from 2016 to 2017 was 44.8276 percent.",
+          "supported": false,
+          "entailment": 0.0034
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage growth in the defined benefit plan income from 2016 to 2017 was 44.8276 percent.",
+          "supported": true,
+          "reason": "The context provides the defined benefit plan income for both 2016 and 2017, which are 2.9 and 4.2 respectively. The calculation for the percentage growth is ((4.2 - 2.9) / 2.9) * 100 = 44.8276 percent. This matches the statement exactly."
+        }
+      ]
+    },
+    {
+      "qa_id": "L/2015/page_59.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The return on investment of an investment in Loews common stock from 2010 to 2011 was -2.63 percent.",
+          "supported": false,
+          "entailment": 0.0008
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The return on investment of an investment in Loews common stock from 2010 to 2011 was -2.63 percent.",
+          "supported": true,
+          "reason": "The return on investment can be calculated as (value in 2011 - value in 2010) / value in 2010 * 100 = (97.37 - 100.0) / 100.0 * 100 = -2.63%. This matches the statement exactly."
+        }
+      ]
+    },
+    {
+      "qa_id": "AES/2016/page_185.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The change in millions of ipalco common stock from 2015 to 2016 was 158.",
+          "supported": true,
+          "entailment": 0.9791
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The change in millions of ipalco common stock from 2015 to 2016 was 158.",
+          "supported": true,
+          "reason": "The context provides the values of ipalco common stock for 2016 ($618) and 2015 ($460). The difference between these two values is $158, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "AAPL/2005/page_83.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The lowest amount of research and development credit net in the three year period was -7 million.",
+          "supported": false,
+          "entailment": 0.0605
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The lowest amount of research and development credit net in the three year period was -7 million.",
+          "supported": true,
+          "reason": "The context shows that the research and development credit net for 2005 is -26 million, for 2004 is -5 million, and for 2003 is -7 million. The lowest value among these is -7 million."
+        }
+      ]
+    },
+    {
+      "qa_id": "LMT/2010/page_42.pdf-4::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage change in capital expenditures for property, plant and equipment from 2008 to 2009 was -7.9914%",
+          "supported": false,
+          "entailment": 0.2417
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage change in capital expenditures for property, plant and equipment from 2008 to 2009 was -7.9914%",
+          "supported": true,
+          "reason": "The context provides the capital expenditures for 2008 ($926 million), 2009 ($852 million), and 2010 ($820 million). The calculation for the percentage change from 2008 to 2009 would be ((852 - 926) / 926) * 100 = -7.9914%. This value matches the statement exactly."
+        }
+      ]
+    },
+    {
+      "qa_id": "ETR/2013/page_118.pdf-2::q0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The amount of long-term debt due in the next 36 months for Entergy Corporation as of December 31, 2013, is 1324616 million.",
+          "supported": true,
+          "entailment": 0.9921
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The amount of long-term debt due in the next 36 months for Entergy Corporation as of December 31, 2013, is 1324616 million.",
+          "supported": false,
+          "reason": "The context only provides the amount of long-term debt for 2018, which is $1,324,616 thousand. It does not provide information about the long-term debt due in the next 36 months specifically for 2013."
+        }
+      ]
+    },
+    {
+      "qa_id": "AMAT/2013/page_18.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The percentage change in rd&e spendings from 2013 to 2014 is -8.7591.",
+          "supported": false,
+          "entailment": 0.0045
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The percentage change in rd&e spendings from 2013 to 2014 is -8.7591.",
+          "supported": false,
+          "reason": "The context only provides data for 2013, 2012, and 2011. There is no information about the spending in 2014, so we cannot calculate the percentage change from 2013 to 2014."
+        }
+      ]
+    },
+    {
+      "qa_id": "NKE/2016/page_37.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "As of May 31, 2016, 83.6364 percent of cash and cash equivalents was held in foreign subsidiaries.",
+          "supported": false,
+          "entailment": 0.0061
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "As of May 31, 2016, 83.6364 percent of cash and cash equivalents was held in foreign subsidiaries.",
+          "supported": true,
+          "reason": "The context states that out of $5.5 billion, $4.6 billion was held by foreign subsidiaries. The calculation for the percentage is ($4.6 / $5.5) * 100 = 83.6364%. This matches the statement exactly."
+        }
+      ]
+    },
+    {
+      "qa_id": "MS/2014/page_267.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 0.0,
+      "nli_verdicts": [
+        {
+          "statement": "The net change in shares of common stock outstanding from 2013 to 2014 is 20 million.",
+          "supported": false,
+          "entailment": 0.0088
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The net change in shares of common stock outstanding from 2013 to 2014 is 20 million.",
+          "supported": false,
+          "reason": "The context provides the number of shares outstanding at the beginning of 2013 (1974 million) and at the beginning of 2014 (1945 million). The net change would be calculated as 1945 - 1974 = -29 million, not 20 million."
+        }
+      ]
+    },
+    {
+      "qa_id": "CB/2010/page_200.pdf-3::q0",
+      "n_statements": 1,
+      "nli_score": 0.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The average potential anti-dilutive share conversions from 2008 to 2010 were 708716.6667.",
+          "supported": false,
+          "entailment": 0.0008
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The average potential anti-dilutive share conversions from 2008 to 2010 were 708716.6667.",
+          "supported": true,
+          "reason": "The context provides the exact numbers for the potential anti-dilutive share conversions for each year: 256868 shares in 2010, 1230881 shares in 2009, and 638401 shares in 2008. The average can be calculated as (256868 + 1230881 + 638401) / 3 = 708716.6667, which matches the statement."
+        }
+      ]
+    },
+    {
+      "qa_id": "DRE/2009/page_72.pdf-1::q0",
+      "n_statements": 1,
+      "nli_score": 1.0,
+      "llm_score": 1.0,
+      "nli_verdicts": [
+        {
+          "statement": "The value of the RSU's granted is 1583616 * 9.32.",
+          "supported": true,
+          "entailment": 0.9852
+        }
+      ],
+      "llm_verdicts": [
+        {
+          "statement": "The value of the RSU's granted is 1583616 * 9.32.",
+          "supported": true,
+          "reason": "The context provides the number of RSUs granted (1583616) and the weighted average grant date fair value ($9.32). The statement can be directly inferred from these values, as the total value would be the product of the two."
+        }
+      ]
+    }
+  ],
+  "config": {
+    "dataset": "finqa",
+    "split": "dev",
+    "nli_verifier": "cross-encoder/nli-deberta-v3-base",
+    "verify_threshold": 0.5,
+    "llm_verifier": "local:Qwen/Qwen2.5-7B-Instruct",
+    "n_compared": 50,
+    "n_errors": 0,
+    "seconds": 628.9
+  }
+}

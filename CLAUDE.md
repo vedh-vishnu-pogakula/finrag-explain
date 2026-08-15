@@ -55,6 +55,38 @@ not a tradeoff.
   inference proves too slow — but open weights are the stronger reproducibility claim in a
   viva, so prefer local.
 
+## Month 5 finding that reframes the paper — read before writing anything up
+
+Measured, on the frozen 7B config, 250 questions per dataset. **A reported faithfulness score
+is not interpretable without naming the verifier that produced it.**
+
+- Same answers, same contexts, three independent NLI verifiers: FinQA mean faithfulness
+  **0.163 / 0.237 / 0.383**. Adding RAGAS's own LLM verifier gives 0.34 (FinQA) and 0.80
+  (TAT-QA) against the NLI verifier's 0.24 / 0.37.
+- RAGAS presents its LLM verifier (`Faithfulness`) and its model verifier
+  (`FaithfulnesswithHHEM`) as interchangeable. Statement-level agreement between an NLI
+  verifier and the LLM one is **at or below chance**: Cohen's kappa **-0.147** (FinQA),
+  **+0.157** (TAT-QA), n=50 each.
+- Validated against a *deterministic* reference — operand provenance from the grounding layer,
+  which involves no model at all. If every figure an answer consumed is provably in the
+  retrieved evidence, the answer is grounded by construction. Separation between grounded and
+  ungrounded answers: **-0.023, +0.027, +0.103** across the three NLI verifiers. Essentially
+  none.
+- Mechanism, both datasets, p<0.001: faithfulness tracks whether the answer *restates* a
+  figure present in the evidence (FinQA 0.476 vs 0.195; TAT-QA 0.502 vs 0.154), not whether it
+  is grounded. NLI cannot verify arithmetic, so a correct computed answer looks unsupported
+  while a wrong copied one looks supported.
+
+**Do not state this as "RAGAS faithfulness is broken".** The claim that survives the evidence
+is narrower and stronger: *verifier choice — which RAGAS documents as an efficiency tradeoff —
+dominates the score, and NLI-based verifiers do not measure groundedness on derived answers.*
+The LLM verifier was only compared on 50 questions per dataset and was frequently *right* where
+the NLI verifier was wrong (it reads "$(2,085)" as -2085 and performs arithmetic). Whether it
+separates against the deterministic reference is still open.
+
+**Consequence for B2:** report faithfulness as a *table across verifiers*, never as one
+number. A single B2 faithfulness figure would contradict the paper's own thesis.
+
 ## The two contributions (do not scope-creep beyond these)
 
 1. **Retrieval Attribution** — quantify which query tokens/entities/numeric values drove a
@@ -72,10 +104,16 @@ contributions but is not itself a novelty claim.
 
 ## Base paper / closest related work
 
-- **Base paper (architecture to extend):** Bayesian RAG — Ngartera, Nadarajah & Koina,
+**Wording that must be fixed before submission:** this project does **not** extend the base
+paper's architecture. MC-Dropout uncertainty-penalised retrieval was never implemented. What
+it does is address two gaps that paper leaves open (no attribution trail, no faithfulness-
+metric testing). Say "addresses limitations of", never "extends" or "builds on" — claiming to
+extend an architecture that appears nowhere in the code is exactly what unravels in a viva.
+
+- **Base paper (closest architecture, NOT extended in code):** Bayesian RAG — Ngartera,
   *Frontiers in Artificial Intelligence*, 2025/2026. MC-Dropout uncertainty-penalized retrieval
-  scoring on SEC 10-K filings. No source-attribution trail, no faithfulness-metric testing — this
-  project extends it in both directions.
+  scoring on SEC 10-K filings. No source-attribution trail, no faithfulness-metric testing —
+  those are the two gaps this project addresses. Nadarajah & Koina are co-authors.
 - **Closest peer-reviewed competitor to differentiate from:** FinRAG-12B (Katerenchuk, Duboue &
   Evanini, ACL 2026 Industry Track) — production banking RAG system with document-level citation
   tags and a static faithfulness sub-score. Proprietary fine-tune, not something to reproduce in
