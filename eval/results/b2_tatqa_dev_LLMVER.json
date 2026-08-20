@@ -1,0 +1,54 @@
+{
+  "overall": {
+    "n": 250,
+    "n_scored": 231,
+    "n_unscored": 19,
+    "faithfulness": 0.7007,
+    "mean_statements": 1.332
+  },
+  "by_failure_mode": {
+    "None": {
+      "n": 119,
+      "n_scored": 119,
+      "n_unscored": 0,
+      "faithfulness": 0.8179,
+      "mean_statements": 1.2017
+    },
+    "generation": {
+      "n": 96,
+      "n_scored": 96,
+      "n_unscored": 0,
+      "faithfulness": 0.5888,
+      "mean_statements": 1.75
+    },
+    "declined": {
+      "n": 26,
+      "n_scored": 8,
+      "n_unscored": 18,
+      "faithfulness": 0.5,
+      "mean_statements": 0.4231
+    },
+    "retrieval": {
+      "n": 9,
+      "n_scored": 8,
+      "n_unscored": 1,
+      "faithfulness": 0.5,
+      "mean_statements": 1.2222
+    }
+  },
+  "config": {
+    "dataset": "tatqa",
+    "split": "dev",
+    "baseline": "B2_rag_plus_ragas",
+    "metric": "ragas faithfulness, llm verifier",
+    "verifier": "cross-encoder/nli-deberta-v3-base",
+    "verify_threshold": 0.5,
+    "judge": [
+      "local:Qwen/Qwen2.5-7B-Instruct"
+    ],
+    "n_records": 250,
+    "n_missing_statements": 0,
+    "seconds": 2612.7,
+    "statement_cache": "eval/results/checkpoints/statements_tatqa_dev.jsonl"
+  }
+}

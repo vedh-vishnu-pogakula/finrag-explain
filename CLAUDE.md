@@ -77,12 +77,24 @@ is not interpretable without naming the verifier that produced it.**
   is grounded. NLI cannot verify arithmetic, so a correct computed answer looks unsupported
   while a wrong copied one looks supported.
 
-**Do not state this as "RAGAS faithfulness is broken".** The claim that survives the evidence
-is narrower and stronger: *verifier choice — which RAGAS documents as an efficiency tradeoff —
-dominates the score, and NLI-based verifiers do not measure groundedness on derived answers.*
-The LLM verifier was only compared on 50 questions per dataset and was frequently *right* where
-the NLI verifier was wrong (it reads "$(2,085)" as -2085 and performs arithmetic). Whether it
-separates against the deterministic reference is still open.
+**RESOLVED by the full 250-question LLM-verifier run.** RAGAS's *default* LLM verifier works;
+the cheap model-based verifier is the one that breaks. Separation between correct and
+incorrect answers:
+
+| verifier | FinQA correct / wrong | sep | TAT-QA correct / wrong | sep |
+|---|---|---|---|---|
+| NLI cross-encoder | 0.186 / 0.284 | **-0.098 (inverted)** | 0.457 / 0.311 | +0.146 |
+| **LLM (RAGAS default)** | **0.513 / 0.256** | **+0.257** | **0.818 / 0.589** | **+0.229** |
+
+**Do not state this as "RAGAS faithfulness is broken" — that was an earlier, wrong reading.**
+The defensible claim is a *domain-specific counterexample to the field's own prescription*:
+RAGBench and ARES both argue for replacing RAGAS's LLM judge with cheaper fine-tuned models,
+and RAGAS itself ships `FaithfulnesswithHHEM` for cost reasons. On numerical financial QA
+that substitution **inverts the metric**. The mechanism is measured: entailment models cannot
+verify arithmetic, so faithfulness collapses to lexical restatement (p<0.001, both datasets).
+
+That makes the LLM judge the one to use here and the cheap verifier a trap — the opposite of
+the general-domain recommendation, which is precisely what makes it worth publishing.
 
 **Consequence for B2:** report faithfulness as a *table across verifiers*, never as one
 number. A single B2 faithfulness figure would contradict the paper's own thesis.

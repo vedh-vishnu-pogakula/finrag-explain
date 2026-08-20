@@ -32,13 +32,14 @@ Claude Code reads it automatically at the start of every session in this repo.
   - [x] Three estimators: occlusion, RankingSHAP-anchored Shapley, Rank-LIME-anchored surrogate
   - [x] Two value functions: per-chunk score, and rank-biased-overlap over the whole ordering
   - [x] Faithfulness evaluation (comprehensiveness / sufficiency vs a random baseline)
-- [~] Month 5 — Evidence grounding + RAGAS integration (B2)
+- [x] Month 5 — Evidence grounding + RAGAS integration (B2)
   - [x] Grounding (`src/grounding/`) — sentence/table-row segmentation, local DeBERTa-MNLI
         entailment, operand-provenance grounding for numeric answers
   - [x] RAGAS wired to a local judge (`src/faithfulness/ragas_local.py`) with a tested guard
         against its OpenAI default; two-stage caching (`staged.py`) so Month 6 perturbations
         cost no LLM calls
-  - [ ] B2 runner + B2 numbers
+  - [x] B2 across four verifiers, both datasets — **verifier choice changes the metric's
+        discriminative power by +0.349 on FinQA** (see below)
 - [ ] Month 6 — Faithfulness perturbation testing (Contribution 2)
 - [ ] Month 7 — Full evaluation (B1/B2/B3) + Streamlit demo + human study
 - [ ] Month 8 — Paper write-up, workshop submission
@@ -349,6 +350,70 @@ so a raw maximum across sentences fires on ordinary multi-year tables. It report
 TAT-QA answers as contradicted, which said nothing about faithfulness; gated properly it is
 0.180, and it means what the name says.
 
+## Run B2 — RAG + RAGAS faithfulness (Month 5)
+
+Faithfulness is two stages with different costs, and separating them is what makes Month 6
+affordable:
+
+```bash
+# stage 1: decompose answers into statements. One judge call per question -> Colab's free T4.
+python eval/baselines/run_b2.py --dataset finqa --split dev --phase decompose
+
+# stage 2: verify statements against the context. Local NLI, ~30s for 250 questions, no GPU.
+python eval/baselines/run_b2.py --dataset finqa --split dev --phase verify
+
+# stage 2 with RAGAS's UNMODIFIED LLM verifier (one judge call per question; Colab)
+python eval/baselines/run_b2.py --dataset finqa --split dev --phase verify \
+    --verifier llm --out-tag _LLMVER
+```
+
+Decomposition reads only `(question, answer)` — never the retrieved context — so its output is
+invariant under the context perturbations Month 6 applies. Caching it is the difference between
+~500 LLM calls and several thousand.
+
+### The Month 5 result: the verifier decides whether the metric works
+
+Same answers, same contexts, same RAGAS metric. Only the stage-2 verifier changes:
+
+| Dataset | Verifier | Correct | Wrong | Separation | p |
+|---|---|---:|---:|---:|---:|
+| FinQA | NLI cross-encoder | 0.186 | 0.284 | −0.098 | 0.076 <sub>n.s.</sub> |
+| FinQA | **LLM (RAGAS default)** | **0.513** | **0.262** | **+0.251** | **0.0002** |
+| TAT-QA | NLI cross-encoder | 0.457 | 0.311 | +0.146 | 0.021 |
+| TAT-QA | **LLM (RAGAS default)** | **0.818** | **0.576** | **+0.242** | **0.00006** |
+
+**Swapping the verifier changes the metric's discriminative power by +0.349 on FinQA.** RAGAS's
+LLM verifier separates correct from incorrect answers at p<0.001 on both datasets; the NLI
+verifier fails to on FinQA, and in the wrong direction. State this as *"fails to separate,
+directionally inverted"* — at p=0.076 the inversion itself is not significant.
+
+Three further measurements support it:
+
+- **Verifier disagreement is at chance.** Statement-level Cohen's kappa between the two
+  verifiers RAGAS presents as interchangeable: **−0.147** (FinQA), **+0.157** (TAT-QA), n=50.
+- **The absolute score is not stable either.** Three independent NLI checkpoints on identical
+  FinQA data: mean faithfulness **0.163 / 0.237 / 0.383**. Not one bad pick — a 2.3× spread.
+- **The mechanism is restatement, not grounding.** Faithfulness is far higher when the answer's
+  value literally appears in the evidence than when it was computed: FinQA 0.476 vs 0.195,
+  TAT-QA 0.502 vs 0.154, both p<0.001. Entailment models cannot verify arithmetic, so a correct
+  computed answer reads as unsupported while a wrong copied one reads as supported.
+
+**Why this is worth publishing.** RAGBench and ARES both argue for replacing RAGAS's LLM judge
+with cheaper fine-tuned models, and RAGAS ships `FaithfulnesswithHHEM` to do exactly that. On
+numerical financial QA that substitution destroys the metric. This is a domain-specific
+counterexample to the field's own prescription, with a measured mechanism — not a claim that
+RAGAS is broken.
+
+**Consequence:** B2 reports faithfulness as a *table across verifiers*, never as one number. A
+single B2 figure would contradict the paper's own thesis.
+
+**Reproducibility note.** RAGAS's `FaithfulnesswithHHEM` could not be run: Vectara's HHEM ships
+custom remote code that predates `transformers` 5.x and raises
+`AttributeError: ... 'all_tied_weights_keys'`. Downgrading was not an option — 5.15.0 produced
+every other number here. Stage 2 therefore uses standard NLI cross-encoders, and
+`eval/baselines/run_verifier_crosscheck.py` measures the substitution against RAGAS's LLM
+verifier rather than assuming it away.
+
 ## Run attribution (Contribution 1)
 
 Free, and never touches the generator — it only re-scores query variants against chunk
@@ -400,7 +465,7 @@ A negative sufficiency is real, not a bug: keeping only the top-weighted units s
 ## Tests
 
 ```bash
-pytest tests/ -v          # 148 tests, offline, ~16s
+pytest tests/ -v          # 154 tests, offline, ~17s
 pytest tests/ -m "not slow"   # skips the one test that loads the real embedding model
 ```
 
@@ -416,40 +481,37 @@ asserted to reject `__import__`, attribute access, comprehensions, names, divisi
 to reach. Two regression tests pin the bugs that cost the most to find — exemplar figures
 leaking into real answers, and a percent literal being mistaken for a calculation.
 
-## Next session
+## Next session — Month 6, Contribution 2
 
-Months 3–4 are done and B1's generation configuration is now frozen: `Qwen2.5-7B-Instruct` in
-4-bit, program-of-thought, three exemplars. **That configuration is an experimental constant** —
-B2 and B3 must be produced under exactly the same one, or the three baselines cannot be
-compared.
+Months 3–5 are done. The frozen generation configuration (`Qwen2.5-7B-Instruct` 4-bit,
+program-of-thought, three exemplars) is an **experimental constant**: B3 must use exactly the
+same one or the three baselines cannot be compared.
 
-Month 5's grounding half is done and reported above. What remains is the B2 runner and its
-numbers, and two things about it are already settled:
+Month 6 runs the perturbation audit, and Month 5's result sharpens its hypothesis. The original
+question was *"does RAGAS's faithfulness score move when the evidence it depends on is
+removed?"* The version worth testing now is:
 
-**The judge.** RAGAS's own factory signature is `llm_factory(model, provider="openai")` — the
-billed provider is the default *in code*, and `evaluate()` without an explicit `llm=`
-constructs it and charges on the first call. `src/faithfulness/ragas_local.py` supplies a
-local judge and three tested guards. Judge *quality* is the separate risk: a faithfulness
-metric scored by a weak judge cannot support a claim about when that metric fails, so
-verification runs on Vectara HHEM — an independent NLI model — while only the mechanical
-statement-decomposition step sits on the local LLM. Three model families stay separate on
-purpose: generator (Qwen), grounding (DeBERTa-MNLI), RAGAS verification (HHEM). Grounding
-must not share weights with RAGAS, or Contribution 2 would be testing a model against itself.
+> **Does the score move for the right reason, and does the answer depend on which verifier is
+> scoring it?**
 
-**The compute.** Faithfulness decomposes `(question, answer)` with the LLM and verifies
-`(statements, context)` with HHEM. Contribution 2 perturbs the *context*, so decomposition is
-invariant across perturbations — `src/faithfulness/staged.py` computes it once, caches it, and
-re-runs only the local verifier. That is the difference between ~4,500 LLM calls (about a day
-of free-tier GPU) and 500 one-time calls with a perturbation loop that costs nothing. Same
-guardrail as attribution: never re-run the invariant half inside a perturbation loop.
+The design follows from what is already built:
 
-Known rough edges, in the order they'd matter:
+1. **Grounding names the target.** For a numeric answer, operand provenance points at the exact
+   `(chunk_id, sentence_index)` supplying each figure — deterministically, no model involved.
+2. **Three conditions per question:** unperturbed control; remove the load-bearing sentence;
+   remove a *random* sentence. The random arm is not optional — removing any evidence lowers
+   the score somewhat, so a bare drop proves nothing. The claim rests on the **difference**.
+3. **The NLI verifier makes the sweep free.** Statements are cached and invariant under context
+   perturbation, so every condition is local NLI: no GPU, no cost, all 250 questions.
+4. **The LLM verifier costs one call per question per condition** and needs Colab. Run it on a
+   subset and report both — the contrast between the two verifiers *is* the result, exactly as
+   in B2.
 
-- `tatqa_loader.py::_merge_header_cells` can drop a wide title spanning multiple year columns
-  ("Years Ended September 30," sometimes attaches to only one of three year columns). Values
-  are still correct; only header context is thinned. Revisit if TAT-QA attribution looks off.
-- TAT-QA table-evidence gold IDs remain a documented heuristic (now derivation-operand based,
-  96.9% coverage of dev). Fine for retrieval eval; do not treat as ground truth for
-  attribution correctness.
-- `requirements.txt` is still unpinned. The environment is now confirmed working end to end,
-  so pinning it with `pip freeze` is overdue per the Month 2 guardrail.
+**Prediction to test, not to assume:** if the NLI verifier is tracking restatement rather than
+grounding, removing the load-bearing sentence should move it no more than removing a random
+one, while the LLM verifier should show a clear gap. That would be a second, independent line
+of evidence for the Month 5 finding — arrived at by perturbation rather than by correlation.
+
+**Do not** call `ragas.evaluate()` inside the perturbation loop. It would recompute statement
+decomposition for every condition — thousands of LLM calls reproducing a result that cannot
+change. `src/faithfulness/staged.py` exists to prevent exactly that.

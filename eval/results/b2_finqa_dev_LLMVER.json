@@ -1,0 +1,54 @@
+{
+  "overall": {
+    "n": 250,
+    "n_scored": 235,
+    "n_unscored": 15,
+    "faithfulness": 0.383,
+    "mean_statements": 0.956
+  },
+  "by_failure_mode": {
+    "generation": {
+      "n": 117,
+      "n_scored": 117,
+      "n_unscored": 0,
+      "faithfulness": 0.2564,
+      "mean_statements": 1.0342
+    },
+    "None": {
+      "n": 113,
+      "n_scored": 113,
+      "n_unscored": 0,
+      "faithfulness": 0.5133,
+      "mean_statements": 1.0
+    },
+    "retrieval": {
+      "n": 10,
+      "n_scored": 5,
+      "n_unscored": 5,
+      "faithfulness": 0.4,
+      "mean_statements": 0.5
+    },
+    "declined": {
+      "n": 10,
+      "n_scored": 0,
+      "n_unscored": 10,
+      "faithfulness": null,
+      "mean_statements": 0.0
+    }
+  },
+  "config": {
+    "dataset": "finqa",
+    "split": "dev",
+    "baseline": "B2_rag_plus_ragas",
+    "metric": "ragas faithfulness, llm verifier",
+    "verifier": "cross-encoder/nli-deberta-v3-base",
+    "verify_threshold": 0.5,
+    "judge": [
+      "local:Qwen/Qwen2.5-7B-Instruct"
+    ],
+    "n_records": 250,
+    "n_missing_statements": 0,
+    "seconds": 2542.9,
+    "statement_cache": "eval/results/checkpoints/statements_finqa_dev.jsonl"
+  }
+}

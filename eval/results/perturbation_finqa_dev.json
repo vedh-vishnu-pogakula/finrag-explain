@@ -1,0 +1,4482 @@
+{
+  "effects": {
+    "control": 0.2398,
+    "targeted": 0.1582,
+    "random": 0.2449,
+    "drop_targeted": 0.0816,
+    "drop_random": -0.0051,
+    "specificity": 0.0867,
+    "p_specificity": 0.00515,
+    "n_paired": 196,
+    "mean_removed": 1.73,
+    "mean_sentences": 10.57
+  },
+  "by_correctness": {
+    "correct": {
+      "n": 103,
+      "drop_targeted": 0.068,
+      "drop_random": 0.0097
+    },
+    "incorrect": {
+      "n": 93,
+      "drop_targeted": 0.0968,
+      "drop_random": -0.0215
+    }
+  },
+  "per_question": [
+    {
+      "qa_id": "MRO/2009/page_139.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the contingent rental of 2009 is 19"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 2,
+          "text": "the contingent rental of 2007 is 33"
+        }
+      ]
+    },
+    {
+      "qa_id": "CB/2010/page_88.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 7,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the prior period development of 2010 is 4.6% ( 4.6 % )"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 2,
+          "text": "the prior period development of 2008 is 6.8% ( 6.8 % )"
+        }
+      ]
+    },
+    {
+      "qa_id": "FBHS/2017/page_23.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the total of 2017 is $ 5283.3"
+        }
+      ]
+    },
+    {
+      "qa_id": "AMT/2005/page_54.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the non-tower cash flow for the twelve months ended december 31 2005 of $ 139590 is $ -30584 ( 30584 )"
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the adjusted consolidated cash flow for the twelve months ended december 31 2005 of $ 139590 is $ 531822"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2013/page_54.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 1,
+          "text": "the total freight revenues of 2012 is $ 19686"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the agricultural of 2012 is $ 3280"
+        }
+      ]
+    },
+    {
+      "qa_id": "MAS/2018/page_60.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 6,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the goodwill of initial is 46"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 1,
+          "text": "the goodwill of revised is 64"
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2018/page_31.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_31",
+          "sentence_index": 0,
+          "text": "we anticipate that assumption changes will increase 2019 pre-tax pension and postretirement expense to approximately $ 205 million as compared with approximately $ 160 million in 2018 , excluding amounts related to employee severance and early retirement programs ."
+        }
+      ]
+    },
+    {
+      "qa_id": "MAS/2018/page_35.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 0,
+          "text": "company the operating profit margins as adjusted of 2018 is 15.1% ( 15.1 % )"
+        },
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 1,
+          "text": "the operating profit margins as adjusted of 2017 is 15.7% ( 15.7 % )"
+        }
+      ]
+    },
+    {
+      "qa_id": "BLL/2007/page_35.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 16,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the total of total number of shares purchased ( a ) is 1144772"
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 1,
+          "text": "the total of average pricepaid per share is $ 51.42"
+        }
+      ]
+    },
+    {
+      "qa_id": "JPM/2018/page_110.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 1,
+          "text": "the htm investment securities ( period-end ) of 2017 is 47733"
+        },
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 1,
+          "text": "the investment securities portfolio ( period 2013end ) of 2017 is 247980"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2013/page_54.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 0,
+          "text": "company the total freight revenues of 2013 is $ 20684"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the automotive of 2013 is 2077"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2011/page_76.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 1,
+          "text": "the accrued casualty costs of dec . 31 2010 is 325"
+        },
+        {
+          "chunk_id": "table_9",
+          "sentence_index": 1,
+          "text": "the total accounts payable and othercurrent liabilities of dec . 31 2010 is $ 2713"
+        }
+      ]
+    },
+    {
+      "qa_id": "INTC/2013/page_33.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 25,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 3,
+          "text": "the net revenue of three months ended dec . 282013 is $ 52708"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 4,
+          "text": "the net revenue of three months ended dec . 292012 is $ 53341"
+        }
+      ]
+    },
+    {
+      "qa_id": "PNC/2009/page_41.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 8,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the commercial mortgages at fair value of dec.31 2009 is $ 1050"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the commercial mortgages at fair value of dec . 312008 is $ 1401"
+        }
+      ]
+    },
+    {
+      "qa_id": "APD/2014/page_39.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the operating income of 2014 is 88.2"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the sales of 2014 is $ 450.4"
+        }
+      ]
+    },
+    {
+      "qa_id": "UPS/2006/page_32.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 5,
+          "text": "the s&p 500 index of 12/31/06 is $ 135.02"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 5,
+          "text": "the united parcel service inc . of 12/31/06 is $ 148.92"
+        }
+      ]
+    },
+    {
+      "qa_id": "ANSS/2013/page_55.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 17,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the global headquarters operating leases ( 1 ) of payments due by period total is $ 68389"
+        },
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 0,
+          "text": "company the total contractual obligations of payments due by period total is $ 144535"
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2015/page_85.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_16",
+          "sentence_index": 0,
+          "text": "the trade receivables sold that remained outstanding under these arrangements as of december 31 , 2015 , 2014 and 2013 were $ 888 million , $ 120 million and $ 146 million , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "SLB/2012/page_44.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 2,
+          "text": "the 2010 of average price paid per share is $ 64.48"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 2,
+          "text": "the 2011 of average price paid per share is $ 81.15"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2014/page_35.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_14",
+          "sentence_index": 0,
+          "text": "included in capital investments in 2012 was $ 75 million for the early buyout of 165 locomotives under long-term operating and capital leases during the first quarter of 2012 , which we exercised due to favorable economic terms and market conditions. ."
+        }
+      ]
+    },
+    {
+      "qa_id": "HII/2017/page_47.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 21,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 4,
+          "text": "the total assets of year ended december 31 2013 is 6190"
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 4,
+          "text": "the net earnings ( loss ) of year ended december 31 2013 is 261"
+        }
+      ]
+    },
+    {
+      "qa_id": "HII/2017/page_47.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 21,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 3,
+          "text": "the total assets of year ended december 31 2014 is 6239"
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 3,
+          "text": "the net earnings ( loss ) of year ended december 31 2014 is 338"
+        }
+      ]
+    },
+    {
+      "qa_id": "IP/2005/page_19.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the industry segment operating profits of 2004 is $ 2040"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the industry segment operating profits of 2003 is $ 1734"
+        }
+      ]
+    },
+    {
+      "qa_id": "DVN/2014/page_85.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_5",
+          "sentence_index": 0,
+          "text": "other intangible assets as of december 31 , 2014 , intangible assets associated with customer relationships had a gross carrying amount of $ 569 million and $ 36 million of accumulated amortization ."
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the 2015 of amortization amount ( in millions ) is $ 45"
+        }
+      ]
+    },
+    {
+      "qa_id": "MRO/2004/page_36.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 14,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_21",
+          "sentence_index": 1,
+          "text": "2019 2019 ssa 2019s revenues from the sale of non-petroleum merchandise totaled $ 2.3 billion in 2004 , compared with $ 2.2 billion in 2003 ."
+        }
+      ]
+    },
+    {
+      "qa_id": "APD/2016/page_96.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_9",
+          "sentence_index": 0,
+          "text": "company the total short-term borrowings of 2016 is $ 935.8"
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the total debt of 2016 is $ 6225.2"
+        }
+      ]
+    },
+    {
+      "qa_id": "PNC/2013/page_62.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 0,
+          "text": "company the total residential mortgages of december 312013 is 1356"
+        },
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 1,
+          "text": "the total residential mortgages of december 312012 is 2220"
+        }
+      ]
+    },
+    {
+      "qa_id": "AMAT/2014/page_35.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_79",
+          "sentence_index": 0,
+          "text": "in addition to the above properties , applied also owns and leases offices , plants and/or warehouse locations in 75 locations throughout the world : 16 in europe , 20 in japan , 16 in north america ( principally the united states ) , 7 in china , 3 in india , 7 in korea , 3 in southeast asia , and 3 in taiwan ."
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2017/page_99.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the net earnings attributable to pmi of for the years ended december 31 , 2017 is $ 6035"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the net earnings attributable to pmi of for the years ended december 31 , 2016 is $ 6967"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2014/page_25.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the freight revenues of 2013 is $ 20684"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the freight revenues of 2012 is $ 19686"
+        }
+      ]
+    },
+    {
+      "qa_id": "JKHY/2014/page_30.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 5,
+          "text": "the s & p 500 of 2014 is 236.98"
+        }
+      ]
+    },
+    {
+      "qa_id": "HIG/2008/page_318.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 6,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the property & casualty operations of 2008 is 6012"
+        }
+      ]
+    },
+    {
+      "qa_id": "FBHS/2017/page_43.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 8,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the defined benefit plan income of 2017 is 4.2"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the defined benefit plan income of 2016 is 2.9"
+        }
+      ]
+    },
+    {
+      "qa_id": "L/2015/page_59.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the loews common stock of 2011 is 97.37"
+        }
+      ]
+    },
+    {
+      "qa_id": "AES/2016/page_185.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 7,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the ipalco common stock of 2016 is $ 618"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the ipalco common stock of 2015 is $ 460"
+        }
+      ]
+    },
+    {
+      "qa_id": "LMT/2010/page_42.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_17",
+          "sentence_index": 0,
+          "text": "capital expenditures for property , plant and equipment amounted to $ 820 million in 2010 , $ 852 million in 2009 , and $ 926 million in 2008 ."
+        }
+      ]
+    },
+    {
+      "qa_id": "AMAT/2013/page_18.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the energy and environmental solutions of 2013 is 125"
+        }
+      ]
+    },
+    {
+      "qa_id": "MS/2014/page_267.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 8,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the shares outstanding at beginning of period of 2014 is 1945"
+        }
+      ]
+    },
+    {
+      "qa_id": "CB/2010/page_200.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_1",
+          "sentence_index": 0,
+          "text": "for the years ended december 31 , 2010 , 2009 , and 2008 , the potential anti-dilutive share conversions were 256868 shares , 1230881 shares , and 638401 shares , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "AAPL/2014/page_38.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the property plant and equipment net of 2014 is $ 20624"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the property plant and equipment net of 2013 is $ 16597"
+        }
+      ]
+    },
+    {
+      "qa_id": "HII/2014/page_69.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 20,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_12",
+          "sentence_index": 0,
+          "text": "backlog total backlog as of december 31 , 2014 , was approximately $ 21 billion ."
+        }
+      ]
+    },
+    {
+      "qa_id": "BLK/2012/page_160.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 2,
+          "text": "the positions assumed in acquisitions of year ended december 31 , 2010 is 4"
+        }
+      ]
+    },
+    {
+      "qa_id": "GS/2012/page_165.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the goodwill and identifiable intangibleassets2 of as of december 2011 is 5468"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the income tax-related assets3 of as of december 2012 is 5620"
+        }
+      ]
+    },
+    {
+      "qa_id": "MRO/2007/page_134.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the expected annual dividends per share of 2007 is $ 0.96"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 2,
+          "text": "the expected annual dividends per share of 2005 is $ 0.66"
+        }
+      ]
+    },
+    {
+      "qa_id": "CME/2012/page_70.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the guaranty fund contributions ( 2 ) of cme clearingavailable assets is 2899.5"
+        },
+        {
+          "chunk_id": "text_106",
+          "sentence_index": 0,
+          "text": "7973.6 minimum total assets available for default ( 4 ) ."
+        }
+      ]
+    },
+    {
+      "qa_id": "LMT/2006/page_90.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 0,
+          "text": "company the years 2012 2013 2016 of pensionbenefits is 9530"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the 2008 of pensionbenefits is 1490"
+        }
+      ]
+    },
+    {
+      "qa_id": "RE/2015/page_33.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 17,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_4",
+          "sentence_index": 0,
+          "text": "the company 2019s cash and invested assets totaled $ 17.7 billion at december 31 , 2015 , which consisted of 87.4% ( 87.4 % ) fixed maturities and cash , of which 91.4% ( 91.4 % ) were investment grade ; 8.2% ( 8.2 % ) equity securities and 4.4% ( 4.4 % ) other invested assets ."
+        }
+      ]
+    },
+    {
+      "qa_id": "C/2017/page_328.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 2,
+          "text": "the 31-dec-2015 of s&p financials is 153.9"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 2,
+          "text": "the 31-dec-2016 of s&p financials is 188.9"
+        }
+      ]
+    },
+    {
+      "qa_id": "LMT/2017/page_80.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 3,
+      "n_sentences": 11,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the weighted average common shares outstanding for diluted computations of 2017 is 290.6"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 1,
+          "text": "the weighted average common shares outstanding for diluted computations of 2016 is 303.1"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 2,
+          "text": "the weighted average common shares outstanding for diluted computations of 2015 is 314.7"
+        }
+      ]
+    },
+    {
+      "qa_id": "BDX/2018/page_82.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 3,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 0,
+          "text": "company the net pension cost of pension plans 2018 is $ 137"
+        },
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 1,
+          "text": "the net pension cost of pension plans 2017 is $ 138"
+        },
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 2,
+          "text": "the net pension cost of pension plans 2016 is $ 113"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2008/page_77.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the accrued wages and vacation of dec . 31 2008 is 367"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the accrued wages and vacation of dec . 31 2007 is 394"
+        }
+      ]
+    },
+    {
+      "qa_id": "CDNS/2018/page_31.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 16,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 5,
+          "text": "the cadence design systems inc . of 12/29/2018 is $ 311.13"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 5,
+          "text": "the nasdaq composite of 12/29/2018 is 165.84"
+        }
+      ]
+    },
+    {
+      "qa_id": "GPN/2009/page_70.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 0,
+          "text": "company the total assets acquired of total is 19427"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the contract-based intangible assets of total is 1031"
+        }
+      ]
+    },
+    {
+      "qa_id": "APD/2013/page_32.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_30",
+          "sentence_index": 0,
+          "text": "2012 on a gaap basis , the effective tax rate was 22.8% ( 22.8 % ) and 21.9% ( 21.9 % ) in 2013 and 2012 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "SPGI/2018/page_74.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_12",
+          "sentence_index": 0,
+          "text": "pension trust had assets of $ 415 million and $ 480 million as of december 31 , 2018 and 2017 , respectively , and the target allocations in 2018 include 40% ( 40 % ) fixed income , 30% ( 30 % ) diversified growth funds , 20% ( 20 % ) equities and 10% ( 10 % ) real estate ."
+        }
+      ]
+    },
+    {
+      "qa_id": "BLL/2010/page_28.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 5,
+          "text": "the ball corporation of 12/31/10 is $ 178.93"
+        }
+      ]
+    },
+    {
+      "qa_id": "BLK/2012/page_37.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 14,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the fixed income of americas is 121640"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 3,
+          "text": "the fixed income of total is 138425"
+        }
+      ]
+    },
+    {
+      "qa_id": "JPM/2007/page_147.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the retained interest of 2007 is 412"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the total of 2007 is $ 20048"
+        }
+      ]
+    },
+    {
+      "qa_id": "EW/2016/page_94.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 1,
+          "text": "the fair value per share of 2015 is $ 18.13"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 2,
+          "text": "the fair value per share of 2014 is $ 11.75"
+        }
+      ]
+    },
+    {
+      "qa_id": "HOLX/2015/page_98.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the fiscal 2017 of $ 377.0 is $ 365.6"
+        }
+      ]
+    },
+    {
+      "qa_id": "IPG/2009/page_85.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_16",
+          "sentence_index": 0,
+          "text": "in addition , we maintain defined contribution plans in various foreign countries and contributed $ 25.0 , $ 28.7 and $ 26.7 to these plans in 2009 , 2008 and 2007 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2015/page_85.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 1.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_20",
+          "sentence_index": 0,
+          "text": "debt 2013 our total debt was $ 28.5 billion at december 31 , 2015 , and $ 29.5 billion at december 31 , 2014 ."
+        }
+      ]
+    },
+    {
+      "qa_id": "CDNS/2006/page_30.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 12,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the cadence design systems inc . of january 3 2004 is 81.52"
+        }
+      ]
+    },
+    {
+      "qa_id": "AAP/2012/page_12.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 6,
+      "n_sentences": 21,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the new stores ( 1 ) of 2012 is 116"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the new stores ( 1 ) of 2011 is 95"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 2,
+          "text": "the new stores ( 1 ) of 2010 is 110"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 3,
+          "text": "the new stores ( 1 ) of 2009 is 75"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 4,
+          "text": "the new stores ( 1 ) of 2008 is 109"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 2,
+          "text": "the stores closed of 2010 is -5 ( 5 )"
+        }
+      ]
+    },
+    {
+      "qa_id": "GPN/2009/page_70.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_9",
+          "sentence_index": 0,
+          "text": "company the net assets acquired of total is $ 16594"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the goodwill of total is $ 13536"
+        }
+      ]
+    },
+    {
+      "qa_id": "CB/2010/page_88.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_1",
+          "sentence_index": 0,
+          "text": "we recorded net pre-tax catastrophe losses of $ 366 million in 2010 compared with net pre-tax catastrophe losses of $ 137 million and $ 567 million in 2009 and 2008 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "LMT/2012/page_47.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 3,
+      "n_sentences": 9,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the operating profit of 2012 is 1083"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the operating profit of 2011 is 1063"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 2,
+          "text": "the operating profit of 2010 is 1030"
+        }
+      ]
+    },
+    {
+      "qa_id": "HOLX/2008/page_84.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_8",
+          "sentence_index": 0,
+          "text": "company the total contractual obligations of payments due by period less than 1 year is $ 156571"
+        },
+        {
+          "chunk_id": "table_8",
+          "sentence_index": 4,
+          "text": "the total contractual obligations of payments due by period total is $ 2702687"
+        }
+      ]
+    },
+    {
+      "qa_id": "PKG/2009/page_65.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_3",
+          "sentence_index": 0,
+          "text": "the company purchased $ 37.3 million , $ 29.4 million , and $ 14.5 million during the years ended december 31 , 2009 , 2008 and 2007 , respectively , under these purchase agreements ."
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2014/page_35.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the cash provided by operating activities of 2013 is $ 6823"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the cash provided by operating activities of 2012 is $ 6161"
+        }
+      ]
+    },
+    {
+      "qa_id": "ABMD/2009/page_88.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_31",
+          "sentence_index": 0,
+          "text": "in may 2009 , the company paid $ 1.8 million of this final milestone in cash and elected to pay the remaining amount through the issuance of approximately 664612 shares of common stock. ."
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2013/page_44.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 3,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the open sites beginning balance of 2013 is 284"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the open sites beginning balance of 2012 is 285"
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the open sites ending balance atdecember 31 of 2013 is 268"
+        }
+      ]
+    },
+    {
+      "qa_id": "APD/2014/page_44.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 0,
+          "text": "company the capital expenditures on a non-gaap basis of 2014 is $ 1885.1"
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the capital expenditures on a gaap basis of 2014 is $ 1682.2"
+        }
+      ]
+    },
+    {
+      "qa_id": "IP/2012/page_93.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_2",
+          "sentence_index": 0,
+          "text": "rent expense was $ 231 million , $ 205 million and $ 210 million for 2012 , 2011 and 2010 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "AMT/2008/page_32.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 10,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the quarter ended march 31 of high is $ 42.72"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the quarter ended march 31 of low is $ 32.10"
+        }
+      ]
+    },
+    {
+      "qa_id": "AMT/2004/page_81.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 6,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_12",
+          "sentence_index": 0,
+          "text": "the company expects to record amortization expense of approximately $ 97.8 million , $ 95.9 million , $ 92.0 million , $ 90.5 million and $ 88.8 million , respectively , for the years ended december 31 , 2005 , 2006 , 2007 , 2008 and 2009 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "IPG/2015/page_48.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_13",
+          "sentence_index": 0,
+          "text": "during 2015 and 2014 , we had interest income of $ 22.8 and $ 27.4 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "ETFC/2014/page_26.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 21,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 5,
+          "text": "the e*trade financial corporation of 12/14 is 137.81"
+        }
+      ]
+    },
+    {
+      "qa_id": "EW/2016/page_79.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 3,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_9",
+          "sentence_index": 0,
+          "text": "company the total cash purchase price net of cash acquired of $ 28.1 is $ 320.1"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the ipr&d of $ 28.1 is 190.0"
+        },
+        {
+          "chunk_id": "table_8",
+          "sentence_index": 0,
+          "text": "company the less : cash acquired of $ 28.1 is -27.9 ( 27.9 )"
+        }
+      ]
+    },
+    {
+      "qa_id": "AES/2003/page_52.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 1,
+          "text": "the kelvin of sales proceeds ( in millions ) is $ 29"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 1,
+          "text": "the mountainview of sales proceeds ( in millions ) is $ 30"
+        }
+      ]
+    },
+    {
+      "qa_id": "STT/2011/page_83.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the fair value of 2011 is $ 99832"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the fair value of 2010 is $ 81881"
+        }
+      ]
+    },
+    {
+      "qa_id": "OKE/2012/page_52.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_19",
+          "sentence_index": 0,
+          "text": "employees we employed 4859 people at january 31 , 2013 , including 705 people at kansas gas service who are subject to collective bargaining agreements ."
+        }
+      ]
+    },
+    {
+      "qa_id": "GS/2012/page_165.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the goodwill and identifiable intangibleassets2 of as of december 2012 is 5099"
+        }
+      ]
+    },
+    {
+      "qa_id": "AMAT/2014/page_18.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the total of 2014 is $ 2917"
+        }
+      ]
+    },
+    {
+      "qa_id": "INTC/2013/page_29.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 12,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_3",
+          "sentence_index": 1,
+          "text": "united states countries total owned facilities1 29.9 16.7 46.6 leased facilities2 2.3 6.0 8.3 ."
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 2,
+          "text": "the total facilities of total is 54.9"
+        }
+      ]
+    },
+    {
+      "qa_id": "VLO/2018/page_25.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the november 2018 of total numberof sharespurchased is 3655945"
+        }
+      ]
+    },
+    {
+      "qa_id": "AES/2002/page_46.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 18,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the fourth quarter of high $ 17.84 is 3.57"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 1,
+          "text": "the fourth quarter of low $ 4.11 is 0.95"
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2017/page_38.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the operating income of for the years ended december 31 , 2017 is 11503"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 1,
+          "text": "the operating income of for the years ended december 31 , 2016 is 10815"
+        }
+      ]
+    },
+    {
+      "qa_id": "PNC/2015/page_159.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 6,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_0",
+          "sentence_index": 0,
+          "text": "during 2015 , $ 82 million of provision recapture was recorded for purchased impaired loans compared to $ 91 million of provision recapture during 2014 ."
+        }
+      ]
+    },
+    {
+      "qa_id": "SNA/2012/page_33.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 2,
+          "text": "the december 31 2012 of s&p 500 is 108.59"
+        }
+      ]
+    },
+    {
+      "qa_id": "IPG/2008/page_93.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_1",
+          "sentence_index": 0,
+          "text": "the amount of such parent company guarantees was $ 255.7 and $ 327.1 as of december 31 , 2008 and 2007 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "ETFC/2011/page_82.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the total goodwill of december 31 2011 is $ 1934.2"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the u.s . brokerage of december 31 2011 is $ 1751.2"
+        }
+      ]
+    },
+    {
+      "qa_id": "JPM/2018/page_110.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 14,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the available-for-sale ( 201cafs 201d ) investment securities ( average ) of 2018 is 203449"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the available-for-sale ( 201cafs 201d ) investment securities ( average ) of 2017 is 219345"
+        }
+      ]
+    },
+    {
+      "qa_id": "UA/2009/page_50.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_9",
+          "sentence_index": 0,
+          "text": "the fair value of our foreign currency forward contracts was $ 0.3 million and $ 1.2 million as of december 31 , 2009 and 2008 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2011/page_21.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 8,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the total of total number ofsharespurchased [a] is 3915795"
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 1,
+          "text": "the total of averageprice paidper share is $ 98.19"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2013/page_44.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the open sites ending balance atdecember 31 of 2013 is 268"
+        }
+      ]
+    },
+    {
+      "qa_id": "HII/2017/page_124.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_5",
+          "sentence_index": 0,
+          "text": "of these shares , 27123 were stock rights granted under the 2011 plan ."
+        }
+      ]
+    },
+    {
+      "qa_id": "DRE/2013/page_39.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the office of 2012 is 30092"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 1,
+          "text": "the total of 2012 is $ 63884"
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2017/page_99.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 1,
+          "text": "the weighted-average shares for diluted eps of for the years ended december 31 , 2016 is 1551"
+        },
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 2,
+          "text": "the weighted-average shares for diluted eps of for the years ended december 31 , 2015 is 1549"
+        }
+      ]
+    },
+    {
+      "qa_id": "CDNS/2018/page_31.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 16,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 4,
+          "text": "the nasdaq composite of 12/30/2017 is 172.11"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 5,
+          "text": "the nasdaq composite of 12/29/2018 is 165.84"
+        }
+      ]
+    },
+    {
+      "qa_id": "LMT/2010/page_42.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the net cash provided by operating activities of 2010 is $ 3547"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the net cash provided by operating activities of 2009 is $ 3173"
+        }
+      ]
+    },
+    {
+      "qa_id": "ZBH/2003/page_58.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the inventories net of 2003 is $ 527.7"
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 1,
+          "text": "the inventories net of 2002 is $ 257.6"
+        }
+      ]
+    },
+    {
+      "qa_id": "AAPL/2008/page_78.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the change in unrealized gains on derivative instruments of 2008 is $ 19"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 1,
+          "text": "the change in unrealized gains on derivative instruments of 2007 is $ -3 ( 3 )"
+        }
+      ]
+    },
+    {
+      "qa_id": "TSCO/2017/page_31.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 5,
+          "text": "the s&p retail index of 12/30/2017 is $ 286.13"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 5,
+          "text": "the s&p 500 of 12/30/2017 is $ 211.67"
+        }
+      ]
+    },
+    {
+      "qa_id": "CDNS/2012/page_30.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 10,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the nasdaq composite of 1/3/2009 is 59.03"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2006/page_37.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the track of 2006 is $ 1487"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the total of 2006 is $ 2242"
+        }
+      ]
+    },
+    {
+      "qa_id": "MRO/2007/page_134.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the weighted average exercise price per share of 2007 is $ 60.94"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the weighted average exercise price per share of 2005 is $ 25.14"
+        }
+      ]
+    },
+    {
+      "qa_id": "TROW/2010/page_22.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_19",
+          "sentence_index": 0,
+          "text": "the 2009 provision for income taxes as a percentage of pretax income is 37.1% ( 37.1 % ) , down from 38.4% ( 38.4 % ) in 2008 ."
+        }
+      ]
+    },
+    {
+      "qa_id": "PNC/2009/page_41.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 7,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_25",
+          "sentence_index": 0,
+          "text": "we recognized net gains of $ 107 million in 2009 on the valuation and sale of commercial mortgage loans held for sale , net of hedges , carried at fair value and lower of cost or market compared with losses of $ 197 million in 2008 ."
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the residential mortgages at fair value of dec.31 2009 is 1012"
+        }
+      ]
+    },
+    {
+      "qa_id": "AON/2009/page_48.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the segment revenue of 2009 is $ 1267"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the segment revenue of 2008 is $ 1356"
+        }
+      ]
+    },
+    {
+      "qa_id": "AMT/2005/page_85.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_10",
+          "sentence_index": 0,
+          "text": "company the long-term debt of 2005 is $ 3451276"
+        },
+        {
+          "chunk_id": "table_10",
+          "sentence_index": 1,
+          "text": "the long-term debt of 2004 is $ 3155228"
+        }
+      ]
+    },
+    {
+      "qa_id": "HII/2017/page_124.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 12,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the equity compensation plans approved by security holders of number of securities to be issued upon exercise of outstanding options warrants and rights ( 1 ) ( a ) ( b ) is 448859"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the equity compensation plans approved by security holders of number of securities remaining available for future issuance under equity compensation plans ( excluding securitiesreflected in column ( a ) ) ( c ) is 4087587"
+        }
+      ]
+    },
+    {
+      "qa_id": "BDX/2018/page_82.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 3,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the service cost of pension plans 2018 is $ 136"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the service cost of pension plans 2017 is $ 110"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the service cost of pension plans 2016 is $ 81"
+        }
+      ]
+    },
+    {
+      "qa_id": "SWKS/2006/page_81.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 10,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the balance as of october 1 2004 of pension adjustments is $ -786 ( 786 )"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the balance as of september 29 2006 of pension adjustments is $ -599 ( 599 )"
+        }
+      ]
+    },
+    {
+      "qa_id": "AMT/2008/page_32.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_3",
+          "sentence_index": 0,
+          "text": "as of february 13 , 2009 , we had 397097677 outstanding shares of common stock and 499 registered holders ."
+        }
+      ]
+    },
+    {
+      "qa_id": "AWK/2013/page_132.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 3,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the effect on other postretirement benefit obligation of one-percentage-pointincrease is $ 72238"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the effect on total of service and interest cost components of one-percentage-pointincrease is $ 7367"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the effect on total of service and interest cost components of one-percentage-pointdecrease is $ -5974 ( 5974 )"
+        }
+      ]
+    },
+    {
+      "qa_id": "HII/2017/page_124.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 12,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the equity compensation plans approved by security holders of number of securities to be issued upon exercise of outstanding options warrants and rights ( 1 ) ( a ) ( b ) is 448859"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the equity compensation plans approved by security holders of number of securities remaining available for future issuance under equity compensation plans ( excluding securitiesreflected in column ( a ) ) ( c ) is 4087587"
+        }
+      ]
+    },
+    {
+      "qa_id": "AAPL/2004/page_36.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_12",
+          "sentence_index": 0,
+          "text": "gross margin declined in fiscal 2004 to 27.3% ( 27.3 % ) of net sales from 27.5% ( 27.5 % ) of net sales in 2003 ."
+        }
+      ]
+    },
+    {
+      "qa_id": "BLK/2014/page_119.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 17,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the 1.375% ( 1.375 % ) notes due 2015 of maturity amount is $ 750"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 3,
+          "text": "the 1.375% ( 1.375 % ) notes due 2015 of fair value is $ 753"
+        }
+      ]
+    },
+    {
+      "qa_id": "CB/2010/page_200.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the statutory capital and surplus of bermuda subsidiaries 2010 is $ 11798"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the statutory net income of bermuda subsidiaries 2010 is $ 2430"
+        }
+      ]
+    },
+    {
+      "qa_id": "LMT/2016/page_48.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 3,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the net sales of 2016 is $ 17769"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the net sales of 2015 is $ 15570"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the net sales of 2014 is $ 14920"
+        }
+      ]
+    },
+    {
+      "qa_id": "L/2015/page_59.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the loews common stock of 2012 is 106.04"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2013/page_54.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 2,
+          "text": "the total freight revenues of 2011 is $ 18508"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 2,
+          "text": "the automotive of 2011 is 1510"
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2017/page_38.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 8,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the operating income of for the years ended december 31 , 2017 is 11503"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 1,
+          "text": "the operating income of for the years ended december 31 , 2016 is 10815"
+        }
+      ]
+    },
+    {
+      "qa_id": "HOLX/2007/page_129.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_18",
+          "sentence_index": 0,
+          "text": "the initial aggregate purchase price for suros of approximately $ 248100 ( subject to adjustment ) consisted of 2300 shares of hologic common stock valued at $ 106500 , cash paid of $ 139000 , and approximately $ 2600 for acquisition related fees and expenses ."
+        },
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 0,
+          "text": "company the goodwill of $ 11800 is 202000"
+        }
+      ]
+    },
+    {
+      "qa_id": "SPGI/2015/page_57.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 1.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_15",
+          "sentence_index": 0,
+          "text": "company the net assets acquired of $ 23 is $ 2234"
+        },
+        {
+          "chunk_id": "table_14",
+          "sentence_index": 0,
+          "text": "company the total liabilities acquired of $ 23 is -144 ( 144 )"
+        }
+      ]
+    },
+    {
+      "qa_id": "AON/2010/page_115.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 1,
+          "text": "the total stock-based compensation expense of 2009 is 209"
+        }
+      ]
+    },
+    {
+      "qa_id": "GS/2017/page_143.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the credit net of level 3 assets ( liabilities ) and range of significant unobservable inputs ( average/median ) as of december 2017 is $ 1505"
+        },
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 1,
+          "text": "the credit net of level 3 assets ( liabilities ) and range of significant unobservable inputs ( average/median ) as of december 2016 is $ 2504"
+        }
+      ]
+    },
+    {
+      "qa_id": "AAPL/2005/page_83.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_8",
+          "sentence_index": 0,
+          "text": "company the effective tax rate of 2005 is 26% ( 26 % )"
+        },
+        {
+          "chunk_id": "table_8",
+          "sentence_index": 1,
+          "text": "the effective tax rate of 2004 is 28% ( 28 % )"
+        }
+      ]
+    },
+    {
+      "qa_id": "ETR/2016/page_418.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the transmission revenue of amount ( in millions ) is 7.0"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the retail electric price of amount ( in millions ) is 5.4"
+        }
+      ]
+    },
+    {
+      "qa_id": "ZBH/2003/page_58.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the finished goods of 2003 is $ 384.3"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the finished goods of 2002 is $ 206.7"
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2014/page_67.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 18,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_0",
+          "sentence_index": 0,
+          "text": "our debt issuances in 2014 were as follows : ( in millions ) type face value ( e ) interest rate issuance maturity euro notes ( a ) 20ac750 ( approximately $ 1029 ) 1.875% ( 1.875 % ) march 2014 march 2021 euro notes ( a ) 20ac1000 ( approximately $ 1372 ) 2.875% ( 2.875 % ) march 2014 march 2026 euro notes ( b ) 20ac500 ( approximately $ 697 ) 2.875% ( 2.875 % )"
+        }
+      ]
+    },
+    {
+      "qa_id": "HII/2017/page_104.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 6,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_17",
+          "sentence_index": 0,
+          "text": "the company had unamortized debt issuance costs associated with its credit facilities of $ 11 million and $ 8 million as of december 31 , 2017 and 2016 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "ABMD/2009/page_56.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the contractual obligations ( 1 ) of payments due by fiscal year ( in $ 000 2019s ) total is 9457"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the contractual obligations ( 1 ) of payments due by fiscal year ( in $ 000 2019s ) less than 1 year is 4619"
+        }
+      ]
+    },
+    {
+      "qa_id": "ABMD/2009/page_56.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the operating lease commitments of payments due by fiscal year ( in $ 000 2019s ) total is $ 10690"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the operating lease commitments of payments due by fiscal year ( in $ 000 2019s ) less than 1 year is $ 2313"
+        }
+      ]
+    },
+    {
+      "qa_id": "LMT/2015/page_99.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 8,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 0,
+          "text": "company the total long-term debt net of 2015 is $ 15261"
+        },
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 1,
+          "text": "the total long-term debt net of 2014 is $ 6142"
+        }
+      ]
+    },
+    {
+      "qa_id": "KHC/2016/page_23.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the rest of world of owned is 26"
+        }
+      ]
+    },
+    {
+      "qa_id": "ETR/2011/page_376.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 0,
+          "text": "company the 2011 net revenue of amount ( in millions ) is $ 577.8"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the 2010 net revenue of amount ( in millions ) is $ 540.2"
+        }
+      ]
+    },
+    {
+      "qa_id": "ETR/2004/page_213.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 0,
+          "text": "company the 2003 net revenue of ( in millions ) is $ 973.7"
+        },
+        {
+          "chunk_id": "text_4",
+          "sentence_index": 0,
+          "text": "other regulatory credits increased primarily due to : 2022 the deferral in 2004 of $ 14.3 million of capacity charges related to generation resource planning as allowed by the lpsc ; 2022 the amortization in 2003 of $ 11.8 million of deferred capacity charges , as discussed above ; and 2022 the deferral in 2004 of $ 11.4 million related to entergy's voluntary severance program , in accordance with a proposed stipulation with the lpsc staff ."
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2017/page_99.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 0,
+          "text": "company the weighted-average shares for diluted eps of for the years ended december 31 , 2017 is 1553"
+        },
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 1,
+          "text": "the weighted-average shares for diluted eps of for the years ended december 31 , 2016 is 1551"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2015/page_35.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the cash used in investing activities of 2014 is -4249 ( 4249 )"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the cash provided by operating activities of 2014 is $ 7385"
+        }
+      ]
+    },
+    {
+      "qa_id": "GS/2016/page_77.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the equity securities of year ended december 2016 is $ 2573"
+        }
+      ]
+    },
+    {
+      "qa_id": "AON/2010/page_115.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the total stock-based compensation expense of 2010 is 221"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 1,
+          "text": "the total stock-based compensation expense of 2009 is 209"
+        }
+      ]
+    },
+    {
+      "qa_id": "ETR/2016/page_418.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_8",
+          "sentence_index": 0,
+          "text": "company the 2016 net revenue of amount ( in millions ) is $ 644.2"
+        }
+      ]
+    },
+    {
+      "qa_id": "ZBH/2017/page_71.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_9",
+          "sentence_index": 0,
+          "text": "we expensed $ 47.9 million , $ 42.5 million and $ 40.2 million related to these plans for the years ended december 31 , 2017 , 2016 and 2015 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "BLK/2013/page_124.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 14,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 2,
+          "text": "the total long-term borrowings of carrying value is $ 4939"
+        },
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 3,
+          "text": "the total long-term borrowings of fair value is $ 5284"
+        }
+      ]
+    },
+    {
+      "qa_id": "ETR/2011/page_324.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the ( $ 118415 ) of 2010 is $ 49887"
+        }
+      ]
+    },
+    {
+      "qa_id": "DVN/2014/page_85.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the 2015 of amortization amount ( in millions ) is $ 45"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the 2019 of amortization amount ( in millions ) is $ 44"
+        }
+      ]
+    },
+    {
+      "qa_id": "C/2008/page_211.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 14,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_10",
+          "sentence_index": 0,
+          "text": "in millions of dollars trading assets loans trading assets loans carrying amount reported on the consolidated balance sheet $ 16254 $ 2315 $ 26020 $ 3038 aggregate unpaid principal balance in excess of fair value $ 6501 $ 3 $ 899 $ ( 5 ) balance on non-accrual loans or loans more than 90 days past due $ 77 $ 1113 $ 186 $ 1292 aggregate unpaid principal balance in excess of fair value for non-accrual loans or loans more than 90 days past due $ 190 $ ( 4 ) $ 68 $ 2014 in addition to the amounts reported above , $ 72 million and $ 141 million of unfunded loan commitments related to certain credit products selected for fair-value accounting were outstanding as of december 31 , 2008 and december 31 , 2007 , respectively ."
+        }
+      ]
+    },
+    {
+      "qa_id": "IPG/2008/page_62.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 17,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 1,
+          "text": "the liability at december 31 2008 of 2003 program is $ 5.7"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the liability at december 31 2006 of 2003 program is $ 12.6"
+        }
+      ]
+    },
+    {
+      "qa_id": "MRO/2009/page_56.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the wti crude oil ( dollars per barrel ) of 2009 is $ 62.09"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the wti crude oil ( dollars per barrel ) of 2007 is $ 72.41"
+        }
+      ]
+    },
+    {
+      "qa_id": "SNPS/2006/page_69.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_10",
+          "sentence_index": 0,
+          "text": "the company acquired $ 8.5 million of intangible assets consisting of $ 5.1 million in core developed technology , $ 3.2 million in customer relationships and $ 0.2 million in backlog to be amortized over two to four years ."
+        },
+        {
+          "chunk_id": "text_14",
+          "sentence_index": 0,
+          "text": "goodwill , representing the excess of the purchase price over the fair value of the net tangible and identifiable intangible assets acquired in the merger was $ 3.4 million ."
+        }
+      ]
+    },
+    {
+      "qa_id": "GS/2014/page_136.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 12,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the interest rate hedges of year ended december 2013 is $ -8683 ( 8683 )"
+        }
+      ]
+    },
+    {
+      "qa_id": "BLK/2013/page_124.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 8,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_6",
+          "sentence_index": 0,
+          "text": "interest on the 2015 notes and the 2022 notes of approximately $ 10 million and $ 25 million per year , respectively , is payable semi-annually on june 1 and december 1 of each year , which commenced december 1 , 2012 ."
+        }
+      ]
+    },
+    {
+      "qa_id": "LMT/2010/page_42.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 11,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the net cash used for investing activities of 2010 is -319 ( 319 )"
+        }
+      ]
+    },
+    {
+      "qa_id": "LMT/2013/page_74.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 1,
+          "text": "the weighted average common shares outstanding for diluted computations of 2012 is 328.4"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 2,
+          "text": "the weighted average common shares outstanding for diluted computations of 2011 is 339.9"
+        }
+      ]
+    },
+    {
+      "qa_id": "IPG/2008/page_21.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 14,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the october 1-31 of total number of shares purchased is 29704"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the october 1-31 of average price paid per share2 is $ 5.99"
+        }
+      ]
+    },
+    {
+      "qa_id": "IP/2005/page_19.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the industry segment operating profits of 2005 is $ 1923"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the industry segment operating profits of 2004 is $ 2040"
+        }
+      ]
+    },
+    {
+      "qa_id": "GIS/2012/page_64.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the u.s . commercial paper of may 27 2012 notes payable is $ 412.0"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the total of may 27 2012 notes payable is $ 526.5"
+        }
+      ]
+    },
+    {
+      "qa_id": "UNP/2014/page_75.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 1.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_9",
+          "sentence_index": 0,
+          "text": "company the total accounts payable and othercurrent liabilities of dec . 31 2014 is $ 3303"
+        },
+        {
+          "chunk_id": "table_9",
+          "sentence_index": 1,
+          "text": "the total accounts payable and othercurrent liabilities of dec . 312013 is $ 3086"
+        }
+      ]
+    },
+    {
+      "qa_id": "RSG/2015/page_126.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_10",
+          "sentence_index": 0,
+          "text": "during 2013 , we accrued interest of approximately $ 1.2 million and , in total as of december 31 , 2013 , had recognized a liability for penalties of $ 0.5 million and interest of $ 17.0 million ."
+        }
+      ]
+    },
+    {
+      "qa_id": "STZ/2006/page_68.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the goodwill of $ 513782 is 634203"
+        }
+      ]
+    },
+    {
+      "qa_id": "ABMD/2007/page_52.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 17,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 1,
+          "text": "the total obligations of payments due by fiscal year less than 1 year is $ 8381"
+        }
+      ]
+    },
+    {
+      "qa_id": "PNC/2011/page_87.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 8,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 0,
+          "text": "company the total ( a ) of interest only product is $ 13107"
+        },
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 1,
+          "text": "the total ( a ) of principal and interest product is $ 7616"
+        }
+      ]
+    },
+    {
+      "qa_id": "CDNS/2012/page_30.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 5,
+          "text": "the cadence design systems inc . of 12/29/2012 is 78.92"
+        }
+      ]
+    },
+    {
+      "qa_id": "MO/2012/page_44.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 1,
+          "text": "the total smokeless products of shipment volumefor the years ended december 31 , 2011 is 734.6"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 2,
+          "text": "the total smokeless products of shipment volumefor the years ended december 31 , 2010 is 724.4"
+        }
+      ]
+    },
+    {
+      "qa_id": "BLK/2012/page_37.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 8,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the long-term retail/hnw of americas is $ 298024"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 3,
+          "text": "the long-term retail/hnw of total is $ 403484"
+        }
+      ]
+    },
+    {
+      "qa_id": "ETFC/2013/page_26.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_8",
+          "sentence_index": 0,
+          "text": "all facilities are leased , except for 165000 square feet of our office in alpharetta , georgia ."
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the alpharetta georgia of approximate square footage is 254000"
+        }
+      ]
+    },
+    {
+      "qa_id": "JPM/2018/page_110.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 11,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_14",
+          "sentence_index": 0,
+          "text": "selected income statement and balance sheet data as of or for the year ended december 31 , ( in millions ) 2018 2017 2016 investment securities gains/ ( losses ) $ ( 395 ) $ ( 78 ) $ 132 available-for-sale ( 201cafs 201d ) investment securities ( average ) 203449 219345 226892 held-to-maturity ( 201chtm 201d ) investment securities ( average ) 31747 47927 51358 investment securities portfolio ( average ) 235197 267272 278250 afs investment securities ( period-end ) 228681 200247 236670 htm investment securities ( period-end )"
+        }
+      ]
+    },
+    {
+      "qa_id": "MRO/2011/page_73.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the pretax income from discontinued operations of 2009 is $ 80"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the revenues applicable to discontinued operations of 2009 is $ 188"
+        }
+      ]
+    },
+    {
+      "qa_id": "IPG/2008/page_93.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 23,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the total contingent acquisition payments of 2009 is 79.3"
+        },
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 4,
+          "text": "the total contingent acquisition payments of 2013 is 75.9"
+        }
+      ]
+    },
+    {
+      "qa_id": "ETFC/2011/page_82.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the total goodwill of december 31 2011 is $ 1934.2"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the capital markets of december 31 2011 is 142.4"
+        }
+      ]
+    },
+    {
+      "qa_id": "MRO/2015/page_18.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the u.s . of net undeveloped acres expiring year ended december 31 , 2018 is 128"
+        },
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 2,
+          "text": "the total of net undeveloped acres expiring year ended december 31 , 2018 is 1018"
+        }
+      ]
+    },
+    {
+      "qa_id": "ZBH/2003/page_40.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_4",
+          "sentence_index": 0,
+          "text": "operating profit for the americas as a percentage of net sales increased to 48.3 percent in 2002 from 47.4 percent in year ended december 31 , 2003 2001 , reflecting improved gross profit margins due to higher compared to year ended december 31 , 2002 average selling prices and increased sales of higher margin operating profit for the americas as a percentage of net products , and lower selling expenses as a percent of sales sales increased due to improved gross margins driven by due to lower costs associated with the u.s ."
+        }
+      ]
+    },
+    {
+      "qa_id": "V/2013/page_41.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 14,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the august 1-31 2013 of ( a ) totalnumber ofsharespurchased ( 1 ) is 6640563"
+        }
+      ]
+    },
+    {
+      "qa_id": "IP/2007/page_75.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 7,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the lease obligations of 2008 is $ 136"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the lease obligations of 2009 is $ 116"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the lease obligations of 2010 is $ 101"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 3,
+          "text": "the lease obligations of 2011 is $ 84"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 4,
+          "text": "the lease obligations of 2012 is $ 67"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 5,
+          "text": "the lease obligations of thereafter is $ 92"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the purchase obligations ( a ) of 2008 is 1953"
+        }
+      ]
+    },
+    {
+      "qa_id": "PPG/2011/page_70.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the royalty income of 2011 is 55"
+        },
+        {
+          "chunk_id": "table_5",
+          "sentence_index": 0,
+          "text": "company the total of 2011 is $ 177"
+        }
+      ]
+    },
+    {
+      "qa_id": "L/2015/page_59.pdf-4::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 20,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 3,
+          "text": "the loews common stock of 2013 is 126.23"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 4,
+          "text": "the loews common stock of 2014 is 110.59"
+        }
+      ]
+    },
+    {
+      "qa_id": "JPM/2007/page_33.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the investment banking fees of 2006 is $ 5520"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 2,
+          "text": "the investment banking fees of 2005 is $ 4088"
+        }
+      ]
+    },
+    {
+      "qa_id": "AMT/2010/page_34.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the quarter ended december 31 of high is 53.14"
+        },
+        {
+          "chunk_id": "text_2",
+          "sentence_index": 0,
+          "text": "on february 11 , 2011 , the closing price of our common stock was $ 56.73 per share as reported on the nyse ."
+        }
+      ]
+    },
+    {
+      "qa_id": "ETR/2008/page_355.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 0,
+          "text": "company the 2008 net revenue of amount ( in millions ) is $ 252.7"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the 2007 net revenue of amount ( in millions ) is $ 231.0"
+        }
+      ]
+    },
+    {
+      "qa_id": "UPS/2006/page_32.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 5,
+          "text": "the s&p 500 index of 12/31/06 is $ 135.02"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 5,
+          "text": "the united parcel service inc . of 12/31/06 is $ 148.92"
+        }
+      ]
+    },
+    {
+      "qa_id": "AMT/2008/page_32.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 6,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_2",
+          "sentence_index": 0,
+          "text": "on february 13 , 2009 , the closing price of our common stock was $ 28.85 per share as reported on the nyse ."
+        },
+        {
+          "chunk_id": "text_3",
+          "sentence_index": 0,
+          "text": "as of february 13 , 2009 , we had 397097677 outstanding shares of common stock and 499 registered holders ."
+        }
+      ]
+    },
+    {
+      "qa_id": "IP/2005/page_35.pdf-1::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 20,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_0",
+          "sentence_index": 0,
+          "text": "contractual obligations for future payments under existing debt and lease commitments and purchase obli- gations at december 31 , 2005 , were as follows : in millions 2006 2007 2008 2009 2010 thereafter ."
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 3,
+          "text": "the total debt of 2009 is $ 2330"
+        }
+      ]
+    },
+    {
+      "qa_id": "TSCO/2017/page_31.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 20,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the tractor supply company of 12/28/2013 is $ 174.14"
+        }
+      ]
+    },
+    {
+      "qa_id": "INTC/2013/page_33.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 25,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 3,
+          "text": "the diluted earnings per common share of three months ended dec . 282013 is $ 1.89"
+        },
+        {
+          "chunk_id": "table_6",
+          "sentence_index": 4,
+          "text": "the diluted earnings per common share of three months ended dec . 292012 is $ 2.13"
+        }
+      ]
+    },
+    {
+      "qa_id": "PM/2015/page_85.pdf-3::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 1.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_56",
+          "sentence_index": 0,
+          "text": "debt 2013 our total debt was $ 28.5 billion at december 31 , 2015 , and $ 29.5 billion at december 31 , 2014 ."
+        }
+      ]
+    },
+    {
+      "qa_id": "ETR/2011/page_376.pdf-2::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_3",
+          "sentence_index": 0,
+          "text": "company the volume/weather of amount ( in millions ) is 21.3"
+        }
+      ]
+    },
+    {
+      "qa_id": "JPM/2005/page_37.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 17,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_4",
+          "sentence_index": 0,
+          "text": "company the commercial banking of year ended december 31 , 2005 is 1007"
+        },
+        {
+          "chunk_id": "table_8",
+          "sentence_index": 0,
+          "text": "company the total of year ended december 31 , 2005 is $ 10521"
+        }
+      ]
+    },
+    {
+      "qa_id": "C/2010/page_223.pdf-1::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 11,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_6",
+          "sentence_index": 0,
+          "text": "the carrying amount of the company 2019s purchased distressed loan portfolio at december 31 , 2010 was $ 392 million , net of an allowance of $ 77 million as of december 31 , 2010 ."
+        }
+      ]
+    },
+    {
+      "qa_id": "MRO/2008/page_69.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_26",
+          "sentence_index": 0,
+          "text": "wti crude oil ( dollars per barrel ) $ 145.29 july 3 $ 33.87 december 19 western canadian select ( dollars per barrel ) ( a ) $ 114.95 july $ 23.18 december aeco natural gas sales index ( canadian dollars per gigajoule ) ( b ) $ 11.34 july 1 $ 5.42 september 19 ( a ) monthly pricing based upon average wti adjusted for differentials unique to western canada ."
+        }
+      ]
+    },
+    {
+      "qa_id": "CB/2010/page_200.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the statutory net income of bermuda subsidiaries 2010 is $ 2430"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 1,
+          "text": "the statutory net income of bermuda subsidiaries 2009 is $ 2369"
+        }
+      ]
+    },
+    {
+      "qa_id": "BLK/2014/page_119.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 8,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 0,
+          "text": "company the total long-term borrowings of maturity amount is $ 4950"
+        },
+        {
+          "chunk_id": "table_7",
+          "sentence_index": 2,
+          "text": "the total long-term borrowings of carrying value is $ 4938"
+        }
+      ]
+    },
+    {
+      "qa_id": "JPM/2007/page_33.pdf-2::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 0,
+          "text": "company the investment banking fees of 2007 is $ 6635"
+        },
+        {
+          "chunk_id": "table_1",
+          "sentence_index": 1,
+          "text": "the investment banking fees of 2006 is $ 5520"
+        }
+      ]
+    },
+    {
+      "qa_id": "MRO/2008/page_69.pdf-4::q0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 8,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 0,
+          "text": "company the aeco natural gas sales index ( canadian dollars per gigajoule ) ( b ) of high $ 145.29 is $ 11.34"
+        },
+        {
+          "chunk_id": "table_2",
+          "sentence_index": 2,
+          "text": "the aeco natural gas sales index ( canadian dollars per gigajoule ) ( b ) of low $ 33.87 is $ 5.42"
+        }
+      ]
+    },
+    {
+      "qa_id": "DRE/2007/page_59.pdf-3::q0",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 5,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "text_2",
+          "sentence_index": 0,
+          "text": "( 3 ) significant acquisitions and dispositions acquisitions we acquired total income producing real estate related assets of $ 219.9 million , $ 948.4 million and $ 295.6 million in 2007 , 2006 and 2005 , respectively ."
+        },
+        {
+          "chunk_id": "text_5",
+          "sentence_index": 0,
+          "text": "of the total purchase price , $ 66.1 million was allocated to in-service real estate assets , $ 20.0 million was allocated to undeveloped land and the container storage facility , $ 3.3 million was allocated to lease related intangible assets , and the remaining amount was allocated to acquired working capital related assets and liabilities ."
+        }
+      ]
+    }
+  ],
+  "config": {
+    "dataset": "finqa",
+    "split": "dev",
+    "verifier": "nli",
+    "verifier_model": "cross-encoder/nli-deberta-v3-base",
+    "seed": 0,
+    "n_questions": 196,
+    "n_skipped": 54,
+    "seconds": 67.7
+  }
+}

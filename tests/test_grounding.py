@@ -489,3 +489,101 @@ def test_a_cache_entry_from_a_different_answer_is_detected_as_stale():
     assert cache_is_stale(entry, "-42.4") is True
     assert cache_is_stale(entry, "-14") is False
     assert cache_is_stale(entry, " -14 ") is False           # whitespace is not a change
+
+
+# ---- Month 6: evidence perturbation (Contribution 2) ----------------------------------------
+
+def _sent(chunk_id, index, text):
+    from segmenter import Sentence
+
+    return Sentence(text=text, chunk_id=chunk_id, doc_id="d", index=index)
+
+
+def _support(chunk_id, index, supported=True):
+    from grounder import ClaimSupport
+
+    return ClaimSupport(claim="c", entailment=1.0, contradiction=0.0, supported=supported,
+                        contradicted=False, kind="numeric", sentence="s",
+                        chunk_id=chunk_id, sentence_index=index)
+
+
+def test_the_random_arm_removes_the_same_number_of_sentences():
+    """Equal volume is what isolates *which* evidence was removed from *how much*. Without it
+    the two arms differ on two variables at once and the comparison means nothing."""
+    from perturb import CONTROL, RANDOM, TARGETED, build_conditions
+
+    sentences = [_sent("a", i, f"fact {i}") for i in range(6)]
+    conditions = {c.condition: c for c in
+                  build_conditions(sentences, [_support("a", 0), _support("a", 1)], seed=1)}
+    assert conditions[CONTROL].n_removed == 0
+    assert conditions[TARGETED].n_removed == conditions[RANDOM].n_removed == 2
+
+
+def test_the_random_arm_never_removes_load_bearing_evidence():
+    """If the decoy arm could hit the supporting sentence the two conditions would overlap and
+    the measured difference would be attenuated toward zero."""
+    from perturb import RANDOM, TARGETED, build_conditions
+
+    sentences = [_sent("a", i, f"fact {i}") for i in range(8)]
+    support = [_support("a", 3)]
+    for seed in range(25):
+        conditions = {c.condition: c for c in build_conditions(sentences, support, seed=seed)}
+        targeted = {(c, i) for c, i, _ in conditions[TARGETED].removed}
+        decoys = {(c, i) for c, i, _ in conditions[RANDOM].removed}
+        assert targeted == {("a", 3)}
+        assert not (targeted & decoys)
+
+
+def test_perturbation_is_deterministic_for_a_given_seed():
+    """An unseeded control arm makes a null result indistinguishable from noise."""
+    from perturb import RANDOM, build_conditions
+
+    sentences = [_sent("a", i, f"fact {i}") for i in range(10)]
+    support = [_support("a", 0)]
+    first = {c.condition: c for c in build_conditions(sentences, support, seed=7)}[RANDOM]
+    again = {c.condition: c for c in build_conditions(sentences, support, seed=7)}[RANDOM]
+    assert first.removed == again.removed
+
+
+def test_surviving_sentences_are_rejoined_per_chunk():
+    """RAGAS receives the context as one block per chunk. Emitting fragments would change the
+    input distribution independently of what was removed, confounding the comparison."""
+    from perturb import TARGETED, build_conditions
+
+    sentences = [_sent("a", 0, "keep one"), _sent("a", 1, "drop me"),
+                 _sent("a", 2, "keep two"), _sent("b", 0, "other chunk")]
+    conditions = {c.condition: c for c in build_conditions(sentences, [_support("a", 1)])}
+    contexts = conditions[TARGETED].contexts
+    assert "drop me" not in " ".join(contexts)
+    assert any("keep one keep two" == c for c in contexts), "chunk 'a' must stay one block"
+    assert "other chunk" in " ".join(contexts)
+
+
+def test_a_question_with_no_supported_claim_yields_no_experiment():
+    """With nothing identified as load-bearing there is no targeted arm, and reporting a
+    control-only result as if it were an experiment would be misleading."""
+    from perturb import build_conditions
+
+    sentences = [_sent("a", i, f"f{i}") for i in range(4)]
+    assert build_conditions(sentences, [_support("a", 0, supported=False)]) == []
+    assert build_conditions(sentences, []) == []
+
+
+def test_specificity_sign_is_positive_when_targeted_removal_hurts_more():
+    """Regression guard for a real bug: `drop_*` are already control-minus-condition, so
+    specificity must be targeted-minus-random. The inverted convention reported a
+    correctly-behaving metric as failing."""
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "perturbrun", ROOT / "eval" / "baselines" / "run_perturbation.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    rows = [{"qa_id": f"q{i}", "correct": True, "n_statements": 1, "n_removed": 1,
+             "n_sentences": 5,
+             "scores": {"control": 1.0, "targeted": 0.2, "random": 0.9}} for i in range(8)]
+    effects = module._summarize(rows)["effects"]
+    assert effects["drop_targeted"] == pytest.approx(0.8)
+    assert effects["drop_random"] == pytest.approx(0.1)
+    assert effects["specificity"] == pytest.approx(0.7), "targeted hurting more must be +ve"
