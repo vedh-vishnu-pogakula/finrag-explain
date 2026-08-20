@@ -587,3 +587,47 @@ def test_specificity_sign_is_positive_when_targeted_removal_hurts_more():
     assert effects["drop_targeted"] == pytest.approx(0.8)
     assert effects["drop_random"] == pytest.approx(0.1)
     assert effects["specificity"] == pytest.approx(0.7), "targeted hurting more must be +ve"
+
+
+# ---- master comparison table ----------------------------------------------------------------
+
+def _compare():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "cmpver", ROOT / "eval" / "baselines" / "compare_verifiers.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_significance_stars_match_the_p_value():
+    """The stars are what a reader scans first, so an off-by-one threshold misrepresents every
+    row at a glance."""
+    cmp = _compare()
+    assert cmp._fmt(0.25, 0.0002).endswith("***")
+    assert cmp._fmt(0.25, 0.005).endswith("**")
+    assert cmp._fmt(0.25, 0.03).endswith("*") and not cmp._fmt(0.25, 0.03).endswith("**")
+    assert cmp._fmt(0.25, 0.4) == "+0.250"
+
+
+def test_a_missing_measurement_renders_as_absent_not_zero():
+    """A verifier with no perturbation run must not appear to have zero specificity -- that
+    would read as 'measured and found to be nothing' rather than 'not measured'."""
+    cmp = _compare()
+    assert cmp._fmt(None).strip() == "--"
+    assert cmp._fmt(float("nan")).strip() == "--"
+
+
+def test_permutation_test_detects_a_real_difference_and_ignores_noise():
+    cmp = _compare()
+    assert cmp._permutation_p([1.0] * 20, [0.0] * 20, trials=2000) < 0.01
+    same = [0.5, 0.4, 0.6, 0.5, 0.45, 0.55] * 4
+    assert cmp._permutation_p(same, same, trials=2000) > 0.5
+
+
+def test_permutation_test_returns_nan_rather_than_a_p_value_for_tiny_samples():
+    """n=1 cannot support a p-value; returning one would invite a claim the data can't carry."""
+    cmp = _compare()
+    p = cmp._permutation_p([0.5], [0.2])
+    assert p != p

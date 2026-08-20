@@ -166,13 +166,6 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
 
     overrides = {"verifier_model": args.verifier_model} if args.verifier_model else {}
     judge = None
-    if args.verifier == "llm":
-        from generator import build_generator
-        from ragas_local import LocalRagasLLM
-
-        quantize = False if args.no_4bit else None
-        judge = LocalRagasLLM(build_generator(cfg, provider="local", model=args.model,
-                                              load_in_4bit=quantize))
     scorer = StagedFaithfulness.from_config(cfg, llm=judge, **overrides)
     print(f"[b2] verifying {len(records)} answers against their contexts "
           f"(local NLI verifier, no LLM, no cost)")
@@ -193,6 +186,15 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
                 verdicts=d.get("verdicts", []), n_statements=d.get("n_statements", 0))
         print(f"[b2] resuming: {len(done)} questions already verified")
 
+    if args.verifier == "llm" and len(done) < len(records):
+        # Built only when there is work left. Re-summarising a completed run must not load a
+        # 7B model -- that is what turns a metadata fix into a GPU job.
+        from generator import build_generator
+        from ragas_local import LocalRagasLLM
+
+        judge = LocalRagasLLM(build_generator(cfg, provider="local", model=args.model,
+                                              load_in_4bit=False if args.no_4bit else None))
+        scorer.llm = judge
     resume_file = open(resume_path, "a") if args.verifier == "llm" else None
     t0, rows, missing = time.time(), [], 0
     for index, record in enumerate(records, start=1):
@@ -231,9 +233,17 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
     report = _summarize(rows)
     report["config"] = {
         "dataset": args.dataset, "split": args.split, "baseline": "B2_rag_plus_ragas",
-        "metric": f"ragas faithfulness, {args.verifier} verifier",
-        "verifier": scorer.verifier_model,
-        "verify_threshold": scorer.verify_threshold,
+        "metric": "ragas faithfulness",
+        # Report the verifier that ACTUALLY ran. An earlier version hardcoded
+        # "FaithfulnesswithHHEM" and always reported the NLI model name, so an LLM-verifier
+        # run produced a file naming a model it never invoked.
+        "verifier_kind": args.verifier,
+        "verifier": (_judge_name(cache) or "local-llm-judge") if args.verifier == "llm"
+                    else scorer.verifier_model,
+        "verify_threshold": (None if args.verifier == "llm" else scorer.verify_threshold),
+        "hhem_note": ("RAGAS's FaithfulnesswithHHEM was NOT used: Vectara HHEM ships custom "
+                      "remote code incompatible with transformers 5.x "
+                      "(AttributeError: all_tied_weights_keys)."),
         "judge": _judge_name(cache),
         "n_records": len(rows), "n_missing_statements": missing,
         "seconds": round(elapsed, 1),

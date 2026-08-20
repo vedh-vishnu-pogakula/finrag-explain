@@ -40,7 +40,13 @@ Claude Code reads it automatically at the start of every session in this repo.
         cost no LLM calls
   - [x] B2 across four verifiers, both datasets — **verifier choice changes the metric's
         discriminative power by +0.349 on FinQA** (see below)
-- [ ] Month 6 — Faithfulness perturbation testing (Contribution 2)
+- [~] Month 6 — Faithfulness perturbation testing (Contribution 2)
+  - [x] Perturbation engine (`src/faithfulness/perturb.py`) — control / targeted / random arms,
+        equal-volume removal, seeded and reproducible
+  - [x] Audit run on both datasets with the NLI verifier — **specificity +0.087 (FinQA),
+        +0.228 (TAT-QA)**, both significant
+  - [ ] Same audit under RAGAS's LLM verifier (one Colab run)
+  - [ ] Variance across repeats, and the labeled failure-case dataset
 - [ ] Month 7 — Full evaluation (B1/B2/B3) + Streamlit demo + human study
 - [ ] Month 8 — Paper write-up, workshop submission
 
@@ -371,6 +377,40 @@ Decomposition reads only `(question, answer)` — never the retrieved context �
 invariant under the context perturbations Month 6 applies. Caching it is the difference between
 ~500 LLM calls and several thousand.
 
+### The master table — one command, never hand-copied
+
+```bash
+python eval/baselines/compare_verifiers.py
+```
+
+Regenerates every headline number from the result files. A table hand-copied out of a run log
+eventually disagrees with the run that produced it, and a table that disagrees with its own
+data is the fastest way to lose a viva.
+
+| Dataset | Verifier | n | mean | separation | specificity | provenance |
+|---|---|---:|---:|---:|---:|---:|
+| FinQA | NLI `nli-deberta-v3-base` | 235 | 0.237 | −0.098 <sub>n.s.</sub> | **+0.087**\*\* | −0.023 |
+| FinQA | **LLM `Qwen2.5-7B`** | 235 | 0.383 | **+0.251**\*\*\* | *pending* | +0.055 |
+| TAT-QA | NLI `nli-deberta-v3-base` | 231 | 0.386 | +0.146\* | **+0.228**\*\*\* | +0.003 |
+| TAT-QA | **LLM `Qwen2.5-7B`** | 231 | 0.701 | **+0.242**\*\*\* | *pending* | +0.227 |
+
+<sub>\* p<0.05  \*\* p<0.01  \*\*\* p<0.001, permutation tests with 20k resamples.</sub>
+
+Four columns because a verifier can pass some and fail others — and that is the finding:
+
+- **mean** — what the verifier reports. On its own it says nothing; a verifier can report 0.70
+  and be useless.
+- **separation** — mean(correct) − mean(incorrect). Does the score track answer quality?
+- **specificity** — targeted-removal drop − random-removal drop. Does it respond to *which*
+  evidence was removed rather than *how much*?
+- **provenance** — grounded − ungrounded against operand provenance, a deterministic reference
+  with no model in it.
+
+**Read the FinQA rows together.** The NLI verifier is the *more* evidence-specific of the two
+(+0.087\*\*) and yet cannot tell a correct answer from a wrong one (−0.098, n.s.). Passing a
+perturbation audit and measuring answer quality are different properties, and this table is
+what separates them.
+
 ### The Month 5 result: the verifier decides whether the metric works
 
 Same answers, same contexts, same RAGAS metric. Only the stage-2 verifier changes:
@@ -462,10 +502,64 @@ Two findings worth writing up:
 A negative sufficiency is real, not a bug: keeping only the top-weighted units sometimes scores
 *higher* than the full query, because the discarded words were diluting the embedding.
 
+## Run the perturbation audit (Contribution 2, Month 6)
+
+Remove the evidence the answer actually used, and check whether the faithfulness metric
+notices. **Free and local** — statements are cached and invariant under context perturbation,
+so every condition is one local NLI pass:
+
+```bash
+python eval/baselines/run_perturbation.py --dataset finqa --split dev
+```
+
+Three conditions per question. The control arm is the whole point: removing *any* sentence
+lowers a faithfulness score, so a drop under targeted removal proves nothing on its own. The
+claim rests on the difference between removing the load-bearing sentence and removing an equal
+number of unrelated ones.
+
+| Dataset | Control | Remove load-bearing | Remove random | **Specificity** | p |
+|---|---:|---:|---:|---:|---:|
+| FinQA | 0.240 | 0.158 <sub>(−0.082)</sub> | 0.245 <sub>(+0.005)</sub> | **+0.087** | 0.005 |
+| TAT-QA | 0.388 | 0.145 <sub>(−0.243)</sub> | 0.374 <sub>(−0.014)</sub> | **+0.228** | <0.0001 |
+
+Specificity = targeted drop − random drop; positive means the metric responds to *which*
+evidence was removed, not merely *how much*. Both arms remove the same number of sentences
+(1.7 of 10.6 on FinQA, 1.5 of 12.0 on TAT-QA), which is what isolates the two.
+
+### The metric passes this audit — and that is the finding
+
+The prediction going in was that an NLI verifier would fail here. It does not: removing the
+operand-supplying sentence hurts significantly more than removing unrelated evidence, on both
+datasets.
+
+**Read that together with the B2 result above, where the same verifier could not separate
+correct answers from wrong ones.** Both are true, and reconciling them is the point:
+
+> The operand-supplying sentence is *also* the sentence containing the matching numbers. A
+> metric tracking lexical restatement and a metric tracking grounding both drop when it is
+> removed. **The perturbation audit cannot tell them apart.**
+
+So passing a perturbation audit is **necessary but not sufficient** for metric validity — a
+metric can respond to the right evidence for the wrong reason. Separating the two needs a
+second, independent axis: the correct/incorrect split, and the deterministic operand-provenance
+reference, neither of which a perturbation test provides.
+
+The correctness breakdown supports the reading. On FinQA the metric is *more* specific for
+**incorrect** answers (0.118) than for correct ones (0.058) — the opposite of what a
+grounding-sensitive metric should do:
+
+| | FinQA specificity | TAT-QA specificity |
+|---|---:|---:|
+| Answer correct | 0.058 <sub>(n=103)</sub> | 0.271 <sub>(n=101)</sub> |
+| Answer incorrect | 0.118 <sub>(n=93)</sub> | 0.169 <sub>(n=73)</sub> |
+
+Questions with no supported claim yield no experiment and are skipped (54 FinQA, 76 TAT-QA);
+with nothing identified as load-bearing there is no targeted arm to build.
+
 ## Tests
 
 ```bash
-pytest tests/ -v          # 154 tests, offline, ~17s
+pytest tests/ -v          # 160 tests, offline, ~17s
 pytest tests/ -m "not slow"   # skips the one test that loads the real embedding model
 ```
 

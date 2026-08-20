@@ -64,6 +64,22 @@ def main():
     if args.limit:
         records = records[:args.limit]
 
+    overrides = {"verifier_model": args.verifier_model} if args.verifier_model else {}
+    scorer = StagedFaithfulness.from_config(cfg, llm=None, **overrides)
+    grounder = Grounder.from_config(cfg)
+
+    # Resume cache, keyed by (question, condition). The LLM path costs three judge calls per
+    # question, so a free-tier disconnect two thirds of the way through must not throw the run
+    # away. The NLI path is fast enough that caching would only add a way to reuse a stale file.
+    resume_path = (ckpt / f"perturbverdicts_{args.dataset}_{args.split}{args.out_tag}.jsonl")
+    done = {}
+    if args.verifier == "llm" and resume_path.exists():
+        for line in open(resume_path):
+            if line.strip():
+                d = json.loads(line)
+                done[(d["qa_id"], d["condition"])] = d["score"]
+        print(f"[perturb] resuming: {len(done)} (question, condition) pairs cached")
+
     judge = None
     if args.verifier == "llm":
         from generator import build_generator
@@ -71,13 +87,12 @@ def main():
 
         judge = LocalRagasLLM(build_generator(cfg, provider="local", model=args.model,
                                               load_in_4bit=False if args.no_4bit else None))
-    overrides = {"verifier_model": args.verifier_model} if args.verifier_model else {}
-    scorer = StagedFaithfulness.from_config(cfg, llm=judge, **overrides)
-    grounder = Grounder.from_config(cfg)
+        scorer.llm = judge
 
     print(f"[perturb] {len(records)} questions | verifier={args.verifier} "
           f"({scorer.verifier_model if args.verifier == 'nli' else judge.name})")
 
+    resume_file = open(resume_path, "a") if args.verifier == "llm" else None
     t0, rows, skipped = time.time(), [], 0
     for i, record in enumerate(records, start=1):
         entry = cache.get(record["qa_id"])
@@ -96,10 +111,20 @@ def main():
 
         scores = {}
         for condition in conditions:
+            key = (record["qa_id"], condition.condition)
+            if key in done:
+                scores[condition.condition] = done[key]
+                continue
             score = (scorer.verify_with_llm(entry.statements, condition.contexts)
                      if args.verifier == "llm"
                      else scorer.verify(entry.statements, condition.contexts))
-            scores[condition.condition] = None if score.score != score.score else score.score
+            value = None if score.score != score.score else score.score
+            scores[condition.condition] = value
+            if resume_file is not None:
+                resume_file.write(json.dumps({"qa_id": record["qa_id"],
+                                              "condition": condition.condition,
+                                              "score": value}) + "\n")
+                resume_file.flush()
         rows.append({
             "qa_id": record["qa_id"], "correct": not record.get("failure_mode"),
             "n_statements": len(entry.statements),
@@ -110,10 +135,13 @@ def main():
         if args.verifier == "llm" and i % 10 == 0:
             print(f"[perturb] {i}/{len(records)} ({time.time() - t0:.0f}s)")
 
+    if resume_file is not None:
+        resume_file.close()
     report = _summarize(rows)
     report["config"] = {
         "dataset": args.dataset, "split": args.split, "verifier": args.verifier,
         "verifier_model": scorer.verifier_model if args.verifier == "nli" else judge.name,
+        "judge_model": args.model,
         "seed": args.seed, "n_questions": len(rows), "n_skipped": skipped,
         "seconds": round(time.time() - t0, 1),
     }

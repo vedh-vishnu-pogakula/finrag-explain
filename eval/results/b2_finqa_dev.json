@@ -40,15 +40,17 @@
     "dataset": "finqa",
     "split": "dev",
     "baseline": "B2_rag_plus_ragas",
-    "metric": "ragas faithfulness (FaithfulnesswithHHEM)",
+    "metric": "ragas faithfulness",
+    "verifier_kind": "nli",
     "verifier": "cross-encoder/nli-deberta-v3-base",
     "verify_threshold": 0.5,
+    "hhem_note": "RAGAS's FaithfulnesswithHHEM was NOT used: Vectara HHEM ships custom remote code incompatible with transformers 5.x (AttributeError: all_tied_weights_keys).",
     "judge": [
       "local:Qwen/Qwen2.5-7B-Instruct"
     ],
     "n_records": 250,
     "n_missing_statements": 0,
-    "seconds": 28.6,
+    "seconds": 29.6,
     "statement_cache": "eval/results/checkpoints/statements_finqa_dev.jsonl"
   }
 }

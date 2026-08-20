@@ -1,0 +1,54 @@
+{
+  "finqa": [
+    {
+      "verifier": "nli: nli-deberta-v3-base",
+      "n": 235,
+      "mean": 0.2369,
+      "separation": -0.0983,
+      "separation_p": 0.07805,
+      "provenance": -0.0234,
+      "provenance_p": 0.81635,
+      "specificity": 0.0867,
+      "specificity_p": 0.00515,
+      "n_perturbed": 196
+    },
+    {
+      "verifier": "llm: Qwen2.5-7B-Instruct",
+      "n": 235,
+      "mean": 0.383,
+      "separation": 0.251,
+      "separation_p": 0.00015,
+      "provenance": 0.0552,
+      "provenance_p": 0.5789,
+      "specificity": null,
+      "specificity_p": NaN,
+      "n_perturbed": 0
+    }
+  ],
+  "tatqa": [
+    {
+      "verifier": "nli: nli-deberta-v3-base",
+      "n": 231,
+      "mean": 0.3859,
+      "separation": 0.1458,
+      "separation_p": 0.02165,
+      "provenance": 0.0027,
+      "provenance_p": 1.0,
+      "specificity": 0.2284,
+      "specificity_p": 0.0,
+      "n_perturbed": 174
+    },
+    {
+      "verifier": "llm: Qwen2.5-7B-Instruct",
+      "n": 231,
+      "mean": 0.7007,
+      "separation": 0.2418,
+      "separation_p": 0.00015,
+      "provenance": 0.227,
+      "provenance_p": 0.31305,
+      "specificity": null,
+      "specificity_p": NaN,
+      "n_perturbed": 0
+    }
+  ]
+}

@@ -4474,9 +4474,10 @@
     "split": "dev",
     "verifier": "nli",
     "verifier_model": "cross-encoder/nli-deberta-v3-base",
+    "judge_model": null,
     "seed": 0,
     "n_questions": 196,
     "n_skipped": 54,
-    "seconds": 67.7
+    "seconds": 68.7
   }
 }

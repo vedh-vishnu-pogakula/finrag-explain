@@ -40,15 +40,19 @@
     "dataset": "tatqa",
     "split": "dev",
     "baseline": "B2_rag_plus_ragas",
-    "metric": "ragas faithfulness, llm verifier",
-    "verifier": "cross-encoder/nli-deberta-v3-base",
-    "verify_threshold": 0.5,
+    "metric": "ragas faithfulness",
+    "verifier_kind": "llm",
+    "verifier": [
+      "local:Qwen/Qwen2.5-7B-Instruct"
+    ],
+    "verify_threshold": null,
+    "hhem_note": "RAGAS's FaithfulnesswithHHEM was NOT used: Vectara HHEM ships custom remote code incompatible with transformers 5.x (AttributeError: all_tied_weights_keys).",
     "judge": [
       "local:Qwen/Qwen2.5-7B-Instruct"
     ],
     "n_records": 250,
     "n_missing_statements": 0,
-    "seconds": 2612.7,
+    "seconds": 0.0,
     "statement_cache": "eval/results/checkpoints/statements_tatqa_dev.jsonl"
   }
 }
