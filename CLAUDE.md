@@ -8,35 +8,40 @@ It exists so you don't have to re-explain the project each time you open a new t
 **Title:** Explainable Financial RAG — Retrieval Attribution & Faithfulness-Verified Explanations
 for Financial Question Answering
 **Type:** B.E. CS/AI-ML final-year major project, CBIT Hyderabad, 8-month timeline
-**Status:** Months 1–4 complete (116/116 tests passing; `requirements.txt` pinned; spaCy
-`en_core_web_sm` installed).
+**Status:** Months 1–5 complete, Month 6 in progress (164/164 tests, all offline;
+`requirements.txt` pinned; spaCy `en_core_web_sm` installed).
+
 Month 2: both loaders done and tested.
-Month 3: baseline B1 end to end — `src/retrieval/`, `src/generation/`, `eval/metrics/`,
-`eval/baselines/`. Retrieval: FinQA Recall@5 0.850 / MRR 0.783, TAT-QA Recall@5 0.843 /
-MRR 0.851. **Retrieval is not the bottleneck** — 4–5% of failures are retrieval failures.
+
+Month 3: baseline B1 end to end. Retrieval FinQA Recall@5 0.850 / MRR 0.783, TAT-QA 0.843 /
+0.851 — **retrieval is not the bottleneck**, 4–5% of failures are retrieval failures.
 **Frozen generation config: `Qwen2.5-7B-Instruct` 4-bit, program-of-thought, 3 exemplars**,
-run on Colab's free T4 (`notebooks/run_b1_colab.ipynb`). B1 on the 250-question subsample —
-FinQA execution accuracy **0.450**, TAT-QA numeric **0.541** / span F1 **0.745**; citation
-precision **0.787 / 0.768**; structured output parsed 250/250. Against the original B1
-(1.5B, direct prompt, display-string scoring) that is FinQA 0.04 → 0.45.
-Three things got it there, and all three are separable in
-`eval/results/ablation_finqa_dev{,_7b}.md`: program-of-thought (the dominant term, +0.14 at
-7B), three fixed exemplars (+0.02), and switching FinQA scoring to its official execution
-accuracy against `exe_ans` (+0.026). Remaining failures: FinQA 30% wrong-column selection,
-7% hallucinated operands; TAT-QA 23% "read a value instead of computing", 10% declined
-despite having the evidence.
-Month 4: attribution — see the results section below.
-Month 5 (in progress): `src/grounding/` (sentence/table-row segmentation, local DeBERTa-MNLI
-entailment, operand-provenance grounding for numeric answers) and `src/faithfulness/`
-(`ragas_local.py` — local judge plus a tested guard against RAGAS's OpenAI default;
-`staged.py` — decomposition cached, verification repeatable). 147 tests, all offline.
-Still to build: `run_grounding.py`, `run_b2.py`, and the Month 5 results.
-Month 4: Contribution 1 built — `src/attribution/` (segmentation, cached perturbation engine,
-occlusion / Shapley / surrogate estimators, per-chunk and ranking value functions) plus
-faithfulness evaluation. All methods beat a random-unit baseline by ~0.48–0.50 normalized
-comprehensiveness; on the ranking value function Shapley's lift (0.454) is 41% above
-occlusion's (0.321), and Shapley puts only 2–3% of mass on stopwords vs occlusion's 11%.
-Next up: Month 5, `src/grounding/` + RAGAS (B2).
+run on Colab's free T4. B1 on 250 questions/dataset: FinQA execution accuracy **0.450**,
+TAT-QA numeric **0.541** / span F1 **0.745**; citation precision **0.787 / 0.768**; structured
+output parsed 250/250. Against the original B1 (1.5B, direct prompt, display-string scoring)
+that is FinQA 0.04 → 0.45. Three separable causes, all in
+`eval/results/ablation_finqa_dev{,_7b}.md`: program-of-thought (dominant, +0.14 at 7B), three
+fixed exemplars (+0.02), and scoring against FinQA's official `exe_ans` (+0.026).
+
+Month 4: Contribution 1 — `src/attribution/`. All methods beat a random-unit baseline by
+~0.48–0.50 normalized comprehensiveness; on the ranking value function Shapley's lift (0.451)
+is 44% above occlusion's (0.314), and Shapley puts 3.0% of mass on stopwords vs occlusion's
+11.3%.
+
+Month 5: `src/grounding/` (sentence/table-row segmentation, DeBERTa-MNLI entailment,
+operand-provenance grounding for numeric answers) and `src/faithfulness/` (`ragas_local.py`
+local judge + tested billing guard; `staged.py` decomposition cached, verification
+repeatable). Grounding: FinQA 0.757 groundedness / 68.8% grounds-to-gold, TAT-QA 0.664 /
+58.0%. B2 across four verifiers — **see the finding below**.
+
+Month 6 (in progress): perturbation audit built and run with the NLI verifier
+(`src/faithfulness/perturb.py`, `eval/baselines/run_perturbation.py`). Specificity **+0.087**
+(FinQA, p=0.005) and **+0.228** (TAT-QA, p<0.0001) — the metric *passes* the audit while
+failing to separate correct from incorrect answers, because the operand-supplying sentence is
+also the lexically-overlapping one. **Perturbation sensitivity is necessary but not sufficient
+for metric validity** — that is the methodological contribution. Still pending: the same audit
+under the LLM verifier (Colab cell 10f), a second judge family (cell 10e), and the labeled
+failure-case dataset. `python eval/baselines/compare_verifiers.py` regenerates the master table.
 
 ## Hard constraint: zero budget
 
@@ -310,6 +315,19 @@ finrag-explain/
   `(chunk_id, sentence_index)` Month 6 needs to perturb). NLI is kept for genuine text spans,
   which is what TAT-QA's 93 span questions need. Don't "fix" the low NLI numbers by lowering
   the threshold — that would be tuning the instrument to hide that it is the wrong one.
+- **A Colab run must prove it did the work.** Cost three hours once: cells were added to
+  `notebooks/run_b1_colab.ipynb` and pushed, but Colab serves the notebook copy the browser
+  cached at open time. "Runtime -> Run all" then executed the *old* cell list, every cell
+  succeeded, and nothing new was written -- indistinguishable from success. Two guards now
+  make that impossible and must not be removed: `NOTEBOOK_VERSION` is stamped in the first
+  code cell and compared against the repo copy right after `git reset --hard` (mismatch =
+  hard stop with the revert instruction), and the closing **artifact manifest** cell lists
+  every expected output file and names the cell to re-run for anything absent. **Bump
+  `NOTEBOOK_VERSION` whenever a cell is added or changed**, and tell the user to do
+  *File -> Revert to saved version* before Run all -- every time, not just the first.
+- **Never let an expensive run report success without an artifact.** Same principle as the
+  manifest, applied everywhere: a script that writes nothing should exit non-zero or say so
+  loudly. Hours of free-tier GPU are cheap to spend and impossible to get back.
 - **Checkpoint everything.** Free-tier Colab/session disconnects mid-run are expected for the
   Month 6 evaluation loop — write results to disk after every N questions, resume from last
   checkpoint, never re-run a full loop from scratch after an interruption.
