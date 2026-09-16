@@ -2,14 +2,46 @@
 
 This file is read automatically by Claude Code at the start of every session in this repo.
 It exists so you don't have to re-explain the project each time you open a new terminal/session.
+## Working Rules (Strict — Deadline Critical)
 
+### 1. No Hallucination
+- Never assume file contents, APIs, library behavior, or project structure. Always read/check the actual file or source before referencing it.
+- If unsure about something, say "I don't know / need to verify" instead of guessing.
+- Never invent function names, imports, config keys, or file paths — verify they exist first.
+- If a dependency/version isn't confirmed, check package.json / requirements.txt / lockfile before using it.
+
+### 2. Plan Before Code — Always
+- For any non-trivial task: first output a short plan (what will change, which files, why).
+- Wait for explicit confirmation ("go" / "approved" / "yes") before writing code.
+- Do NOT jump directly into code generation on the first response.
+- No plan changes mid-way unless something factually breaks the current plan — if it does, flag it clearly and explain why before pivoting.
+
+### 3. Review Before Finalizing
+- After planning and before final code: do a quick self-check — does this match the stated goal, existing codebase conventions, and constraints?
+- Call out risks/assumptions explicitly rather than silently proceeding.
+
+### 4. Token & Time Discipline
+- Be concise. No repeating the question, no restating obvious context, no filler explanations.
+- No over-explaining basic concepts unless explicitly asked.
+- Answers should be direct: plan → confirmation → code/execution. No unnecessary preamble.
+
+### 5. Stability Over Exploration
+- Don't propose alternate approaches unless asked or unless the current plan is provably broken.
+- Stick to the agreed plan/architecture unless new info requires a change — and justify any change briefly.
+
+### 6. When Uncertain
+- Ask a single clarifying question instead of guessing and building on a wrong assumption.
 ## Project
 
 **Title:** Explainable Financial RAG — Retrieval Attribution & Faithfulness-Verified Explanations
 for Financial Question Answering
 **Type:** B.E. CS/AI-ML final-year major project, CBIT Hyderabad, 8-month timeline
-**Status:** Months 1–5 complete, Month 6 in progress (164/164 tests, all offline;
-`requirements.txt` pinned; spaCy `en_core_web_sm` installed).
+**Status (2026-09-16, resumed after a 20-day gap; hard deadline ~2026-09-23):** Months 1–5
+complete, Month 6 mostly done, Months 7–8 compressed into the final week — see "Deadline
+week" below. 164/164 tests pass offline; `requirements.txt` pinned; spaCy `en_core_web_sm`
+installed. The Colab cells 10e/10f (alt judge, LLM-verifier perturbation) were **never
+successfully run** — no `*_LLMVER-ALT` or `perturbation_*_LLMVER` file exists in
+`eval/results/`. That is the only remaining GPU work.
 
 Month 2: both loaders done and tested.
 
@@ -42,6 +74,34 @@ also the lexically-overlapping one. **Perturbation sensitivity is necessary but 
 for metric validity** — that is the methodological contribution. Still pending: the same audit
 under the LLM verifier (Colab cell 10f), a second judge family (cell 10e), and the labeled
 failure-case dataset. `python eval/baselines/compare_verifiers.py` regenerates the master table.
+
+## Deadline week (2026-09-16 → ~2026-09-23) — what is left, in priority order
+
+Everything below is zero-GPU except item 1, which is one Colab run the user starts first and
+that runs in the background while the rest is built locally.
+
+1. **Colab 10e + 10f** (user; ~2–3 h T4). Before Run all: *File → Revert to saved version*,
+   confirm cell 4 prints `Notebook version 2026-09-16.1 matches the repo`, confirm cell 12's
+   manifest shows every file OK. Cell 13 zips and downloads the 8 files: `b2_{finqa,tatqa}_dev_LLMVER-ALT.{json,jsonl}`,
+   `perturbation_{finqa,tatqa}_dev_LLMVER.{json,jsonl}` → `eval/results/` and
+   `eval/results/checkpoints/` (`unzip -o ~/Downloads/finrag_artifacts_10e_10f.zip -d .`). Then `python eval/baselines/compare_verifiers.py` fills the two
+   `pending` LLM-specificity cells and adds the alt-judge rows.
+2. **Labeled failure-case dataset** (Contribution 2's stated deliverable) — export from the
+   perturbation + B2 files already on disk: per (question, verifier) the cases where the metric
+   moved the wrong way (targeted drop ≤ random drop) or scored a wrong answer as faithful /
+   a correct grounded answer as unfaithful, with the mechanism label. No model calls.
+3. **B3 table** — B3 is the composition of results already computed on the same 250 questions
+   (B1 answer + grounding + faithfulness-across-verifiers + perturbation specificity). One
+   script joins them by `qa_id` into the B1/B2/B3 comparison the brief promised. No GPU.
+4. **Streamlit demo** — replay mode over the 250 checkpointed questions (retrieval + attribution
+   live, since they are embedding-only and cheap; generation / grounding / faithfulness shown
+   from the checkpoints). Live 7B generation is not possible on the laptop; do not fake it.
+5. **Variance** — generation and both verifiers are greedy/deterministic by design, so
+   "run 3×" is a no-op; the honest variance figure is the random-removal arm re-drawn under
+   3 seeds (local NLI, free). Report it as such.
+6. **Paper / report** — `paper/` holds only the literature review + §5.5 draft. Results
+   sections come from the README tables; every number must trace to a file in `eval/results/`.
+7. Optional if time remains: ~50-statement human spot-check CSV for the user to label.
 
 ## Hard constraint: zero budget
 
