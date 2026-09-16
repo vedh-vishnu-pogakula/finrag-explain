@@ -37,7 +37,12 @@ from config_utils import load_config  # noqa: E402
 from grounder import Grounder  # noqa: E402
 from perturb import CONTROL, RANDOM, TARGETED, build_conditions  # noqa: E402
 from segmenter import evidence_sentences  # noqa: E402
-from staged import StagedFaithfulness, cache_is_stale, load_statements  # noqa: E402
+from staged import (  # noqa: E402
+    FaithfulnessScore,
+    StagedFaithfulness,
+    cache_is_stale,
+    load_statements,
+)
 
 
 def main():
@@ -76,7 +81,10 @@ def main():
     if args.verifier == "llm" and resume_path.exists():
         for line in open(resume_path):
             if line.strip():
-                d = json.loads(line)
+                try:
+                    d = json.loads(line)
+                except json.JSONDecodeError:
+                    break                     # torn final line from a mid-write kill
                 done[(d["qa_id"], d["condition"])] = d["score"]
         print(f"[perturb] resuming: {len(done)} (question, condition) pairs cached")
 
@@ -93,7 +101,7 @@ def main():
           f"({scorer.verifier_model if args.verifier == 'nli' else judge.name})")
 
     resume_file = open(resume_path, "a") if args.verifier == "llm" else None
-    t0, rows, skipped = time.time(), [], 0
+    t0, rows, skipped, errors = time.time(), [], 0, 0
     for i, record in enumerate(records, start=1):
         entry = cache.get(record["qa_id"])
         if entry is None or not entry.statements or cache_is_stale(
@@ -115,9 +123,17 @@ def main():
             if key in done:
                 scores[condition.condition] = done[key]
                 continue
-            score = (scorer.verify_with_llm(entry.statements, condition.contexts)
-                     if args.verifier == "llm"
-                     else scorer.verify(entry.statements, condition.contexts))
+            if args.verifier == "llm":
+                # Same guard as run_b2.py: one unparseable judge verdict must not end the run.
+                try:
+                    score = scorer.verify_with_llm(entry.statements, condition.contexts)
+                except Exception as exc:                      # noqa: BLE001
+                    errors += 1
+                    print(f"[perturb] {record['qa_id']}/{condition.condition}: "
+                          f"{type(exc).__name__}: {str(exc)[:160]}")
+                    score = FaithfulnessScore(score=float("nan"))
+            else:
+                score = scorer.verify(entry.statements, condition.contexts)
             value = None if score.score != score.score else score.score
             scores[condition.condition] = value
             if resume_file is not None:
@@ -141,7 +157,7 @@ def main():
     report["config"] = {
         "dataset": args.dataset, "split": args.split, "verifier": args.verifier,
         "verifier_model": scorer.verifier_model if args.verifier == "nli" else judge.name,
-        "judge_model": args.model,
+        "judge_model": args.model, "n_errors": errors,
         "seed": args.seed, "n_questions": len(rows), "n_skipped": skipped,
         "seconds": round(time.time() - t0, 1),
     }

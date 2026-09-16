@@ -180,7 +180,12 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
         for line in open(resume_path):
             if not line.strip():
                 continue
-            d = json.loads(line)
+            try:
+                d = json.loads(line)
+            except json.JSONDecodeError:
+                # A run killed mid-write leaves one torn final line. Drop it and redo that
+                # question rather than failing every resume from here on.
+                break
             done[d["qa_id"]] = FaithfulnessScore(
                 score=float("nan") if d["faithfulness"] is None else d["faithfulness"],
                 verdicts=d.get("verdicts", []), n_statements=d.get("n_statements", 0))
@@ -196,22 +201,33 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
                                               load_in_4bit=False if args.no_4bit else None))
         scorer.llm = judge
     resume_file = open(resume_path, "a") if args.verifier == "llm" else None
-    t0, rows, missing = time.time(), [], 0
+    t0, rows, missing, errors = time.time(), [], 0, 0
     for index, record in enumerate(records, start=1):
         entry = cache.get(record["qa_id"])
         if entry is None or cache_is_stale(entry, record["generated"]["answer"]):
             missing += 1
             continue
         contexts = [hit["text"] for hit in record["retrieved"]]
+        error = None
         if record["qa_id"] in done:
             score = done[record["qa_id"]]
+        elif args.verifier == "llm":
+            # One bad judge call must not lose the run. A weaker judge (the second-family
+            # ablation) can emit a verdict RAGAS cannot parse even after its retries; that
+            # question becomes unscorable -- recorded, counted, and reported -- instead of a
+            # crash that recurs at the same question on every resume.
+            try:
+                score = scorer.verify_with_llm(entry.statements, contexts)
+            except Exception as exc:                          # noqa: BLE001
+                errors += 1
+                error = f"{type(exc).__name__}: {str(exc)[:200]}"
+                print(f"[b2] {record['qa_id']}: {error}")
+                score = FaithfulnessScore(score=float("nan"), verdicts=[], n_statements=0)
         else:
-            score = (scorer.verify_with_llm(entry.statements, contexts)
-                     if args.verifier == "llm" else
-                     scorer.verify(entry.statements, contexts))
+            score = scorer.verify(entry.statements, contexts)
         if resume_file is not None and record["qa_id"] not in done:
             resume_file.write(json.dumps(
-                {"qa_id": record["qa_id"], **score.to_json()}) + "\n")
+                {"qa_id": record["qa_id"], **score.to_json(), "error": error}) + "\n")
             resume_file.flush()
             if index % 10 == 0:
                 print(f"[b2] {index}/{len(records)} ({time.time() - t0:.0f}s)")
@@ -238,8 +254,14 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
         # "FaithfulnesswithHHEM" and always reported the NLI model name, so an LLM-verifier
         # run produced a file naming a model it never invoked.
         "verifier_kind": args.verifier,
-        "verifier": (_judge_name(cache) or "local-llm-judge") if args.verifier == "llm"
-                    else scorer.verifier_model,
+        # The LLM *verifier* is whichever judge this run was given (--model), which is not
+        # necessarily the judge that decomposed the statements: the second-judge-family run
+        # verifies Qwen's statements with Phi. Naming the decomposer here would label two
+        # different verifiers identically in the master table.
+        "verifier": ((judge.name if judge is not None else
+                      f"local:{args.model}" if args.model else _judge_name(cache))
+                     or "local-llm-judge") if args.verifier == "llm" else scorer.verifier_model,
+        "n_errors": errors,
         "verify_threshold": (None if args.verifier == "llm" else scorer.verify_threshold),
         "hhem_note": ("RAGAS's FaithfulnesswithHHEM was NOT used: Vectara HHEM ships custom "
                       "remote code incompatible with transformers 5.x "
@@ -247,7 +269,8 @@ def _verify(cfg, args, records, cache_path, out_dir) -> None:
         "judge": _judge_name(cache),
         "n_records": len(rows), "n_missing_statements": missing,
         "seconds": round(elapsed, 1),
-        "statement_cache": str(cache_path.relative_to(ROOT)),
+        "statement_cache": (str(cache_path.relative_to(ROOT)) if cache_path.is_relative_to(ROOT)
+                            else str(cache_path)),
     }
 
     out_path = out_dir / f"b2_{args.dataset}_{args.split}{args.tag}{args.out_tag}.json"
