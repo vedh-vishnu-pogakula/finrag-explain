@@ -30,3 +30,6 @@ eval/results/*STUBNLI*
 .DS_Store
 *.faiss
 *.index
+# Seed-sweep perturbation outputs: ~120KB each and regenerable; only the summary
+# (perturbation_variance.json) is cited.
+eval/results/*_SEED*

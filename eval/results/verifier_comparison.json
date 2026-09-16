@@ -13,6 +13,18 @@
       "n_perturbed": 196
     },
     {
+      "verifier": "llm: Phi-3.5-mini-instruct",
+      "n": 235,
+      "mean": 0.4511,
+      "separation": 0.0687,
+      "separation_p": 0.2979,
+      "provenance": 0.1034,
+      "provenance_p": 0.27355,
+      "specificity": null,
+      "specificity_p": NaN,
+      "n_perturbed": 0
+    },
+    {
       "verifier": "llm: Qwen2.5-7B-Instruct",
       "n": 235,
       "mean": 0.383,
@@ -20,9 +32,9 @@
       "separation_p": 0.00015,
       "provenance": 0.0552,
       "provenance_p": 0.5789,
-      "specificity": null,
-      "specificity_p": NaN,
-      "n_perturbed": 0
+      "specificity": 0.3051,
+      "specificity_p": 0.0001,
+      "n_perturbed": 59
     }
   ],
   "tatqa": [
@@ -39,6 +51,18 @@
       "n_perturbed": 174
     },
     {
+      "verifier": "llm: Phi-3.5-mini-instruct",
+      "n": 229,
+      "mean": 0.7245,
+      "separation": 0.0323,
+      "separation_p": 0.59235,
+      "provenance": 0.427,
+      "provenance_p": 0.0153,
+      "specificity": null,
+      "specificity_p": NaN,
+      "n_perturbed": 0
+    },
+    {
       "verifier": "llm: Qwen2.5-7B-Instruct",
       "n": 231,
       "mean": 0.7007,
@@ -46,9 +70,9 @@
       "separation_p": 0.00015,
       "provenance": 0.227,
       "provenance_p": 0.31305,
-      "specificity": null,
-      "specificity_p": NaN,
-      "n_perturbed": 0
+      "specificity": 0.6561,
+      "specificity_p": 0.0,
+      "n_perturbed": 57
     }
   ]
 }

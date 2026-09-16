@@ -39,9 +39,9 @@ for Financial Question Answering
 **Status (2026-09-16, resumed after a 20-day gap; hard deadline ~2026-09-23):** Months 1–5
 complete, Month 6 mostly done, Months 7–8 compressed into the final week — see "Deadline
 week" below. 164/164 tests pass offline; `requirements.txt` pinned; spaCy `en_core_web_sm`
-installed. The Colab cells 10e/10f (alt judge, LLM-verifier perturbation) were **never
-successfully run** — no `*_LLMVER-ALT` or `perturbation_*_LLMVER` file exists in
-`eval/results/`. That is the only remaining GPU work.
+installed. **All GPU work is finished** (10e/10f landed 2026-09-16); every result file the
+paper needs is in `eval/results/`. Remaining: the write-up (Month 8) and, optionally, the
+human spot-check.
 
 Month 2: both loaders done and tested.
 
@@ -67,8 +67,10 @@ repeatable). Grounding: FinQA 0.757 groundedness / 68.8% grounds-to-gold, TAT-QA
 58.0%. B2 across four verifiers — **see the finding below**.
 
 Month 6 (in progress): perturbation audit built and run with the NLI verifier
-(`src/faithfulness/perturb.py`, `eval/baselines/run_perturbation.py`). Specificity **+0.087**
-(FinQA, p=0.005) and **+0.228** (TAT-QA, p<0.0001) — the metric *passes* the audit while
+(`src/faithfulness/perturb.py`, `eval/baselines/run_perturbation.py`). Specificity **+0.070 ±
+0.013** across four seeds on FinQA (single seed 0: +0.087, p=0.005; significant under 3 of 4
+seeds — quote the seed mean, not the best seed) and **+0.241 ± 0.012** on TAT-QA (all seeds
+p<0.0001; `eval/results/perturbation_variance.json`) — the metric *passes* the audit while
 failing to separate correct from incorrect answers, because the operand-supplying sentence is
 also the lexically-overlapping one. **Perturbation sensitivity is necessary but not sufficient
 for metric validity** — that is the methodological contribution. Still pending: the same audit
@@ -80,25 +82,26 @@ failure-case dataset. `python eval/baselines/compare_verifiers.py` regenerates t
 Everything below is zero-GPU except item 1, which is one Colab run the user starts first and
 that runs in the background while the rest is built locally.
 
-1. **Colab 10e + 10f** (user; ~2–3 h T4). Before Run all: *File → Revert to saved version*,
+1. DONE 2026-09-16 — **Colab 10e + 10f** (user; ~2–3 h T4). Before Run all: *File → Revert to saved version*,
    confirm cell 4 prints `Notebook version 2026-09-16.1 matches the repo`, confirm cell 12's
    manifest shows every file OK. Cell 13 zips and downloads the 8 files: `b2_{finqa,tatqa}_dev_LLMVER-ALT.{json,jsonl}`,
    `perturbation_{finqa,tatqa}_dev_LLMVER.{json,jsonl}` → `eval/results/` and
    `eval/results/checkpoints/` (`unzip -o ~/Downloads/finrag_artifacts_10e_10f.zip -d .`). Then `python eval/baselines/compare_verifiers.py` fills the two
    `pending` LLM-specificity cells and adds the alt-judge rows.
-2. **Labeled failure-case dataset** (Contribution 2's stated deliverable) — export from the
+2. DONE — **Labeled failure-case dataset** (Contribution 2's stated deliverable) — export from the
    perturbation + B2 files already on disk: per (question, verifier) the cases where the metric
    moved the wrong way (targeted drop ≤ random drop) or scored a wrong answer as faithful /
    a correct grounded answer as unfaithful, with the mechanism label. No model calls.
-3. **B3 table** — B3 is the composition of results already computed on the same 250 questions
+3. DONE — **B3 table** (`eval/results/b3_comparison.md`; B3's verified flag: FinQA 0.45 →
+   0.72 accuracy among trusted answers, NLI flag alone is below trusting everything) — B3 is the composition of results already computed on the same 250 questions
    (B1 answer + grounding + faithfulness-across-verifiers + perturbation specificity). One
    script joins them by `qa_id` into the B1/B2/B3 comparison the brief promised. No GPU.
-4. **Streamlit demo** — replay mode over the 250 checkpointed questions (retrieval + attribution
+4. DONE — **Streamlit demo** (`streamlit run demo/streamlit_app.py`, verified headlessly) — replay mode over the 250 checkpointed questions (retrieval + attribution
    live, since they are embedding-only and cheap; generation / grounding / faithfulness shown
    from the checkpoints). Live 7B generation is not possible on the laptop; do not fake it.
-5. **Variance** — generation and both verifiers are greedy/deterministic by design, so
-   "run 3×" is a no-op; the honest variance figure is the random-removal arm re-drawn under
-   3 seeds (local NLI, free). Report it as such.
+5. **Variance** — DONE (`eval/baselines/variance_across_seeds.py`): generation and both
+   verifiers are deterministic (checked byte-identical across seeds); only the random arm
+   varies. FinQA specificity +0.070 ± 0.013, TAT-QA +0.241 ± 0.012.
 6. **Paper / report** — `paper/` holds only the literature review + §5.5 draft. Results
    sections come from the README tables; every number must trace to a file in `eval/results/`.
 7. Optional if time remains: ~50-statement human spot-check CSV for the user to label.
@@ -142,14 +145,20 @@ is not interpretable without naming the verifier that produced it.**
   is grounded. NLI cannot verify arithmetic, so a correct computed answer looks unsupported
   while a wrong copied one looks supported.
 
-**RESOLVED by the full 250-question LLM-verifier run.** RAGAS's *default* LLM verifier works;
-the cheap model-based verifier is the one that breaks. Separation between correct and
-incorrect answers:
+**RESOLVED by the full 250-question LLM-verifier run, the LLM perturbation audit (cell 10f)
+and the second judge family (cell 10e).** RAGAS's *default* LLM verifier at 7B works on both
+axes; every cheaper substitute fails at least one. `eval/results/verifier_comparison.json`:
 
-| verifier | FinQA correct / wrong | sep | TAT-QA correct / wrong | sep |
+| verifier | FinQA sep | FinQA spec | TAT-QA sep | TAT-QA spec |
 |---|---|---|---|---|
-| NLI cross-encoder | 0.186 / 0.284 | **-0.098 (inverted)** | 0.457 / 0.311 | +0.146 |
-| **LLM (RAGAS default)** | **0.513 / 0.256** | **+0.257** | **0.818 / 0.589** | **+0.229** |
+| NLI cross-encoder | **-0.098 n.s. (inverted)** | +0.070 ± 0.013 (4 seeds) | +0.146* | +0.241 ± 0.012 |
+| LLM Phi-3.5-mini 3.8B | +0.069 n.s. (mean **0.451**, highest) | not run | +0.032 n.s. (mean **0.725**, highest) | not run |
+| **LLM Qwen2.5-7B** | **+0.251\*\*\*** | **+0.305\*\*\*** (n=59) | **+0.242\*\*\*** | **+0.656\*\*\*** (n=57) |
+
+Under the 7B verifier the targeted drop is larger for *correct* answers (0.43 vs 0.21 on
+FinQA) — the right direction; the NLI verifier had it backwards (0.058 vs 0.118). Phi-3.5 is
+the cautionary row: highest mean on both datasets, measures nothing. **Say "verifier capacity,
+not verifier type, decides validity" — not "LLM good, NLI bad".**
 
 **Do not state this as "RAGAS faithfulness is broken" — that was an earlier, wrong reading.**
 The defensible claim is a *domain-specific counterexample to the field's own prescription*:

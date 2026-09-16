@@ -17,20 +17,35 @@
         "unscorable_rate": 0.06,
         "any_label": 139
       },
-      "llm:Qwen2.5-7B-Instruct": {
+      "llm:Phi-3.5-mini-instruct": {
         "n": 250,
         "n_perturbed": 0,
-        "false_negative": 45,
-        "false_positive": 37,
+        "false_negative": 48,
+        "false_positive": 54,
         "insensitive": 0,
         "nonspecific": 0,
         "unscorable": 15,
-        "false_negative_rate": 0.18,
-        "false_positive_rate": 0.148,
+        "false_negative_rate": 0.192,
+        "false_positive_rate": 0.216,
         "insensitive_rate": 0.0,
         "nonspecific_rate": 0.0,
         "unscorable_rate": 0.06,
-        "any_label": 97
+        "any_label": 117
+      },
+      "llm:Qwen2.5-7B-Instruct": {
+        "n": 250,
+        "n_perturbed": 59,
+        "false_negative": 45,
+        "false_positive": 37,
+        "insensitive": 1,
+        "nonspecific": 4,
+        "unscorable": 15,
+        "false_negative_rate": 0.18,
+        "false_positive_rate": 0.148,
+        "insensitive_rate": 0.004,
+        "nonspecific_rate": 0.016,
+        "unscorable_rate": 0.06,
+        "any_label": 100
       }
     },
     "tatqa": {
@@ -49,20 +64,35 @@
         "unscorable_rate": 0.076,
         "any_label": 99
       },
-      "llm:Qwen2.5-7B-Instruct": {
+      "llm:Phi-3.5-mini-instruct": {
         "n": 250,
         "n_perturbed": 0,
-        "false_negative": 11,
-        "false_positive": 60,
+        "false_negative": 19,
+        "false_positive": 71,
         "insensitive": 0,
         "nonspecific": 0,
+        "unscorable": 21,
+        "false_negative_rate": 0.076,
+        "false_positive_rate": 0.284,
+        "insensitive_rate": 0.0,
+        "nonspecific_rate": 0.0,
+        "unscorable_rate": 0.084,
+        "any_label": 111
+      },
+      "llm:Qwen2.5-7B-Instruct": {
+        "n": 250,
+        "n_perturbed": 57,
+        "false_negative": 11,
+        "false_positive": 60,
+        "insensitive": 3,
+        "nonspecific": 3,
         "unscorable": 19,
         "false_negative_rate": 0.044,
         "false_positive_rate": 0.24,
-        "insensitive_rate": 0.0,
-        "nonspecific_rate": 0.0,
+        "insensitive_rate": 0.012,
+        "nonspecific_rate": 0.012,
         "unscorable_rate": 0.076,
-        "any_label": 90
+        "any_label": 96
       }
     }
   }

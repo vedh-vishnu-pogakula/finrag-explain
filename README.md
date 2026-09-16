@@ -40,15 +40,18 @@ Claude Code reads it automatically at the start of every session in this repo.
         cost no LLM calls
   - [x] B2 across four verifiers, both datasets — **verifier choice changes the metric's
         discriminative power by +0.349 on FinQA** (see below)
-- [~] Month 6 — Faithfulness perturbation testing (Contribution 2)
+- [x] Month 6 — Faithfulness perturbation testing (Contribution 2)
   - [x] Perturbation engine (`src/faithfulness/perturb.py`) — control / targeted / random arms,
         equal-volume removal, seeded and reproducible
   - [x] Audit run on both datasets with the NLI verifier — **specificity +0.087 (FinQA),
         +0.228 (TAT-QA)**, both significant
-  - [ ] Same audit under RAGAS's LLM verifier + a second judge family (Colab cells 10e/10f)
+  - [x] Same audit under RAGAS's LLM verifier — **specificity +0.305 (FinQA), +0.656
+        (TAT-QA)**, 3.5× and 2.9× the NLI verifier's — and a second judge family (Phi-3.5-mini:
+        highest mean faithfulness of any verifier, separates correct from wrong on neither dataset)
   - [x] Labeled failure-case dataset (`eval/baselines/export_failure_cases.py` →
         `eval/results/failure_cases_{finqa,tatqa}_dev.jsonl`, five mechanical labels)
-  - [ ] Variance across repeats
+  - [x] Variance across seeds (`eval/baselines/variance_across_seeds.py`) — FinQA specificity
+        +0.070 ± 0.013, TAT-QA +0.241 ± 0.012; deterministic arms byte-identical
 - [~] Month 7 — Full evaluation (B1/B2/B3) + Streamlit demo + human study
   - [x] B1/B2/B3 comparison + selective accuracy (`eval/baselines/build_b3_table.py` →
         `eval/results/b3_comparison.md`) — **B3's verified flag lifts accuracy among trusted
@@ -397,12 +400,27 @@ data is the fastest way to lose a viva.
 
 | Dataset | Verifier | n | mean | separation | specificity | provenance |
 |---|---|---:|---:|---:|---:|---:|
-| FinQA | NLI `nli-deberta-v3-base` | 235 | 0.237 | −0.098 <sub>n.s.</sub> | **+0.087**\*\* | −0.023 |
-| FinQA | **LLM `Qwen2.5-7B`** | 235 | 0.383 | **+0.251**\*\*\* | *pending* | +0.055 |
-| TAT-QA | NLI `nli-deberta-v3-base` | 231 | 0.386 | +0.146\* | **+0.228**\*\*\* | +0.003 |
-| TAT-QA | **LLM `Qwen2.5-7B`** | 231 | 0.701 | **+0.242**\*\*\* | *pending* | +0.227 |
+| FinQA | NLI `nli-deberta-v3-base` | 235 | 0.237 | −0.098 <sub>n.s.</sub> | +0.087\*\* <sub>(+0.070 ± 0.013 over 4 seeds)</sub> | −0.023 |
+| FinQA | LLM `Phi-3.5-mini` (3.8B) | 235 | **0.451** | +0.069 <sub>n.s.</sub> | — | +0.103 |
+| FinQA | **LLM `Qwen2.5-7B`** (RAGAS default path) | 235 | 0.383 | **+0.251**\*\*\* | **+0.305**\*\*\* <sub>n=59</sub> | +0.055 |
+| TAT-QA | NLI `nli-deberta-v3-base` | 231 | 0.386 | +0.146\* | +0.228\*\*\* <sub>(+0.241 ± 0.012)</sub> | +0.003 |
+| TAT-QA | LLM `Phi-3.5-mini` (3.8B) | 229 | **0.725** | +0.032 <sub>n.s.</sub> | — | +0.427\* |
+| TAT-QA | **LLM `Qwen2.5-7B`** (RAGAS default path) | 231 | 0.701 | **+0.242**\*\*\* | **+0.656**\*\*\* <sub>n=57</sub> | +0.227 |
 
-<sub>\* p<0.05  \*\* p<0.01  \*\*\* p<0.001, permutation tests with 20k resamples.</sub>
+<sub>\* p<0.05  \*\* p<0.01  \*\*\* p<0.001, permutation tests with 20k resamples. LLM
+specificity is on an 80-question subset (one judge call per question per condition, Colab);
+NLI specificity is on all questions with a grounded operand sentence. Phi-3.5 was not run
+through the perturbation audit.</sub>
+
+**The 7B LLM verifier passes both axes; the cheap substitutes each fail one.** Under the LLM
+verifier, removing the operand-supplying sentence takes FinQA faithfulness from 0.373 to
+0.034 while removing random sentences leaves it at 0.339 — specificity +0.305, three and a
+half times the NLI verifier's, and (unlike the NLI verifier) *larger* for correct answers
+(drop 0.43) than for wrong ones (0.21). The 3.8B Phi-3.5 verifier reports the **highest mean
+faithfulness of any verifier on both datasets and separates correct from wrong answers on
+neither** (p=0.30, p=0.59). The lesson is not "LLM good, NLI bad": it is that a verifier's
+mean says nothing about whether it is measuring anything, and that verifier *capacity* —
+not verifier type — decides whether the metric is valid on numerical QA.
 
 Four columns because a verifier can pass some and fail others — and that is the finding:
 
@@ -448,9 +466,10 @@ Three further measurements support it:
 
 **Why this is worth publishing.** RAGBench and ARES both argue for replacing RAGAS's LLM judge
 with cheaper fine-tuned models, and RAGAS ships `FaithfulnesswithHHEM` to do exactly that. On
-numerical financial QA that substitution destroys the metric. This is a domain-specific
-counterexample to the field's own prescription, with a measured mechanism — not a claim that
-RAGAS is broken.
+numerical financial QA that substitution destroys the metric — and so does a cheaper LLM
+judge (Phi-3.5-mini: highest mean, no separation). This is a domain-specific counterexample
+to the field's own prescription, with a measured mechanism — not a claim that RAGAS is
+broken.
 
 **Consequence:** B2 reports faithfulness as a *table across verifiers*, never as one number. A
 single B2 figure would contradict the paper's own thesis.
@@ -564,10 +583,32 @@ grounding-sensitive metric should do:
 Questions with no supported claim yield no experiment and are skipped (54 FinQA, 76 TAT-QA);
 with nothing identified as load-bearing there is no targeted arm to build.
 
+### Variance — the audit re-run under four seeds
+
+The brief asks for three repeats with mean and variance. Generation is greedy, the NLI
+verifier is a deterministic forward pass, and the targeted arm is chosen by deterministic
+operand lookup, so re-running those reproduces the same bytes (checked: control and targeted
+scores are byte-identical across seeds). The one stochastic component is *which* random
+sentences the control arm removes, so that is what is varied:
+
+```bash
+for s in 1 2 3; do python eval/baselines/run_perturbation.py --dataset finqa --seed $s --out-tag _SEED$s; done
+python eval/baselines/variance_across_seeds.py      # -> eval/results/perturbation_variance.json
+```
+
+| Dataset | specificity, seeds 0–3 | mean ± sd | significant (p<0.05) under |
+|---|---|---:|---|
+| FinQA | +0.087, +0.066, +0.056, +0.071 | **+0.070 ± 0.013** | 3 of 4 seeds (seed 2: p=0.074) |
+| TAT-QA | +0.228, +0.244, +0.256, +0.234 | **+0.241 ± 0.012** | all 4 |
+
+The sign never flips, and the seed sweep is what the paper should quote for FinQA: the
+single-seed **+0.087** above is the most favourable of the four, and the honest figure is
++0.070 ± 0.013, significant under three seeds of four. TAT-QA is robust under every seed.
+
 ## Tests
 
 ```bash
-pytest tests/ -v          # 160 tests, offline, ~17s
+pytest tests/ -v          # 186 tests, offline, ~17s
 pytest tests/ -m "not slow"   # skips the one test that loads the real embedding model
 ```
 
@@ -583,37 +624,23 @@ asserted to reject `__import__`, attribute access, comprehensions, names, divisi
 to reach. Two regression tests pin the bugs that cost the most to find — exemplar figures
 leaking into real answers, and a percent literal being mistaken for a calculation.
 
-## Next session — Month 6, Contribution 2
+## Next — Month 8, the write-up
 
-Months 3–5 are done. The frozen generation configuration (`Qwen2.5-7B-Instruct` 4-bit,
-program-of-thought, three exemplars) is an **experimental constant**: B3 must use exactly the
-same one or the three baselines cannot be compared.
+Every experiment the brief asked for has run. What remains is the paper, and every number in
+it must trace to a file in `eval/results/`:
 
-Month 6 runs the perturbation audit, and Month 5's result sharpens its hypothesis. The original
-question was *"does RAGAS's faithfulness score move when the evidence it depends on is
-removed?"* The version worth testing now is:
+| paper section | source file | regenerate with |
+|---|---|---|
+| retrieval baseline | `b1_retrieval_{finqa,tatqa}_dev.json` | `run_b1_retrieval.py` |
+| B1 answers, ablation | `b1_rag_*_dev.json`, `ablation_finqa_dev{,_7b}.md` | `run_b1_rag.py --rescore`, `run_prompt_ablation.py` |
+| attribution (C1) | `attribution_*_dev_{score,ranking}.json` | `run_attribution.py` |
+| grounding | `grounding_*_dev.json` | `run_grounding.py` |
+| verifier master table | `verifier_comparison.json` | `compare_verifiers.py` |
+| cross-check kappa | `verifier_crosscheck_*_dev.json` | `run_verifier_crosscheck.py` (Colab) |
+| perturbation audit (C2) | `perturbation_*_dev{,_LLMVER}.json`, `perturbation_variance.json` | `run_perturbation.py`, `variance_across_seeds.py` |
+| failure-case dataset (C2) | `failure_cases_*_dev.jsonl`, `failure_cases_summary.json` | `export_failure_cases.py` |
+| B1/B2/B3 + selective accuracy | `b3_comparison.md` | `build_b3_table.py` |
 
-> **Does the score move for the right reason, and does the answer depend on which verifier is
-> scoring it?**
-
-The design follows from what is already built:
-
-1. **Grounding names the target.** For a numeric answer, operand provenance points at the exact
-   `(chunk_id, sentence_index)` supplying each figure — deterministically, no model involved.
-2. **Three conditions per question:** unperturbed control; remove the load-bearing sentence;
-   remove a *random* sentence. The random arm is not optional — removing any evidence lowers
-   the score somewhat, so a bare drop proves nothing. The claim rests on the **difference**.
-3. **The NLI verifier makes the sweep free.** Statements are cached and invariant under context
-   perturbation, so every condition is local NLI: no GPU, no cost, all 250 questions.
-4. **The LLM verifier costs one call per question per condition** and needs Colab. Run it on a
-   subset and report both — the contrast between the two verifiers *is* the result, exactly as
-   in B2.
-
-**Prediction to test, not to assume:** if the NLI verifier is tracking restatement rather than
-grounding, removing the load-bearing sentence should move it no more than removing a random
-one, while the LLM verifier should show a clear gap. That would be a second, independent line
-of evidence for the Month 5 finding — arrived at by perturbation rather than by correlation.
-
-**Do not** call `ragas.evaluate()` inside the perturbation loop. It would recompute statement
-decomposition for every condition — thousands of LLM calls reproducing a result that cannot
-change. `src/faithfulness/staged.py` exists to prevent exactly that.
+Rules that still apply: quote the seed-averaged FinQA specificity, not the best seed; report
+faithfulness as a table across verifiers, never one number; say the project *addresses
+limitations of* the Bayesian RAG paper, never that it extends it.

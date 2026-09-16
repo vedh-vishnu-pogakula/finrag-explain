@@ -1,0 +1,57 @@
+{
+  "overall": {
+    "n": 250,
+    "n_scored": 229,
+    "n_unscored": 21,
+    "faithfulness": 0.7245,
+    "mean_statements": 1.312
+  },
+  "by_failure_mode": {
+    "None": {
+      "n": 119,
+      "n_scored": 118,
+      "n_unscored": 1,
+      "faithfulness": 0.7401,
+      "mean_statements": 1.1933
+    },
+    "generation": {
+      "n": 96,
+      "n_scored": 95,
+      "n_unscored": 1,
+      "faithfulness": 0.7218,
+      "mean_statements": 1.7083
+    },
+    "declined": {
+      "n": 26,
+      "n_scored": 8,
+      "n_unscored": 18,
+      "faithfulness": 0.625,
+      "mean_statements": 0.4231
+    },
+    "retrieval": {
+      "n": 9,
+      "n_scored": 8,
+      "n_unscored": 1,
+      "faithfulness": 0.625,
+      "mean_statements": 1.2222
+    }
+  },
+  "config": {
+    "dataset": "tatqa",
+    "split": "dev",
+    "baseline": "B2_rag_plus_ragas",
+    "metric": "ragas faithfulness",
+    "verifier_kind": "llm",
+    "verifier": "local:microsoft/Phi-3.5-mini-instruct",
+    "n_errors": 2,
+    "verify_threshold": null,
+    "hhem_note": "RAGAS's FaithfulnesswithHHEM was NOT used: Vectara HHEM ships custom remote code incompatible with transformers 5.x (AttributeError: all_tied_weights_keys).",
+    "judge": [
+      "local:Qwen/Qwen2.5-7B-Instruct"
+    ],
+    "n_records": 250,
+    "n_missing_statements": 0,
+    "seconds": 2370.9,
+    "statement_cache": "eval/results/checkpoints/statements_tatqa_dev.jsonl"
+  }
+}

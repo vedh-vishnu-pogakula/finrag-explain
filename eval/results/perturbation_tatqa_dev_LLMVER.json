@@ -1,0 +1,1227 @@
+{
+  "effects": {
+    "control": 0.7719,
+    "targeted": 0.0865,
+    "random": 0.7427,
+    "drop_targeted": 0.6854,
+    "drop_random": 0.0292,
+    "specificity": 0.6561,
+    "p_specificity": 0.0,
+    "n_paired": 57,
+    "mean_removed": 1.37,
+    "mean_sentences": 12.09
+  },
+  "by_correctness": {
+    "correct": {
+      "n": 34,
+      "drop_targeted": 0.7627,
+      "drop_random": 0.0588
+    },
+    "incorrect": {
+      "n": 23,
+      "drop_targeted": 0.571,
+      "drop_random": -0.0145
+    }
+  },
+  "per_question": [
+    {
+      "qa_id": "d7ce6b7c-c539-4c63-a2c1-5b8ed24b345b",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 8,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_1",
+          "sentence_index": 0,
+          "text": "(1) Vessel Calendar Days is the total number of days the vessels were in our fleet."
+        }
+      ]
+    },
+    {
+      "qa_id": "3815da05-2eae-4248-b313-82dab2c3c6df",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 12,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_0",
+          "sentence_index": 0,
+          "text": "company the Interest expense of Years Ended December 31, 2018 is $(2,085)"
+        }
+      ]
+    },
+    {
+      "qa_id": "75623d36-47ae-4801-9727-ee17b04cd8e5",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_2",
+          "sentence_index": 0,
+          "text": "In 2018 we recognized other income, net of expenses, of $53 million, slightly decreasing compared to $55 million in 2017, mainly due to lower level of R&D grants."
+        }
+      ]
+    },
+    {
+      "qa_id": "15db33e7-74eb-483c-93cb-7cbfe45874c4",
+      "correct": true,
+      "n_statements": 2,
+      "n_removed": 1,
+      "n_sentences": 12,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_3",
+          "sentence_index": 1,
+          "text": "For the years ended December 31, 2019, 2018 and 2017, the Company recognized $0.3 million, $0.9 million and $0.6 million, respectively of stock-based compensation expense related to the RSUs."
+        }
+      ]
+    },
+    {
+      "qa_id": "abda534c-fde6-4155-b854-3070ca1975b5",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_0",
+          "sentence_index": 1,
+          "text": "the Operating income (GAAP) (1) of Fiscal Years Ended March 31, 2018 is $112,852"
+        }
+      ]
+    },
+    {
+      "qa_id": "16d16da8-ea51-4166-9df1-e3ae38ee9389",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 15,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_11",
+          "sentence_index": 0,
+          "text": "company the Proceeds from the sale of company-operated restaurants: \u2014 Gains on the sale of company-operated restaurants of 2019 is $1,366"
+        }
+      ]
+    },
+    {
+      "qa_id": "2b77bd1e-17ee-4f74-9fb7-7cc4ad5142dd",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 10,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_4",
+          "sentence_index": 0,
+          "text": "company the Deferred tax assets \u2014 Other of As of December 31, 2019 (Dollars in millions) is 577"
+        },
+        {
+          "chunk_id": "table_row_4",
+          "sentence_index": 1,
+          "text": "the Deferred tax assets \u2014 Other of As of December 31, 2018 (Dollars in millions) is 553"
+        }
+      ]
+    },
+    {
+      "qa_id": "542e287e-0671-4eed-a367-98add13b8448",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_6",
+          "sentence_index": 0,
+          "text": "The Company considers all highly liquid investments purchased with an original maturity of three months or less to be cash equivalents."
+        }
+      ]
+    },
+    {
+      "qa_id": "b11567d3-d651-40d8-9b9e-bc71eb37d7f9",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_4",
+          "sentence_index": 0,
+          "text": "company the Transportation equipment of December 31, 2019 is 613"
+        },
+        {
+          "chunk_id": "table_row_4",
+          "sentence_index": 1,
+          "text": "the Transportation equipment of December 31, 2018 is 636"
+        }
+      ]
+    },
+    {
+      "qa_id": "a28c22c5-bf00-4a08-a868-4c7a4b1149f0",
+      "correct": false,
+      "n_statements": 4,
+      "n_removed": 1,
+      "n_sentences": 15,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_3",
+          "sentence_index": 1,
+          "text": "Free cash flow (pre-spectrum) and capital additions do not include payments for licences and spectrum included within intangible assets, items determined independently of the ongoing business, such as the level of dividends, and items which are deemed discretionary, such as cash flows relating to acquisitions and disposals or financing activities."
+        }
+      ]
+    },
+    {
+      "qa_id": "cf9ea7bd-d26e-4ba9-a2a9-b1e1c73ec11c",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 1,
+          "text": "the Derivative liabilities of December31, 2018 is 120.5"
+        }
+      ]
+    },
+    {
+      "qa_id": "a87da1d1-ab9f-492d-b206-a1a84899a4c7",
+      "correct": false,
+      "n_statements": 3,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_2",
+          "sentence_index": 2,
+          "text": "At December 31, 2019, the Company had federal, state and foreign tax credit carryforwards of approximately $41.8 million, $86.3 million and $5.7 million, respectively."
+        }
+      ]
+    },
+    {
+      "qa_id": "4ce49426-cfc3-45bc-90d0-629877881b82",
+      "correct": false,
+      "n_statements": 3,
+      "n_removed": 2,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_8",
+          "sentence_index": 0,
+          "text": "The valuation allowance increased by $14 million in fiscal 2019."
+        },
+        {
+          "chunk_id": "para_8",
+          "sentence_index": 1,
+          "text": "The increase is mainly attributable to corresponding changes in deferred tax assets, primarily foreign tax credit carryforwards and certain state tax credit carryforwards."
+        }
+      ]
+    },
+    {
+      "qa_id": "adf3bdc1-f364-4bfd-ad79-7a0fa7b39a78",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 21,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 0,
+          "text": "company the Revenue: \u2014 Product of July 27, 2019 (1) is $39,005"
+        },
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 1,
+          "text": "the Revenue: \u2014 Product of Years Ended July 28, 2018 is $36,709"
+        }
+      ]
+    },
+    {
+      "qa_id": "94916f79-4b6d-487f-8fa2-39f81a085760",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 12,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_13",
+          "sentence_index": 0,
+          "text": "company the Capital and reserves \u2014 Capital redemption reserve of 2019 \u00a3m is 0.7"
+        },
+        {
+          "chunk_id": "table_row_13",
+          "sentence_index": 1,
+          "text": "the Capital and reserves \u2014 Capital redemption reserve of 2018 \u00a3m is 0.5"
+        }
+      ]
+    },
+    {
+      "qa_id": "033b1629-01f9-444b-961e-7ef875a8a915",
+      "correct": false,
+      "n_statements": 2,
+      "n_removed": 1,
+      "n_sentences": 8,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_4",
+          "sentence_index": 0,
+          "text": "(1) In-game net revenues primarily includes the net amount of revenue recognized for downloadable content and microtransactions during the period."
+        }
+      ]
+    },
+    {
+      "qa_id": "05c03d2a-7d92-4973-8771-7d0c6547464a",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 21,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 0,
+          "text": "company the Modules of Years Ended is $ 502,001"
+        },
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 1,
+          "text": "the Modules of Years Ended is $ 806,398"
+        }
+      ]
+    },
+    {
+      "qa_id": "806247ca-aa73-4484-b2e6-d7221a64610f",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 11,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 0,
+          "text": "company the Current \u2014 Trade receivables of 2019 $'000 is 3,770"
+        }
+      ]
+    },
+    {
+      "qa_id": "33f8d9ee-8162-44ea-befd-007a9ddb2ea0",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_4",
+          "sentence_index": 0,
+          "text": "The Company's income before income tax expense of $88,848, $133,514 and $138,668 during the years ended December 31, 2019, 2018 and 2017, respectively, consisted entirely of income earned in the United States."
+        }
+      ]
+    },
+    {
+      "qa_id": "163f08ab-cfae-426a-9c03-4f84feba3bb6",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 3,
+      "n_sentences": 14,
+      "scores": {
+        "control": 0.0,
+        "targeted": 1.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_2",
+          "sentence_index": 0,
+          "text": "company the Net cash used in financing activities of January 3, 2020 is (709)"
+        },
+        {
+          "chunk_id": "table_row_2",
+          "sentence_index": 1,
+          "text": "the Net cash used in financing activities of December 28, 2018 (in millions) is (707)"
+        },
+        {
+          "chunk_id": "table_row_2",
+          "sentence_index": 2,
+          "text": "the Net cash used in financing activities of December 29, 2017 (in millions) is (429)"
+        }
+      ]
+    },
+    {
+      "qa_id": "81fc6048-7510-4c55-aa3c-4c9f1f5b8bcb",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 11,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_3",
+          "sentence_index": 0,
+          "text": "company the Cash Flows \u2014 Servicing fees of 2019 is 3,901"
+        },
+        {
+          "chunk_id": "table_row_3",
+          "sentence_index": 1,
+          "text": "the Cash Flows \u2014 Servicing fees of Year Ended December 31, 2018 is 2,321"
+        }
+      ]
+    },
+    {
+      "qa_id": "78d004fb-a7b1-4ad5-8870-a7e0462e999e",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 9,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_11",
+          "sentence_index": 0,
+          "text": "company the Retained earnings of As of March 29, 2019 is $686"
+        },
+        {
+          "chunk_id": "table_row_11",
+          "sentence_index": 1,
+          "text": "the Retained earnings of As of March 29, 2019 is $247"
+        }
+      ]
+    },
+    {
+      "qa_id": "bbf04869-c442-4909-a65d-c7bc89b6e726",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 12,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_0",
+          "sentence_index": 1,
+          "text": "the Swiss of Years Ended March 31, 2018 is $177,935"
+        },
+        {
+          "chunk_id": "table_row_0",
+          "sentence_index": 2,
+          "text": "the Swiss of Years Ended March 31, 2017 is $161,544"
+        }
+      ]
+    },
+    {
+      "qa_id": "9dcfc5c6-082a-495c-91b1-561d4262bc34",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_3",
+          "sentence_index": 2,
+          "text": "We had $0.9 million of accrued expenses associated with the Horizon Clinicals and Series2000 Revenue Cycle businesses on the consolidated balance sheets as of December 31, 2018"
+        }
+      ]
+    },
+    {
+      "qa_id": "c43ec3a9-13bf-436c-90da-f0d4939aab58",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_21",
+          "sentence_index": 1,
+          "text": "The FRC\u2019s Revised Ethical Standard will become effective for the Group from 15 March 2020."
+        }
+      ]
+    },
+    {
+      "qa_id": "6f65d33d-c721-45f9-9519-9ea4f5d7e740",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 12,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 0,
+          "text": "company the Net cash used in investing activities of 2019 is (97,727)"
+        },
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 1,
+          "text": "the Net cash used in investing activities of Year Ended December 31, 2018 is (20,876)"
+        }
+      ]
+    },
+    {
+      "qa_id": "2996d8a9-8fdc-46f7-9a6b-443663c6f03c",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_3",
+          "sentence_index": 1,
+          "text": "The average duration of our accounts receivable is approximately 25 days."
+        }
+      ]
+    },
+    {
+      "qa_id": "cad9978d-eabb-461c-8ab8-a46a7819a5b1",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 1,
+          "text": "the Gross profit of Year Ended December 31, 2018 is 365,607"
+        }
+      ]
+    },
+    {
+      "qa_id": "ceb35697-abdc-4acf-a54f-5b6716749d2b",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 12,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_5",
+          "sentence_index": 0,
+          "text": "Free Cash Flow was positive $497 million in 2019, compared to positive $533 million and positive $308 million in 2018 and 2017, respectively."
+        }
+      ]
+    },
+    {
+      "qa_id": "5ba983d9-006e-473e-956f-5344532881ae",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 23,
+      "scores": {
+        "control": 1.0,
+        "targeted": 1.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_2",
+          "sentence_index": 2,
+          "text": "the Cost of revenue: \u2014 Maintenance of Fiscal years ended July 31, 2018 Amount (In thousands, except percentages) is 14,783"
+        }
+      ]
+    },
+    {
+      "qa_id": "78d30d08-bc16-44b3-8f19-e7ba5e2bf68f",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 18,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_3",
+          "sentence_index": 0,
+          "text": "In addition, the Company has $0.3 million of federal alternative minimum tax credit carryforwards that will be refundable in future years, due to the Tax Cuts and Jobs Act described below."
+        }
+      ]
+    },
+    {
+      "qa_id": "14381fab-36ac-482b-9f77-2c78f3f34ffb",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 8,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 0,
+          "text": "company the Additions of 2019 \u00a3m is 3.1"
+        },
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 1,
+          "text": "the Additions of 2018 \u00a3m is 2.4"
+        }
+      ]
+    },
+    {
+      "qa_id": "95497d9b-23d7-4c89-832c-bcf408981985",
+      "correct": false,
+      "n_statements": 2,
+      "n_removed": 1,
+      "n_sentences": 8,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_2",
+          "sentence_index": 0,
+          "text": "The GHG emissions summary below shows our gross emissions including location-based scope 2 emissions, as well as our net emissions accounting for the market-based scope 2 reporting for our certified green electricity tariff."
+        }
+      ]
+    },
+    {
+      "qa_id": "785de52d-7246-4ebc-acfc-eb56aabbf0d6",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 14,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_1",
+          "sentence_index": 1,
+          "text": "The defined benefit plan is closed to new members."
+        }
+      ]
+    },
+    {
+      "qa_id": "58060f0e-fb29-4aaf-b4c7-7e43d16e009d",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 13,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_0",
+          "sentence_index": 0,
+          "text": "company the Employee separation expenses of 2019 is $1,150"
+        },
+        {
+          "chunk_id": "table_row_0",
+          "sentence_index": 1,
+          "text": "the Employee separation expenses of Years Ended December 31, 2018 (in thousands) is $2,094"
+        }
+      ]
+    },
+    {
+      "qa_id": "259e18e8-4738-4f4d-b625-e352ca78a136",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 7,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_4",
+          "sentence_index": 1,
+          "text": "The decline in the allowance for credit losses was driven by write-offs of $64 million, primarily of receivables previously reserved, and net releases of $7 million as a result of lower average asset balances in client and commercial financing."
+        }
+      ]
+    },
+    {
+      "qa_id": "69d47933-e853-40e9-a9cb-8af38f182b1d",
+      "correct": true,
+      "n_statements": 5,
+      "n_removed": 2,
+      "n_sentences": 16,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.4,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_2",
+          "sentence_index": 0,
+          "text": "Revenue was up significantly year-over-year, with substantial growth in the offshore and service businesses and clear growth in the onshore business."
+        },
+        {
+          "chunk_id": "para_2",
+          "sentence_index": 1,
+          "text": "On a geographic basis, revenue rose substantially in Europe, C. I. S., Africa, Middle East, while it declined clearly in the other two reporting regions."
+        }
+      ]
+    },
+    {
+      "qa_id": "a3547d53-fd40-4aa1-a8c8-bda48f0520a9",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_2",
+          "sentence_index": 0,
+          "text": "company the Cash-settled awards of 2019 is 255"
+        }
+      ]
+    },
+    {
+      "qa_id": "78523190-61da-490f-b019-b065c317bfd3",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_5",
+          "sentence_index": 0,
+          "text": "Normalised ROFE decreased by 38 bps due to an increase in funds employed driven by refurbishments and acquisitions of hotels."
+        }
+      ]
+    },
+    {
+      "qa_id": "cd2f5a7a-bf19-459f-b9de-85ffecd5ed36",
+      "correct": true,
+      "n_statements": 3,
+      "n_removed": 1,
+      "n_sentences": 18,
+      "scores": {
+        "control": 0.3333333333333333,
+        "targeted": 0.0,
+        "random": 0.3333333333333333
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_3",
+          "sentence_index": 1,
+          "text": "the Adjustments: \u2014 Interest expense, interest income and other income, net of Year Ended December 31, 2018 is 503"
+        }
+      ]
+    },
+    {
+      "qa_id": "3e85cc0e-a751-4d9c-ba64-060805e07982",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 6,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_4",
+          "sentence_index": 1,
+          "text": "The minimum fixed payments in these agreements have been classified as a finance lease."
+        }
+      ]
+    },
+    {
+      "qa_id": "bed1fce2-69cb-4d1e-a34a-01950a1770bd",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_0",
+          "sentence_index": 0,
+          "text": "company the Operating loss carryforward of December 31 2019 U.S. $ in thousands is 73,260"
+        },
+        {
+          "chunk_id": "table_row_0",
+          "sentence_index": 1,
+          "text": "the Operating loss carryforward of December 31 2 0 1 8 U.S. $ in thousands is 57,768"
+        }
+      ]
+    },
+    {
+      "qa_id": "f6cb9974-2af7-43b3-9e1c-8cd5439dff67",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 20,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_0",
+          "sentence_index": 0,
+          "text": "company the Foreign government obligations of Amortized Cost is $129,499"
+        },
+        {
+          "chunk_id": "table_row_8",
+          "sentence_index": 0,
+          "text": "company the Total of Amortized Cost is $171,021"
+        }
+      ]
+    },
+    {
+      "qa_id": "cd461457-bc43-45fe-9a82-147a7dd1c700",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_8",
+          "sentence_index": 0,
+          "text": "company the Long-lived assets: of 2019 is $1,059,077"
+        },
+        {
+          "chunk_id": "table_row_8",
+          "sentence_index": 1,
+          "text": "the Long-lived assets: of 2018 (inthousands) is $902,547"
+        }
+      ]
+    },
+    {
+      "qa_id": "2f9397c9-3318-45d3-8e80-edc2f800b5c4",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 18,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_4",
+          "sentence_index": 0,
+          "text": "In 2017, the Board agreed to grant a total of 866.6 RSUs to other management."
+        }
+      ]
+    },
+    {
+      "qa_id": "34144864-790c-4733-8323-91347f68f5ef",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 0,
+          "text": "company the Global (India and International) \u2014 Hindi films of 2019 is 7"
+        },
+        {
+          "chunk_id": "table_row_1",
+          "sentence_index": 1,
+          "text": "the Global (India and International) \u2014 Hindi films of Year ended March 31, 2018 is 10"
+        }
+      ]
+    },
+    {
+      "qa_id": "8390608d-48d6-46e4-8ab1-b2943dd570ca",
+      "correct": true,
+      "n_statements": 5,
+      "n_removed": 1,
+      "n_sentences": 6,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_1",
+          "sentence_index": 0,
+          "text": "(1) Include cost of equipment sold, content and programming costs, payments to other carriers, franchise fees and network costs."
+        }
+      ]
+    },
+    {
+      "qa_id": "a1979b5e-e187-44dd-8b43-00542a927918",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_0",
+          "sentence_index": 0,
+          "text": "company the Risk-free interest rate of 2019 is 2.8%"
+        }
+      ]
+    },
+    {
+      "qa_id": "6407b020-fadc-42bd-8f02-9b80f3ccb742",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 13,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_2",
+          "sentence_index": 2,
+          "text": "the Assets \u2014 Deferred income tax assets of As of February 28, 2019 Without ASC 606 Adoption is 22,094"
+        }
+      ]
+    },
+    {
+      "qa_id": "537d681e-4891-473f-9c4f-b958e42dd0c5",
+      "correct": false,
+      "n_statements": 5,
+      "n_removed": 1,
+      "n_sentences": 19,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.2,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_1",
+          "sentence_index": 0,
+          "text": "In 2019, gross margin decreased by 130 basis points to 38.7% from 40.0% in the full year 2018 mainly due to normal price pressure and increased unsaturation charges, partially offset by improved manufacturing efficiencies, better product mix, and favorable currency effects, net of hedging."
+        }
+      ]
+    },
+    {
+      "qa_id": "e4deb430-6bd6-4505-a2cc-facbd0d502bf",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 10,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_2",
+          "sentence_index": 0,
+          "text": "company the Prepaid expenses of December 31, 2019 is 164"
+        },
+        {
+          "chunk_id": "table_row_2",
+          "sentence_index": 1,
+          "text": "the Prepaid expenses of December 31, 2018 is 151"
+        }
+      ]
+    },
+    {
+      "qa_id": "7e942684-fe9e-4ded-a3e9-2f3a5aa707fe",
+      "correct": false,
+      "n_statements": 7,
+      "n_removed": 1,
+      "n_sentences": 8,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_7",
+          "sentence_index": 0,
+          "text": "(1) Includes the cost of services rendered in connection with (i) auditing our annual consolidated financial statements, (ii) auditing our internal control over financial reporting in accordance with Section 404 of the Sarbanes-Oxley Act of 2002, (iii) reviewing our quarterly financial statements, (iv) auditing the financial statements of several of our subsidiaries, (v) reviewing our registration statements and issuing related comfort letters, (vi) statutory audits for certain of our foreign subsidiaries, and (vii) consultations regarding accounting standards."
+        }
+      ]
+    },
+    {
+      "qa_id": "54abbf63-d8b0-49a5-85da-b89645bcb90a",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 10,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_4",
+          "sentence_index": 0,
+          "text": "company the Total Fees of 2018 is $86,000"
+        }
+      ]
+    },
+    {
+      "qa_id": "24b6e5a5-4648-472f-88c1-08dda5988edf",
+      "correct": true,
+      "n_statements": 1,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_4",
+          "sentence_index": 0,
+          "text": "company the Total other non-current assets of December 31, 2019 is 41,846"
+        }
+      ]
+    },
+    {
+      "qa_id": "81718791-f581-4bb7-a21c-38aff788583c",
+      "correct": false,
+      "n_statements": 3,
+      "n_removed": 1,
+      "n_sentences": 6,
+      "scores": {
+        "control": 0.6666666666666666,
+        "targeted": 0.3333333333333333,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_5",
+          "sentence_index": 0,
+          "text": "Net Cash Used In Investing Activities"
+        }
+      ]
+    },
+    {
+      "qa_id": "c719f476-2e7d-4ce9-bae1-7fe582aca5d4",
+      "correct": false,
+      "n_statements": 3,
+      "n_removed": 1,
+      "n_sentences": 9,
+      "scores": {
+        "control": 1.0,
+        "targeted": 0.0,
+        "random": 1.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "para_3",
+          "sentence_index": 0,
+          "text": "Depreciation expense was $27.2 million, $22.5 million and $22.0 million in fiscal 2019, fiscal 2018 and fiscal 2017, respectively."
+        }
+      ]
+    },
+    {
+      "qa_id": "fe11f001-3bfe-4089-8108-412676f0a780",
+      "correct": false,
+      "n_statements": 1,
+      "n_removed": 2,
+      "n_sentences": 15,
+      "scores": {
+        "control": 0.0,
+        "targeted": 0.0,
+        "random": 0.0
+      },
+      "removed_targeted": [
+        {
+          "chunk_id": "table_row_12",
+          "sentence_index": 0,
+          "text": "company the Communications Solutions: \u2014 Appliances of 2019 is 680"
+        },
+        {
+          "chunk_id": "table_row_12",
+          "sentence_index": 1,
+          "text": "the Communications Solutions: \u2014 Appliances of Fiscal 2018 (in millions) is 774"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "dataset": "tatqa",
+    "split": "dev",
+    "verifier": "llm",
+    "verifier_model": "local:Qwen/Qwen2.5-7B-Instruct",
+    "judge_model": null,
+    "seed": 0,
+    "n_questions": 57,
+    "n_skipped": 23,
+    "seconds": 18.8
+  }
+}
