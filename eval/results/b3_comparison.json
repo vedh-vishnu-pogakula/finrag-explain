@@ -1,0 +1,185 @@
+{
+  "threshold": 0.5,
+  "finqa": {
+    "reported": {
+      "B1": {
+        "recall@5": 0.85,
+        "mrr": 0.7827,
+        "numeric_accuracy": 0.4498,
+        "span_token_f1": null,
+        "citation_precision": 0.7873
+      },
+      "B2": {
+        "faithfulness_by_verifier": {
+          "nli: nli-deberta-v3-base": 0.2369,
+          "llm: Qwen2.5-7B-Instruct": 0.383
+        }
+      },
+      "B3": {
+        "faithfulness_separation_by_verifier": {
+          "nli: nli-deberta-v3-base": -0.0983,
+          "llm: Qwen2.5-7B-Instruct": 0.251
+        },
+        "faithfulness_specificity_by_verifier": {
+          "nli: nli-deberta-v3-base": 0.0867,
+          "llm: Qwen2.5-7B-Instruct": null
+        },
+        "groundedness": 0.7568,
+        "grounded_hits_gold": 0.688,
+        "attribution_shapley_lift@0.2": 0.4508,
+        "attribution_occlusion_lift@0.2": 0.3135,
+        "failure_cases_flagged": {
+          "nli:nli-deberta-v3-base": 139,
+          "llm:Qwen2.5-7B-Instruct": 97
+        }
+      }
+    },
+    "selective_accuracy": {
+      "B1 (trust everything)": {
+        "n": 250,
+        "coverage": 1.0,
+        "accuracy_verified": 0.452,
+        "accuracy_unverified": null,
+        "accuracy_overall": 0.452,
+        "n_correct_verified": 113,
+        "n_correct_total": 113
+      },
+      "B3 grounding only (no verifier)": {
+        "n": 250,
+        "coverage": 0.692,
+        "accuracy_verified": 0.5376,
+        "accuracy_unverified": 0.2597,
+        "accuracy_overall": 0.452,
+        "n_correct_verified": 93,
+        "n_correct_total": 113
+      },
+      "B2  faithful [nli:nli-deberta-v3-base]": {
+        "n": 250,
+        "coverage": 0.22,
+        "accuracy_verified": 0.3818,
+        "accuracy_unverified": 0.4718,
+        "accuracy_overall": 0.452,
+        "n_correct_verified": 21,
+        "n_correct_total": 113
+      },
+      "B3  grounded AND faithful [nli:nli-deberta-v3-base]": {
+        "n": 250,
+        "coverage": 0.152,
+        "accuracy_verified": 0.4737,
+        "accuracy_unverified": 0.4481,
+        "accuracy_overall": 0.452,
+        "n_correct_verified": 18,
+        "n_correct_total": 113
+      },
+      "B2  faithful [llm:Qwen2.5-7B-Instruct]": {
+        "n": 250,
+        "coverage": 0.36,
+        "accuracy_verified": 0.6444,
+        "accuracy_unverified": 0.3438,
+        "accuracy_overall": 0.452,
+        "n_correct_verified": 58,
+        "n_correct_total": 113
+      },
+      "B3  grounded AND faithful [llm:Qwen2.5-7B-Instruct]": {
+        "n": 250,
+        "coverage": 0.268,
+        "accuracy_verified": 0.7164,
+        "accuracy_unverified": 0.3552,
+        "accuracy_overall": 0.452,
+        "n_correct_verified": 48,
+        "n_correct_total": 113
+      }
+    }
+  },
+  "tatqa": {
+    "reported": {
+      "B1": {
+        "recall@5": 0.8432,
+        "mrr": 0.8508,
+        "numeric_accuracy": 0.5414,
+        "span_token_f1": 0.7452,
+        "citation_precision": 0.768
+      },
+      "B2": {
+        "faithfulness_by_verifier": {
+          "nli: nli-deberta-v3-base": 0.3859,
+          "llm: Qwen2.5-7B-Instruct": 0.7007
+        }
+      },
+      "B3": {
+        "faithfulness_separation_by_verifier": {
+          "nli: nli-deberta-v3-base": 0.1458,
+          "llm: Qwen2.5-7B-Instruct": 0.2418
+        },
+        "faithfulness_specificity_by_verifier": {
+          "nli: nli-deberta-v3-base": 0.2284,
+          "llm: Qwen2.5-7B-Instruct": null
+        },
+        "groundedness": 0.6636,
+        "grounded_hits_gold": 0.58,
+        "attribution_shapley_lift@0.2": 0.4734,
+        "attribution_occlusion_lift@0.2": 0.4745,
+        "failure_cases_flagged": {
+          "nli:nli-deberta-v3-base": 99,
+          "llm:Qwen2.5-7B-Instruct": 90
+        }
+      }
+    },
+    "selective_accuracy": {
+      "B1 (trust everything)": {
+        "n": 250,
+        "coverage": 1.0,
+        "accuracy_verified": 0.476,
+        "accuracy_unverified": null,
+        "accuracy_overall": 0.476,
+        "n_correct_verified": 119,
+        "n_correct_total": 119
+      },
+      "B3 grounding only (no verifier)": {
+        "n": 250,
+        "coverage": 0.668,
+        "accuracy_verified": 0.5749,
+        "accuracy_unverified": 0.2771,
+        "accuracy_overall": 0.476,
+        "n_correct_verified": 96,
+        "n_correct_total": 119
+      },
+      "B2  faithful [nli:nli-deberta-v3-base]": {
+        "n": 250,
+        "coverage": 0.356,
+        "accuracy_verified": 0.6067,
+        "accuracy_unverified": 0.4037,
+        "accuracy_overall": 0.476,
+        "n_correct_verified": 54,
+        "n_correct_total": 119
+      },
+      "B3  grounded AND faithful [nli:nli-deberta-v3-base]": {
+        "n": 250,
+        "coverage": 0.268,
+        "accuracy_verified": 0.6567,
+        "accuracy_unverified": 0.4098,
+        "accuracy_overall": 0.476,
+        "n_correct_verified": 44,
+        "n_correct_total": 119
+      },
+      "B2  faithful [llm:Qwen2.5-7B-Instruct]": {
+        "n": 250,
+        "coverage": 0.648,
+        "accuracy_verified": 0.5988,
+        "accuracy_unverified": 0.25,
+        "accuracy_overall": 0.476,
+        "n_correct_verified": 97,
+        "n_correct_total": 119
+      },
+      "B3  grounded AND faithful [llm:Qwen2.5-7B-Instruct]": {
+        "n": 250,
+        "coverage": 0.5,
+        "accuracy_verified": 0.64,
+        "accuracy_unverified": 0.312,
+        "accuracy_overall": 0.476,
+        "n_correct_verified": 80,
+        "n_correct_total": 119
+      }
+    }
+  }
+}

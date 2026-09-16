@@ -1,0 +1,69 @@
+{
+  "threshold": 0.5,
+  "labels": {
+    "finqa": {
+      "nli:nli-deberta-v3-base": {
+        "n": 250,
+        "n_perturbed": 196,
+        "false_negative": 75,
+        "false_positive": 35,
+        "insensitive": 27,
+        "nonspecific": 3,
+        "unscorable": 15,
+        "false_negative_rate": 0.3,
+        "false_positive_rate": 0.14,
+        "insensitive_rate": 0.108,
+        "nonspecific_rate": 0.012,
+        "unscorable_rate": 0.06,
+        "any_label": 139
+      },
+      "llm:Qwen2.5-7B-Instruct": {
+        "n": 250,
+        "n_perturbed": 0,
+        "false_negative": 45,
+        "false_positive": 37,
+        "insensitive": 0,
+        "nonspecific": 0,
+        "unscorable": 15,
+        "false_negative_rate": 0.18,
+        "false_positive_rate": 0.148,
+        "insensitive_rate": 0.0,
+        "nonspecific_rate": 0.0,
+        "unscorable_rate": 0.06,
+        "any_label": 97
+      }
+    },
+    "tatqa": {
+      "nli:nli-deberta-v3-base": {
+        "n": 250,
+        "n_perturbed": 174,
+        "false_negative": 32,
+        "false_positive": 34,
+        "insensitive": 23,
+        "nonspecific": 4,
+        "unscorable": 19,
+        "false_negative_rate": 0.128,
+        "false_positive_rate": 0.136,
+        "insensitive_rate": 0.092,
+        "nonspecific_rate": 0.016,
+        "unscorable_rate": 0.076,
+        "any_label": 99
+      },
+      "llm:Qwen2.5-7B-Instruct": {
+        "n": 250,
+        "n_perturbed": 0,
+        "false_negative": 11,
+        "false_positive": 60,
+        "insensitive": 0,
+        "nonspecific": 0,
+        "unscorable": 19,
+        "false_negative_rate": 0.044,
+        "false_positive_rate": 0.24,
+        "insensitive_rate": 0.0,
+        "nonspecific_rate": 0.0,
+        "unscorable_rate": 0.076,
+        "any_label": 90
+      }
+    }
+  }
+}
