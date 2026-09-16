@@ -45,9 +45,17 @@ Claude Code reads it automatically at the start of every session in this repo.
         equal-volume removal, seeded and reproducible
   - [x] Audit run on both datasets with the NLI verifier — **specificity +0.087 (FinQA),
         +0.228 (TAT-QA)**, both significant
-  - [ ] Same audit under RAGAS's LLM verifier (one Colab run)
-  - [ ] Variance across repeats, and the labeled failure-case dataset
-- [ ] Month 7 — Full evaluation (B1/B2/B3) + Streamlit demo + human study
+  - [ ] Same audit under RAGAS's LLM verifier + a second judge family (Colab cells 10e/10f)
+  - [x] Labeled failure-case dataset (`eval/baselines/export_failure_cases.py` →
+        `eval/results/failure_cases_{finqa,tatqa}_dev.jsonl`, five mechanical labels)
+  - [ ] Variance across repeats
+- [~] Month 7 — Full evaluation (B1/B2/B3) + Streamlit demo + human study
+  - [x] B1/B2/B3 comparison + selective accuracy (`eval/baselines/build_b3_table.py` →
+        `eval/results/b3_comparison.md`) — **B3's verified flag lifts accuracy among trusted
+        answers from 0.45 to 0.72 on FinQA**; the NLI flag alone is *below* trusting everything
+  - [x] Streamlit demo (`streamlit run demo/streamlit_app.py`) — retrieval + attribution
+        live, generation / grounding / faithfulness / perturbation replayed from checkpoints
+  - [ ] Human spot-check
 - [ ] Month 8 — Paper write-up, workshop submission
 
 ## Setup
