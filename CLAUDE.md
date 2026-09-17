@@ -83,7 +83,7 @@ Everything below is zero-GPU except item 1, which is one Colab run the user star
 that runs in the background while the rest is built locally.
 
 1. DONE 2026-09-16 — **Colab 10e + 10f** (user; ~2–3 h T4). Before Run all: *File → Revert to saved version*,
-   confirm cell 4 prints `Notebook version 2026-09-16.1 matches the repo`, confirm cell 12's
+   confirm cell 4 prints `Notebook version 2026-09-17.1 matches the repo`, confirm cell 12's
    manifest shows every file OK. Cell 13 zips and downloads the 8 files: `b2_{finqa,tatqa}_dev_LLMVER-ALT.{json,jsonl}`,
    `perturbation_{finqa,tatqa}_dev_LLMVER.{json,jsonl}` → `eval/results/` and
    `eval/results/checkpoints/` (`unzip -o ~/Downloads/finrag_artifacts_10e_10f.zip -d .`). Then `python eval/baselines/compare_verifiers.py` fills the two
