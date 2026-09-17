@@ -624,6 +624,16 @@ asserted to reject `__import__`, attribute access, comprehensions, names, divisi
 to reach. Two regression tests pin the bugs that cost the most to find — exemplar figures
 leaking into real answers, and a percent literal being mistaken for a calculation.
 
+## Paper figures
+
+```bash
+python eval/figures/make_figures.py      # -> paper/figures/fig01..fig14 (.png + .pdf)
+```
+
+Fourteen figures, each read from a result file whose path is printed in the figure's own
+footer — see `paper/figures/README.md` for the index and suggested placement. They regenerate
+in a few seconds and pick up new verifier rows automatically.
+
 ## Next — Month 8, the write-up
 
 Every experiment the brief asked for has run. What remains is the paper, and every number in

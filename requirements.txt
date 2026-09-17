@@ -44,6 +44,7 @@ langchain-community==0.3.31
 
 # demo (Month 7)
 streamlit==1.61.1
+matplotlib==3.11.2      # paper figures only (eval/figures/make_figures.py)
 
 # eval / dev
 pytest==9.1.1
