@@ -225,8 +225,8 @@ def main():
 
     summary_path = Path(args.out_dir) / "failure_cases_summary.json"
     summary_path.write_text(json.dumps(report, indent=2))
-    print(f"\n  FN = correct + operands grounded, scored unfaithful     FP = wrong (gold retrieved)"
-          f" or operand missing, scored faithful")
+    print("\n  FN = correct + operands grounded, scored unfaithful     FP = wrong (gold retrieved)"
+          " or operand missing, scored faithful")
     print("  insens = targeted removal did not lower the score      nonspec = targeted drop <= "
           "random drop\n  (insens/nonspec only where a perturbation run exists for that verifier)")
     print(f"[failures] wrote {summary_path}")
