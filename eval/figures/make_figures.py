@@ -79,11 +79,13 @@ def verifier_style(label: str) -> tuple[str, str]:
         return "LLM Qwen2.5-7B", AQUA
     if "falcon" in low:
         return "LLM Falcon3-7B", YELLOW
+    if "olmo" in low:
+        return "LLM OLMo-2-7B", YELLOW          # only one second-7B judge ever exists at a time
     return label, VIOLET
 
 
 VERIFIER_ORDER = ["NLI cross-encoder", "LLM Phi-3.5-mini (3.8B)", "LLM Qwen2.5-7B",
-                  "LLM Falcon3-7B"]
+                  "LLM Falcon3-7B", "LLM OLMo-2-7B"]
 
 
 def _order_key(label: str) -> int:
@@ -102,7 +104,8 @@ def _tick(label: str, extra: str = "") -> str:
     short = {"NLI cross-encoder": "NLI\ncross-encoder",
              "LLM Phi-3.5-mini (3.8B)": "Phi-3.5-mini\n(3.8B LLM)",
              "LLM Qwen2.5-7B": "Qwen2.5\n(7B LLM)",
-             "LLM Falcon3-7B": "Falcon3\n(7B LLM)"}.get(name, name)
+             "LLM Falcon3-7B": "Falcon3\n(7B LLM)",
+             "LLM OLMo-2-7B": "OLMo-2\n(7B LLM)"}.get(name, name)
     return short + (f"\n{extra}" if extra else "")
 
 

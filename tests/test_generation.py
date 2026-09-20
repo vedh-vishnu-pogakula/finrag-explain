@@ -509,3 +509,36 @@ def test_stub_generator_runs_offline(retrieved):
 def test_stub_generator_handles_empty_retrieval():
     result = StubGenerator().generate("q", [])
     assert result.insufficient_evidence is True and result.answer == ""
+
+
+# ---- end-of-turn stop tokens (the 5-hour Falcon judge run) ---------------------------------
+
+class _FakeTokenizer:
+    """Vocabulary with a chat end-of-turn token that is NOT the EOS token, like Falcon3/Llama-3."""
+    eos_token_id = 2
+    unk_token_id = 0
+
+    def __init__(self, vocab):
+        self.vocab = vocab
+
+    def convert_tokens_to_ids(self, tok):
+        return self.vocab.get(tok, self.unk_token_id)
+
+
+def test_end_of_turn_ids_adds_template_end_token_when_it_differs_from_eos():
+    from generator import end_of_turn_ids
+    tok = _FakeTokenizer({"<|eot_id|>": 128009, "<|endoftext|>": 2})
+    assert end_of_turn_ids(tok) == [2, 128009]           # EOS first, template token added
+
+
+def test_end_of_turn_ids_is_just_eos_when_template_token_is_eos():
+    # Qwen: <|im_end|> IS the eos token, so the list must not change B1/B2 decoding at all.
+    from generator import end_of_turn_ids
+    tok = _FakeTokenizer({"<|im_end|>": 2, "<|endoftext|>": 5})
+    assert end_of_turn_ids(tok) == [2, 5]
+
+
+def test_end_of_turn_ids_skips_unknown_tokens():
+    from generator import end_of_turn_ids
+    tok = _FakeTokenizer({})                             # nothing in vocab -> all map to unk
+    assert end_of_turn_ids(tok) == [2]

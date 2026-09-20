@@ -83,7 +83,7 @@ Everything below is zero-GPU except item 1, which is one Colab run the user star
 that runs in the background while the rest is built locally.
 
 1. DONE 2026-09-16 — **Colab 10e + 10f** (user; ~2–3 h T4). Before Run all: *File → Revert to saved version*,
-   confirm cell 4 prints `Notebook version 2026-09-17.1 matches the repo`, confirm cell 12's
+   confirm cell 4 prints `Notebook version 2026-09-20.1 matches the repo`, confirm cell 12's
    manifest shows every file OK. Cell 13 zips and downloads the 8 files: `b2_{finqa,tatqa}_dev_LLMVER-ALT.{json,jsonl}`,
    `perturbation_{finqa,tatqa}_dev_LLMVER.{json,jsonl}` → `eval/results/` and
    `eval/results/checkpoints/` (`unzip -o ~/Downloads/finrag_artifacts_10e_10f.zip -d .`). Then `python eval/baselines/compare_verifiers.py` fills the two
@@ -105,6 +105,13 @@ that runs in the background while the rest is built locally.
 6. **Paper / report** — `paper/` holds only the literature review + §5.5 draft. Results
    sections come from the README tables; every number must trace to a file in `eval/results/`.
 7. Optional if time remains: ~50-statement human spot-check CSV for the user to label.
+8. **Cell 10g (second independent 7B judge) is optional and self-diagnosing.** The first
+   Falcon3 attempt ran 5 h and wrote nothing (cause never identified -- Falcon3's EOS *is*
+   its end-of-turn token, so that was not it). 10g now probes each candidate judge on 5
+   questions in a scratch dir, rejects one slower than 45 s/question or erroring, falls back
+   to OLMo-2, and refuses to mix two judges' verdicts in one resume file. If both fail,
+   disclose "Qwen graded Qwen" in Limitations with the three mitigations in README and move
+   on; the paper does not depend on 10g.
 
 ## Hard constraint: zero budget
 

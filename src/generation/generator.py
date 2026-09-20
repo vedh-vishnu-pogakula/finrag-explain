@@ -213,6 +213,26 @@ def _extract_json(text: str) -> dict | None:
     return None
 
 
+# End-of-turn markers used by common instruct chat templates. Only the ones that exist in a
+# given tokenizer's vocabulary are used, so this is safe for any model.
+_END_OF_TURN_TOKENS = ("<|im_end|>", "<|eot_id|>", "<|end|>", "<|endoftext|>", "</s>",
+                       "<end_of_turn>")
+
+
+def end_of_turn_ids(tokenizer) -> list[int]:
+    """EOS plus every end-of-turn token this tokenizer actually has, de-duplicated."""
+    ids = []
+    if tokenizer.eos_token_id is not None:
+        ids.append(int(tokenizer.eos_token_id))
+    unk = getattr(tokenizer, "unk_token_id", None)
+    for tok in _END_OF_TURN_TOKENS:
+        tid = tokenizer.convert_tokens_to_ids(tok)
+        if tid is None or tid == unk or tid < 0 or tid in ids:
+            continue
+        ids.append(int(tid))
+    return ids
+
+
 class LocalGenerator:
     """Evidence-bound generation on a local open-weights model. Free, offline, reproducible.
 
@@ -231,6 +251,7 @@ class LocalGenerator:
         self.n_shot = n_shot
         self.load_in_4bit = load_in_4bit
         self._pipe = None
+        self._eos_ids: list[int] | None = None
 
     @property
     def prompt_version(self) -> str:
@@ -307,6 +328,7 @@ class LocalGenerator:
 
             model.eval()
             self._pipe = (tokenizer, model, device)
+            self._eos_ids = end_of_turn_ids(tokenizer)
         return self._pipe
 
     def generate(self, question: str, retrieved) -> GeneratedAnswer:
@@ -379,6 +401,12 @@ class LocalGenerator:
                 max_new_tokens=self.max_new_tokens,
                 do_sample=False,             # deterministic -- see class docstring
                 pad_token_id=tokenizer.eos_token_id,
+                # Stop on the chat template's end-of-turn token as well as EOS. For Qwen they
+                # are the same token, so B1/B2 outputs are unchanged; for a judge whose template
+                # ends turns with a different token (Falcon3, Llama-3), stopping only on EOS
+                # runs every call to max_new_tokens -- a 1024-token verdict 500 times over is
+                # what turned a 1.5 h Colab cell into 5 h with nothing written.
+                eos_token_id=self._eos_ids,
             )
         # Decode only the newly generated tokens, not the echoed prompt.
         return tokenizer.decode(output[0][inputs["input_ids"].shape[1]:],
