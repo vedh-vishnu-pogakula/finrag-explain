@@ -1,7 +1,8 @@
-# Explainable Financial RAG
+# AuditRAG — Explainable Financial RAG
 
-Retrieval attribution and faithfulness-verified explanations for financial question answering.
-B.E. CS/AI-ML final-year major project, CBIT Hyderabad.
+Retrieval attribution and verifier-validated faithfulness for financial question answering.
+B.E. CS/AI-ML final-year major project, CBIT Hyderabad. Paper: *Auditing the Auditor: Verifier
+Choice and the Validity of Faithfulness Metrics in Financial RAG* (`paper/paper_draft.md`).
 
 See `CLAUDE.md` for the full project context (contributions, base paper, datasets, guardrails) —
 Claude Code reads it automatically at the start of every session in this repo.
@@ -56,8 +57,10 @@ Claude Code reads it automatically at the start of every session in this repo.
   - [x] B1/B2/B3 comparison + selective accuracy (`eval/baselines/build_b3_table.py` →
         `eval/results/b3_comparison.md`) — **B3's verified flag lifts accuracy among trusted
         answers from 0.45 to 0.72 on FinQA**; the NLI flag alone is *below* trusting everything
-  - [x] Streamlit demo (`streamlit run demo/streamlit_app.py`) — retrieval + attribution
-        live, generation / grounding / faithfulness / perturbation replayed from checkpoints
+  - [x] Streamlit demo (`streamlit run demo/streamlit_app.py`) — six pages: story with the
+        animated pipeline, ask-a-question (retrieval + attribution live), **audit playground**
+        (remove evidence yourself; NLI verifier re-scores live), interactive results, the
+        failure-case browser, reproducibility. Generation is replayed from Colab checkpoints
   - [ ] Human spot-check
 - [ ] Month 8 — Paper write-up, workshop submission
 

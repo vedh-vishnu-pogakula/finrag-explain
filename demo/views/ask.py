@@ -1,10 +1,37 @@
 """Ask a question -- one question end to end, with retrieval and attribution recomputed live."""
 from __future__ import annotations
 
+import plotly.graph_objects as go
 import streamlit as st
 
-from common import (_b3_verdict, _highlight_units, _verdict_badge, explain, load_artifacts,
-                    pick_question, pill, sidebar_dataset)
+from common import (BLUE, CRITICAL, PLOTLY_TEMPLATE, _b3_verdict, _highlight_units,
+                    _verdict_badge, explain, load_artifacts, pick_question, pill,
+                    sidebar_dataset, verifier_style)
+
+
+def _weights_chart(attributions: list, colour: str = BLUE):
+    top = sorted(attributions, key=lambda a: -abs(a["weight"]))[:6][::-1]
+    fig = go.Figure(go.Bar(x=[a["weight"] for a in top], y=[a["text"] for a in top],
+                           orientation="h",
+                           marker_color=[colour if a["weight"] >= 0 else CRITICAL for a in top],
+                           text=[f"{a['weight']:+.3f}" for a in top], textposition="auto",
+                           cliponaxis=False,
+                           hovertemplate="%{y}<br>weight %{x:+.4f}<extra></extra>"))
+    fig.update_layout(template=PLOTLY_TEMPLATE, height=40 + 26 * len(top),
+                      margin=dict(l=10, r=40, t=6, b=6), font=dict(size=11),
+                      xaxis=dict(title=None, zeroline=True, zerolinecolor="#c3c2b7"),
+                      yaxis=dict(title=None))
+    return fig
+
+
+def _conditions_chart(scores: dict, colour: str):
+    conds = [c for c in ("control", "targeted", "random") if scores.get(c) is not None]
+    fig = go.Figure(go.Bar(x=conds, y=[scores[c] for c in conds], marker_color=colour,
+                           text=[f"{scores[c]:.2f}" for c in conds], textposition="outside",
+                           cliponaxis=False, hovertemplate="%{x}: %{y:.3f}<extra></extra>"))
+    fig.update_layout(template=PLOTLY_TEMPLATE, height=200, margin=dict(l=10, r=10, t=10, b=10),
+                      yaxis=dict(range=[0, 1.15], title="faithfulness"), font=dict(size=11))
+    return fig
 
 
 def render() -> None:
@@ -17,7 +44,7 @@ def render() -> None:
     if not art["b1"]:
         st.error(f"No B1 checkpoint for {dataset}.")
         st.stop()
-    qa_id = pick_question(art)
+    qa_id = pick_question(art, default_filter="correct")
     if qa_id is None:
         st.info("No question matches this filter.")
         return
@@ -53,7 +80,8 @@ def render_question(dataset: str, qa_id: str, method: str, art: dict) -> None:
                f"MRR {m.get('mrr', 0):.2f} · prompt `{gen.get('prompt_version')}`")
 
     # ---- 2. retrieval + attribution (live) ----
-    st.subheader("2. Retrieval attribution — Contribution 1 (live)")
+    st.subheader("2. Retrieval attribution — Contribution 1")
+    st.markdown(pill("live", "recomputed now"), unsafe_allow_html=True)
     custom = st.text_input("Try a different question against the same document "
                            "(retrieval + attribution only; no generation on the laptop)",
                            value="")
@@ -80,8 +108,8 @@ def render_question(dataset: str, qa_id: str, method: str, art: dict) -> None:
                 st.markdown(f"#{ch['rank'] + 1} `{ch['chunk_id']}` — base score {ch['base_score']:.4f}")
                 st.markdown(_highlight_units(exp["units"], ch["attributions"]),
                             unsafe_allow_html=True)
-                top = sorted(ch["attributions"], key=lambda a: -a["weight"])[:5]
-                st.bar_chart({a["text"]: a["weight"] for a in top}, horizontal=True, height=160)
+                st.plotly_chart(_weights_chart(ch["attributions"]), width="stretch",
+                                key=f"w{ch['rank']}")
             stats = exp.get("stats", {})
             st.caption(f"{stats.get('n_units', len(exp['units']))} units · "
                        f"{stats.get('variants_requested', '?')} coalitions requested, "
@@ -95,6 +123,7 @@ def render_question(dataset: str, qa_id: str, method: str, art: dict) -> None:
 
     # ---- 3. grounding ----
     st.subheader("3. Evidence grounding — where did each figure come from?")
+    st.markdown(pill("replay", "from checkpoints"), unsafe_allow_html=True)
     g = art["grounding"].get(qa_id)
     if not g:
         st.warning("No grounding record for this question.")
@@ -117,6 +146,7 @@ def render_question(dataset: str, qa_id: str, method: str, art: dict) -> None:
 
     # ---- 4. faithfulness across verifiers ----
     st.subheader("4. Faithfulness — the same answer under each verifier")
+    st.markdown(pill("replay", "from checkpoints"), unsafe_allow_html=True)
     st.caption("RAGAS decomposes the answer into statements (judge LLM, once), then a verifier "
                "checks each statement against the evidence. The paper's finding: which "
                "verifier you pick changes the verdict.")
@@ -142,6 +172,7 @@ def render_question(dataset: str, qa_id: str, method: str, art: dict) -> None:
 
     # ---- 5. perturbation audit ----
     st.subheader("5. Perturbation audit — Contribution 2")
+    st.markdown(pill("replay", "from checkpoints") + " — try it yourself on the **Audit playground** page", unsafe_allow_html=True)
     st.caption("Remove the sentence grounding says supplied the operands (targeted) vs the same "
                "number of random sentences. A valid metric drops more under targeted removal.")
     any_pert = False
@@ -155,8 +186,8 @@ def render_question(dataset: str, qa_id: str, method: str, art: dict) -> None:
                 continue
             any_pert = True
             s = p["scores"]
-            st.bar_chart({k: s[k] for k in ("control", "targeted", "random")
-                          if s.get(k) is not None}, height=180)
+            st.plotly_chart(_conditions_chart(s, verifier_style(label)[1]), width="stretch",
+                            key=f"p{label}")
             spec = (s["control"] - s["targeted"]) - (s["control"] - s["random"])
             st.caption(f"specificity = targeted drop − random drop = **{spec:+.2f}**")
             st.markdown("Removed (targeted):")

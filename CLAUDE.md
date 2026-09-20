@@ -33,8 +33,12 @@ It exists so you don't have to re-explain the project each time you open a new t
 - Ask a single clarifying question instead of guessing and building on a wrong assumption.
 ## Project
 
-**Title:** Explainable Financial RAG — Retrieval Attribution & Faithfulness-Verified Explanations
-for Financial Question Answering
+**System name:** **AuditRAG** (chosen 2026-09-21 after checking for collisions: LedgerRAG and
+VeriRAG are taken; use AuditRAG everywhere — demo, slides, report).
+**Registered title:** Explainable Financial RAG — Retrieval Attribution & Faithfulness-Verified
+Explanations for Financial Question Answering
+**Paper title:** Auditing the Auditor: Verifier Choice and the Validity of Faithfulness Metrics
+in Financial RAG (`paper/paper_draft.md`)
 **Type:** B.E. CS/AI-ML final-year major project, CBIT Hyderabad, 8-month timeline
 **Status (2026-09-16, resumed after a 20-day gap; hard deadline ~2026-09-23):** Months 1–5
 complete, Month 6 mostly done, Months 7–8 compressed into the final week — see "Deadline
@@ -96,9 +100,14 @@ that runs in the background while the rest is built locally.
    0.72 accuracy among trusted answers, NLI flag alone is below trusting everything) — B3 is the composition of results already computed on the same 250 questions
    (B1 answer + grounding + faithfulness-across-verifiers + perturbation specificity). One
    script joins them by `qa_id` into the B1/B2/B3 comparison the brief promised. No GPU.
-4. DONE — **Streamlit demo** (`streamlit run demo/streamlit_app.py`, verified headlessly) — replay mode over the 250 checkpointed questions (retrieval + attribution
-   live, since they are embedding-only and cheap; generation / grounding / faithfulness shown
-   from the checkpoints). Live 7B generation is not possible on the laptop; do not fake it.
+4. DONE — **Streamlit demo** rebuilt 2026-09-21 as the AuditRAG multipage app
+   (`demo/streamlit_app.py` + `demo/common.py` + `demo/views/*.py`, theme in
+   `.streamlit/config.toml`): story (animated SVG pipeline, file-backed stat tiles), ask a
+   question (retrieval + attribution live), audit playground (NLI verifier re-scores live as
+   the user removes evidence), results (plotly twins of the paper figures), failure-case
+   browser, reproducibility. Live 7B generation is not possible on the laptop; do not fake it.
+   Test a page headlessly with `streamlit.testing.v1.AppTest` on a harness that calls
+   `views/<page>.render()` directly (st.navigation pages don't switch under AppTest).
 5. **Variance** — DONE (`eval/baselines/variance_across_seeds.py`): generation and both
    verifiers are deterministic (checked byte-identical across seeds); only the random arm
    varies. FinQA specificity +0.070 ± 0.013, TAT-QA +0.241 ± 0.012.
