@@ -520,8 +520,12 @@ a 0.45-accurate system into one whose trusted answers are 0.72 accurate.
   measured against gold-answer correctness and provenance against a deterministic reference,
   neither of which the judge can influence; self-preference would inflate the *mean*, yet the
   independent 3.8B LLM reports a higher mean than Qwen with no separation; and all verifiers
-  judge identical cached statements. An independent 7B judge run was attempted and is reported
-  in the released results if it completed; if absent, this confound stands as stated.
+  judge identical cached statements. We attempted an independent non-Qwen 7B verifier: on the
+  same free T4, `tiiuae/Falcon3-7B-Instruct` verified at 95 s per question (0 parse errors)
+  and `allenai/OLMo-2-1124-7B-Instruct` at 74 s (1 parse error in 5), against ≈ 10 s for Qwen
+  and Phi — 500 questions would have taken 10–13 GPU-hours, beyond a free session — so neither
+  run was completed. The confound therefore stands as stated, mitigated by the three facts
+  above; a funded replication should run it first.
 - **Sample size.** 250 questions per dataset, dev splits only; the LLM-verifier perturbation
   audit covers 59 / 57 paired questions; attribution 100 (chunk score) and 50 (ranking); the
   cross-check 50. Effects that matter are large and significant at these sizes, but the
