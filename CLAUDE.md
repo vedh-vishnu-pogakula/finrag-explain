@@ -102,8 +102,12 @@ that runs in the background while the rest is built locally.
 5. **Variance** — DONE (`eval/baselines/variance_across_seeds.py`): generation and both
    verifiers are deterministic (checked byte-identical across seeds); only the random arm
    varies. FinQA specificity +0.070 ± 0.013, TAT-QA +0.241 ± 0.012.
-6. **Paper / report** — `paper/` holds only the literature review + §5.5 draft. Results
-   sections come from the README tables; every number must trace to a file in `eval/results/`.
+6. **Paper** — DRAFT DONE 2026-09-20: `paper/paper_draft.md` (workshop format, ~6k words,
+   14 figures in `paper/figures/`). 47 headline numbers audited by script against
+   `eval/results/` (0 mismatches). Remaining before submission: verify every reference marked
+   **[verify]** against `paper/FinEXrag_Literature Review.pdf`; fold in the 10g second-judge
+   row if it lands (`compare_verifiers.py` → Table 3, `make_figures.py`); convert to the
+   venue template (pandoc from Markdown). Never add a number that is not in a result file.
 7. Optional if time remains: ~50-statement human spot-check CSV for the user to label.
 8. **Cell 10g (second independent 7B judge) is optional and self-diagnosing.** The first
    Falcon3 attempt ran 5 h and wrote nothing (cause never identified -- Falcon3's EOS *is*
