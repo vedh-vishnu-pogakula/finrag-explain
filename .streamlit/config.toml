@@ -1,0 +1,19 @@
+# AuditRAG demo theme. Same palette as paper/figures so a verifier looks identical in both.
+[theme]
+base = "light"
+primaryColor = "#2a78d6"
+backgroundColor = "#fcfcfb"
+secondaryBackgroundColor = "#f3f2ee"
+textColor = "#0b0b0b"
+linkColor = "#1c5cab"
+font = "sans-serif"
+baseRadius = "0.6rem"
+borderColor = "#e1e0d9"
+showWidgetBorder = true
+chartCategoricalColors = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#4a3aa7", "#e34948"]
+
+[theme.sidebar]
+backgroundColor = "#f6f5f1"
+
+[browser]
+gatherUsageStats = false
