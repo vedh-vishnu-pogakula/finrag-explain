@@ -57,10 +57,12 @@ Claude Code reads it automatically at the start of every session in this repo.
   - [x] B1/B2/B3 comparison + selective accuracy (`eval/baselines/build_b3_table.py` →
         `eval/results/b3_comparison.md`) — **B3's verified flag lifts accuracy among trusted
         answers from 0.45 to 0.72 on FinQA**; the NLI flag alone is *below* trusting everything
-  - [x] Streamlit demo (`streamlit run demo/streamlit_app.py`) — six pages: story with the
-        animated pipeline, ask-a-question (retrieval + attribution live), **audit playground**
-        (remove evidence yourself; NLI verifier re-scores live), interactive results, the
-        failure-case browser, reproducibility. Generation is replayed from Colab checkpoints
+  - [x] Two Streamlit demos over the same checkpoints. **App 2** (`streamlit run demo/app2.py`)
+        is the clean two-tab walk-through: one question end to end + results overview. **App 1**
+        (`streamlit run demo/streamlit_app.py`) is the six-page deep dive: animated pipeline,
+        **audit playground** (remove evidence yourself; NLI verifier re-scores live),
+        interactive results, failure-case browser, reproducibility. Generation is replayed
+        from Colab checkpoints in both; retrieval + attribution run live
   - [ ] Human spot-check
 - [ ] Month 8 — Paper write-up, workshop submission
 

@@ -100,7 +100,9 @@ that runs in the background while the rest is built locally.
    0.72 accuracy among trusted answers, NLI flag alone is below trusting everything) — B3 is the composition of results already computed on the same 250 questions
    (B1 answer + grounding + faithfulness-across-verifiers + perturbation specificity). One
    script joins them by `qa_id` into the B1/B2/B3 comparison the brief promised. No GPU.
-4. DONE — **Streamlit demo** rebuilt 2026-09-21 as the AuditRAG multipage app
+4. DONE — **Two demos** (user's call 2026-09-22: the multipage app is "app 1", the older
+   clean two-tab single file is preferred for presenting and lives on as **`demo/app2.py`**
+   — keep both, keep app 2 simple). App 1: the AuditRAG multipage app
    (`demo/streamlit_app.py` + `demo/common.py` + `demo/views/*.py`, theme in
    `.streamlit/config.toml`): story (animated SVG pipeline, file-backed stat tiles), ask a
    question (retrieval + attribution live), audit playground (NLI verifier re-scores live as
